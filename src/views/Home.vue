@@ -66,27 +66,41 @@
         <v-icon class="white--text down">mdi-chevron-down</v-icon>
         <p>無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
       </FSection>
-      <FSection color="white">
-        <h1>官方Twitter</h1>
-        <v-container class="px-md-15">
-          <div class="twitter">
+      <Section color="white">
+        <template v-slot:left>
+          <h1 class="twitter-title row">
+            <span class="col-12 col-md-6 text-md-right py-0 px-0">最新官方Twitter</span>
+            <span class="col-12 col-md-6 px-0 py-0">
             <a
-              class="twitter-timeline"
               href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
-              >Tweets by MyaVtuber</a
+              class="twitter-follow-button"
+              data-show-count="true"
+              >Follow @MyaVtuber</a
             >
-          </div>
-        </v-container>
-      </FSection>
-      <v-container class="py-0">
-        <v-parallax
-          class="full-banner"
-          src="@/assets/fullwidth2.jpg"
-          alt="綽貓喵CheukCat🍣-【HKVtuber】"
-        />
-      </v-container>
+            </span>
+          </h1>
+          <v-container>
+            <div class="twitter">
+              <a
+                data-chrome="noborders noheader nofooter noscrollbar"
+                data-tweet-limit="3"
+                class="twitter-timeline"
+                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
+                >Tweets by MyaVtuber</a
+              >
+            </div>
+          </v-container>
+        </template>
+        <template v-slot:right>
+          <v-parallax
+            class="full-banner"
+            src="@/assets/fullwidth2.jpg"
+            alt="綽貓喵CheukCat🍣-【HKVtuber】"
+          />
+        </template>
+      </Section>
       <FSection>
-        <v-container>
+        <v-container class="text-banner">
           <p class="pr-15 text-h4 mb-0 d-none d-md-block">
             「很喜歡你，但我未能完全說出口
           </p>
@@ -123,6 +137,11 @@ export default {
 };
 </script>
 <style scoped>
+@media (max-width: 390px) {
+  .text-banner .text-h6 {
+    font-size: 4.5vw !important;
+  }
+}
 .bg-white {
   background-color: white;
   min-height: 55px;
@@ -134,8 +153,16 @@ export default {
   min-height: 80vh;
 }
 .twitter {
-  max-height: 600px;
+  max-height: 650px;
   overflow: auto;
+}
+.twitter-follow-button {
+  background-color: #1d9bf0;
+  color: #fff;
+  border-radius: 9999px;
+  padding: 1px 12px 1px 12px;
+  height: 20px;
+  font-size: 12px;
 }
 .by {
   width: 80%;
