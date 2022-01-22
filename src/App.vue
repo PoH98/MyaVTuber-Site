@@ -2,9 +2,8 @@
   <div id="app">
     <v-app>
       <v-app-bar app elevation="0">
-        <v-container>
-          <v-row class="justify-space-between">
-            <div class="d-none d-md-block">
+        <v-container class="d-flex">
+            <div class="d-none d-lg-block">
               <v-btn
                 plain
                 href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
@@ -27,6 +26,7 @@
                 Instagram
               </v-btn>
             </div>
+            <v-spacer/>
             <div class="nav-main">
               <v-btn
                 outlined
@@ -36,28 +36,27 @@
                 MYA
               </v-btn>
             </div>
-            <div class="d-md-none">
+            <v-spacer/>
+            <div class="d-lg-none">
               <v-app-bar-nav-icon
                 @click.stop="drawer = !drawer"
               ></v-app-bar-nav-icon>
             </div>
-            <div class="d-none d-md-block">
+            <div class="d-none d-lg-block">
               <v-btn plain href="https://mya.baguhkv.com/" class="nav-item">
                 烤肉
               </v-btn>
               <v-btn
                 plain
-                :to="{ name: 'MC' }"
+                href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
                 class="nav-item"
-                active-class="pink--text text-darken-3"
               >
                 Minecraft Server
               </v-btn>
             </div>
-          </v-row>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-navigation-drawer v-model="drawer" absolute temporary class="d-lg-none">
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
@@ -77,7 +76,7 @@
             <v-list-item href="https://mya.baguhkv.com/">
               <v-list-item-title>烤肉</v-list-item-title>
             </v-list-item>
-            <v-list-item :to="{ name: 'MC' }">
+            <v-list-item href="https://sites.google.com/view/mya-minecraft/home?authuser=0">
               <v-list-item-title>Minecraft</v-list-item-title>
             </v-list-item>
           </v-list-item-group>
@@ -86,21 +85,17 @@
       <v-main>
         <router-view />
       </v-main>
-      <v-footer app class="px-15" absolute>
-        <p class="mb-0 py-5">
+      <v-footer app class="px-md-15" absolute>
+        <p class="mb-0 py-5 footer">
           Crafted By <a href="https://github.com/PoH98">PoH98</a>
         </p>
         <v-spacer />
-        <div>
+        <div class="footer">
           Copyright MIT License<br /><a
             href="https://github.com/PoH98/MyaVTuber-Site"
             >Github Source Code</a
           >
         </div>
-        <v-spacer />
-        <router-link class="mb-0" :to="{ name: 'Thanks' }"
-          >Special Thanks</router-link
-        >
       </v-footer>
     </v-app>
   </div>
@@ -118,6 +113,9 @@ export default {
 .nav-item {
   margin-left: 5px;
   margin-right: 5px;
+}
+.footer{
+  font-size: 10px;
 }
 @media (min-width: 720px) {
   .nav-item {

@@ -2,10 +2,10 @@
   <div>
     <banner />
     <div class="bg-white">
-      <Section>
+      <Section :mobileReverse="true">
         <template v-slot:left>
           <div
-            class="text-left d-flex flex-column justify-center"
+            class="text-md-left d-flex flex-column justify-center"
             style="height: 100%"
           >
             <h2>飛天奶茶商店</h2>
@@ -29,13 +29,13 @@
       </Section>
       <Section color="white">
         <template v-slot:left>
-          <div class="px-8 py-8 mx-auto">
+          <div class="px-8 py-8 d-flex justify-center">
             <v-img src="@/assets/discordicon.png" width="300px" />
           </div>
         </template>
         <template v-slot:right>
           <div
-            class="text-right d-flex flex-column justify-center"
+            class="text-md-right d-flex flex-column justify-center"
             style="height: 100%"
           >
             <h2>Discord Server</h2>
@@ -68,7 +68,7 @@
       </FSection>
       <FSection color="white">
         <h1>官方Twitter</h1>
-        <v-container class="px-15">
+        <v-container class="px-md-15">
           <div class="twitter">
             <a
               class="twitter-timeline"
@@ -87,14 +87,27 @@
       </v-container>
       <FSection>
         <v-container>
-          <p class="pr-15 text-h4 mb-0">「很喜歡你，但我未能完全說出口</p>
-          <p class="pl-15 text-h4 mb-0">在現實的交錯裡，我跟你的邂逅」</p>
+          <p class="pr-15 text-h4 mb-0 d-none d-md-block">
+            「很喜歡你，但我未能完全說出口
+          </p>
+          <p class="pl-15 text-h4 mb-0 d-none d-md-block">
+            在現實的交錯裡，我跟你的邂逅」
+          </p>
+          <p class="pr-15 text-h6 font-weight-bold mb-0 d-md-none">
+            「很喜歡你，但我未能完全說出口
+          </p>
+          <p class="pl-15 text-h6 font-weight-bold mb-0 d-md-none">
+            在現實的交錯裡，我跟你的邂逅」
+          </p>
           <p class="text-right by">講你知123</p>
         </v-container>
       </FSection>
       <FSection color="white">
         <v-container>
-          <p class="pr-15 text-h4 mb-0">院友期待你的加入！</p>
+          <p class="text-h4 mb-0">院友期待你的加入！</p>
+          <router-link class="mb-0" :to="{ name: 'Thanks' }"
+            >特別感謝院友名單</router-link
+          >
         </v-container>
       </FSection>
     </div>
