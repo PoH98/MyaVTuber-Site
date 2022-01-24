@@ -3,7 +3,9 @@
         <h1>感謝名單</h1>
         <v-row>
             <v-col cols="12" md="4" v-for="user in users" :key="user">
-                {{ user }}
+                <router-link :to="{ name: 'Patient', params:{ name: user } }">
+                    {{ user }}
+                </router-link>
             </v-col>
         </v-row>
     </v-container>
@@ -12,7 +14,9 @@
 export default {
     data(){
         return{
-            users:[  ]
+            users:[ 
+                "Sample"
+             ]
         }
     }
 }

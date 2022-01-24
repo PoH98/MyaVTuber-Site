@@ -1,5 +1,5 @@
 <template>
-    <div :class="color + ' py-15'">
+    <div :class="color + (disablePadding?'':' py-15')">
         <slot name="default"/>
     </div>
 </template>
@@ -9,6 +9,10 @@ export default {
         color:{
             type: String,
             default:()=>{ return "pink lighten-4" }
+        },
+        disablePadding:{
+            type:Boolean,
+            default:()=>{return false}
         }
     }
 }

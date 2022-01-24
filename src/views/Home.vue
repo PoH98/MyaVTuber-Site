@@ -60,23 +60,27 @@
         alt="@/yuentsz123"
       />
       <FSection>
-        <h1 class="white--text">院友作品</h1>
-        <v-icon class="white--text down">mdi-chevron-down</v-icon>
-        <v-icon class="white--text down">mdi-chevron-down</v-icon>
-        <v-icon class="white--text down">mdi-chevron-down</v-icon>
-        <p>無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
+        <v-container>
+          <h1 class="white--text">院友作品</h1>
+          <v-icon class="white--text down">mdi-chevron-down</v-icon>
+          <v-icon class="white--text down">mdi-chevron-down</v-icon>
+          <v-icon class="white--text down">mdi-chevron-down</v-icon>
+          <p>無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
+        </v-container>
       </FSection>
       <Section color="white">
         <template v-slot:left>
           <h1 class="twitter-title row">
-            <span class="col-12 col-md-6 text-md-right py-0 px-0">最新官方Twitter</span>
-            <span class="col-12 col-md-6 px-0 py-0">
-            <a
-              href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
-              class="twitter-follow-button"
-              data-show-count="true"
-              >Follow @MyaVtuber</a
+            <span class="col-12 col-md-6 text-md-right py-0 px-0"
+              >最新官方Twitter</span
             >
+            <span class="col-12 col-md-6 px-0 py-0">
+              <a
+                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
+                class="twitter-follow-button"
+                data-show-count="true"
+                >Follow @MyaVtuber</a
+              >
             </span>
           </h1>
           <v-container>
@@ -133,6 +137,12 @@ export default {
     Banner: () => import("../components/Home/Banner.vue"),
     Section: () => import("../components/Home/SecondarySection.vue"),
     FSection: () => import("../components/Home/FullSection.vue"),
+  },
+  beforeCreate() {
+    const twitter = "https://platform.twitter.com/widgets.js";
+    var s = document.createElement("script");
+    s.setAttribute("src", twitter);
+    document.head.appendChild(s);
   },
 };
 </script>
