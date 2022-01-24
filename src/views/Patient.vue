@@ -67,7 +67,6 @@
   </div>
 </template>
 <script>
-import axios from "axios";
 import "lightgallery.js";
 import "lg-thumbnail.js";
 import "lg-video.js";
@@ -83,9 +82,7 @@ export default {
     };
   },
   created() {
-    axios.get("/data/" + this.$route.params.name + ".json").then((result) => {
-      this.patient = result.data;
-    });
+    this.patient = require(`@/assets/data/${this.$route.params.name.toLowerCase()}.json`);
     setTimeout(() => {
       const el = document.getElementById("lightgallery");
       console.log(el);
