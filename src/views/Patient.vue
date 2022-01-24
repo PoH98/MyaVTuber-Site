@@ -1,6 +1,13 @@
 <template>
-  <div class="patient-container">
+  <div class="patient-container" v-if="!isLoading">
     <v-img
+      v-if="patient.Banner"
+      class="background"
+      :src="patient.Banner"
+      gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
+    />
+    <v-img
+      v-else
       class="background"
       src="@/assets/dad12provide.jpg"
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
@@ -48,7 +55,7 @@
             <v-icon class="mr-2">mdi-twitter</v-icon>院友Twitter
           </v-btn>
         </div>
-        <p class="text-left text-h6 mb-9" v-html="patient.介紹 "></p>
+        <p class="text-left text-h6 mb-9" v-html="patient.介紹"></p>
       </v-container>
     </FSection>
     <FSection color="white">
@@ -63,13 +70,15 @@
           </a>
         </div>
       </v-container>
-      <v-container>
-        本院友無上傳任何自創作品
-      </v-container>
+      <v-container> 本院友無上傳任何自創作品 </v-container>
     </FSection>
   </div>
+  <v-overlay :value="isLoading" v-else>
+    <v-progress-circular indeterminate size="64"></v-progress-circular>
+  </v-overlay>
 </template>
 <script>
+import axios from "axios";
 import "lightgallery.js";
 import "lg-thumbnail.js";
 import "lg-video.js";
@@ -82,22 +91,30 @@ export default {
   data() {
     return {
       patient: {},
+      isLoading: true,
     };
   },
   created() {
-    this.patient = require(`@/assets/data/${this.$route.params.name.toLowerCase()}.json`);
-    setTimeout(() => {
-      const el = document.getElementById("lightgallery");
-      window.lightGallery(el, {
-        mode: "lg-fade",
-        thumbnail: true,
-        autoplayFirstVideo: false,
-        loadYoutubeThumbnail: true,
-        youtubeThumbSize: "default",
-        loadVimeoThumbnail: true,
-        vimeoThumbSize: "thumbnail_medium",
+    axios
+      .post("https://api.myavtuber.workers.dev/api", {
+        name: this.$route.params.name.toLowerCase(),
+      })
+      .then((result) => {
+        this.patient = result.data;
+        setTimeout(() => {
+          const el = document.getElementById("lightgallery");
+          this.isLoading = false;
+          window.lightGallery(el, {
+            mode: "lg-fade",
+            thumbnail: true,
+            autoplayFirstVideo: false,
+            loadYoutubeThumbnail: true,
+            youtubeThumbSize: "default",
+            loadVimeoThumbnail: true,
+            vimeoThumbSize: "thumbnail_medium",
+          });
+        }, 200);
       });
-    }, 1000);
   },
 };
 </script>
