@@ -85,7 +85,6 @@ export default {
     this.patient = require(`@/assets/data/${this.$route.params.name.toLowerCase()}.json`);
     setTimeout(() => {
       const el = document.getElementById("lightgallery");
-      console.log(el);
       window.lightGallery(el, {
         mode: "lg-fade",
         thumbnail: true,
