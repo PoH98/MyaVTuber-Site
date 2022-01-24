@@ -3,81 +3,104 @@
     <v-app>
       <v-app-bar app elevation="0">
         <v-container class="d-flex">
-            <div class="d-none d-lg-block">
-              <v-btn
-                plain
-                href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
-                class="nav-item"
-              >
-                Youtube
-              </v-btn>
-              <v-btn
-                plain
-                href="https://twitter.com/MyaVtuber"
-                class="nav-item"
-              >
-                Twitter
-              </v-btn>
-              <v-btn
-                plain
-                href="https://www.instagram.com/mya_vtuber/"
-                class="nav-item"
-              >
-                Instagram
-              </v-btn>
-            </div>
-            <v-spacer/>
-            <div class="nav-main">
-              <v-btn
-                outlined
-                :to="{ name: 'Home' }"
-                class="nav-item red--text home"
-              >
-                MYA
-              </v-btn>
-            </div>
-            <v-spacer/>
-            <div class="d-lg-none">
-              <v-app-bar-nav-icon
-                @click.stop="drawer = !drawer"
-              ></v-app-bar-nav-icon>
-            </div>
-            <div class="d-none d-lg-block">
-              <v-btn plain href="https://mya.baguhkv.com/" class="nav-item">
-                烤肉
-              </v-btn>
-              <v-btn
-                plain
-                href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
-                class="nav-item"
-              >
-                Minecraft Server
-              </v-btn>
-            </div>
+          <div class="d-none d-lg-block">
+            <v-btn
+              plain
+              href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
+              class="nav-item"
+            >
+              <v-icon class="mr-2">{{ mdiYoutube }}</v-icon>
+              Youtube
+            </v-btn>
+            <v-btn plain href="https://twitter.com/MyaVtuber" class="nav-item">
+              <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>
+              Twitter
+            </v-btn>
+            <v-btn
+              plain
+              href="https://www.instagram.com/mya_vtuber/"
+              class="nav-item"
+            >
+              <v-icon class="mr-2">{{ mdiInstagram }}</v-icon>
+              Instagram
+            </v-btn>
+          </div>
+          <v-spacer />
+          <div class="nav-main">
+            <v-btn
+              outlined
+              :to="{ name: 'Home' }"
+              class="nav-item red--text home"
+            >
+              MYA
+            </v-btn>
+          </div>
+          <v-spacer />
+          <div class="d-lg-none">
+            <v-app-bar-nav-icon
+              @click.stop="drawer = !drawer"
+            ></v-app-bar-nav-icon>
+          </div>
+          <div class="d-none d-lg-block">
+            <v-btn plain href="https://mya.baguhkv.com/" class="nav-item">
+              <v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon>
+              烤肉
+            </v-btn>
+            <v-btn
+              plain
+              href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
+              class="nav-item"
+            >
+              <v-icon class="mr-2">{{ mdiMinecraft }}</v-icon>
+              Minecraft Server
+            </v-btn>
+          </div>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" absolute temporary class="d-lg-none">
+      <v-navigation-drawer
+        v-model="drawer"
+        absolute
+        temporary
+        class="d-lg-none"
+      >
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
               href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
             >
-              <v-list-item-title>Youtube</v-list-item-title>
+              <v-list-item-title
+                ><v-icon class="mr-2">{{ mdiYoutube }}</v-icon
+                >Youtube</v-list-item-title
+              >
             </v-list-item>
 
             <v-list-item href="https://twitter.com/MyaVtuber">
-              <v-list-item-title>Twitter</v-list-item-title>
+              <v-list-item-title
+                ><v-icon class="mr-2">{{ mdiTwitter }}</v-icon
+                >Twitter</v-list-item-title
+              >
             </v-list-item>
 
             <v-list-item href="https://www.instagram.com/mya_vtuber/">
-              <v-list-item-title>Instagram</v-list-item-title>
+              <v-list-item-title
+                ><v-icon class="mr-2">{{ mdiInstagram }}</v-icon
+                >Instagram</v-list-item-title
+              >
             </v-list-item>
 
             <v-list-item href="https://mya.baguhkv.com/">
-              <v-list-item-title>烤肉</v-list-item-title>
+              <v-list-item-title
+                ><v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon
+                >烤肉</v-list-item-title
+              >
             </v-list-item>
-            <v-list-item href="https://sites.google.com/view/mya-minecraft/home?authuser=0">
-              <v-list-item-title>Minecraft</v-list-item-title>
+            <v-list-item
+              href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
+            >
+              <v-list-item-title
+                ><v-icon class="mr-2">{{ mdiMinecraft }}</v-icon
+                >Minecraft</v-list-item-title
+              >
             </v-list-item>
           </v-list-item-group>
         </v-list>
@@ -101,10 +124,22 @@
   </div>
 </template>
 <script>
+import {
+  mdiYoutube,
+  mdiTwitter,
+  mdiInstagram,
+  mdiMinecraft,
+  mdiFoodDrumstick,
+} from "@mdi/js";
 export default {
   data() {
     return {
       drawer: false,
+      mdiYoutube,
+      mdiTwitter,
+      mdiInstagram,
+      mdiMinecraft,
+      mdiFoodDrumstick,
     };
   },
 };
@@ -114,7 +149,7 @@ export default {
   margin-left: 5px;
   margin-right: 5px;
 }
-.footer{
+.footer {
   font-size: 10px;
 }
 @media (min-width: 720px) {

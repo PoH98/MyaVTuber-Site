@@ -32,7 +32,7 @@
             dark
             rounded
           >
-            <v-icon class="mr-2">mdi-facebook</v-icon>院友FB
+            <v-icon class="mr-2">{{ mdiFacebook }}</v-icon>院友FB
           </v-btn>
           <v-btn
             v-if="patient.Insta"
@@ -42,7 +42,7 @@
             dark
             rounded
           >
-            <v-icon class="mr-2">mdi-instagram</v-icon>院友Instagram
+            <v-icon class="mr-2">{{ mdiInstagram }}</v-icon>院友Instagram
           </v-btn>
           <v-btn
             v-if="patient.Twitter"
@@ -52,7 +52,7 @@
             dark
             rounded
           >
-            <v-icon class="mr-2">mdi-twitter</v-icon>院友Twitter
+            <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>院友Twitter
           </v-btn>
         </div>
         <p class="text-left text-h6 mb-9" v-html="patient.介紹"></p>
@@ -79,6 +79,7 @@
 </template>
 <script>
 import axios from "axios";
+import { mdiFacebook, mdiInstagram, mdiTwitter } from '@mdi/js'
 import "lightgallery.js";
 import "lg-thumbnail.js";
 import "lg-video.js";
@@ -92,6 +93,9 @@ export default {
     return {
       patient: {},
       isLoading: true,
+      mdiFacebook,
+      mdiInstagram,
+      mdiTwitter
     };
   },
   created() {

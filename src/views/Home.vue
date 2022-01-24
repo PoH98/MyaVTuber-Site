@@ -18,6 +18,7 @@
                 class="px-13"
                 href="https://market.flyingmilktea.com/shop/113469"
               >
+              <v-icon class="mr-2">{{ mdiCart }}</v-icon>
                 購買
               </v-btn>
             </div>
@@ -48,6 +49,7 @@
                 class="px-13"
                 href="https://discord.com/invite/erB5AW9Vrp"
               >
+              <v-icon class="mr-2">{{ mdiDiscord }}</v-icon>
                 加入
               </v-btn>
             </div>
@@ -62,9 +64,9 @@
       <FSection>
         <v-container>
           <h1 class="white--text">院友作品</h1>
-          <v-icon class="white--text down">mdi-chevron-down</v-icon>
-          <v-icon class="white--text down">mdi-chevron-down</v-icon>
-          <v-icon class="white--text down">mdi-chevron-down</v-icon>
+          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
+          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
+          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
           <p>無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
         </v-container>
       </FSection>
@@ -132,11 +134,19 @@
   </div>
 </template>
 <script>
+import { mdiChevronDown, mdiCart, mdiDiscord } from '@mdi/js'
 export default {
   components: {
     Banner: () => import("../components/Home/Banner.vue"),
     Section: () => import("../components/Home/SecondarySection.vue"),
     FSection: () => import("../components/Home/FullSection.vue"),
+  },
+  data(){
+    return{
+      mdiChevronDown,
+      mdiCart,
+      mdiDiscord
+    }
   },
   beforeCreate() {
     const twitter = "https://platform.twitter.com/widgets.js";
