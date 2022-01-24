@@ -1,9 +1,9 @@
 <template>
     <v-container>
         <h1>感謝名單</h1>
-        <v-row>
+        <v-row class="mt-5">
             <v-col cols="12" md="4" v-for="user in users" :key="user">
-                <router-link :to="{ name: 'Patient', params:{ name: user } }">
+                <router-link :to="{ name: 'Patient', params:{ name: user.replace(' ', '_') } }">
                     {{ user }}
                 </router-link>
             </v-col>
@@ -15,7 +15,8 @@ export default {
     data(){
         return{
             users:[ 
-                "Sample"
+                "Ben",
+                "Hentai Matthew"
              ]
         }
     }

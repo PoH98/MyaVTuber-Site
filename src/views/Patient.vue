@@ -48,11 +48,11 @@
             <v-icon class="mr-2">mdi-twitter</v-icon>院友Twitter
           </v-btn>
         </div>
-        <p class="text-left text-h6 mb-9">{{ patient.介紹 }}</p>
+        <p class="text-left text-h6 mb-9" v-html="patient.介紹 "></p>
       </v-container>
     </FSection>
     <FSection color="white">
-      <v-container>
+      <v-container v-if="patient.作品.length > 0">
         <div id="lightgallery">
           <a
             v-for="(data, index) in patient.作品"
@@ -62,6 +62,9 @@
             <img :src="data.圖片" />
           </a>
         </div>
+      </v-container>
+      <v-container>
+        本院友無上傳任何自創作品
       </v-container>
     </FSection>
   </div>
