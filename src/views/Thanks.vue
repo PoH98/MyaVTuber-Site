@@ -18,7 +18,8 @@ export default {
             mdiPartyPopper,
             users:[ 
                 "Ben",
-                "Hentai Matthew"
+                "Hentai Matthew",
+                "Panda Kenneth"
              ]
         }
     }
