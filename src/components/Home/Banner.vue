@@ -6,12 +6,11 @@
       src="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
       title="YouTube video player"
       frameborder="0"
-      style=""
       allow="accelerometer; autoplay; "
     ></iframe>
     <div class="title">
       <h1>「臭DD 幾時單推我啊」</h1>
-      <p class="text-right" style="width: 60%">by Mya 米亞</p>
+      <p class="text-right by">by Mya 米亞</p>
     </div>
   </div>
 </template>
@@ -47,6 +46,9 @@ export default {
 };
 </script>
 <style scoped>
+.by{
+  width: 60%;
+}
 .gradient {
   position: absolute;
   top: 0;

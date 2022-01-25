@@ -18,8 +18,7 @@
       <Section :mobileReverse="true">
         <template v-slot:left>
           <div
-            class="text-md-left d-flex flex-column justify-center"
-            style="height: 100%"
+            class="text-md-left d-flex flex-column justify-center h-100"
           >
             <h2>米亞の飛天奶茶商店</h2>
             <p class="mb-0">精美的周邊產品望來依到啊！！</p>
@@ -49,8 +48,7 @@
         </template>
         <template v-slot:right>
           <div
-            class="text-md-right d-flex flex-column justify-center"
-            style="height: 100%"
+            class="text-md-right d-flex flex-column justify-center h-100"
           >
             <h2>米亞のDiscord Server</h2>
             <p class="mb-0">官方Discord Server，歡迎大家</p>
@@ -199,6 +197,9 @@ export default {
 }
 .by {
   width: 80%;
+}
+.h-100{
+  height: 100%;
 }
 .down {
   -webkit-animation: pulse 1.5s 0s infinite normal ease forwards;
