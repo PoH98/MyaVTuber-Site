@@ -11,7 +11,7 @@
     ></iframe>
     <div class="title">
       <h1>「臭DD 幾時單推我啊」</h1>
-      <p class="text-right" style="width: 60%">by Mya</p>
+      <p class="text-right" style="width: 60%">by Mya 米亞</p>
     </div>
   </div>
 </template>

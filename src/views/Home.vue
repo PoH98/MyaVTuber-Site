@@ -8,7 +8,7 @@
             class="text-md-left d-flex flex-column justify-center"
             style="height: 100%"
           >
-            <h2>飛天奶茶商店</h2>
+            <h2>米亞の飛天奶茶商店</h2>
             <p class="mb-0">精美的周邊產品望來依到啊！！</p>
             <p>絕對可以買到你破產！！</p>
             <div>
@@ -39,7 +39,7 @@
             class="text-md-right d-flex flex-column justify-center"
             style="height: 100%"
           >
-            <h2>Discord Server</h2>
+            <h2>米亞のDiscord Server</h2>
             <p class="mb-0">官方Discord Server，歡迎大家</p>
             <p>入來認識更多院友啦！</p>
             <div>
@@ -119,7 +119,7 @@
           <p class="pl-15 text-h6 font-weight-bold mb-0 d-md-none">
             在現實的交錯裡，我跟你的邂逅」
           </p>
-          <p class="text-right by">講你知123</p>
+          <p class="text-right by">講你知123 by 米亞</p>
         </v-container>
       </FSection>
       <FSection color="white">
