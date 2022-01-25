@@ -2,6 +2,19 @@
   <div>
     <banner />
     <div class="bg-white">
+      <FSection color="white">
+        <v-container data-aos="fade-down" data-aos-duration="2000">
+          <h2 class="text-left">關於米亞</h2>
+          <ul class="text-left my-3">
+            <li>由繪師甘米於2019年所創作，於2020年12月11日展開初配信[1]，並把原頻道交給米亞使用。</li>
+            <li>設定上是一隻熊貓，受驚過度會變回熊貓形態。</li>
+            <li>官方認證大小為H，但指的是Head的大小。 </li>
+            <li>笨手笨腳，事故熊貓(?)</li>
+            <li>喜歡甜食，甚至會搶走主人的食物(?)</li>
+          </ul>
+          <p class="text-left">Reference: <a href="https://zh.moegirl.org.cn/index.php?title=%E7%B1%B3%E4%BA%9AMYA">萌娘百科</a></p>
+        </v-container>
+      </FSection>
       <Section :mobileReverse="true">
         <template v-slot:left>
           <div
@@ -18,7 +31,7 @@
                 class="px-13"
                 href="https://market.flyingmilktea.com/shop/113469"
               >
-              <v-icon class="mr-2">{{ mdiCart }}</v-icon>
+                <v-icon class="mr-2">{{ mdiCart }}</v-icon>
                 購買
               </v-btn>
             </div>
@@ -49,7 +62,7 @@
                 class="px-13"
                 href="https://discord.com/invite/erB5AW9Vrp"
               >
-              <v-icon class="mr-2">{{ mdiDiscord }}</v-icon>
+                <v-icon class="mr-2">{{ mdiDiscord }}</v-icon>
                 加入
               </v-btn>
             </div>
@@ -63,7 +76,7 @@
       />
       <FSection>
         <v-container>
-          <h1 class="white--text">院友作品</h1>
+          <h2 class="white--text">院友作品</h2>
           <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
           <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
           <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
@@ -72,7 +85,7 @@
       </FSection>
       <Section color="white">
         <template v-slot:left>
-          <h1 class="twitter-title row">
+          <h2 class="twitter-title row">
             <span class="col-12 col-md-6 text-md-right py-0 px-0"
               >最新官方Twitter</span
             >
@@ -84,7 +97,7 @@
                 >Follow @MyaVtuber</a
               >
             </span>
-          </h1>
+          </h2>
           <v-container>
             <div class="twitter">
               <a
@@ -134,19 +147,19 @@
   </div>
 </template>
 <script>
-import { mdiChevronDown, mdiCart, mdiDiscord } from '@mdi/js'
+import { mdiChevronDown, mdiCart, mdiDiscord } from "@mdi/js";
 export default {
   components: {
     Banner: () => import("../components/Home/Banner.vue"),
     Section: () => import("../components/Home/SecondarySection.vue"),
     FSection: () => import("../components/Home/FullSection.vue"),
   },
-  data(){
-    return{
+  data() {
+    return {
       mdiChevronDown,
       mdiCart,
-      mdiDiscord
-    }
+      mdiDiscord,
+    };
   },
   beforeCreate() {
     const twitter = "https://platform.twitter.com/widgets.js";
