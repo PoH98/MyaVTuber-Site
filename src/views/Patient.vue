@@ -12,9 +12,17 @@
       src="@/assets/dad12provide.jpg"
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
     />
-    <v-container class="name"
-      ><h1 class="font-weight-bold">{{ patient.名 }}</h1></v-container
-    >
+    <v-container class="second-nav">
+      <v-btn dark plain :to="{ name: 'Thanks' }">
+        <v-icon>
+          {{ mdiChevronLeft }}
+        </v-icon>
+        Back
+      </v-btn>
+    </v-container>
+    <v-container class="name">
+      <h1 class="font-weight-bold">{{ patient.名 }}</h1>
+    </v-container>
     <FSection disablePadding>
       <v-container>
         <div class="social-media">
@@ -101,7 +109,9 @@
           </a>
         </div>
       </v-container>
-      <v-container v-else> 本院友無上傳任何自創作品 </v-container>
+      <v-container v-else id="no-content">
+        本院友無上傳任何自創作品
+      </v-container>
     </FSection>
   </div>
   <v-overlay :value="isLoading" v-else>
@@ -110,7 +120,7 @@
 </template>
 <script>
 import axios from "axios";
-import { mdiFacebook, mdiInstagram, mdiTwitter } from "@mdi/js";
+import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
 import "lightgallery.js";
 import "lg-thumbnail.js";
 import "lg-video.js";
@@ -127,6 +137,7 @@ export default {
       mdiFacebook,
       mdiInstagram,
       mdiTwitter,
+      mdiChevronLeft,
       siteLink: ["twitter.com"],
     };
   },
@@ -143,22 +154,35 @@ export default {
       .then((result) => {
         this.patient = result.data;
         this.isLoading = false;
-        this.$wait("#lightgallery").then((el) => {
-          window.lightGallery(el, {
-            mode: "lg-fade",
-            thumbnail: true,
-            autoplayFirstVideo: false,
-            loadYoutubeThumbnail: true,
-            youtubeThumbSize: "default",
-            loadVimeoThumbnail: true,
-            vimeoThumbSize: "thumbnail_medium",
-          });
+        this.$wait("#lightgallery", "#no-content").then((data) => {
+          if (data.type === "Normal") {
+            window.lightGallery(data.el, {
+              mode: "lg-fade",
+              thumbnail: true,
+              autoplayFirstVideo: false,
+              loadYoutubeThumbnail: true,
+              youtubeThumbSize: "default",
+              loadVimeoThumbnail: true,
+              vimeoThumbSize: "thumbnail_medium",
+            });
+          }
+          else{
+            console.log("no upload found")
+          }
         });
       });
   },
 };
 </script>
 <style scoped>
+.second-nav {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  text-align: left;
+}
 .preview-img {
   max-width: 350px;
   margin-left: 5px;

@@ -6,18 +6,25 @@
           <div class="d-none d-lg-block">
             <v-btn
               plain
+              target="_blank"
               href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
               class="nav-item"
             >
               <v-icon class="mr-2">{{ mdiYoutube }}</v-icon>
               Youtube
             </v-btn>
-            <v-btn plain href="https://twitter.com/MyaVtuber" class="nav-item">
+            <v-btn
+              plain
+              target="_blank"
+              href="https://twitter.com/MyaVtuber"
+              class="nav-item"
+            >
               <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>
               Twitter
             </v-btn>
             <v-btn
               plain
+              target="_blank"
               href="https://www.instagram.com/mya_vtuber/"
               class="nav-item"
             >
@@ -42,12 +49,18 @@
             ></v-app-bar-nav-icon>
           </div>
           <div class="d-none d-lg-block">
-            <v-btn plain href="https://mya.baguhkv.com/" class="nav-item">
+            <v-btn
+              plain
+              href="https://mya.baguhkv.com/"
+              target="_blank"
+              class="nav-item"
+            >
               <v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon>
               烤肉
             </v-btn>
             <v-btn
               plain
+              target="_blank"
               href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
               class="nav-item"
             >
@@ -59,13 +72,14 @@
       </v-app-bar>
       <v-navigation-drawer
         v-model="drawer"
-        absolute
+        fixed
         temporary
         class="d-lg-none"
       >
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
+              target="_blank"
               href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
             >
               <v-list-item-title
@@ -74,21 +88,24 @@
               >
             </v-list-item>
 
-            <v-list-item href="https://twitter.com/MyaVtuber">
+            <v-list-item href="https://twitter.com/MyaVtuber" target="_blank">
               <v-list-item-title
                 ><v-icon class="mr-2">{{ mdiTwitter }}</v-icon
                 >Twitter</v-list-item-title
               >
             </v-list-item>
 
-            <v-list-item href="https://www.instagram.com/mya_vtuber/">
+            <v-list-item
+              href="https://www.instagram.com/mya_vtuber/"
+              target="_blank"
+            >
               <v-list-item-title
                 ><v-icon class="mr-2">{{ mdiInstagram }}</v-icon
                 >Instagram</v-list-item-title
               >
             </v-list-item>
 
-            <v-list-item href="https://mya.baguhkv.com/">
+            <v-list-item href="https://mya.baguhkv.com/" target="_blank">
               <v-list-item-title
                 ><v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon
                 >烤肉</v-list-item-title
@@ -96,6 +113,7 @@
             </v-list-item>
             <v-list-item
               href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
+              target="_blank"
             >
               <v-list-item-title
                 ><v-icon class="mr-2">{{ mdiMinecraft }}</v-icon

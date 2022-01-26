@@ -12,7 +12,7 @@
             <li>笨手笨腳，事故熊貓(?)</li>
             <li>喜歡甜食，甚至會搶走主人的食物(?)</li>
           </ul>
-          <p class="text-left">Reference: <a href="https://zh.moegirl.org.cn/index.php?title=%E7%B1%B3%E4%BA%9AMYA">萌娘百科</a></p>
+          <p class="text-left">Reference: <a href="https://zh.moegirl.org.cn/index.php?title=%E7%B1%B3%E4%BA%9AMYA" target="_blank">萌娘百科</a></p>
         </v-container>
       </FSection>
       <Section :mobileReverse="true">
@@ -42,8 +42,8 @@
       </Section>
       <Section color="white">
         <template v-slot:left>
-          <div class="px-8 py-8 d-flex justify-center">
-            <v-img src="@/assets/discordicon.png" width="300px" />
+          <div class="d-flex justify-center">
+            <v-img src="@/assets/discordicon.png" max-width="300px" max-height="300px" />
           </div>
         </template>
         <template v-slot:right>
@@ -72,15 +72,7 @@
         src="@/assets/fullwidth.jpg"
         alt="@/yuentsz123"
       />
-      <FSection>
-        <v-container>
-          <h2 class="white--text">院友作品</h2>
-          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
-          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
-          <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
-          <p>無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
-        </v-container>
-      </FSection>
+      <ImageBoard/>
       <Section color="white">
         <template v-slot:left>
           <h2 class="twitter-title row">
@@ -145,16 +137,16 @@
   </div>
 </template>
 <script>
-import { mdiChevronDown, mdiCart, mdiDiscord } from "@mdi/js";
+import { mdiCart, mdiDiscord } from "@mdi/js";
 export default {
   components: {
     Banner: () => import("../components/Home/Banner.vue"),
     Section: () => import("../components/Home/SecondarySection.vue"),
     FSection: () => import("../components/Home/FullSection.vue"),
+    ImageBoard: () => import("../components/Home/ImageBoard.vue")
   },
   data() {
     return {
-      mdiChevronDown,
       mdiCart,
       mdiDiscord,
     };
@@ -200,135 +192,5 @@ export default {
 }
 .h-100{
   height: 100%;
-}
-.down {
-  -webkit-animation: pulse 1.5s 0s infinite normal ease forwards;
-  -moz-animation: pulse 1.5s 0s infinite normal ease forwards;
-  -o-animation: pulse 1.5s 0s infinite normal ease forwards;
-  animation: pulse 1.5s 0s infinite normal ease forwards;
-}
-@-webkit-keyframes pulse {
-  0% {
-    opacity: 0;
-    background-position: center top;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-  10% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    -moz-background-size: 20% auto;
-    -o-background-size: 20% auto;
-    -webkit-background-size: 20% auto;
-    background-size: 20% auto;
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    background-position: center bottom;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-}
-@-moz-keyframes pulse {
-  0% {
-    opacity: 0;
-    background-position: center top;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-  10% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    -moz-background-size: 20% auto;
-    -o-background-size: 20% auto;
-    -webkit-background-size: 20% auto;
-    background-size: 20% auto;
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    background-position: center bottom;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-}
-@-ms-keyframes pulse {
-  0% {
-    opacity: 0;
-    background-position: center top;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-  10% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    -moz-background-size: 20% auto;
-    -o-background-size: 20% auto;
-    -webkit-background-size: 20% auto;
-    background-size: 20% auto;
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    background-position: center bottom;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-}
-@keyframes pulse {
-  0% {
-    opacity: 0;
-    background-position: center top;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
-  10% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-    -moz-background-size: 20% auto;
-    -o-background-size: 20% auto;
-    -webkit-background-size: 20% auto;
-    background-size: 20% auto;
-  }
-  90% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 0;
-    background-position: center bottom;
-    -moz-background-size: 0 auto;
-    -o-background-size: 0 auto;
-    -webkit-background-size: 0 auto;
-    background-size: 0 auto;
-  }
 }
 </style>
