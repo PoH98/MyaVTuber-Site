@@ -6,7 +6,7 @@
         <v-container data-aos="fade-down" data-aos-duration="2000">
           <h2 class="text-left">關於米亞</h2>
           <ul class="text-left my-3">
-            <li>由繪師甘米於2019年所創作，於2020年12月11日展開初配信[1]，並把原頻道交給米亞使用。</li>
+            <li>由繪師甘米於2018年所創作，於2020年12月11日展開初配信[1]，並把原頻道交給米亞使用。</li>
             <li>設定上是一隻熊貓，受驚過度會變回熊貓形態。</li>
             <li>官方認證大小為H，但指的是Head的大小。 </li>
             <li>笨手笨腳，事故熊貓(?)</li>
