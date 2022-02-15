@@ -192,8 +192,8 @@ body {
   max-width: 100vw;
 }
 #app {
-  font-family: "Noto Sans HK", sans-serif;
-  font-family: "Orbitron", sans-serif;
+  font-family: "Noto Sans HK", sans-serif !important;
+  font-family: "Orbitron", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -5,6 +5,9 @@ import elementReady from './plugins/awaitElement'
 import router from './router'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import Particles from "particles.vue";
+
+Vue.use(Particles);
 Vue.config.productionTip = false
 Vue.prototype.$wait = elementReady
 new Vue({
