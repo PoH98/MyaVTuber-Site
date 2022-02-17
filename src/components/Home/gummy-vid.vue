@@ -38,9 +38,9 @@
 iframe {
   position: absolute;
   top: -55px;
-  left: 0;
+  left: -10px;
   right: 0;
-  width: calc(100% + 50px);
+  width: calc(100% + 20px);
   height: 420px;
   opacity: 1;
 }

@@ -221,7 +221,7 @@
                 </div>
               </div>
             </v-col>
-            <v-col cols="12" md="6" class="twitter">
+            <v-col cols="12" md="6" class="twitter mt-5 mt-md-0">
               <span class="col-12 col-md-6 px-0 py-0">
                 <a
                   href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw"
@@ -340,6 +340,9 @@ export default {
 @media (max-width: 390px) {
   .text-banner .text-h6 {
     font-size: 4.5vw !important;
+  }
+  #particle-bg{
+    height: 100%;
   }
 }
 .background-gummy {
