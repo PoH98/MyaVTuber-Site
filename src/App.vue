@@ -39,7 +39,7 @@
               :to="{ name: 'Home' }"
               class="nav-item red--text home"
             >
-              MYA
+              <h1>MYA</h1>
             </v-btn>
           </div>
           <v-spacer />
@@ -70,12 +70,7 @@
           </div>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer
-        v-model="drawer"
-        fixed
-        temporary
-        class="d-lg-none"
-      >
+      <v-navigation-drawer v-model="drawer" fixed temporary class="d-lg-none">
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
