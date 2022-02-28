@@ -33,6 +33,7 @@
             <div>
               <v-btn
                 x-large
+                target="_blank"
                 rounded
                 class="px-13"
                 href="https://market.flyingmilktea.com/shop/113469"
@@ -66,6 +67,7 @@
               <v-btn
                 x-large
                 rounded
+                target="_blank"
                 class="px-13"
                 href="https://discord.com/invite/erB5AW9Vrp"
               >
@@ -74,6 +76,33 @@
               </v-btn>
             </div>
           </div>
+        </template>
+      </Section>
+      <Section>
+        <template v-slot:left>
+          <div class="text-md-left d-flex flex-column justify-center h-100">
+            <h2>米亞後援會</h2>
+            <p>
+              由
+              <span class="text-decoration-line-through"> DD12 </span>
+              JC12創立，用於作為院友卑米亞驚喜用
+            </p>
+            <div>
+              <v-btn
+                x-large
+                rounded
+                target="_blank"
+                class="px-13"
+                href="https://twitter.com/MYA_HKVfanclub"
+              >
+                <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>
+                關注Twitter
+              </v-btn>
+            </div>
+          </div>
+        </template>
+        <template v-slot:right>
+          <p>暫時無圖片</p>
         </template>
       </Section>
       <v-parallax
@@ -253,7 +282,7 @@
   </div>
 </template>
 <script>
-import { mdiCart, mdiDiscord } from "@mdi/js";
+import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
 export default {
   components: {
     Banner: () => import("../components/Home/Banner.vue"),
@@ -267,6 +296,7 @@ export default {
     return {
       mdiCart,
       mdiDiscord,
+      mdiTwitter,
       particleoptions: {
         background: {
           color: {
@@ -341,7 +371,7 @@ export default {
   .text-banner .text-h6 {
     font-size: 4.5vw !important;
   }
-  #particle-bg{
+  #particle-bg {
     height: 100%;
   }
 }
