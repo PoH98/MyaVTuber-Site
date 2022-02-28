@@ -182,7 +182,6 @@ export default {
 }
 </style>
 <style lang="scss">
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+HK&family=Orbitron:wght@400;700&display=swap");
 body {
   max-width: 100vw;
 }
