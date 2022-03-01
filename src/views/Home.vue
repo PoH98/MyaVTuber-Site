@@ -111,7 +111,7 @@
         alt="@/yuentsz123"
       />
       <ImageBoard />
-      <Section color="white">
+      <Section color="white" disableLazy>
         <template v-slot:left>
           <h2 class="twitter-title row">
             <span class="col-12 col-md-6 text-md-right py-0 px-0"
@@ -207,7 +207,7 @@
           </div>
         </template>
       </Section>
-      <FSection color="black">
+      <FSection color="black" disableLazy>
         <v-container>
           <v-row>
             <v-col cols="12" md="6">
