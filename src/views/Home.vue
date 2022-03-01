@@ -3,7 +3,7 @@
     <banner />
     <div class="bg-white">
       <FSection color="white">
-        <v-container data-aos="fade-down" data-aos-duration="2000">
+        <v-container>
           <h2 class="text-left">關於米亞</h2>
           <ul class="text-left my-3">
             <li>
