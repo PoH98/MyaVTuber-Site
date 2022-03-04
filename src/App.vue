@@ -39,7 +39,7 @@
               :to="{ name: 'Home' }"
               class="nav-item red--text home"
             >
-              <h1>MYA</h1>
+              <h1>米亞MYA</h1>
             </v-btn>
           </div>
           <v-spacer />

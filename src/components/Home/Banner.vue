@@ -9,7 +9,7 @@
       allow="accelerometer; autoplay; "
     ></iframe>
     <div class="title">
-      <h1>「臭DD 幾時單推我啊」</h1>
+      <h2>「臭DD 幾時單推我啊」</h2>
       <p class="text-right by">by Mya 米亞</p>
     </div>
   </div>
