@@ -9,7 +9,7 @@
     <v-img
       v-else
       class="background"
-      src="@/assets/dad12provide.jpg"
+      src="/img/dad12provide.jpg"
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
     />
     <v-container class="second-nav">
