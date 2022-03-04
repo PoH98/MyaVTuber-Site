@@ -12,15 +12,15 @@ export default {
     },
     classes: {
       type: String,
-      default: () => "",
+      default: () => '',
     },
   },
   computed: {
     vars() {
-      return '--content:"' + this.content + '"';
+      return '--content:"' + this.content + '"'
     },
   },
-};
+}
 </script>
 <style>
 .glitch-text {

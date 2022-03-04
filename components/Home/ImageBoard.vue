@@ -5,13 +5,15 @@
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
-      <p v-if="list.length < 1">無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！</p>
+      <p v-if="list.length < 1">
+        無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！
+      </p>
       <v-row v-else>
-          <v-col v-for="(data, index) in list" :key="'preview_' + index">
-            <v-img :lazy-src="data.img"/>
-            <p v-if="!data.link">{{ data.author }}</p>
-            <a v-else :href="data.link">{{ data.author }}</a>
-          </v-col>
+        <v-col v-for="(data, index) in list" :key="'preview_' + index">
+          <v-img :lazy-src="data.img" />
+          <p v-if="!data.link">{{ data.author }}</p>
+          <a v-else :href="data.link">{{ data.author }}</a>
+        </v-col>
       </v-row>
     </v-container>
   </FSection>
@@ -19,19 +21,18 @@
 <script>
 import { mdiChevronDown } from '@mdi/js'
 export default {
-    components:{
-        FSection: () => import("./FullSection.vue")
-    },
-    data(){
-        return{
-            mdiChevronDown,
-            list:[]
-        }
+  components: {
+    FSection: () => import('./FullSection.vue'),
+  },
+  data() {
+    return {
+      mdiChevronDown,
+      list: [],
     }
+  },
 }
 </script>
 <style scoped>
-
 .down {
   -webkit-animation: pulse 1.5s 0s infinite normal ease forwards;
   -moz-animation: pulse 1.5s 0s infinite normal ease forwards;

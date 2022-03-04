@@ -11,7 +11,7 @@
   </div>
 </template>
 <style scoped>
-.by{
+.by {
   width: 60%;
 }
 .gradient {
@@ -45,7 +45,7 @@ iframe {
   opacity: 1;
 }
 .title {
-  font-family: "Orbitron", sans-serif !important;
+  font-family: 'Orbitron', sans-serif !important;
   top: 45%;
   left: 0;
   right: 0;

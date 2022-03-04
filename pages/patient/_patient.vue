@@ -13,7 +13,7 @@
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
     />
     <v-container class="second-nav">
-      <v-btn dark plain :to="{ name: 'Thanks' }">
+      <v-btn dark plain to="/thanks">
         <v-icon>
           {{ mdiChevronLeft }}
         </v-icon>
@@ -119,16 +119,17 @@
   </v-overlay>
 </template>
 <script>
-import axios from "axios";
-import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
-import "lightgallery.js";
-import "lg-thumbnail.js";
-import "lg-video.js";
-import "@vimeo/player/dist/player";
-import "lightgallery.js/dist/css/lightgallery.css";
+import axios from 'axios'
+import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from '@mdi/js'
+import lightGallery from 'lightgallery.js'
+import 'lg-thumbnail.js'
+import 'lg-video.js'
+import '@vimeo/player/dist/player'
+import 'lightgallery.js/dist/css/lightgallery.css'
 export default {
+  name: 'PatientView',
   components: {
-    FSection: () => import("../components/Home/FullSection.vue"),
+    FSection: () => import('@/components/Home/FullSection.vue'),
   },
   data() {
     return {
@@ -138,41 +139,46 @@ export default {
       mdiInstagram,
       mdiTwitter,
       mdiChevronLeft,
-      siteLink: ["twitter.com"],
-    };
+      siteLink: ['twitter.com'],
+    }
   },
   methods: {
     checkIsSiteLink(data) {
-      return this.siteLink.some((v) => data.includes(v));
+      return this.siteLink.some((v) => data.includes(v))
     },
   },
-  created() {
+  mounted() {
     axios
-      .post("https://api.myavtuber.workers.dev/api", {
-        name: this.$route.params.name.toLowerCase(),
+      .post('https://api.myavtuber.workers.dev/api', {
+        name: this.$route.params.patient.toLowerCase(),
       })
       .then((result) => {
-        this.patient = result.data;
-        this.isLoading = false;
-        this.$wait("#lightgallery", "#no-content").then((data) => {
-          if (data.type === "Normal") {
-            window.lightGallery(data.el, {
-              mode: "lg-fade",
-              thumbnail: true,
-              autoplayFirstVideo: false,
-              loadYoutubeThumbnail: true,
-              youtubeThumbSize: "default",
-              loadVimeoThumbnail: true,
-              vimeoThumbSize: "thumbnail_medium",
-            });
+        this.patient = result.data
+        this.isLoading = false
+        this.$wait('#lightgallery', '#no-content').then((data) => {
+          if (data.type === 'Normal') {
+            try {
+              lightGallery(data.el, {
+                mode: 'lg-fade',
+                thumbnail: true,
+                autoplayFirstVideo: false,
+                loadYoutubeThumbnail: true,
+                youtubeThumbSize: 'default',
+                loadVimeoThumbnail: true,
+                vimeoThumbSize: 'thumbnail_medium',
+              })
+            } catch {
+              this.$router.push({
+                path: '/thanks',
+              })
+            }
+          } else {
+            console.log('no upload found')
           }
-          else{
-            console.log("no upload found")
-          }
-        });
-      });
+        })
+      })
   },
-};
+}
 </script>
 <style scoped>
 .second-nav {

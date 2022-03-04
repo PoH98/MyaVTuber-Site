@@ -14,21 +14,21 @@ export default {
     color: {
       type: String,
       default: () => {
-        return "pink lighten-4";
+        return 'pink lighten-4'
       },
     },
     disablePadding: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       },
     },
     disableLazy: {
       type: Boolean,
       default: () => {
-        return false;
+        return false
       },
     },
   },
-};
+}
 </script>

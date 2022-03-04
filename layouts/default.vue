@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar app elevation="0">
+      <v-app-bar light app elevation="0">
         <v-container class="d-flex">
           <div class="d-none d-lg-block">
             <v-btn
@@ -34,11 +34,7 @@
           </div>
           <v-spacer />
           <div class="nav-main">
-            <v-btn
-              outlined
-              :to="{ name: 'Home' }"
-              class="nav-item red--text home"
-            >
+            <v-btn outlined to="/" class="nav-item red--text home">
               <h1>米亞MYA</h1>
             </v-btn>
           </div>
@@ -119,7 +115,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        <router-view />
+        <Nuxt />
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
@@ -143,8 +139,9 @@ import {
   mdiInstagram,
   mdiMinecraft,
   mdiFoodDrumstick,
-} from "@mdi/js";
+} from '@mdi/js'
 export default {
+  name: 'defaultLayout',
   data() {
     return {
       drawer: false,
@@ -153,9 +150,9 @@ export default {
       mdiInstagram,
       mdiMinecraft,
       mdiFoodDrumstick,
-    };
+    }
   },
-};
+}
 </script>
 <style scoped>
 .nav-item {
@@ -186,8 +183,8 @@ body {
   max-width: 100vw;
 }
 #app {
-  font-family: "Noto Sans HK", sans-serif !important;
-  font-family: "Orbitron", sans-serif !important;
+  font-family: 'Noto Sans HK', sans-serif !important;
+  font-family: 'Orbitron', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -45,14 +45,14 @@
           </div>
         </template>
         <template v-slot:right>
-          <v-img src="@/assets/flyingmilktea.jpg" />
+          <v-img src="/img/flyingmilktea.jpg" />
         </template>
       </Section>
       <Section color="white">
         <template v-slot:left>
           <div class="d-flex justify-center">
             <v-img
-              src="@/assets/discordicon.png"
+              src="/img/discordicon.png"
               max-width="300px"
               max-height="300px"
             />
@@ -107,7 +107,7 @@
       </Section>
       <v-parallax
         class="full-banner"
-        src="@/assets/fullwidth.jpg"
+        src="/img/fullwidth.jpg"
         alt="@/yuentsz123"
       />
       <ImageBoard />
@@ -141,7 +141,7 @@
         <template v-slot:right>
           <v-parallax
             class="full-banner"
-            src="@/assets/fullwidth2.jpg"
+            src="/img/fullwidth2.jpg"
             alt="綽貓喵CheukCat🍣-【HKVtuber】"
           />
         </template>
@@ -246,7 +246,7 @@
                   </v-btn>
                 </div>
                 <div>
-                  <v-img src="@/assets/gummy.jpg" />
+                  <v-img src="/img/gummy.jpg" />
                 </div>
               </div>
             </v-col>
@@ -273,24 +273,26 @@
       <FSection color="white">
         <v-container>
           <p class="text-h4 mb-0">院友期待你的加入！</p>
-          <router-link class="mb-0" :to="{ name: 'Thanks' }"
-            >特別感謝院友名單</router-link
-          >
+          <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
         </v-container>
       </FSection>
     </div>
   </div>
 </template>
 <script>
-import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
+import { mdiCart, mdiDiscord, mdiTwitter } from '@mdi/js'
+import Particles from 'particles.vue'
+import Vue from 'vue'
+Vue.use(Particles)
 export default {
+  name: 'indexView',
   components: {
-    Banner: () => import("../components/Home/Banner.vue"),
-    Gummy: () => import("../components/Home/gummy-vid.vue"),
-    Glitch: () => import("../components/Home/glitch.vue"),
-    Section: () => import("../components/Home/SecondarySection.vue"),
-    FSection: () => import("../components/Home/FullSection.vue"),
-    ImageBoard: () => import("../components/Home/ImageBoard.vue"),
+    Banner: () => import('../components/Home/Banner.vue'),
+    Gummy: () => import('../components/Home/gummy-vid.vue'),
+    Glitch: () => import('../components/Home/glitch.vue'),
+    Section: () => import('../components/Home/SecondarySection.vue'),
+    FSection: () => import('../components/Home/FullSection.vue'),
+    ImageBoard: () => import('../components/Home/ImageBoard.vue'),
   },
   data() {
     return {
@@ -300,7 +302,7 @@ export default {
       particleoptions: {
         background: {
           color: {
-            value: "#303030",
+            value: '#303030',
           },
         },
         fpsLimit: 30,
@@ -309,10 +311,10 @@ export default {
         },
         particles: {
           color: {
-            value: "#ffffff",
+            value: '#ffffff',
           },
           links: {
-            color: "#ffffff",
+            color: '#ffffff',
             distance: 150,
             enable: true,
             opacity: 0.5,
@@ -322,9 +324,9 @@ export default {
             enable: true,
           },
           move: {
-            direction: "none",
+            direction: 'none',
             enable: true,
-            outMode: "bounce",
+            outMode: 'bounce',
             random: false,
             speed: 1,
             straight: false,
@@ -347,7 +349,7 @@ export default {
             },
           },
           shape: {
-            type: "circle",
+            type: 'circle',
           },
           size: {
             random: true,
@@ -356,15 +358,15 @@ export default {
         },
         detectRetina: true,
       },
-    };
+    }
   },
-  beforeCreate() {
-    const twitter = "https://platform.twitter.com/widgets.js";
-    var s = document.createElement("script");
-    s.setAttribute("src", twitter);
-    document.head.appendChild(s);
+  mounted() {
+    const twitter = 'https://platform.twitter.com/widgets.js'
+    const s = document.createElement('script')
+    s.setAttribute('src', twitter)
+    document.head.appendChild(s)
   },
-};
+}
 </script>
 <style scoped>
 @media (max-width: 390px) {
@@ -410,7 +412,7 @@ export default {
   background-color: #1d9bf0;
   color: #fff;
   border-radius: 9999px;
-  padding: 1px 12px 1px 12px;
+  padding: 1px 12px;
   height: 20px;
   font-size: 12px;
 }

@@ -18,35 +18,35 @@
 export default {
   mounted() {
     window.onresize = () => {
-      this.calcFrame();
-    };
-    this.calcFrame();
+      this.calcFrame()
+    }
+    this.calcFrame()
   },
   methods: {
     calcFrame() {
-      const frame = document.getElementById("background-frame");
+      const frame = document.getElementById('background-frame')
       if (window.innerWidth < 1560 && window.innerWidth > 480) {
-        frame.style.width = "1560px";
-        frame.style.height = "880px";
-        frame.style.top = "-50px";
-        frame.style.left = -((1560 - window.innerWidth) / 2) + "px";
+        frame.style.width = '1560px'
+        frame.style.height = '880px'
+        frame.style.top = '-50px'
+        frame.style.left = -((1560 - window.innerWidth) / 2) + 'px'
       } else if (window.innerWidth <= 480) {
-        frame.style.width = "600px";
-        frame.style.height = "330px";
-        frame.style.top = "-58px";
-        frame.style.left = -((600 - window.innerWidth) / 2) + "px";
+        frame.style.width = '600px'
+        frame.style.height = '330px'
+        frame.style.top = '-58px'
+        frame.style.left = -((600 - window.innerWidth) / 2) + 'px'
       } else {
-        frame.style.width = window.innerWidth + "px";
-        frame.style.height = window.innerWidth * 0.6 + "px";
-        frame.style.top = -((window.innerWidth * 0.6 - 600) / 2) + "px";
-        frame.style.left = "0";
+        frame.style.width = window.innerWidth + 'px'
+        frame.style.height = window.innerWidth * 0.6 + 'px'
+        frame.style.top = -((window.innerWidth * 0.6 - 600) / 2) + 'px'
+        frame.style.left = '0'
       }
     },
   },
-};
+}
 </script>
 <style scoped>
-.by{
+.by {
   width: 60%;
 }
 .gradient {
@@ -78,7 +78,7 @@ iframe {
   opacity: 1;
 }
 .title {
-  font-family: "Orbitron", sans-serif !important;
+  font-family: 'Orbitron', sans-serif !important;
   top: 45%;
   left: 0;
   right: 0;

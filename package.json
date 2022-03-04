@@ -1,58 +1,36 @@
 {
   "name": "myahome",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
-    "@vimeo/player": "^2.16.2",
-    "aos": "^2.3.4",
-    "axios": "^0.25.0",
-    "core-js": "^3.6.5",
+    "core-js": "^3.19.3",
+    "nuxt": "^2.15.8",
+    "particles.vue": "^2.41.6",
+    "vue": "^2.6.14",
+    "vue-server-renderer": "^2.6.14",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify": "^2.6.1",
+    "webpack": "^4.46.0",
     "lg-thumbnail.js": "^1.2.0",
     "lg-video.js": "^1.3.0",
     "lightgallery.js": "^1.4.0",
-    "particles.vue": "^2.41.1",
-    "vue": "^2.6.11",
-    "vue-lite-youtube-embed": "^1.0.4",
-    "vue-router": "^3.2.0",
-    "vuetify": "^2.4.0"
+    "@vimeo/player": "^2.16.2",
+    "aos": "^2.3.4",
+    "axios": "^0.25.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.0",
-    "@vue/cli-plugin-eslint": "~4.5.0",
-    "@vue/cli-plugin-router": "^4.5.15",
-    "@vue/cli-service": "~4.5.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "sass": "~1.32.0",
-    "sass-loader": "^10.0.0",
-    "vue-cli-plugin-vuetify": "~2.4.5",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.7.0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {}
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
-  ]
+    "@babel/eslint-parser": "^7.16.3",
+    "@nuxtjs/eslint-config": "^8.0.0",
+    "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/stylelint-module": "^4.1.0",
+    "@nuxtjs/vuetify": "^1.12.3",
+    "postcss-html": "^1.3.0"
+  }
 }
