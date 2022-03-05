@@ -280,19 +280,19 @@
   </div>
 </template>
 <script>
-import { mdiCart, mdiDiscord, mdiTwitter } from '@mdi/js'
-import Particles from 'particles.vue'
-import Vue from 'vue'
-Vue.use(Particles)
+import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
+import Particles from "particles.vue";
+import Vue from "vue";
+Vue.use(Particles);
 export default {
-  name: 'indexView',
+  name: "indexView",
   components: {
-    Banner: () => import('../components/Home/Banner.vue'),
-    Gummy: () => import('../components/Home/gummy-vid.vue'),
-    Glitch: () => import('../components/Home/glitch.vue'),
-    Section: () => import('../components/Home/SecondarySection.vue'),
-    FSection: () => import('../components/Home/FullSection.vue'),
-    ImageBoard: () => import('../components/Home/ImageBoard.vue'),
+    Banner: () => import("../components/Home/Banner.vue"),
+    Gummy: () => import("../components/Home/gummy-vid.vue"),
+    Glitch: () => import("../components/Home/glitch.vue"),
+    Section: () => import("../components/Home/SecondarySection.vue"),
+    FSection: () => import("../components/Home/FullSection.vue"),
+    ImageBoard: () => import("../components/Home/ImageBoard.vue"),
   },
   data() {
     return {
@@ -302,7 +302,7 @@ export default {
       particleoptions: {
         background: {
           color: {
-            value: '#303030',
+            value: "#303030",
           },
         },
         fpsLimit: 30,
@@ -311,10 +311,10 @@ export default {
         },
         particles: {
           color: {
-            value: '#ffffff',
+            value: "#ffffff",
           },
           links: {
-            color: '#ffffff',
+            color: "#ffffff",
             distance: 150,
             enable: true,
             opacity: 0.5,
@@ -324,9 +324,9 @@ export default {
             enable: true,
           },
           move: {
-            direction: 'none',
+            direction: "none",
             enable: true,
-            outMode: 'bounce',
+            outMode: "bounce",
             random: false,
             speed: 1,
             straight: false,
@@ -349,7 +349,7 @@ export default {
             },
           },
           shape: {
-            type: 'circle',
+            type: "circle",
           },
           size: {
             random: true,
@@ -358,15 +358,15 @@ export default {
         },
         detectRetina: true,
       },
-    }
+    };
   },
   mounted() {
-    const twitter = 'https://platform.twitter.com/widgets.js'
-    const s = document.createElement('script')
-    s.setAttribute('src', twitter)
-    document.head.appendChild(s)
+    const twitter = "https://platform.twitter.com/widgets.js";
+    const s = document.createElement("script");
+    s.setAttribute("src", twitter);
+    document.head.appendChild(s);
   },
-}
+};
 </script>
 <style scoped>
 @media (max-width: 390px) {

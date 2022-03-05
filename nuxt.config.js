@@ -6,16 +6,15 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - myahome',
-    title: 'myahome',
+    titleTemplate: '%s - 米亞 Mya VTuber',
+    title: 'Home',
     htmlAttrs: {
-      lang: 'en',
+      lang: 'zh-Hant',
     },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
+      { hid: 'description', name: 'description', content: '米亞VTuber (Mya VTuber) 的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' }
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
   },

@@ -139,9 +139,9 @@ import {
   mdiInstagram,
   mdiMinecraft,
   mdiFoodDrumstick,
-} from '@mdi/js'
+} from "@mdi/js";
 export default {
-  name: 'defaultLayout',
+  name: "defaultLayout",
   data() {
     return {
       drawer: false,
@@ -150,9 +150,9 @@ export default {
       mdiInstagram,
       mdiMinecraft,
       mdiFoodDrumstick,
-    }
-  },
-}
+    };
+  }
+};
 </script>
 <style scoped>
 .nav-item {
@@ -183,8 +183,8 @@ body {
   max-width: 100vw;
 }
 #app {
-  font-family: 'Noto Sans HK', sans-serif !important;
-  font-family: 'Orbitron', sans-serif !important;
+  font-family: "Noto Sans HK", sans-serif !important;
+  font-family: "Orbitron", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

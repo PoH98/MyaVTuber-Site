@@ -119,17 +119,24 @@
   </v-overlay>
 </template>
 <script>
-import axios from 'axios'
-import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from '@mdi/js'
-import lightGallery from 'lightgallery.js'
-import 'lg-thumbnail.js'
-import 'lg-video.js'
-import '@vimeo/player/dist/player'
-import 'lightgallery.js/dist/css/lightgallery.css'
+import axios from "axios";
+import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
+import lightGallery from "lightgallery.js";
+import "lg-thumbnail.js";
+import "lg-video.js";
+import "@vimeo/player/dist/player";
+import "lightgallery.js/dist/css/lightgallery.css";
 export default {
-  name: 'PatientView',
+  name: "PatientView",
+  head() {
+    return {
+      title: this.capitalizeFirstLetter(
+        this.$route.params.patient.replace("_", " ")
+      ),
+    };
+  },
   components: {
-    FSection: () => import('@/components/Home/FullSection.vue'),
+    FSection: () => import("@/components/Home/FullSection.vue"),
   },
   data() {
     return {
@@ -139,46 +146,53 @@ export default {
       mdiInstagram,
       mdiTwitter,
       mdiChevronLeft,
-      siteLink: ['twitter.com'],
-    }
+      siteLink: ["twitter.com"],
+    };
   },
   methods: {
     checkIsSiteLink(data) {
-      return this.siteLink.some((v) => data.includes(v))
+      return this.siteLink.some((v) => data.includes(v));
+    },
+    capitalizeFirstLetter(string) {
+      const words = string.split(" ");
+      for (let i = 0; i < words.length; i++) {
+        words[i] = words[i][0].toUpperCase() + words[i].substr(1);
+      }
+      return words.join(" ");
     },
   },
   mounted() {
     axios
-      .post('https://api.myavtuber.workers.dev/api', {
+      .post("https://api.myavtuber.workers.dev/api", {
         name: this.$route.params.patient.toLowerCase(),
       })
       .then((result) => {
-        this.patient = result.data
-        this.isLoading = false
-        this.$wait('#lightgallery', '#no-content').then((data) => {
-          if (data.type === 'Normal') {
+        this.patient = result.data;
+        this.isLoading = false;
+        this.$wait("#lightgallery", "#no-content").then((data) => {
+          if (data.type === "Normal") {
             try {
               lightGallery(data.el, {
-                mode: 'lg-fade',
+                mode: "lg-fade",
                 thumbnail: true,
                 autoplayFirstVideo: false,
                 loadYoutubeThumbnail: true,
-                youtubeThumbSize: 'default',
+                youtubeThumbSize: "default",
                 loadVimeoThumbnail: true,
-                vimeoThumbSize: 'thumbnail_medium',
-              })
+                vimeoThumbSize: "thumbnail_medium",
+              });
             } catch {
               this.$router.push({
-                path: '/thanks',
-              })
+                path: "/thanks",
+              });
             }
           } else {
-            console.log('no upload found')
+            console.log("no upload found");
           }
-        })
-      })
+        });
+      });
   },
-}
+};
 </script>
 <style scoped>
 .second-nav {

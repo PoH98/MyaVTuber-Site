@@ -46,6 +46,11 @@
 import { mdiPartyPopper } from '@mdi/js'
 export default {
   name: 'ThanksView',
+  head() {
+    return {
+      title: "Special Thanks"
+    };
+  },
   data() {
     return {
       mdiPartyPopper,
