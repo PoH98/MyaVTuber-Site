@@ -55,12 +55,16 @@ export default {
   vuetify: {
     treeShake: true,
     theme: {
-      dark: false
+      disable: true
     },
-    defaultAssets: false
+    defaultAssets: {
+      font: false,
+      icons: 'mdiSvg'
+    }
   },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    extractCSS: true,
+    analyze: true
   },
 }
