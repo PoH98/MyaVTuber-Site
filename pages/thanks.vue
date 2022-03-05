@@ -15,15 +15,11 @@
       >
         <a
           v-if="user.isurl"
-          @click="
-            $router.push(
-              `/patient/${user.name.toLowerCase().replace(' ', '_')}`
-            )
-          "
+          :href="`/patient/${user.name.toLowerCase().replace(' ', '_')}`"
         >
           {{ user.name }}
         </a>
-        <p v-else>{{ user.name }}</p>
+        <p class="mb-0" v-else>{{ user.name }}</p>
       </v-col>
     </v-row>
     <hr class="my-5" />
