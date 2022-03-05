@@ -13,7 +13,7 @@
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
     />
     <v-container class="second-nav">
-      <v-btn dark plain to="/thanks">
+      <v-btn class="white--text" plain to="/thanks">
         <v-icon>
           {{ mdiChevronLeft }}
         </v-icon>
@@ -36,8 +36,7 @@
             v-if="patient.FB"
             :href="patient.FB"
             color="blue darken-2"
-            class="mx-2 mb-4"
-            dark
+            class="mx-2 mb-4 white--text"
             rounded
           >
             <v-icon class="mr-2">{{ mdiFacebook }}</v-icon
@@ -47,8 +46,7 @@
             v-if="patient.Insta"
             :href="patient.Insta"
             color="deep-purple darken-3"
-            class="mx-2 mb-4"
-            dark
+            class="mx-2 mb-4 white--text"
             rounded
           >
             <v-icon class="mr-2">{{ mdiInstagram }}</v-icon
@@ -58,8 +56,7 @@
             v-if="patient.Twitter"
             :href="patient.Twitter"
             color="blue"
-            class="mx-2 mb-4"
-            dark
+            class="mx-2 mb-4 white--text"
             rounded
           >
             <v-icon class="mr-2">{{ mdiTwitter }}</v-icon
