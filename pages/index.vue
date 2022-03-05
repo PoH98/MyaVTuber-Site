@@ -373,10 +373,10 @@ export default {
   .text-banner .text-h6 {
     font-size: 4.5vw !important;
   }
+}
   #particle-bg {
     height: 100%;
   }
-}
 .background-gummy {
   position: absolute;
   top: 0;
