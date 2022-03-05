@@ -364,6 +364,7 @@ export default {
     const twitter = "https://platform.twitter.com/widgets.js";
     const s = document.createElement("script");
     s.setAttribute("src", twitter);
+    s.setAttribute("async", true);
     document.head.appendChild(s);
   },
 };

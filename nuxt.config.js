@@ -27,9 +27,8 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Noto+Sans+HK:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap' },
-      { rel: 'stylesheet', type: 'text/css', href: 'https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap' }
+      { rel: 'preconnect', href: 'https://fonts.gstatic.com' },
+      { rel: 'stylesheet', type: 'text/css', async: true, href: 'https://fonts.googleapis.com/css2?family=Orbitron:ital,wght@0,200;0,300;0,400;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,600;1,700;1,800;1,900&display=swap' }
     ],
   },
   serverMiddleware: ['~/serverMiddleware/selectiveSSR.js'],
@@ -45,7 +44,8 @@ export default {
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
-    '@nuxtjs/vuetify'
+    '@nuxtjs/vuetify',
+    "nuxt-purgecss"
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -62,9 +62,37 @@ export default {
       icons: 'mdiSvg'
     }
   },
+  '@fullhuman/postcss-purgecss': {
+    content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.vue'],
+    safelist: ['html', 'body']
+  },
+  purgeCSS: {
+    styleExtensions: ['.css', '.scss', '.styl', '.sass', '.postcss'],
+    paths: [
+      'components/**/*.vue',
+      'layouts/**/*.vue',
+      'pages/**/*.vue',
+      'plugins/**/*.js',
+      'node_modules/@nuxt/vue-app/template/**/*.html',
+      'node_modules/@nuxt/vue-app/template/**/*.vue',
+    ],
+    extractors: [
+      {
+        extractor: (content) => content.match(/[A-z0-9-:\\/]+/g) || [],
+        extensions: ['html', 'vue', 'js'],
+      },
+    ],
+    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer'],
+    whitelistPatterns: () => [
+      /^v-((?!application).)*$/,
+      /^\.theme--light*/,
+      /.*-transition/,
+      /^d-.+/
+    ],
+    whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--light*/],
+  },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true,
-    analyze: true
-  },
+    extractCSS: true
+  }
 }

@@ -151,7 +151,7 @@ export default {
       mdiMinecraft,
       mdiFoodDrumstick,
     };
-  }
+  },
 };
 </script>
 <style scoped>
@@ -183,7 +183,7 @@ body {
   max-width: 100vw;
 }
 #app {
-  font-family: "Noto Sans HK", "Orbitron", sans-serif !important;
+  font-family: "Orbitron", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
