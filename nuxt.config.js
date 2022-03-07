@@ -103,7 +103,7 @@ export default {
       /^v-((?!application).)*$/,
       /^\.theme--light*/,
       /.*-transition/,
-      /^d-.+/，
+      /^d-.+/,
       /^col-.+/
     ],
     whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--light*/],
