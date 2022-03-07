@@ -2,41 +2,14 @@
   <div class="disable-event">
     <div class="gradient"></div>
     <iframe
-      v-if="!isMobile"
       id="gummy-vid"
       src="https://www.youtube.com/embed/P_fJCQQz0V0?playlist=P_fJCQQz0V0&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; "
     ></iframe>
-    <v-img v-else class="h-100" src="/img/losemymind.jpg" />
   </div>
 </template>
-<script>
-export default {
-  data() {
-    return {
-      isMobile: false,
-    };
-  },
-  mounted() {
-    window.onresize = () => {
-      this.calcDevice()
-    }
-    this.calcDevice();
-  },
-  methods: {
-    calcDevice() {
-      if (window.innerWidth <= 480) {
-        this.isMobile = true;
-      }
-      else{
-        this.isMobile = false;
-      }
-    },
-  },
-};
-</script>
 <style scoped>
 .h-100{
   height: 100%;
