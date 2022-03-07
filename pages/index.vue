@@ -7,12 +7,13 @@
           <h2 class="text-left">關於米亞</h2>
           <ul class="text-left my-3">
             <li>
-              由繪師甘米於2018年所創作，於2020年12月11日展開初配信[1]，並把原頻道交給米亞使用。
+              由繪師甘米於2018年所創作，於2020年12月11日展開初配信，並將原頻道交給米亞使用。
             </li>
             <li>設定上是一隻熊貓，受驚過度會變回熊貓形態。</li>
             <li>官方認證大小為H，但指的是Head的大小。</li>
             <li>笨手笨腳，事故熊貓(?)</li>
             <li>喜歡甜食，甚至會搶走主人的食物(?)</li>
+            <li>鐘意激情對話&玩屎(?)</li>
           </ul>
           <p class="text-left">
             Reference:
@@ -81,11 +82,11 @@
       <Section>
         <template v-slot:left>
           <div class="text-md-left d-flex flex-column justify-center h-100">
-            <h2>米亞後援會</h2>
+            <h2>米亞の後援會</h2>
             <p>
               由
               <span class="text-decoration-line-through"> DD12 </span>
-              JC12創立，用於作為院友卑米亞驚喜用
+              JC12創立，用於作為院友卑米亞驚喜或者各種米亞相關的Fan活動<br/>有興趣記得關注啦
             </p>
             <div>
               <v-btn

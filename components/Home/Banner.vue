@@ -2,20 +2,27 @@
   <div class="disable-event">
     <div class="gradient"></div>
     <iframe
+      v-if="!isMobile"
       id="background-frame"
       src="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
       title="YouTube video player"
       frameborder="0"
       allow="accelerometer; autoplay; "
     ></iframe>
+    <v-img class="h-100" v-else src="/img/sayyouknow.jpg"/>
     <div class="title">
-      <h2>「臭DD 幾時單推我啊」</h2>
+      <p class="text-h4">「臭DD 幾時單推我啊」</p>
       <p class="text-right by">by Mya 米亞</p>
     </div>
   </div>
 </template>
 <script>
 export default {
+  data(){
+    return{
+      isMobile: false
+    }
+  },
   mounted() {
     window.onresize = () => {
       this.calcFrame()
@@ -26,16 +33,15 @@ export default {
     calcFrame() {
       const frame = document.getElementById('background-frame')
       if (window.innerWidth < 1560 && window.innerWidth > 480) {
+        this.isMobile = false;
         frame.style.width = '1560px'
         frame.style.height = '880px'
         frame.style.top = '-50px'
         frame.style.left = -((1560 - window.innerWidth) / 2) + 'px'
       } else if (window.innerWidth <= 480) {
-        frame.style.width = '600px'
-        frame.style.height = '330px'
-        frame.style.top = '-58px'
-        frame.style.left = -((600 - window.innerWidth) / 2) + 'px'
+        this.isMobile = true;
       } else {
+        this.isMobile = false;
         frame.style.width = window.innerWidth + 'px'
         frame.style.height = window.innerWidth * 0.6 + 'px'
         frame.style.top = -((window.innerWidth * 0.6 - 600) / 2) + 'px'
@@ -46,6 +52,9 @@ export default {
 }
 </script>
 <style scoped>
+.h-100{
+  height: 100%;
+}
 .by {
   width: 60%;
 }
