@@ -45,9 +45,24 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    "nuxt-purgecss"
+    "nuxt-purgecss",
+    '@nuxtjs/robots',
+    '@nuxtjs/sitemap'
   ],
-
+  sitemap:{
+    hostname: 'https://mya-hkvtuber.com',
+    gzip: true,
+    routes:[
+      '/patient/ben',
+      '/patient/hentai_matthew',
+      '/patient/panda_kenneth'
+    ]
+  },
+  robots: {
+    UserAgent: '*',
+    Allow: '/',
+    Disallow: null
+  },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
 

@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
+    "@nuxtjs/robots": "^2.5.0",
+    "@nuxtjs/sitemap": "^2.4.0",
     "@vimeo/player": "^2.16.2",
     "aos": "^2.3.4",
     "axios": "^0.25.0",
