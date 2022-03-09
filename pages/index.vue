@@ -221,8 +221,8 @@
                   <v-btn
                     href="https://www.instagram.com/gummy_forest"
                     target="_blank"
-                    dark
-                    class="mb-5"
+                    class="mb-5 white--text"
+                    color="blue-grey darken-2"
                     block
                   >
                     Instagram
@@ -230,8 +230,8 @@
                   <v-btn
                     href="https://twitter.com/gummy_forest"
                     target="_blank"
-                    dark
-                    class="mb-5"
+                    class="mb-5 white--text"
+                    color="blue-grey darken-2"
                     block
                   >
                     Twitter
@@ -239,8 +239,8 @@
                   <v-btn
                     href="https://www.youtube.com/channel/UCfllDiny72kp9ppGDdaBGWQ"
                     target="_blank"
-                    dark
-                    class="mb-5"
+                    color="blue-grey darken-2"
+                    class="mb-5 white--text"
                     block
                   >
                     Youtube

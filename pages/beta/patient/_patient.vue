@@ -21,7 +21,7 @@
       </v-btn>
     </v-container>
     <v-container class="name">
-      <h1 class="font-weight-bold">{{ patient.名 }}</h1>
+      <h1 class="font-weight-bold">{{ patient.name }}</h1>
     </v-container>
     <FSection disablePadding>
       <v-container>
@@ -63,32 +63,38 @@
             >院友Twitter
           </v-btn>
         </div>
-        <p class="text-left text-h6 mb-9" v-html="patient.介紹"></p>
+        <p class="text-left text-h6 mb-9" v-html="patient.desc"></p>
       </v-container>
     </FSection>
     <FSection color="white">
-      <v-container v-if="patient.作品.length > 0">
+      <v-container v-if="patient.Works.length > 0">
         <h2 class="mb-5">院友自創作品</h2>
         <v-flex id="lightgallery">
           <a
-            v-for="(data, index) in patient.作品.filter(
-              (x) => !checkIsSiteLink(x.位置)
+            v-for="(data, index) in patient.Works.filter(
+              (x) => !checkIsSiteLink(x.location)
             )"
             :key="'作品' + index"
-            :href="data.位置"
+            :href="data.location"
+            target="_blank"
+            rel="noreferrer"
           >
-            <img class="preview-img" :src="data.圖片" />
+            <img class="preview-img" :src="data.img" />
           </a>
         </v-flex>
         <p
           class="mt-5 text-h5 font-weight-bold"
-          v-if="patient.作品.filter((x) => checkIsSiteLink(x.位置)).length > 0"
+          v-if="
+            patient.Works.filter((x) => checkIsSiteLink(x.location)).length > 0
+          "
         >
           外部鏈接作品
         </p>
         <p
           class="mb-5"
-          v-if="patient.作品.filter((x) => checkIsSiteLink(x.位置)).length > 0"
+          v-if="
+            patient.Works.filter((x) => checkIsSiteLink(x.location)).length > 0
+          "
         >
           <b>注意！！</b><br />
           （下列會係因種種原因無法加載到網頁內，離開網頁前請確保唔好下載或者運行任何不知名文件！
@@ -96,13 +102,15 @@
         </p>
         <div class="other-posts">
           <a
-            :href="data.位置"
-            v-for="(data, index) in patient.作品.filter((x) =>
-              checkIsSiteLink(x.位置)
+            :href="data.location"
+            v-for="(data, index) in patient.Works.filter((x) =>
+              checkIsSiteLink(x.location)
             )"
             :key="'Others' + index"
+            target="_blank"
+            rel="noreferrer"
           >
-            <img class="preview-img" :src="data.圖片" />
+            <img class="preview-img" :src="data.img" />
           </a>
         </div>
       </v-container>
@@ -116,7 +124,6 @@
   </v-overlay>
 </template>
 <script>
-import axios from "axios";
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
 import '~/plugins/lightgallery.js'
 import wait from "~/plugins/awaitElement";
@@ -135,7 +142,6 @@ export default {
   },
   data() {
     return {
-      patient: {},
       isLoading: true,
       mdiFacebook,
       mdiInstagram,
@@ -143,6 +149,16 @@ export default {
       mdiChevronLeft,
       siteLink: ["twitter.com"],
     };
+  },
+  computed: {
+    patient() {
+      return this.$store.state.api.patient.filter((obj) => {
+        return (
+          obj.data.name.toLowerCase().replace(" ", "_") ===
+          this.$route.params.patient
+        );
+      })[0].data;
+    },
   },
   methods: {
     checkIsSiteLink(data) {
@@ -157,16 +173,10 @@ export default {
     },
   },
   mounted() {
-    axios
-      .post("https://api.myavtuber.workers.dev/api", {
-        name: this.$route.params.patient.toLowerCase(),
-      })
-      .then((result) => {
-        this.patient = result.data;
-        this.isLoading = false;
-        wait("#lightgallery", "#no-content").then((data) => {
+    this.$store.dispatch("api/patient").then(() => {
+      this.isLoading = false;
+      wait("#lightgallery", "#no-content").then((data) => {
           if (data.type === "Normal") {
-            try {
               window.lightGallery(data.el, {
                 mode: "lg-fade",
                 thumbnail: true,
@@ -176,11 +186,6 @@ export default {
                 loadVimeoThumbnail: true,
                 vimeoThumbSize: "thumbnail_medium",
               });
-            } catch {
-              this.$router.push({
-                path: "/thanks",
-              });
-            }
           } else {
             console.log("no upload found");
           }
