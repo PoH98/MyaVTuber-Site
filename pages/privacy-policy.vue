@@ -1,5 +1,5 @@
 <template>
-  <div class="privacy-policy">
+  <v-container class="privacy-policy text-left">
     <h1>Privacy Policy</h1>
     <p>Last updated: March 09, 2022</p>
     <p>
@@ -457,5 +457,5 @@
     <ul>
       <li>By email: pofhell1998@gmail.com</li>
     </ul>
-  </div>
+  </v-container>
 </template>

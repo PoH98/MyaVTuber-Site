@@ -60,7 +60,7 @@ export default {
   robots: {
     UserAgent: '*',
     Allow: '/',
-    Disallow: null
+    Disallow: '/privacy-policy'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [],
