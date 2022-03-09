@@ -125,7 +125,6 @@
 </template>
 <script>
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
-import '~/plugins/lightgallery.js'
 import wait from "~/plugins/awaitElement";
 import "@vimeo/player/dist/player";
 export default {
@@ -138,7 +137,7 @@ export default {
     };
   },
   components: {
-    FSection: () => import("@/components/Home/FullSection.vue"),
+    FSection: () => import("@/components/Home/FullSection.vue")
   },
   data() {
     return {
