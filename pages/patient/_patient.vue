@@ -101,6 +101,7 @@
               checkIsSiteLink(x.位置)
             )"
             :key="'Others' + index"
+            target="_blank"
           >
             <img class="preview-img" :src="data.圖片" />
           </a>
@@ -118,7 +119,7 @@
 <script>
 import axios from "axios";
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
-import '~/plugins/lightgallery.js'
+import "~/plugins/lightgallery.js";
 import wait from "~/plugins/awaitElement";
 import "@vimeo/player/dist/player";
 export default {
@@ -166,21 +167,15 @@ export default {
         this.isLoading = false;
         wait("#lightgallery", "#no-content").then((data) => {
           if (data.type === "Normal") {
-            try {
-              window.lightGallery(data.el, {
-                mode: "lg-fade",
-                thumbnail: true,
-                autoplayFirstVideo: false,
-                loadYoutubeThumbnail: true,
-                youtubeThumbSize: "default",
-                loadVimeoThumbnail: true,
-                vimeoThumbSize: "thumbnail_medium",
-              });
-            } catch {
-              this.$router.push({
-                path: "/thanks",
-              });
-            }
+            window.lightGallery(data.el, {
+              mode: "lg-fade",
+              thumbnail: true,
+              autoplayFirstVideo: false,
+              loadYoutubeThumbnail: true,
+              youtubeThumbSize: "default",
+              loadVimeoThumbnail: true,
+              vimeoThumbSize: "thumbnail_medium",
+            });
           } else {
             console.log("no upload found");
           }

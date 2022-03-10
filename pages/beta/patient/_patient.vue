@@ -13,7 +13,7 @@
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.7)"
     />
     <v-container class="second-nav">
-      <v-btn class="white--text" plain to="/thanks">
+      <v-btn class="white--text" plain to="/beta/thanks">
         <v-icon>
           {{ mdiChevronLeft }}
         </v-icon>

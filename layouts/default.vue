@@ -152,6 +152,11 @@ export default {
       mdiFoodDrumstick,
     };
   },
+  mounted() {
+    window.addEventListener("auxclick", (event) => {
+      if (event.button === 1) event.preventDefault();
+    });
+  },
 };
 </script>
 <style scoped>

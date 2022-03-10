@@ -3,27 +3,7 @@
     <banner />
     <div class="bg-white">
       <FSection color="white">
-        <v-container>
-          <h2 class="text-left">關於米亞</h2>
-          <ul class="text-left my-3">
-            <li>
-              由繪師甘米於2018年所創作，於2020年12月11日展開初配信，並將原頻道交給米亞使用。
-            </li>
-            <li>設定上是一隻熊貓，受驚過度會變回熊貓形態。</li>
-            <li>官方認證大小為H，但指的是Head的大小。</li>
-            <li>笨手笨腳，事故熊貓(?)</li>
-            <li>喜歡甜食，甚至會搶走主人的食物(?)</li>
-            <li>鐘意激情對話&玩屎(?)</li>
-          </ul>
-          <p class="text-left">
-            Reference:
-            <a
-              href="https://zh.moegirl.org.cn/index.php?title=%E7%B1%B3%E4%BA%9AMYA"
-              target="_blank"
-              >萌娘百科</a
-            >
-          </p>
-        </v-container>
+        <v-container class="text-left" v-html="data.myadesc"></v-container>
       </FSection>
       <Section :mobileReverse="true">
         <template v-slot:left>
@@ -86,7 +66,7 @@
             <p>
               由
               <span class="text-decoration-line-through"> DD12 </span>
-              JC12創立，用於作為院友卑米亞驚喜或者各種米亞相關的Fan活動<br/>有興趣記得關注啦
+              JC12創立，用於作為院友卑米亞驚喜或者各種米亞相關的Fan活動<br />有興趣記得關注啦
             </p>
             <div>
               <v-btn
@@ -175,23 +155,8 @@
             classes="white--text text-h3 mb-5"
             content="~ 甘米主人 ~"
           ></Glitch>
-          <div class="glass-bg-effect">
-            <p class="white--text">
-              米亞的主人，香港本土音樂創作人及畫師
-              <br />
-              負責照顧米亞的飲食起居
-            </p>
-            <p class="white--text mb-2">音樂作品:</p>
-            <ul class="white--text mb-6">
-              <li>17歲那年 我們一起看過的流星</li>
-              <li>不開心症後群</li>
-              <li>講你知123！</li>
-              <li>失憶症後群 (尚未推出)</li>
-            </ul>
-            <p class="white--text mb-2">繪本作品</p>
-            <ul class="white--text">
-              <li>《甘米！動物朋友仔》</li>
-            </ul>
+          <div class="glass-bg-effect white--text" v-html="data.gummydesc">
+
           </div>
         </template>
         <template v-slot:right>
@@ -288,18 +253,19 @@ Vue.use(Particles);
 export default {
   name: "indexView",
   components: {
-    Banner: () => import("../components/Home/Banner.vue"),
-    Gummy: () => import("../components/Home/gummy-vid.vue"),
-    Glitch: () => import("../components/Home/glitch.vue"),
-    Section: () => import("../components/Home/SecondarySection.vue"),
-    FSection: () => import("../components/Home/FullSection.vue"),
-    ImageBoard: () => import("../components/Home/ImageBoard.vue"),
+    Banner: () => import("~/components/Home/Banner.vue"),
+    Gummy: () => import("~/components/Home/gummy-vid.vue"),
+    Glitch: () => import("~/components/Home/glitch.vue"),
+    Section: () => import("~/components/Home/SecondarySection.vue"),
+    FSection: () => import("~/components/Home/FullSection.vue"),
+    ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
   },
   data() {
     return {
       mdiCart,
       mdiDiscord,
       mdiTwitter,
+      isLoading: false,
       particleoptions: {
         background: {
           color: {
@@ -361,12 +327,20 @@ export default {
       },
     };
   },
+  computed: {
+    data() {
+      return this.$store.state.api.home;
+    },
+  },
   mounted() {
     const twitter = "https://platform.twitter.com/widgets.js";
     const s = document.createElement("script");
     s.setAttribute("src", twitter);
     s.setAttribute("async", true);
     document.head.appendChild(s);
+    this.$store.dispatch("api/home").then(() => {
+      this.isLoading = false;
+    });
   },
 };
 </script>
@@ -386,11 +360,6 @@ export default {
   bottom: 0;
   right: 0;
   z-index: -5;
-}
-
-.glass-bg-effect {
-  background: rgba(0, 0, 0, 0.4);
-  padding: 10px;
 }
 .bg-white {
   background-color: white;
@@ -423,5 +392,21 @@ export default {
 }
 .h-100 {
   height: 100%;
+}
+</style>
+<style>
+.glass-bg-effect {
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px;
+}
+.glass-bg-effect p {
+    margin-bottom: 0;
+}
+.glass-bg-effect ul{
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+.glass-bg-effect a{
+    color: white;
 }
 </style>

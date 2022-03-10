@@ -13,11 +13,11 @@
         v-for="(user, index) in users"
         :key="'user_' + index"
       >
-        <a
-          :href="`/beta/patient/${user.data.name.toLowerCase().replace(' ', '_')}`"
+        <nuxt-link
+          :to="`/beta/patient/${user.data.name.toLowerCase().replace(' ', '_')}`"
         >
           {{ user.data.name }}
-        </a>
+        </nuxt-link>
       </v-col>
     </v-row>
     <hr class="my-5" />
