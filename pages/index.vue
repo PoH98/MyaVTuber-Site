@@ -2,7 +2,7 @@
   <div>
     <banner />
     <div class="bg-white">
-      <FSection color="white">
+      <FSection color="white" disableLazy>
         <v-container class="text-left" v-html="data.myadesc"></v-container>
       </FSection>
       <Section :mobileReverse="true">

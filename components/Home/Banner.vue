@@ -66,11 +66,6 @@ export default {
   width: 100vw;
   overflow: hidden;
 }
-@media (max-width: 480px) {
-  .disable-event {
-    height: 280px;
-  }
-}
 .title {
   font-family: "Orbitron", sans-serif !important;
   top: 45%;
@@ -79,5 +74,19 @@ export default {
   position: absolute;
   color: white;
   z-index: 2;
+}
+@media (max-width: 380px) {
+  .title .text-h4 {
+    font-size: 8.2vw !important;
+  }
+}
+@media (max-width: 480px) {
+  .disable-event {
+    height: 280px;
+  }
+  .title .by {
+    width: 90%;
+    font-size: 6vw;
+  }
 }
 </style>
