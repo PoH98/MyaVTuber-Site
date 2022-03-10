@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!isLoading">
+  <div>
     <banner />
     <div class="bg-white">
       <FSection color="white" disableLazy>
@@ -245,9 +245,6 @@
       </FSection>
     </div>
   </div>
-  <v-overlay :value="isLoading" v-else>
-    <v-progress-circular indeterminate size="64"></v-progress-circular>
-  </v-overlay>
 </template>
 <script>
 import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
@@ -266,7 +263,6 @@ export default {
   },
   data() {
     return {
-      isLoading: true,
       mdiCart,
       mdiDiscord,
       mdiTwitter,
@@ -342,9 +338,7 @@ export default {
     s.setAttribute("src", twitter);
     s.setAttribute("async", true);
     document.head.appendChild(s);
-    this.$store.dispatch("api/home").then(() => {
-      this.isLoading = false;
-    });
+    this.$store.dispatch("api/home");
   },
 };
 </script>
