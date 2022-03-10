@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!isLoading">
     <banner />
     <div class="bg-white">
       <FSection color="white" disableLazy>
@@ -155,9 +155,10 @@
             classes="white--text text-h3 mb-5"
             content="~ 甘米主人 ~"
           ></Glitch>
-          <div class="glass-bg-effect white--text" v-html="data.gummydesc">
-
-          </div>
+          <div
+            class="glass-bg-effect white--text"
+            v-html="data.gummydesc"
+          ></div>
         </template>
         <template v-slot:right>
           <div class="d-flex flex-column justify-center h-100">
@@ -244,6 +245,9 @@
       </FSection>
     </div>
   </div>
+  <v-overlay :value="isLoading" v-else>
+    <v-progress-circular indeterminate size="64"></v-progress-circular>
+  </v-overlay>
 </template>
 <script>
 import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
@@ -262,10 +266,10 @@ export default {
   },
   data() {
     return {
+      isLoading: true,
       mdiCart,
       mdiDiscord,
       mdiTwitter,
-      isLoading: false,
       particleoptions: {
         background: {
           color: {
@@ -396,17 +400,17 @@ export default {
 </style>
 <style>
 .glass-bg-effect {
-    background: rgba(0, 0, 0, 0.4);
-    padding: 10px;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px;
 }
 .glass-bg-effect p {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
-.glass-bg-effect ul{
-    margin-top: 8px;
-    margin-bottom: 8px;
+.glass-bg-effect ul {
+  margin-top: 8px;
+  margin-bottom: 8px;
 }
-.glass-bg-effect a{
-    color: white;
+.glass-bg-effect a {
+  color: white;
 }
 </style>
