@@ -3,7 +3,7 @@
     <banner />
     <div class="bg-white">
       <FSection color="white" disableLazy>
-        <v-container class="text-left" v-html="data.myadesc"></v-container>
+        <v-container class="text-left" v-html="content.myadesc"></v-container>
       </FSection>
       <Section :mobileReverse="true">
         <template v-slot:left>
@@ -161,7 +161,7 @@
           ></Glitch>
           <div
             class="glass-bg-effect white--text"
-            v-html="data.gummydesc"
+            v-html="content.gummydesc"
           ></div>
         </template>
         <template v-slot:right>
@@ -329,12 +329,19 @@ export default {
         },
         detectRetina: true,
       },
+      content: {},
     };
   },
-  computed: {
-    data() {
-      return this.$store.state.api.home;
-    },
+  async fetch() {
+    const tempData = await this.$http.get(
+      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/",
+      {
+        headers: {
+          "X-Flatten": 1,
+        },
+      }
+    ).then(res => res.json());
+    this.content = tempData.items[0].data;
   },
   mounted() {
     const twitter = "https://platform.twitter.com/widgets.js";
@@ -342,7 +349,6 @@ export default {
     s.setAttribute("src", twitter);
     s.setAttribute("async", true);
     document.head.appendChild(s);
-    this.$store.dispatch("api/home");
   },
 };
 </script>

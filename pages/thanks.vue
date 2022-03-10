@@ -14,7 +14,7 @@
         :key="'user_' + index"
       >
         <nuxt-link
-          :to="`/patient/${user.data.name.toLowerCase().replace(' ', '_')}`"
+          :to="`/patient/${user.id}`"
         >
           {{ user.data.name }}
         </nuxt-link>
@@ -37,36 +37,38 @@
   </v-container>
 </template>
 <script>
-import { mdiPartyPopper } from '@mdi/js'
+import { mdiPartyPopper } from "@mdi/js";
 export default {
-  name: 'ThanksView',
+  name: "ThanksView",
   head() {
     return {
-      title: "Special Thanks"
+      title: "Special Thanks",
     };
   },
   data() {
     return {
       mdiPartyPopper,
       frameworks: [
-        'Vue js 2',
-        'Vimeo Player',
-        'MDI js',
-        'Axios',
-        'Lightgallery js',
-        'Particles js',
-        'Vuetify',
-        'Nuxt js',
+        "Vue js 2",
+        "Vimeo Player",
+        "MDI js",
+        "Axios",
+        "Lightgallery js",
+        "Particles js",
+        "Vuetify",
+        "Nuxt js",
       ],
-    }
+      users: [],
+    };
   },
-  computed:{
-      users(){
-          return this.$store.state.api.patient
-      }
+  async fetch() {
+    const list = await this.$http
+      .get(
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/",
+        { headers: { "X-Flatten": 1 } }
+      )
+      .then((res) => res.json());
+    this.users = list.items;
   },
-  mounted(){
-      this.$store.dispatch('api/patient')
-  }
-}
+};
 </script>

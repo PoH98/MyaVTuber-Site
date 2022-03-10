@@ -1,5 +1,5 @@
 <template>
-  <div class="patient-container" v-if="!isLoading">
+  <div class="patient-container">
     <v-img
       v-if="patient.Banner"
       class="background"
@@ -67,7 +67,7 @@
       </v-container>
     </FSection>
     <FSection color="white">
-      <v-container v-if="patient.Works.length > 0">
+      <v-container v-if="patient.Works && patient.Works.length > 0">
         <h2 class="mb-5">院友自創作品</h2>
         <v-flex id="lightgallery">
           <a
@@ -119,9 +119,6 @@
       </v-container>
     </FSection>
   </div>
-  <v-overlay :value="isLoading" v-else>
-    <v-progress-circular indeterminate size="64"></v-progress-circular>
-  </v-overlay>
 </template>
 <script>
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
@@ -131,33 +128,21 @@ export default {
   name: "PatientView",
   head() {
     return {
-      title: this.capitalizeFirstLetter(
-        this.$route.params.patient.replace("_", " ")
-      ),
+      title: this.patient.name,
     };
   },
   components: {
-    FSection: () => import("@/components/Home/FullSection.vue")
+    FSection: () => import("@/components/Home/FullSection.vue"),
   },
   data() {
     return {
-      isLoading: true,
       mdiFacebook,
       mdiInstagram,
       mdiTwitter,
       mdiChevronLeft,
       siteLink: ["twitter.com"],
+      patient:[]
     };
-  },
-  computed: {
-    patient() {
-      return this.$store.state.api.patient.filter((obj) => {
-        return (
-          obj.data.name.toLowerCase().replace(" ", "_") ===
-          this.$route.params.patient
-        );
-      })[0]?.data;
-    },
   },
   methods: {
     checkIsSiteLink(data) {
@@ -171,25 +156,31 @@ export default {
       return words.join(" ");
     },
   },
+  async fetch() {
+    const list = await this.$http
+      .get(
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" + this.$route.params.patient,
+        { headers: { "X-Flatten": 1 } }
+      )
+      .then((res) => res.json());
+    this.patient = list.data;
+  },
   mounted() {
-    this.$store.dispatch("api/patient").then(() => {
-      this.isLoading = false;
-      wait("#lightgallery", "#no-content").then((data) => {
-          if (data.type === "Normal") {
-              window.lightGallery(data.el, {
-                mode: "lg-fade",
-                thumbnail: true,
-                autoplayFirstVideo: false,
-                loadYoutubeThumbnail: true,
-                youtubeThumbSize: "default",
-                loadVimeoThumbnail: true,
-                vimeoThumbSize: "thumbnail_medium",
-              });
-          } else {
-            console.log("no upload found");
-          }
+    wait("#lightgallery", "#no-content").then((data) => {
+      if (data.type === "Normal") {
+        window.lightGallery(data.el, {
+          mode: "lg-fade",
+          thumbnail: true,
+          autoplayFirstVideo: false,
+          loadYoutubeThumbnail: true,
+          youtubeThumbSize: "default",
+          loadVimeoThumbnail: true,
+          vimeoThumbSize: "thumbnail_medium",
         });
-      });
+      } else {
+        console.log("no upload found");
+      }
+    });
   },
 };
 </script>

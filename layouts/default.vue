@@ -39,7 +39,7 @@
             </v-btn>
           </div>
           <v-spacer />
-          <div class="d-lg-none">
+          <div v-if="$device.isMobileOrTablet">
             <v-app-bar-nav-icon
               @click.stop="drawer = !drawer"
             ></v-app-bar-nav-icon>
@@ -66,7 +66,7 @@
           </div>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" fixed temporary class="d-lg-none">
+      <v-navigation-drawer v-model="drawer" fixed temporary v-if="$device.isMobileOrTablet">
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
@@ -115,7 +115,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        <Nuxt />
+        <Nuxt keep-alive />
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
