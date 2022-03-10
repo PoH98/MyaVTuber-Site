@@ -46,7 +46,7 @@ export const actions = {
     },
     home({ commit, state }) {
         return new Promise((resolve, reject) => {
-            if (state.patient.length < 1) {
+            if (Object.keys(state.home).length < 1) {
                 var bodyFormData = new FormData();
                 bodyFormData.append('grant_type', 'client_credentials');
                 bodyFormData.append('client_id', 'mya-vtuber-api:reader');
