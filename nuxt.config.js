@@ -35,7 +35,10 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [{ src: '~/plugins/lightgallery.js',  mode: 'client' }],
+  plugins: [
+    { src: '~/plugins/lightgallery.js', mode: 'client' }, 
+    { src: '~/plugins/lazy-iframe.js', mode: 'client' }
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -48,10 +51,10 @@ export default {
     '@nuxtjs/robots',
     '@nuxtjs/sitemap'
   ],
-  sitemap:{
+  sitemap: {
     hostname: 'https://mya-hkvtuber.com',
     gzip: true,
-    routes:[
+    routes: [
       '/patient/ben',
       '/patient/hentai_matthew',
       '/patient/panda_kenneth'
@@ -98,7 +101,7 @@ export default {
         extensions: ['html', 'vue', 'js'],
       },
     ],
-    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer'],
+    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid'],
     whitelistPatterns: () => [
       /^v-((?!application).)*$/,
       /^\.theme--light*/,

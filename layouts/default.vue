@@ -152,6 +152,12 @@ export default {
       mdiFoodDrumstick,
     };
   },
+  watch: {
+    $route() {
+      const event = new Event("changePage");
+      document.dispatchEvent(event);
+    },
+  },
   mounted() {
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
@@ -210,5 +216,18 @@ body {
 }
 .home:before {
   background-color: white !important;
+}
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+#gummy-vid {
+  top: -55px;
+  left: -10px;
+  right: 0;
+  width: calc(100% + 20px);
+  height: 420px;
+  opacity: 1;
 }
 </style>

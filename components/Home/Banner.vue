@@ -1,13 +1,11 @@
 <template>
   <div class="disable-event">
     <div class="gradient"></div>
-    <iframe
+    <div
       id="background-frame"
-      src="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; "
-    ></iframe>
+      data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+      data-img="/img/sayyouknow.jpg"
+    ></div>
     <div class="title">
       <p class="text-h4">「臭DD 幾時單推我啊」</p>
       <p class="text-right by">by Mya 米亞</p>
@@ -72,13 +70,6 @@ export default {
   .disable-event {
     height: 280px;
   }
-}
-iframe {
-  position: absolute;
-  top: -50px;
-  left: 0;
-  right: 0;
-  opacity: 1;
 }
 .title {
   font-family: "Orbitron", sans-serif !important;

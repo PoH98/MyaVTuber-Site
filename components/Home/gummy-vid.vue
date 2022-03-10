@@ -1,17 +1,15 @@
 <template>
   <div class="disable-event">
     <div class="gradient"></div>
-    <iframe
+    <div
       id="gummy-vid"
-      src="https://www.youtube.com/embed/P_fJCQQz0V0?playlist=P_fJCQQz0V0&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
-      title="YouTube video player"
-      frameborder="0"
-      allow="accelerometer; autoplay; "
-    ></iframe>
+      data-iframe="https://www.youtube.com/embed/P_fJCQQz0V0?playlist=P_fJCQQz0V0&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+      data-img="/img/losemymind.jpg"
+    ></div>
   </div>
 </template>
 <style scoped>
-.h-100{
+.h-100 {
   height: 100%;
 }
 .by {
@@ -37,15 +35,6 @@
   .disable-event {
     height: 280px;
   }
-}
-iframe {
-  position: absolute;
-  top: -55px;
-  left: -10px;
-  right: 0;
-  width: calc(100% + 20px);
-  height: 420px;
-  opacity: 1;
 }
 .title {
   font-family: "Orbitron", sans-serif !important;

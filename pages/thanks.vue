@@ -13,13 +13,11 @@
         v-for="(user, index) in users"
         :key="'user_' + index"
       >
-        <a
-          v-if="user.isurl"
-          :href="`/patient/${user.name.toLowerCase().replace(' ', '_')}`"
+        <nuxt-link
+          :to="`/patient/${user.data.name.toLowerCase().replace(' ', '_')}`"
         >
-          {{ user.name }}
-        </a>
-        <p class="mb-0" v-else>{{ user.name }}</p>
+          {{ user.data.name }}
+        </nuxt-link>
       </v-col>
     </v-row>
     <hr class="my-5" />
@@ -50,28 +48,6 @@ export default {
   data() {
     return {
       mdiPartyPopper,
-      users: [
-        {
-          isurl: true,
-          name: 'Ben',
-        },
-        {
-          isurl: true,
-          name: 'Hentai Matthew',
-        },
-        {
-          isurl: true,
-          name: 'Panda Kenneth',
-        },
-        {
-          isurl: false,
-          name: 'Mona',
-        },
-        {
-          isurl: false,
-          name: '013126',
-        },
-      ],
       frameworks: [
         'Vue js 2',
         'Vimeo Player',
@@ -84,5 +60,13 @@ export default {
       ],
     }
   },
+  computed:{
+      users(){
+          return this.$store.state.api.patient
+      }
+  },
+  mounted(){
+      this.$store.dispatch('api/patient')
+  }
 }
 </script>
