@@ -230,4 +230,25 @@ body {
   height: 420px;
   opacity: 1;
 }
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #ff00bb #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+  width: 14px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: #ff00bb;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
 </style>
