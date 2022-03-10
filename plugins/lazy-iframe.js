@@ -11,6 +11,7 @@ setInterval(() => {
             const replace = document.createElement("img");
             replace.src = e.getAttribute('data-img');
             replace.classList.add('img-fluid');
+            replace.alt = "米亞 Banner";
             e.replaceWith(replace);
         });
     }

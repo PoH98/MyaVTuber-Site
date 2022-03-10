@@ -86,11 +86,13 @@
           <p>暫時無圖片</p>
         </template>
       </Section>
-      <v-parallax
-        class="full-banner"
-        src="/img/fullwidth.jpg"
-        alt="@/yuentsz123"
-      />
+      <v-lazy>
+        <v-parallax
+          class="full-banner"
+          src="/img/fullwidth.jpg"
+          alt="@/yuentsz123"
+        />
+      </v-lazy>
       <ImageBoard />
       <Section color="white" disableLazy>
         <template v-slot:left>
@@ -120,11 +122,13 @@
           </v-container>
         </template>
         <template v-slot:right>
-          <v-parallax
-            class="full-banner"
-            src="/img/fullwidth2.jpg"
-            alt="綽貓喵CheukCat🍣-【HKVtuber】"
-          />
+          <v-lazy>
+            <v-parallax
+              class="full-banner"
+              src="/img/fullwidth2.jpg"
+              alt="綽貓喵CheukCat🍣-【HKVtuber】"
+            />
+          </v-lazy>
         </template>
       </Section>
       <FSection>

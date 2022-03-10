@@ -1,10 +1,5 @@
 <template>
-  <v-lazy v-if="!disableLazy">
-    <div :class="color + (disablePadding ? '' : ' py-15')">
-      <slot name="default" />
-    </div>
-  </v-lazy>
-  <div v-else :class="color + (disablePadding ? '' : ' py-15')">
+  <div :class="color + (disablePadding ? '' : ' py-15')">
     <slot name="default" />
   </div>
 </template>
@@ -18,12 +13,6 @@ export default {
       },
     },
     disablePadding: {
-      type: Boolean,
-      default: () => {
-        return false
-      },
-    },
-    disableLazy: {
       type: Boolean,
       default: () => {
         return false
