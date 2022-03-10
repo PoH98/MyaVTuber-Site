@@ -156,7 +156,7 @@ export default {
           obj.data.name.toLowerCase().replace(" ", "_") ===
           this.$route.params.patient
         );
-      })[0].data;
+      })[0]?.data;
     },
   },
   methods: {

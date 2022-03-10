@@ -239,7 +239,7 @@
       <FSection color="white">
         <v-container>
           <p class="text-h4 mb-0">院友期待你的加入！</p>
-          <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
+          <NuxtLink class="mb-0" to="/beta/thanks">特別感謝院友名單</NuxtLink>
         </v-container>
       </FSection>
     </div>
