@@ -52,7 +52,6 @@ export default {
         "Vue js 2",
         "Vimeo Player",
         "MDI js",
-        "Axios",
         "Lightgallery js",
         "Particles js",
         "Vuetify",
