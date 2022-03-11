@@ -58,17 +58,17 @@ export default {
         "Vuetify",
         "Nuxt js",
       ],
-      users: [],
     };
   },
-  async fetch() {
-    const list = await this.$http
+  async asyncData({ $http }) {
+    const tempData = await $http
       .get(
         "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/",
         { headers: { "X-Flatten": 1 } }
       )
       .then((res) => res.json());
-    this.users = list.items;
+    const users = tempData.items;
+    return { users };
   },
 };
 </script>

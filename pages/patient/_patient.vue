@@ -141,7 +141,6 @@ export default {
       mdiTwitter,
       mdiChevronLeft,
       siteLink: ["twitter.com"],
-      patient:[]
     };
   },
   methods: {
@@ -156,14 +155,15 @@ export default {
       return words.join(" ");
     },
   },
-  async fetch() {
-    const list = await this.$http
+  async asyncData({ params, $http }) {
+    const list = await $http
       .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" + this.$route.params.patient,
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
+          params.patient,
         { headers: { "X-Flatten": 1 } }
       )
       .then((res) => res.json());
-    this.patient = list.data;
+    return { patient: list.data };
   },
   mounted() {
     wait("#lightgallery", "#no-content").then((data) => {

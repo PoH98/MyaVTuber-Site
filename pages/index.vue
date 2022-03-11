@@ -343,15 +343,16 @@ export default {
       content: {},
     };
   },
-  async fetch() {
-    const tempData = await this.$http
+  async asyncData({ $http }) {
+    const tempData = await $http
       .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/", {
         headers: {
           "X-Flatten": 1,
         },
       })
       .then((res) => res.json());
-    this.content = tempData.items[0].data;
+    const content = tempData.items[0].data;
+    return { content };
   },
 };
 </script>
