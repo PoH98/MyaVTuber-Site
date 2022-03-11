@@ -1,5 +1,4 @@
-import colors from 'vuetify/es5/util/colors'
-
+import $http from 'axios';
 export default {
   // Target: https://go.nuxtjs.dev/config-target
   target: 'server',
@@ -36,7 +35,7 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    { src: '~/plugins/lightgallery.js', mode: 'client' }, 
+    { src: '~/plugins/lightgallery.js', mode: 'client' },
     { src: '~/plugins/lazy-iframe.js', mode: 'client' }
   ],
 
@@ -47,19 +46,23 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
-    '@nuxtjs/device',
-    "nuxt-purgecss",
-    '@nuxtjs/robots',
-    '@nuxtjs/sitemap'
+    "nuxt-purgecss"
   ],
   sitemap: {
-    hostname: 'https://mya-hkvtuber.com',
+    hostname: 'https://www.mya-hkvtuber.com',
     gzip: true,
-    routes: [
-      '/patient/ben',
-      '/patient/hentai_matthew',
-      '/patient/panda_kenneth'
-    ]
+    exclude:['/privacy-policy'],
+    routes: async () =>{
+      const list = await $http
+      .get(
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list",
+        { headers: { "X-Flatten": 1 } }
+      )
+      .then((res) => res.data);
+      return list.items.map(function(item) {
+        return '/patient/' + item.id;
+      });
+    }
   },
   robots: {
     UserAgent: '*',
@@ -67,7 +70,12 @@ export default {
     Disallow: '/privacy-policy'
   },
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxt/http'],
+  modules: [
+    '@nuxtjs/robots',
+    '@nuxtjs/device',
+    '@nuxtjs/sitemap',
+    '@nuxt/http'
+  ],
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
