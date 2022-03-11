@@ -5,87 +5,82 @@
       <FSection color="white" disableLazy>
         <v-container class="text-left" v-html="content.myadesc"></v-container>
       </FSection>
-      <Section :mobileReverse="true">
-        <template v-slot:left>
-          <div class="text-md-left d-flex flex-column justify-center h-100">
-            <h2>米亞の飛天奶茶商店</h2>
-            <p class="mb-0">精美的周邊產品望來依到啊！！</p>
-            <p>絕對可以買到你破產！！</p>
-            <div>
-              <v-btn
-                x-large
-                target="_blank"
-                rounded
-                class="px-13"
-                href="https://market.flyingmilktea.com/shop/113469"
-              >
-                <v-icon class="mr-2">{{ mdiCart }}</v-icon>
-                購買
-              </v-btn>
+      <section v-for="(data, i) in content.subsection" :key="'section_' + i">
+        <Section
+          v-if="data.type === '左右' && i % 2 === 0"
+          :color="data['background-color']"
+          :mobileReverse="true"
+        >
+          <template v-slot:left>
+            <div class="text-md-left d-flex flex-column justify-center h-100">
+              <div v-html="data.content"></div>
+              <div>
+                <v-btn
+                  v-if="data.button"
+                  x-large
+                  target="_blank"
+                  rounded
+                  class="px-13 mt-5"
+                  :href="data.button"
+                >
+                  <mdicon :name="data['button-icon']" />
+                  {{ data["button-text"] }}
+                </v-btn>
+              </div>
             </div>
-          </div>
-        </template>
-        <template v-slot:right>
-          <v-img src="/img/flyingmilktea.jpg" />
-        </template>
-      </Section>
-      <Section color="white">
-        <template v-slot:left>
-          <div class="d-flex justify-center">
-            <v-img
-              src="/img/discordicon.png"
-              max-width="300px"
-              max-height="300px"
-            />
-          </div>
-        </template>
-        <template v-slot:right>
-          <div class="text-md-right d-flex flex-column justify-center h-100">
-            <h2>米亞のDiscord Server</h2>
-            <p class="mb-0">官方Discord Server，歡迎大家</p>
-            <p>入來認識更多院友啦！</p>
-            <div>
-              <v-btn
-                x-large
-                rounded
-                target="_blank"
-                class="px-13"
-                href="https://discord.com/invite/erB5AW9Vrp"
-              >
-                <v-icon class="mr-2">{{ mdiDiscord }}</v-icon>
-                加入
-              </v-btn>
+          </template>
+          <template v-slot:right>
+            <v-flex
+              class="justify-center h-100 align-center"
+              v-if="data['background-image']"
+            >
+              <v-img
+                max-width="100%"
+                max-height="300px"
+                :src="data['background-image']"
+              />
+            </v-flex>
+            <p class="mt-10 mb-10" v-else>暫時無圖片</p>
+          </template>
+        </Section>
+        <Section
+          v-else-if="data.type === '左右' && i % 2 !== 0"
+          :color="data['background-color']"
+        >
+          <template v-slot:left>
+            <v-flex
+              class="justify-center h-100 align-center"
+              v-if="data['background-image']"
+            >
+              <v-img
+                max-width="100%"
+                max-height="300px"
+                :src="data['background-image']"
+              />
+            </v-flex>
+            <p class="mt-10 mb-10" v-else>暫時無圖片</p>
+          </template>
+          <template v-slot:right>
+            <div class="text-md-right d-flex flex-column justify-center h-100">
+              <div v-html="data.content"></div>
+              <div>
+                <v-btn
+                  v-if="data.button"
+                  x-large
+                  target="_blank"
+                  rounded
+                  class="px-13 mt-5"
+                  :href="data.button"
+                >
+                  <mdicon :name="data['button-icon']" />
+                  {{ data["button-text"] }}
+                </v-btn>
+              </div>
             </div>
-          </div>
-        </template>
-      </Section>
-      <Section>
-        <template v-slot:left>
-          <div class="text-md-left d-flex flex-column justify-center h-100">
-            <h2>米亞の後援會</h2>
-            <p>
-              由
-              <span class="text-decoration-line-through"> DD12 </span>
-              JC12創立，用於作為院友卑米亞驚喜或者各種米亞相關的Fan活動<br />有興趣記得關注啦
-            </p>
-            <div>
-              <v-btn
-                x-large
-                rounded
-                target="_blank"
-                class="px-13"
-                href="https://twitter.com/MYA_HKVfanclub"
-              >
-                <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>
-                關注Twitter
-              </v-btn>
-            </div>
-          </div>
-        </template>
-        <template v-slot:right>
-          <p>暫時無圖片</p>
-        </template>
-      </Section>
+          </template>
+        </Section>
+        <FSection v-else> </FSection>
+      </section>
       <v-lazy>
         <v-parallax
           class="full-banner"
@@ -254,7 +249,12 @@
 import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
 import Particles from "particles.vue";
 import Vue from "vue";
+import mdiVue from "mdi-vue/v2";
+import * as mdijs from "@mdi/js";
 Vue.use(Particles);
+Vue.use(mdiVue, {
+  icons: mdijs,
+});
 export default {
   name: "indexView",
   components: {
@@ -265,11 +265,22 @@ export default {
     FSection: () => import("~/components/Home/FullSection.vue"),
     ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
   },
+  head: {
+    script: [
+      {
+        body: true,
+        src: "https://platform.twitter.com/widgets.js",
+        async: true,
+        crossorigin: "anonymous",
+      },
+    ],
+  },
   data() {
     return {
       mdiCart,
       mdiDiscord,
       mdiTwitter,
+      icons: [],
       particleoptions: {
         background: {
           color: {
@@ -333,22 +344,14 @@ export default {
     };
   },
   async fetch() {
-    const tempData = await this.$http.get(
-      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/",
-      {
+    const tempData = await this.$http
+      .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/", {
         headers: {
           "X-Flatten": 1,
         },
-      }
-    ).then(res => res.json());
+      })
+      .then((res) => res.json());
     this.content = tempData.items[0].data;
-  },
-  mounted() {
-    const twitter = "https://platform.twitter.com/widgets.js";
-    const s = document.createElement("script");
-    s.setAttribute("src", twitter);
-    s.setAttribute("async", true);
-    document.head.appendChild(s);
   },
 };
 </script>

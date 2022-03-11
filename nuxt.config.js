@@ -74,9 +74,17 @@ export default {
     '@nuxtjs/robots',
     '@nuxtjs/device',
     '@nuxtjs/sitemap',
-    '@nuxt/http'
+    '@nuxt/http',
+    'nuxt-ssr-cache'
   ],
-
+  cache: {
+    useHostPrefix: false,
+    store: {
+      type: 'memory',
+      max: 20,
+      ttl: 3600,
+    },
+  },
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
     treeShake: true,
@@ -123,6 +131,7 @@ export default {
   },
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
-    extractCSS: true
+    extractCSS: true,
+    transpile: ['mdi-vue']
   }
 }

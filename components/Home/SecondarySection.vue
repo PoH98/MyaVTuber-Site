@@ -1,9 +1,5 @@
 <template>
-  <div
-    :class="color + ' py-15 secondary-section'"
-    :data-aos="disableAnimate ? '' : 'fade-down'"
-    :data-aos-duration="disableAnimate ? 0 : 2000"
-  >
+  <div class="py-15 secondary-section" :style="'background-color:' + color">
     <slot name="before" />
     <v-container>
       <v-row>
@@ -34,23 +30,23 @@ export default {
     color: {
       type: String,
       default: () => {
-        return 'pink lighten-4'
+        return "#f8bbd0";
       },
     },
     mobileReverse: {
       type: Boolean,
       default: () => {
-        return false
+        return false;
       },
     },
     disableAnimate: {
       type: Boolean,
       default: () => {
-        return false
+        return false;
       },
     },
   },
-}
+};
 </script>
 <style scoped>
 .secondary-section {

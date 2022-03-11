@@ -66,7 +66,12 @@
           </div>
         </v-container>
       </v-app-bar>
-      <v-navigation-drawer v-model="drawer" fixed temporary v-if="$device.isMobileOrTablet">
+      <v-navigation-drawer
+        v-model="drawer"
+        fixed
+        temporary
+        v-if="$device.isMobileOrTablet"
+      >
         <v-list nav dense>
           <v-list-item-group active-class="deep-purple--text text--accent-4">
             <v-list-item
@@ -201,54 +206,57 @@ body {
   color: #2c3e50;
   overflow-x: hidden;
   max-width: 100vw;
-}
-@media (min-width: 1904px) {
-  .container {
-    max-width: 1185px !important;
+  p {
+    margin-bottom: 0;
   }
-}
-.home {
-  border: 3px solid currentColor !important;
-  padding: 10px 32px !important;
-}
-.home * {
-  font-size: 30px;
-}
-.home:before {
-  background-color: white !important;
-}
-.img-fluid {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-#gummy-vid {
-  top: -55px;
-  left: -10px;
-  right: 0;
-  width: calc(100% + 20px);
-  height: 420px;
-  opacity: 1;
-}
-/* ===== Scrollbar CSS ===== */
-/* Firefox */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #ff00bb #ffffff;
-}
+  @media (min-width: 1904px) {
+    .container {
+      max-width: 1185px !important;
+    }
+  }
+  .home {
+    border: 3px solid currentColor !important;
+    padding: 10px 32px !important;
+  }
+  .home * {
+    font-size: 30px;
+  }
+  .home:before {
+    background-color: white !important;
+  }
+  .img-fluid {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  #gummy-vid {
+    top: -55px;
+    left: -10px;
+    right: 0;
+    width: calc(100% + 20px);
+    height: 420px;
+    opacity: 1;
+  }
+  /* ===== Scrollbar CSS ===== */
+  /* Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #ff00bb #ffffff;
+  }
 
-/* Chrome, Edge, and Safari */
-*::-webkit-scrollbar {
-  width: 14px;
-}
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 14px;
+  }
 
-*::-webkit-scrollbar-track {
-  background: #ffffff;
-}
+  *::-webkit-scrollbar-track {
+    background: #ffffff;
+  }
 
-*::-webkit-scrollbar-thumb {
-  background-color: #ff00bb;
-  border-radius: 10px;
-  border: 3px solid #ffffff;
+  *::-webkit-scrollbar-thumb {
+    background-color: #ff00bb;
+    border-radius: 10px;
+    border: 3px solid #ffffff;
+  }
 }
 </style>
