@@ -79,7 +79,15 @@
             </div>
           </template>
         </Section>
-        <FSection v-else> </FSection>
+        <FSection
+          :color="data['background-color']"
+          :image="data['background-image']"
+          v-else
+        >
+          <v-container>
+            <div class="content" v-html="data.content"></div>
+          </v-container>
+        </FSection>
       </section>
       <v-lazy>
         <v-parallax
@@ -91,11 +99,11 @@
       <ImageBoard />
       <Section color="white" disableLazy>
         <template v-slot:left>
-          <h2 class="twitter-title row">
-            <span class="col-12 col-md-6 text-md-right py-0 px-0"
-              >最新官方Twitter</span
-            >
-            <span class="col-12 col-md-6 px-0 py-0">
+          <div class="twitter-title row">
+            <div class="col-12 col-lg-6 text-lg-right py-0 px-0">
+              <h2>最新官方Twitter</h2>
+            </div>
+            <span class="col-12 col-lg-6 px-0 py-0">
               <a
                 href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
                 class="twitter-follow-button"
@@ -103,9 +111,9 @@
                 >Follow @MyaVtuber</a
               >
             </span>
-          </h2>
+          </div>
           <v-container>
-            <div class="twitter">
+            <div class="twitter" ref="myaTweets">
               <a
                 data-chrome="noborders noheader nofooter noscrollbar"
                 data-tweet-limit="3"
@@ -225,13 +233,15 @@
                   >Follow @gummy_forest</a
                 >
               </span>
-              <a
-                data-chrome="noborders noheader nofooter noscrollbar"
-                data-tweet-limit="3"
-                class="twitter-timeline"
-                href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw"
-                >Tweets by Gummy</a
-              >
+              <div ref="gummyTweets">
+                <a
+                  data-chrome="noborders noheader nofooter noscrollbar"
+                  data-tweet-limit="3"
+                  class="twitter-timeline"
+                  href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw"
+                  >Tweets by Gummy</a
+                >
+              </div>
             </v-col>
           </v-row>
         </v-container>
@@ -264,16 +274,6 @@ export default {
     Section: () => import("~/components/Home/SecondarySection.vue"),
     FSection: () => import("~/components/Home/FullSection.vue"),
     ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
-  },
-  head: {
-    script: [
-      {
-        body: true,
-        src: "https://platform.twitter.com/widgets.js",
-        async: true,
-        crossorigin: "anonymous",
-      },
-    ],
   },
   data() {
     return {
@@ -377,6 +377,33 @@ export default {
     }
     const content = tempData.items[0].data;
     return { content };
+  },
+  mounted() {
+    if (!window.twttr) {
+      window.twttr = (function (d, s, id) {
+        var t,
+          js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        js.defer = true;
+        fjs.parentNode.insertBefore(js, fjs);
+        return (
+          window.twttr ||
+          (t = {
+            _e: [],
+            ready: function (f) {
+              t._e.push(f);
+            },
+          })
+        );
+      })(document, "script", "twitter-wjs");
+    }
+
+    window.twttr.ready(() => window.twttr.widgets.load());
+    //'<a data-chrome="noborders noheader nofooter noscrollbar"  data-tweet-limit="3" class="twitter-timeline" href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>'
   },
 };
 </script>

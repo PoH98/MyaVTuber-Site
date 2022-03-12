@@ -120,7 +120,7 @@
         </v-list>
       </v-navigation-drawer>
       <v-main>
-        <Nuxt keep-alive />
+        <Nuxt />
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
