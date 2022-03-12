@@ -143,7 +143,7 @@
           <p class="text-right by">講你知123</p>
         </v-container>
       </FSection>
-      <Section disableAnimate>
+      <Section disableAnimate color="#000">
         <template v-slot:before>
           <div class="background-gummy">
             <Particles id="particle-bg" :options="particleoptions" />
@@ -155,14 +155,14 @@
             content="~ 甘米主人 ~"
           ></Glitch>
           <div
-            class="glass-bg-effect white--text text-left"
+            class="glass-bg-effect gummy-panel white--text text-left"
             v-html="content.gummydesc"
           ></div>
         </template>
         <template v-slot:right>
           <div class="d-flex flex-column justify-center h-100">
             <Gummy />
-            <div class="text-center">
+            <div class="text-center gummy-panel">
               <small class="white--text"
                 >Produced by
                 <a class="white--text" href="https://twitter.com/BASA8383"
@@ -410,7 +410,10 @@ export default {
   left: 0;
   bottom: 0;
   right: 0;
-  z-index: -5;
+}
+.gummy-panel{
+  position: relative;
+  z-index: 1;
 }
 .bg-white {
   background-color: white;
