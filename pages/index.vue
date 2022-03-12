@@ -134,7 +134,8 @@
           </v-lazy>
         </template>
       </Section>
-      <FSection>
+      <FSection >
+      <FSection color="rgb(248, 187, 208)">
         <v-container class="text-banner">
           <p class="pr-15 text-h4 mb-0 d-none d-md-block">
             「很喜歡你，但我未能完全說出口
@@ -151,7 +152,7 @@
           <p class="text-right by">講你知123</p>
         </v-container>
       </FSection>
-      <Section color="text-left" disableAnimate>
+      <Section disableAnimate>
         <template v-slot:before>
           <div class="background-gummy">
             <Particles id="particle-bg" :options="particleoptions" />
@@ -163,7 +164,7 @@
             content="~ 甘米主人 ~"
           ></Glitch>
           <div
-            class="glass-bg-effect white--text"
+            class="glass-bg-effect white--text text-left"
             v-html="content.gummydesc"
           ></div>
         </template>
