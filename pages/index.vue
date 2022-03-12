@@ -34,11 +34,7 @@
               class="justify-center h-100 align-center"
               v-if="data['background-image']"
             >
-              <v-img
-                max-width="100%"
-                max-height="300px"
-                :src="data['background-image']"
-              />
+              <img class="section-img" :src="data['background-image']" />
             </v-flex>
             <p class="mt-10 mb-10" v-else>暫時無圖片</p>
           </template>
@@ -52,11 +48,7 @@
               class="justify-center h-100 align-center"
               v-if="data['background-image']"
             >
-              <v-img
-                max-width="100%"
-                max-height="300px"
-                :src="data['background-image']"
-              />
+              <img class="section-img" :src="data['background-image']" />
             </v-flex>
             <p class="mt-10 mb-10" v-else>暫時無圖片</p>
           </template>
@@ -134,7 +126,6 @@
           </v-lazy>
         </template>
       </Section>
-      <FSection >
       <FSection color="rgb(248, 187, 208)">
         <v-container class="text-banner">
           <p class="pr-15 text-h4 mb-0 d-none d-md-block">
@@ -257,7 +248,6 @@
   </div>
 </template>
 <script>
-import { mdiCart, mdiDiscord, mdiTwitter } from "@mdi/js";
 import Particles from "particles.vue";
 import Vue from "vue";
 import mdiVue from "mdi-vue/v2";
@@ -278,9 +268,6 @@ export default {
   },
   data() {
     return {
-      mdiCart,
-      mdiDiscord,
-      mdiTwitter,
       icons: [],
       particleoptions: {
         background: {
@@ -434,6 +421,10 @@ export default {
 }
 .full-banner {
   min-height: 60vh;
+}
+.section-img{
+  max-height: 300px;
+  max-width: 100%;
 }
 .gummy-banner {
   max-height: 200px;
