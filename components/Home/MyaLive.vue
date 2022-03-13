@@ -1,7 +1,7 @@
 <template>
   <div :class="color">
     <v-container class="py-10">
-      <v-row>
+      <v-row class="justify-center">
         <v-col class="text-center">
           <h2>米亞頻道數據情況</h2>
           <p>當前訂閱人數：{{ status.subscriberCount }}</p>
@@ -57,7 +57,7 @@ export default {
       futurevid: {},
     };
   },
-  async fetch() {
+  mounted() {
     this.status = await this.$http
       .get("https://www.mya-hkvtuber.com/api/mya/getytstatus")
       .then((res) => res.json());
