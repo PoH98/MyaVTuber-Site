@@ -1,7 +1,7 @@
 <template>
   <FSection color="#f8bbd0">
     <v-container>
-      <h2 class="white--text">院友作品</h2>
+      <h2>院友作品</h2>
       <P>來自院友關於米亞的Fan Art<br/>如果想自己的作品上架係到順便宣傳自己，可以到Discord Group搵Prince Of Hell(簡稱PoH98)哦！</P>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>

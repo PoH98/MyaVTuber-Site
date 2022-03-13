@@ -23,7 +23,7 @@
     <v-container class="name">
       <h1 class="font-weight-bold">{{ patient.name }}</h1>
     </v-container>
-    <FSection disablePadding>
+    <FSection disablePadding color="rgb(248, 187, 208)">
       <v-container>
         <div class="social-media">
           <p

@@ -23,7 +23,7 @@
                   class="px-13 mt-5"
                   :href="data.button"
                 >
-                  <mdicon :name="data['button-icon']" />
+                  <v-img class="mr-2" :src="'/icons/'+ data['button-icon']  + '.svg'" />
                   {{ data["button-text"] }}
                 </v-btn>
               </div>
@@ -34,7 +34,7 @@
               class="justify-center h-100 align-center"
               v-if="data['background-image']"
             >
-              <img class="section-img" :src="data['background-image']" />
+              <v-img contain class="section-img" :src="data['background-image']" />
             </v-flex>
             <p class="mt-10 mb-10" v-else>暫時無圖片</p>
           </template>
@@ -48,7 +48,7 @@
               class="justify-center h-100 align-center"
               v-if="data['background-image']"
             >
-              <img class="section-img" :src="data['background-image']" />
+              <v-img contain class="section-img" :src="data['background-image']" />
             </v-flex>
             <p class="mt-10 mb-10" v-else>暫時無圖片</p>
           </template>
@@ -64,7 +64,7 @@
                   class="px-13 mt-5"
                   :href="data.button"
                 >
-                  <mdicon :name="data['button-icon']" />
+                  <v-img class="mr-2" :src="'/icons/'+ data['button-icon']  + '.svg'" />
                   {{ data["button-text"] }}
                 </v-btn>
               </div>
@@ -250,12 +250,7 @@
 <script>
 import Particles from "particles.vue";
 import Vue from "vue";
-import mdiVue from "mdi-vue/v2";
-import * as mdijs from "@mdi/js";
 Vue.use(Particles);
-Vue.use(mdiVue, {
-  icons: mdijs,
-});
 export default {
   name: "indexView",
   components: {
@@ -392,7 +387,7 @@ export default {
 
     window.twttr.ready(() => window.twttr.widgets.load());
     //'<a data-chrome="noborders noheader nofooter noscrollbar"  data-tweet-limit="3" class="twitter-timeline" href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>'
-  },
+  }
 };
 </script>
 <style scoped>
@@ -411,7 +406,7 @@ export default {
   bottom: 0;
   right: 0;
 }
-.gummy-panel{
+.gummy-panel {
   position: relative;
   z-index: 1;
 }
@@ -425,7 +420,7 @@ export default {
 .full-banner {
   min-height: 60vh;
 }
-.section-img{
+.section-img {
   max-height: 300px;
   max-width: 100%;
 }

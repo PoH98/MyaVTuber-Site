@@ -34,4 +34,4 @@ setInterval(() => {
             e.replaceWith(replace);
         });
     }
-}, 1000);
+}, 100);

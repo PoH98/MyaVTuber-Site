@@ -6,10 +6,12 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "preview": "nuxt build && nuxt start"
   },
   "dependencies": {
     "@mdi/js": "^6.5.95",
+    "@mdi/svg": "^6.5.95",
     "@nuxt/http": "^0.6.4",
     "@nuxtjs/robots": "^2.5.0",
     "@nuxtjs/sitemap": "^2.4.0",
