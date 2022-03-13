@@ -57,7 +57,7 @@ export default {
       futurevid: {},
     };
   },
-  mounted() {
+  async fetch() {
     this.status = await this.$http
       .get("https://www.mya-hkvtuber.com/api/mya/getytstatus")
       .then((res) => res.json());

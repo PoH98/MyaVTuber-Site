@@ -109,7 +109,7 @@ export default {
         extensions: ['html', 'vue', 'js'],
       },
     ],
-    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid'],
+    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid', 'col'],
     whitelistPatterns: () => [
       /^v-((?!application).)*$/,
       /^\.theme--light*/,
