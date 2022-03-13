@@ -1,5 +1,5 @@
 <template>
-  <div :class="'mya-live-statistics' + color">
+  <div :class="'mya-live-statistics ' + color">
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col class="text-center">
