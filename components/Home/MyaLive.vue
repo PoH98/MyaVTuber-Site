@@ -1,5 +1,5 @@
 <template>
-  <div :class="color">
+  <div :class="'mya-live-statistics' + color">
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col class="text-center">
@@ -23,6 +23,7 @@
         <v-col
           cols="12"
           md="6"
+          class="video-col"
           v-for="(v, i) in futurevid.Videos"
           :key="'vid_' + i"
         >
@@ -67,8 +68,8 @@ export default {
   },
 };
 </script>
-<style scoped>
-.img-error {
-  height: 150px;
+<style>
+.mya-live-statistics .video-col .v-responsive__sizer {
+  display: none !important;
 }
 </style>
