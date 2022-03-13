@@ -24,7 +24,7 @@
 </template>
 <script>
 import Swiper from "swiper";
-import { Navigation } from 'swiper'
+import { Navigation } from "swiper";
 import "swiper/swiper-bundle.css";
 export default {
   components: {
@@ -96,12 +96,13 @@ export default {
       swiper: null,
     };
   },
-  methods:{
-    next(){
+  methods: {
+    next() {
       this.swiper.slideNext(this.speed);
-    }
+    },
   },
   mounted() {
+    Swiper.use(Navigation);
     this.swiper = new Swiper(this.$refs.swiper, {
       // Optional parameters
       direction: this.direction,
@@ -140,11 +141,13 @@ export default {
         },
       },
     });
-    this.swiper.use(Navigation);
   },
 };
 </script>
 <style>
+.swiper {
+  position: relative;
+}
 .swiper-slide * {
   box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -186,15 +189,15 @@ export default {
     opacity: 0;
   }
   25% {
-    opacity: .5;
+    opacity: 0.5;
   }
   50% {
     opacity: 1;
   }
   75% {
-    opacity: .5;
+    opacity: 0.5;
   }
-  99%{
+  99% {
     opacity: 0;
   }
 }

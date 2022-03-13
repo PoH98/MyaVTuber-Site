@@ -124,6 +124,6 @@ export default {
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
     extractCSS: true,
-    transpile: ['mdi-vue']
+    transpile: ['mdi-vue', ({ filePath }) => /(\.esm\.js|\.mjs)$/.test(filePath)]
   }
 }
