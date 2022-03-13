@@ -23,7 +23,8 @@
   </div>
 </template>
 <script>
-import Swiper, { Navigation } from "swiper";
+import Swiper from "swiper";
+import { Navigation } from 'swiper'
 import "swiper/swiper-bundle.css";
 export default {
   components: {
@@ -107,7 +108,6 @@ export default {
       speed: this.speed,
       slidesPerView: this.slidesPerView,
       centeredSlides: this.centeredSlides,
-      modules: [Navigation],
       grid: {
         rows: this.rows,
         fill: "row",
@@ -140,6 +140,7 @@ export default {
         },
       },
     });
+    this.swiper.use(Navigation);
   },
 };
 </script>
