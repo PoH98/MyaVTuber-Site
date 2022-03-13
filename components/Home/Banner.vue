@@ -23,21 +23,23 @@ export default {
   methods: {
     calcFrame() {
       const frame = document.getElementById("background-frame");
-      if (window.innerWidth < 1560 && window.innerWidth > 480) {
-        frame.style.width = "1560px";
-        frame.style.height = "880px";
-        frame.style.top = "-50px";
-        frame.style.left = -((1560 - window.innerWidth) / 2) + "px";
-      } else if (window.innerWidth <= 480) {
-        frame.style.width = "600px";
-        frame.style.height = "330px";
-        frame.style.top = "-58px";
-        frame.style.left = -((600 - window.innerWidth) / 2) + "px";
-      } else {
-        frame.style.width = window.innerWidth + "px";
-        frame.style.height = window.innerWidth * 0.6 + "px";
-        frame.style.top = -((window.innerWidth * 0.6 - 600) / 2) + "px";
-        frame.style.left = "0";
+      if (frame) {
+        if (window.innerWidth < 1560 && window.innerWidth > 480) {
+          frame.style.width = "1560px";
+          frame.style.height = "880px";
+          frame.style.top = "-50px";
+          frame.style.left = -((1560 - window.innerWidth) / 2) + "px";
+        } else if (window.innerWidth <= 480) {
+          frame.style.width = "600px";
+          frame.style.height = "330px";
+          frame.style.top = "-58px";
+          frame.style.left = -((600 - window.innerWidth) / 2) + "px";
+        } else {
+          frame.style.width = window.innerWidth + "px";
+          frame.style.height = window.innerWidth * 0.6 + "px";
+          frame.style.top = -((window.innerWidth * 0.6 - 600) / 2) + "px";
+          frame.style.left = "0";
+        }
       }
     },
   },

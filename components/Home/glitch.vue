@@ -26,6 +26,7 @@ export default {
 .glitch-text {
   position: relative;
   text-align: center;
+  z-index: 1;
 }
 
 .glitch-text::before,
