@@ -179,7 +179,18 @@
           </FSection>
         </v-tab-item>
       </v-tabs-items>
-      <FSection color="white">
+      <v-row :class="'py-5 mx-0 ' + theme[tab]">
+        <v-col class="text-left">
+          <v-btn :class="'px-10 ' + theme[tab]" v-if="tab > 0" plain @click="prev">上一頁</v-btn>
+        </v-col>
+        <v-col class="text-right">
+          <v-btn :class="'px-10 ' + theme[tab]" v-if="tab < maxTabs" plain @click="next"
+            >下一頁</v-btn
+          >
+        </v-col>
+      </v-row>
+      <mya-live :color="theme[tab]" />
+      <FSection>
         <v-container>
           <p class="text-h4 mb-0">院友期待你的加入！</p>
           <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
@@ -193,6 +204,7 @@ import Particles from "particles.vue";
 import Carousel from "~/components/Shared/Carousel.vue";
 import SubSection from "~/components/Home/SubSections.vue";
 import Vue from "vue";
+import MyaLive from "../components/Home/MyaLive.vue";
 Vue.use(Particles);
 export default {
   name: "indexView",
@@ -205,12 +217,17 @@ export default {
     ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
     Carousel,
     SubSection,
+    MyaLive,
   },
   data() {
     return {
       tab: 0,
       maxTabs: 1,
       autoScroll: null,
+      theme:[
+        'white black--text',
+        'black white--text'
+      ],
       particleoptions: {
         background: {
           color: {
@@ -332,7 +349,7 @@ export default {
       })(document, "script", "twitter-wjs");
     }
     window.twttr.ready(() => window.twttr.widgets.load());
-    window.onscroll = () => {
+    /*    window.onscroll = () => {
       if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
         this.autoScroll = setTimeout(() => {
           if (this.tab < this.maxTabs) {
@@ -348,11 +365,31 @@ export default {
       else{
         clearTimeout(this.autoScroll)
       }
-    };
+    };*/
   },
   methods: {
     changeSlide(index) {
       this.tab = index;
+    },
+    next() {
+      if (window.innerWidth > 480) {
+        window.scrollTo(0, 600);
+      } else {
+        window.scrollTo(0, 280);
+      }
+      setTimeout(() => {
+        this.$refs.carousel.next();
+      }, 1000);
+    },
+    prev() {
+      if (window.innerWidth > 480) {
+        window.scrollTo(0, 600);
+      } else {
+        window.scrollTo(0, 280);
+      }
+      setTimeout(() => {
+        this.$refs.carousel.prev();
+      }, 1000);
     },
   },
 };

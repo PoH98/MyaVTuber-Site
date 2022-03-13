@@ -100,6 +100,9 @@ export default {
     next() {
       this.swiper.slideNext(this.speed);
     },
+    prev() {
+      this.swiper.slidePrev(this.speed);
+    },
   },
   mounted() {
     Swiper.use(Navigation);
