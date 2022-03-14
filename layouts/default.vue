@@ -1,120 +1,91 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar light app elevation="0">
-        <v-container class="d-flex">
-          <div class="d-none d-lg-block">
-            <v-btn
-              plain
-              target="_blank"
-              href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
-              class="nav-item"
-            >
-              <v-icon class="mr-2">{{ mdiYoutube }}</v-icon>
-              Youtube
-            </v-btn>
-            <v-btn
-              plain
-              target="_blank"
-              href="https://twitter.com/MyaVtuber"
-              class="nav-item"
-            >
-              <v-icon class="mr-2">{{ mdiTwitter }}</v-icon>
-              Twitter
-            </v-btn>
-            <v-btn
-              plain
-              target="_blank"
-              href="https://www.instagram.com/mya_vtuber/"
-              class="nav-item"
-            >
-              <v-icon class="mr-2">{{ mdiInstagram }}</v-icon>
-              Instagram
-            </v-btn>
-          </div>
-          <v-spacer />
-          <div class="nav-main">
-            <v-btn outlined to="/" class="nav-item red--text home">
-              <h1>米亞MYA</h1>
-            </v-btn>
-          </div>
-          <v-spacer />
-          <div v-if="$device.isMobileOrTablet">
-            <v-app-bar-nav-icon
-              @click.stop="drawer = !drawer"
-            ></v-app-bar-nav-icon>
-          </div>
-          <div class="d-none d-lg-block">
-            <v-btn
-              plain
-              href="https://mya.baguhkv.com/"
-              target="_blank"
-              class="nav-item"
-            >
-              <v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon>
-              烤肉
-            </v-btn>
-            <v-btn
-              plain
-              target="_blank"
-              href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
-              class="nav-item"
-            >
-              <v-icon class="mr-2">{{ mdiMinecraft }}</v-icon>
-              Minecraft Server
-            </v-btn>
-          </div>
-        </v-container>
+      <v-app-bar>
+        <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
+        <div class="nav-main">
+          <v-btn plain to="/" class="nav-item">
+            <h1>米亞MYA</h1>
+          </v-btn>
+        </div>
       </v-app-bar>
-      <v-navigation-drawer
-        v-model="drawer"
-        fixed
-        temporary
-        v-if="$device.isMobileOrTablet"
-      >
+      <v-navigation-drawer v-model="drawer" class="text-left" temporary fixed>
+        <v-list-item class="my-3">
+          <v-list-item-content>
+            <v-list-item-title class="text-h5"> 米亞MYA </v-list-item-title>
+            <v-list-item-subtitle> 一名來自香港的VTuber </v-list-item-subtitle>
+          </v-list-item-content>
+        </v-list-item>
         <v-list nav dense>
-          <v-list-item-group active-class="deep-purple--text text--accent-4">
+          <v-list-item-group>
+            <v-divider></v-divider>
+            <v-list-item to="/" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiHome }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>米亞</v-list-item-title>
+            </v-list-item>
+            <v-list-item to="/gummy" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiAccount }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>甘米主人</v-list-item-title>
+            </v-list-item>
+
+            <v-list-item to="/teahouse" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiCoffee }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>茶屋</v-list-item-title>
+            </v-list-item>
             <v-list-item
               target="_blank"
               href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
+              link
             >
-              <v-list-item-title
-                ><v-icon class="mr-2">{{ mdiYoutube }}</v-icon
-                >Youtube</v-list-item-title
-              >
+              <v-list-item-icon>
+                <v-icon>{{ mdiYoutube }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Youtube</v-list-item-title>
             </v-list-item>
 
-            <v-list-item href="https://twitter.com/MyaVtuber" target="_blank">
-              <v-list-item-title
-                ><v-icon class="mr-2">{{ mdiTwitter }}</v-icon
-                >Twitter</v-list-item-title
-              >
+            <v-list-item
+              href="https://twitter.com/MyaVtuber"
+              target="_blank"
+              link
+            >
+              <v-list-item-icon>
+                <v-icon>{{ mdiTwitter }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Twitter</v-list-item-title>
             </v-list-item>
 
             <v-list-item
               href="https://www.instagram.com/mya_vtuber/"
               target="_blank"
+              link
             >
-              <v-list-item-title
-                ><v-icon class="mr-2">{{ mdiInstagram }}</v-icon
-                >Instagram</v-list-item-title
-              >
+              <v-list-item-icon>
+                <v-icon>{{ mdiInstagram }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Instagram</v-list-item-title>
             </v-list-item>
 
             <v-list-item href="https://mya.baguhkv.com/" target="_blank">
-              <v-list-item-title
-                ><v-icon class="mr-2">{{ mdiFoodDrumstick }}</v-icon
-                >烤肉</v-list-item-title
-              >
+              <v-list-item-icon>
+                <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>烤肉</v-list-item-title>
             </v-list-item>
             <v-list-item
               href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
               target="_blank"
+              link
             >
-              <v-list-item-title
-                ><v-icon class="mr-2">{{ mdiMinecraft }}</v-icon
-                >Minecraft</v-list-item-title
-              >
+              <v-list-item-icon>
+                <v-icon>{{ mdiMinecraft }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Minecraft</v-list-item-title>
             </v-list-item>
           </v-list-item-group>
         </v-list>
@@ -143,6 +114,9 @@ import {
   mdiTwitter,
   mdiInstagram,
   mdiMinecraft,
+  mdiAccount,
+  mdiCoffee,
+  mdiHome,
   mdiFoodDrumstick,
 } from "@mdi/js";
 export default {
@@ -154,6 +128,9 @@ export default {
       mdiTwitter,
       mdiInstagram,
       mdiMinecraft,
+      mdiAccount,
+      mdiCoffee,
+      mdiHome,
       mdiFoodDrumstick,
     };
   },
@@ -206,6 +183,7 @@ body {
   color: #2c3e50;
   overflow-x: hidden;
   max-width: 100vw;
+  user-select: none;
   p {
     margin-bottom: 0;
   }

@@ -7,8 +7,8 @@
       data-img="/img/sayyouknow.jpg"
     ></div>
     <div class="title">
-      <p class="text-h4">「臭DD 幾時單推我啊」</p>
-      <p class="text-right by">by Mya 米亞</p>
+      <p class="text-h4 text-top">「臭DD 幾時單推我啊」</p>
+      <p class="text-right by text-bottom">by Mya 米亞</p>
     </div>
   </div>
 </template>
@@ -46,11 +46,47 @@ export default {
 };
 </script>
 <style scoped>
+@keyframes showTopText {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+@keyframes showBottomText {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
 .h-100 {
   height: 100%;
 }
 .by {
   width: 60%;
+}
+.text-top {
+  animation: showTopText 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  bottom: 0;
+  transform: translate(0, 100%);
+  opacity: 0;
+}
+.text-bottom {
+  opacity: 0;
+  animation: showBottomText 0.5s;
+  animation-delay: 1.75s;
+  animation-fill-mode: forwards;
+  top: 0;
+  transform: translate(0, -100%);
 }
 .gradient {
   position: absolute;
