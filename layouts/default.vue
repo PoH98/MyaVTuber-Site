@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app>
-      <v-app-bar>
+      <v-app-bar fixed max-height="64px">
         <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
         <div class="nav-main">
           <v-btn plain to="/" class="nav-item">
@@ -18,7 +18,6 @@
         </v-list-item>
         <v-list nav dense>
           <v-list-item-group>
-            <v-divider></v-divider>
             <v-list-item to="/" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiHome }}</v-icon>
@@ -36,8 +35,22 @@
               <v-list-item-icon>
                 <v-icon>{{ mdiCoffee }}</v-icon>
               </v-list-item-icon>
-              <v-list-item-title>茶屋</v-list-item-title>
+              <v-list-item-title>幻花茶屋</v-list-item-title>
             </v-list-item>
+
+            <v-list-item to="/thanks" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiPartyPopper }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>特別感謝</v-list-item-title>
+            </v-list-item>
+            <v-divider></v-divider>
+            <v-list-item :ripple="false" disabled class="black--text">
+              <v-list-item-content>
+                <v-list-item-title> 米亞の外部鏈接 </v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
+            <v-divider></v-divider>
             <v-list-item
               target="_blank"
               href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg"
@@ -90,7 +103,7 @@
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
-      <v-main>
+      <v-main class="pt-15">
         <Nuxt />
       </v-main>
       <v-footer app class="px-md-15" absolute>
@@ -118,6 +131,7 @@ import {
   mdiCoffee,
   mdiHome,
   mdiFoodDrumstick,
+  mdiPartyPopper,
 } from "@mdi/js";
 export default {
   name: "defaultLayout",
@@ -132,6 +146,7 @@ export default {
       mdiCoffee,
       mdiHome,
       mdiFoodDrumstick,
+      mdiPartyPopper,
     };
   },
   watch: {

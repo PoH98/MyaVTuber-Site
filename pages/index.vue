@@ -162,23 +162,6 @@ export default {
       })(document, "script", "twitter-wjs");
     }
     window.twttr.ready(() => window.twttr.widgets.load());
-    /*    window.onscroll = () => {
-      if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-        this.autoScroll = setTimeout(() => {
-          if (this.tab < this.maxTabs) {
-            if (window.innerWidth > 480) {
-              window.scrollTo(0, 600);
-            } else {
-              window.scrollTo(0, 280);
-            }
-            this.$refs.carousel.next();
-          }
-        }, 1500);
-      }
-      else{
-        clearTimeout(this.autoScroll)
-      }
-    };*/
   }
 };
 </script>

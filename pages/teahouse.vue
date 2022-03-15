@@ -11,24 +11,141 @@
         <span class="reveal">來到幻花茶屋</span>
       </h1>
     </v-img>
-    <bannervid />
     <full-section color="#f8bbd0">
-
+      <v-container class="text-md-left" v-html="content.teahousedesc">
+      </v-container>
     </full-section>
-    <sub-sections />
+    <sub-sections :subsection="content.teahousesubsection" />
+    <v-img height="440" src="/img/teahouse.jpg"> </v-img>
+    <secondary-section>
+      <template v-slot:before>
+        <h2>幻花茶屋の社交平台</h2>
+      </template>
+      <template v-slot:left>
+        <div class="twitter">
+          <a
+            href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
+            class="twitter-follow-button"
+            data-show-count="true"
+            >Follow @MyaVtuber</a
+          >
+          <a
+            data-chrome="noborders noheader nofooter noscrollbar"
+            data-tweet-limit="3"
+            class="twitter-timeline"
+            href="https://twitter.com/HKVTOPIA?ref_src=twsrc%5Etfw"
+            >Tweets by 幻花茶屋🍵</a
+          >
+        </div>
+      </template>
+      <template v-slot:right>
+        <v-row class="h-100">
+          <v-col cols="12">
+            <v-btn block class="mb-3">Youtube</v-btn>
+            <v-btn block class="mb-3">Twitter</v-btn>
+          </v-col>
+          <v-col cols="12" class="d-flex py-0">
+            <v-img class="mt-auto" src="/img/teahouse2.jpg"/>
+          </v-col>
+        </v-row>
+      </template>
+    </secondary-section>
+    <FullSection color="#fff">
+      <v-container>
+        <p class="text-h4 mb-0">院友期待你的加入！</p>
+        <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
+      </v-container>
+    </FullSection>
   </div>
 </template>
 <script>
-import bannervid from "@/components/Teahouse/bannervid.vue";
 import SubSections from "../components/Home/SubSections.vue";
-import FullSection from '../components/Home/FullSection.vue';
+import FullSection from "../components/Home/FullSection.vue";
+import SecondarySection from "../components/Home/SecondarySection.vue";
 export default {
-  components: { bannervid, SubSections, FullSection },
+  components: { SubSections, FullSection, SecondarySection },
+  async asyncData({ $http }) {
+    let tempData = null;
+    if (process.server) {
+      try {
+        tempData = await $http
+          .get("http://localhost:1000/api/content/mya-vtuber-api/home/", {
+            headers: {
+              "X-Flatten": 1,
+            },
+          })
+          .then((res) => res.json());
+      } catch {
+        tempData = await $http
+          .get(
+            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/",
+            {
+              headers: {
+                "X-Flatten": 1,
+              },
+            }
+          )
+          .then((res) => res.json());
+      }
+    } else {
+      tempData = await $http
+        .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/", {
+          headers: {
+            "X-Flatten": 1,
+          },
+        })
+        .then((res) => res.json());
+    }
+    const content = tempData.items[0].data;
+    return { content };
+  },
+  mounted() {
+    if (!window.twttr) {
+      window.twttr = (function (d, s, id) {
+        var t,
+          js,
+          fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s);
+        js.id = id;
+        js.src = "https://platform.twitter.com/widgets.js";
+        js.defer = true;
+        fjs.parentNode.insertBefore(js, fjs);
+        return (
+          window.twttr ||
+          (t = {
+            _e: [],
+            ready: function (f) {
+              t._e.push(f);
+            },
+          })
+        );
+      })(document, "script", "twitter-wjs");
+    }
+    window.twttr.ready(() => window.twttr.widgets.load());
+  },
 };
 </script>
 <style scoped>
+.h-100{
+  height: 100%;
+}
 .tea-house {
   min-height: 100vh;
+}
+.twitter {
+  max-height: 650px;
+  overflow: auto;
+  background-color: #fff;
+  padding-top: 15px;
+}
+.twitter-follow-button {
+  background-color: #1d9bf0;
+  color: #fff;
+  border-radius: 9999px;
+  padding: 1px 12px;
+  height: 20px;
+  font-size: 12px;
 }
 .big-banner {
   height: 90vh;
