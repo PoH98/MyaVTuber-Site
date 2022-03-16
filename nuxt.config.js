@@ -117,7 +117,8 @@ export default {
       /^d-.+/,
       /^col-.+/,
       /^lg-.+/,
-      /^order-.+/
+      /^order-.+/,
+      /^v-list.+/
     ],
     whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--light*/],
   },
