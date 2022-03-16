@@ -86,6 +86,11 @@ import Vue from "vue";
 import MyaLive from "../components/Home/MyaLive.vue";
 Vue.use(Particles);
 export default {
+  head() {
+    return {
+      title: "主頁",
+    };
+  },
   name: "indexView",
   components: {
     Banner: () => import("~/components/Home/Banner.vue"),
@@ -162,7 +167,7 @@ export default {
       })(document, "script", "twitter-wjs");
     }
     window.twttr.ready(() => window.twttr.widgets.load());
-  }
+  },
 };
 </script>
 <style scoped>

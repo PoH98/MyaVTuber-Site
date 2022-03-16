@@ -113,6 +113,11 @@ import Vue from "vue";
 import MyaLive from "../components/Home/MyaLive.vue";
 Vue.use(Particles);
 export default {
+  head() {
+    return {
+      title: "甘米",
+    };
+  },
   name: "gummyView",
   components: {
     Banner: () => import("~/components/Home/Banner.vue"),

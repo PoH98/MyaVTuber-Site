@@ -41,11 +41,11 @@
       <template v-slot:right>
         <v-row class="h-100">
           <v-col cols="12">
-            <v-btn block class="mb-3">Youtube</v-btn>
-            <v-btn block class="mb-3">Twitter</v-btn>
+            <v-btn block class="mb-3" href="https://www.youtube.com/channel/UCNO4BX9z_w8o1l-VFsKdS5g">Youtube</v-btn>
+            <v-btn block class="mb-3" href="https://twitter.com/HKVTOPIA">Twitter</v-btn>
           </v-col>
           <v-col cols="12" class="d-flex py-0">
-            <v-img class="mt-auto" src="/img/teahouse2.jpg"/>
+            <v-img class="mt-auto" src="/img/teahouse2.jpg" />
           </v-col>
         </v-row>
       </template>
@@ -63,6 +63,11 @@ import SubSections from "../components/Home/SubSections.vue";
 import FullSection from "../components/Home/FullSection.vue";
 import SecondarySection from "../components/Home/SecondarySection.vue";
 export default {
+  head() {
+    return {
+      title: "幻花茶屋",
+    };
+  },
   components: { SubSections, FullSection, SecondarySection },
   async asyncData({ $http }) {
     let tempData = null;
@@ -127,7 +132,7 @@ export default {
 };
 </script>
 <style scoped>
-.h-100{
+.h-100 {
   height: 100%;
 }
 .tea-house {
@@ -220,7 +225,7 @@ export default {
 }
 </style>
 <style>
-.tea-house .v-responsive__content{
+.tea-house .v-responsive__content {
   margin-left: -100%;
 }
 </style>

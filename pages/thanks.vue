@@ -42,7 +42,7 @@ export default {
   name: "ThanksView",
   head() {
     return {
-      title: "Special Thanks",
+      title: "特別感謝",
     };
   },
   data() {
