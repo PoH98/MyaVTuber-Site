@@ -37,12 +37,12 @@ export default {
       list: [
         {
           img: "/img/panda_kenneth/pandakenneth_bike1.jpg",
-          link: "/patient/panda_kenneth",
+          link: "/patient/02574a43-ec82-4848-953d-7e1f222ba4b7",
           author: "Panda Kenneth",
         },
         {
           img: "/img/panda_kenneth/pandakenneth_bike2.jpg",
-          link: "/patient/panda_kenneth",
+          link: "/patient/02574a43-ec82-4848-953d-7e1f222ba4b7",
           author: "Panda Kenneth",
         },
       ],

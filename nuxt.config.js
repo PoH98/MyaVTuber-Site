@@ -11,7 +11,7 @@ export default {
       lang: 'zh-Hant',
     },
     meta: [
-      { charset: 'utf-8' },
+      { charset: 'UTF-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: '米亞HKVTuber (Mya HKVTuber) 的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
       { hid: 'robots', name: 'robots', content: 'FOLLOW' },
