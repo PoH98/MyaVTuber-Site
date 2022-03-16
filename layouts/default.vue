@@ -199,6 +199,9 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
+  .v-list-item__icon:first-child{
+    margin-right: 32px;
+  }
   p {
     margin-bottom: 0;
   }
