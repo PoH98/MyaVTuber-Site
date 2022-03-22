@@ -211,8 +211,3 @@ export default {
   }
 }
 </style>
-<style>
-.tea-house .v-responsive__content {
-  margin-left: -100%;
-}
-</style>
