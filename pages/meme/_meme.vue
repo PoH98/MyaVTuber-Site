@@ -8,13 +8,13 @@
       gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.3)"
     >
       <v-container>
-        <v-btn class="white--text" plain to="/jokewiki">
+        <v-btn class="white--text" plain to="/mya-meme">
           <v-icon> {{ mdiChevronLeft }} </v-icon>Back
         </v-btn>
       </v-container>
     </v-img>
     <v-container class="text-left">
-      <v-btn v-if="!content.image" class="back-btn" plain to="/jokewiki">
+      <v-btn v-if="!content.image" class="back-btn" plain to="/mya-meme">
         <v-icon> {{ mdiChevronLeft }} </v-icon>Back
       </v-btn>
       <h1 class="text-center">{{ content.title }}</h1>
@@ -36,7 +36,7 @@ export default {
     const tempData = await $http
       .get(
         "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/jokewiki/" +
-          params.wiki,
+          params.meme,
         { headers: { "X-Flatten": 1 } }
       )
       .then((res) => res.json());

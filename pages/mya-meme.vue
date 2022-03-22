@@ -12,7 +12,7 @@
         >
           <v-card
             :class="'h-100 ' + getContrastYIQ(data.flatData.backgroundcolor)"
-            :to="'/wiki/' + data.id"
+            :to="'/meme/' + data.id"
             :color="data.flatData.backgroundcolor"
             flat
           >

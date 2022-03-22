@@ -38,7 +38,7 @@
               <v-list-item-title>幻花茶屋</v-list-item-title>
             </v-list-item>
 
-            <v-list-item to="/jokewiki" link>
+            <v-list-item to="/mya-meme" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiBook }}</v-icon>
               </v-list-item-icon>
@@ -275,5 +275,8 @@ body {
 }
 .v-responsive__sizer{
   display: none;
+}
+.v-application--is-ltr .v-responsive__sizer ~ .v-responsive__content{
+  margin-left: 0;
 }
 </style>
