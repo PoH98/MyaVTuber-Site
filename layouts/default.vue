@@ -273,4 +273,7 @@ body {
     border: 3px solid #ffffff;
   }
 }
+.v-responsive__sizer{
+  display: none;
+}
 </style>
