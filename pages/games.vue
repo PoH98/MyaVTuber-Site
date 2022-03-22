@@ -48,37 +48,13 @@ export default {
     };
   },
   async asyncData({ $http }) {
-    let tempData = null;
-    if (process.server) {
-      try {
-        tempData = await $http
-          .get("http://localhost:1000/api/content/mya-vtuber-api/game/", {
-            headers: {
-              "X-Flatten": 1,
-            },
-          })
-          .then((res) => res.json());
-      } catch {
-        tempData = await $http
-          .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/",
-            {
-              headers: {
-                "X-Flatten": 1,
-              },
-            }
-          )
-          .then((res) => res.json());
-      }
-    } else {
-      tempData = await $http
-        .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
-          headers: {
-            "X-Flatten": 1,
-          },
-        })
-        .then((res) => res.json());
-    }
+    const tempData = await $http
+      .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
+        headers: {
+          "X-Flatten": 1,
+        },
+      })
+      .then((res) => res.json());
     const content = tempData.items;
     return { content };
   },
