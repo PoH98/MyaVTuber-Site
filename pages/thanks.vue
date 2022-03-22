@@ -16,7 +16,7 @@
         <nuxt-link
           :to="`/patient/${user.id}`"
         >
-          {{ user.data.name }}
+          {{ user.flatData.name }}
         </nuxt-link>
       </v-col>
     </v-row>
@@ -62,11 +62,10 @@ export default {
   async asyncData({ $http }) {
     const tempData = await $http
       .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/",
-        { headers: { "X-Flatten": 1 } }
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"
       )
       .then((res) => res.json());
-    const users = tempData.items;
+    const users = tempData.data.queryPatientListContents;
     return { users };
   },
 };

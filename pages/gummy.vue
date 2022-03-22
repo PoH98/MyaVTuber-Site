@@ -134,34 +134,25 @@ export default {
     if (process.server) {
       try {
         tempData = await $http
-          .get("http://localhost:1000/api/content/mya-vtuber-api/home/", {
-            headers: {
-              "X-Flatten": 1,
-            },
-          })
+          .get(
+            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+          )
           .then((res) => res.json());
       } catch {
         tempData = await $http
           .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/",
-            {
-              headers: {
-                "X-Flatten": 1,
-              },
-            }
+            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
           )
           .then((res) => res.json());
       }
     } else {
       tempData = await $http
-        .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/home/", {
-          headers: {
-            "X-Flatten": 1,
-          },
-        })
+        .get(
+          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+        )
         .then((res) => res.json());
     }
-    const content = tempData.items[0].data;
+    const content = tempData.data.queryHomeContents[0].flatData;
     return { content };
   },
   mounted() {

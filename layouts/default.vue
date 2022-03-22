@@ -38,6 +38,13 @@
               <v-list-item-title>幻花茶屋</v-list-item-title>
             </v-list-item>
 
+            <v-list-item to="/jokewiki" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiBook }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>米亞梗字典</v-list-item-title>
+            </v-list-item>
+
             <v-list-item to="/games" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiGoogleController }}</v-icon>
@@ -140,6 +147,7 @@ import {
   mdiFoodDrumstick,
   mdiGoogleController,
   mdiPartyPopper,
+  mdiBook
 } from "@mdi/js";
 export default {
   name: "defaultLayout",
@@ -156,6 +164,7 @@ export default {
       mdiFoodDrumstick,
       mdiGoogleController,
       mdiPartyPopper,
+      mdiBook
     };
   },
   watch: {

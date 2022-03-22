@@ -3,12 +3,12 @@
     <section v-for="(data, i) in subsection" :key="'section_' + i">
       <Section
         v-if="data.type === '左右' && i % 2 === 0"
-        :color="data['background-color']"
+        :color="data.backgroundColor"
         :mobileReverse="true"
       >
         <template v-slot:left>
           <div class="text-md-left d-flex flex-column justify-center h-100">
-            <div :class="getContrastYIQ(data['background-color'])" v-html="data.content"></div>
+            <div :class="getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
             <div>
               <v-btn
                 v-if="data.button"
@@ -20,9 +20,9 @@
               >
                 <v-img
                   class="mr-2"
-                  :src="'/icons/' + data['button-icon'] + '.svg'"
+                  :src="'/icons/' + data.buttonIcon + '.svg'"
                 />
-                {{ data["button-text"] }}
+                {{ data.buttonText }}
               </v-btn>
             </div>
           </div>
@@ -30,12 +30,12 @@
         <template v-slot:right>
           <v-flex
             class="justify-center h-100 align-center"
-            v-if="data['background-image']"
+            v-if="data.backgroundImage"
           >
             <v-img
               contain
               class="section-img"
-              :src="data['background-image']"
+              :src="data.backgroundImage"
             />
           </v-flex>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
@@ -43,24 +43,24 @@
       </Section>
       <Section
         v-else-if="data.type === '左右' && i % 2 !== 0"
-        :color="data['background-color']"
+        :color="data.backgroundColor"
       >
         <template v-slot:left>
           <v-flex
             class="justify-center h-100 align-center"
-            v-if="data['background-image']"
+            v-if="data.backgroundImage"
           >
             <v-img
               contain
               class="section-img"
-              :src="data['background-image']"
+              :src="data.backgroundImage"
             />
           </v-flex>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
         </template>
         <template v-slot:right>
           <div class="text-md-right d-flex flex-column justify-center h-100">
-            <div :class="getContrastYIQ(data['background-color'])" v-html="data.content"></div>
+            <div :class="getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
             <div>
               <v-btn
                 v-if="data.button"
@@ -72,21 +72,21 @@
               >
                 <v-img
                   class="mr-2"
-                  :src="'/icons/' + data['button-icon'] + '.svg'"
+                  :src="'/icons/' + data.buttonIcon + '.svg'"
                 />
-                {{ data["button-text"] }}
+                {{ data.buttonText }}
               </v-btn>
             </div>
           </div>
         </template>
       </Section>
       <FSection
-        :color="data['background-color']"
-        :image="data['background-image']"
+        :color="data.backgroundColor"
+        :image="data.backgroundImage"
         v-else
       >
         <v-container>
-          <div :class="'content ' + getContrastYIQ(data['background-color'])" v-html="data.content"></div>
+          <div :class="'content ' + getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
         </v-container>
       </FSection>
     </section>
