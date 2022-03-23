@@ -38,6 +38,11 @@
 <script>
 import { mdiChevronTripleRight } from "@mdi/js";
 export default {
+  head() {
+    return {
+      title: "米亞梗字典",
+    };
+  },
   data() {
     return {
       mdiChevronTripleRight,
@@ -45,10 +50,10 @@ export default {
   },
   async asyncData({ $http }) {
     const tempData = await $http
-        .get(
-          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, backgroundcolor } }}"
-        )
-        .then((res) => res.json());
+      .get(
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, backgroundcolor } }}"
+      )
+      .then((res) => res.json());
     const content = tempData.data.queryJokewikiContents;
     return { content };
   },

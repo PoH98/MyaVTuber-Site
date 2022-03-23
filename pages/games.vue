@@ -73,8 +73,3 @@ export default {
   box-shadow: 8px 8px 8px 1px rgba(0, 0, 0, 0.5);
 }
 </style>
-<style>
-.games .v-responsive__sizer {
-  display: none;
-}
-</style>

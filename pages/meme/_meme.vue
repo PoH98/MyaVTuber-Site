@@ -27,6 +27,11 @@
 <script>
 import { mdiChevronLeft } from "@mdi/js";
 export default {
+  head() {
+    return {
+      title: this.content.title,
+    };
+  },
   data() {
     return {
       mdiChevronLeft,

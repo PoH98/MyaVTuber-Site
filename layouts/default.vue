@@ -273,7 +273,7 @@ body {
     border: 3px solid #ffffff;
   }
 }
-.v-application--is-ltr .v-responsive__sizer ~ .v-responsive__content {
-  margin-left: -100%;
+.v-responsive__content {
+  margin-left: -100% !important;
 }
 </style>
