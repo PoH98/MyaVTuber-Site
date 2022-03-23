@@ -147,7 +147,7 @@ import {
   mdiFoodDrumstick,
   mdiGoogleController,
   mdiPartyPopper,
-  mdiBook
+  mdiBook,
 } from "@mdi/js";
 export default {
   name: "defaultLayout",
@@ -164,7 +164,7 @@ export default {
       mdiFoodDrumstick,
       mdiGoogleController,
       mdiPartyPopper,
-      mdiBook
+      mdiBook,
     };
   },
   watch: {
@@ -217,7 +217,7 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
-  .v-list-item__icon:first-child{
+  .v-list-item__icon:first-child {
     margin-right: 32px;
   }
   p {
@@ -273,10 +273,7 @@ body {
     border: 3px solid #ffffff;
   }
 }
-.v-responsive__sizer{
-  display: none;
-}
-.v-application--is-ltr .v-responsive__sizer ~ .v-responsive__content{
-  margin-left: 0;
+.v-application--is-ltr .v-responsive__sizer ~ .v-responsive__content {
+  margin-left: -100%;
 }
 </style>
