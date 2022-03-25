@@ -1,6 +1,6 @@
 <template>
   <v-img height="calc(100vh - 130px)" alt="@Handmaker" src="/img/asshurt.jpg">
-    <v-container class="half-trans">
+    <v-container class="half-trans" v-if="!content.error">
       <h1 class="text-left my-4">米亞梗字典</h1>
       <v-row class="fixed-height">
         <v-col
@@ -33,6 +33,10 @@
         </v-col>
       </v-row>
     </v-container>
+    <v-container class="half-trans" v-else>
+      <h1 class="mt-15">此頁面未開放哦！請耐心等待！</h1>
+      <p class="text-h6 font-weight-bold">米亞禁止此頁面顯示，網頁作者已被捅爆屎眼</p>
+    </v-container>
   </v-img>
 </template>
 <script>
@@ -54,8 +58,12 @@ export default {
         "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, backgroundcolor } }}"
       )
       .then((res) => res.json());
-    const content = tempData.data.queryJokewikiContents;
-    return { content };
+    if (tempData.errors) {
+      return { content: { error: true } }
+    } else {
+      const content = tempData.data.queryJokewikiContents;
+      return { content };
+    }
   },
   methods: {
     getContrastYIQ(hexcolor) {
