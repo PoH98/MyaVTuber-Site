@@ -30,9 +30,9 @@
             </a>
           </v-col>
           <v-col cols="12" sm="3">
-            <nuxt-link to="https://twitter.com/rumiikisaragi"  target="_blank" rel="nofollow">
+            <a href="https://twitter.com/rumiikisaragi"  target="_blank" rel="nofollow">
               <v-img alt="綽貓喵CheukCat🍣-【HKVtuber】" class="img-head" src="/img/rumii.png" />
-            </nuxt-link>
+            </a>
           </v-col>
           <v-col cols="12" sm="3">
             <nuxt-link to="/">
