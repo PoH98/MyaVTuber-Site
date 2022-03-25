@@ -13,14 +13,14 @@ export default {
     meta: [
       { charset: 'UTF-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '米亞HKVTuber (Mya HKVTuber) 的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
+      { hid: 'description', name: 'description', content: '米亞HKVTuber (Mya HKVTuber), 一名來自香港的VTuber的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
       { hid: 'robots', name: 'robots', content: 'FOLLOW' },
       { hid: 'og:title', name: 'og:title', content: '米亞VTuber (Mya VTuber) 非官方專頁' },
-      { hid: 'og:description', name: 'og:description', content: '米亞VTuber (Mya VTuber) 的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
+      { hid: 'og:description', name: 'og:description', content: '米亞VTuber (Mya VTuber), 一名來自香港的VTuber的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
       { hid: 'og:image', name: 'og:image', content: '/img/fullwidth.jpg' },
       { hid: 'og:site_name', name: 'og:site_name', content: '米亞HKVTuber' },
       { hid: 'twitter:title', name: 'og:title', content: '米亞VTuber (Mya VTuber) 非官方專頁' },
-      { hid: 'twitter:description', name: 'og:description', content: '米亞VTuber (Mya VTuber) 的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
+      { hid: 'twitter:description', name: 'og:description', content: '米亞VTuber (Mya VTuber), 一名來自香港的VTuber的非官方專頁, Fan made用於院友以及跳轉到米亞其他官方&非官方網頁用' },
       { hid: 'twitter:image', name: 'og:image', content: '/img/fullwidth.jpg' },
       { hid: 'twitter:site', name: 'og:site_name', content: '@MyaVtuber' }
     ],

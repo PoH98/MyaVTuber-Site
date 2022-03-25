@@ -16,7 +16,32 @@
       </v-container>
     </full-section>
     <sub-sections :subsection="content.teahousesubsection" />
-    <v-img height="440" src="/img/teahouse.jpg"> </v-img>
+    <full-section color="#fee0e0">
+      <v-container>
+        <v-row class="mx-2">
+          <v-col cols="12" sm="3">
+            <a href="https://twitter.com/Luna_Mochitsugi" target="_blank" rel="nofollow">
+              <v-img alt="綽貓喵CheukCat🍣-【HKVtuber】" class="img-head" src="/img/luna.png" />
+            </a>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <a href="https://twitter.com/boureirabbi"  target="_blank" rel="nofollow">
+              <v-img alt="綽貓喵CheukCat🍣-【HKVtuber】" class="img-head" src="/img/rabbi.png" />
+            </a>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <nuxt-link to="https://twitter.com/rumiikisaragi"  target="_blank" rel="nofollow">
+              <v-img alt="綽貓喵CheukCat🍣-【HKVtuber】" class="img-head" src="/img/rumii.png" />
+            </nuxt-link>
+          </v-col>
+          <v-col cols="12" sm="3">
+            <nuxt-link to="/">
+              <v-img alt="綽貓喵CheukCat🍣-【HKVtuber】" class="img-head" src="/img/mya.png" />
+            </nuxt-link>
+          </v-col>
+        </v-row>
+      </v-container>
+    </full-section>
     <secondary-section>
       <template v-slot:before>
         <h2>幻花茶屋の社交平台</h2>
@@ -41,8 +66,15 @@
       <template v-slot:right>
         <v-row class="h-100">
           <v-col cols="12">
-            <v-btn block class="mb-3" href="https://www.youtube.com/channel/UCNO4BX9z_w8o1l-VFsKdS5g">Youtube</v-btn>
-            <v-btn block class="mb-3" href="https://twitter.com/HKVTOPIA">Twitter</v-btn>
+            <v-btn
+              block
+              class="mb-3"
+              href="https://www.youtube.com/channel/UCNO4BX9z_w8o1l-VFsKdS5g"
+              >Youtube</v-btn
+            >
+            <v-btn block class="mb-3" href="https://twitter.com/HKVTOPIA"
+              >Twitter</v-btn
+            >
           </v-col>
           <v-col cols="12" class="d-flex py-0">
             <v-img class="mt-auto" src="/img/teahouse2.jpg" />
@@ -66,6 +98,43 @@ export default {
   head() {
     return {
       title: "幻花茶屋",
+      meta: [
+        { charset: "UTF-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          hid: "description",
+          name: "description",
+          content:
+            "幻花茶屋, 一間街角無人問津的茶屋, 由四位香港女性VTuber組合努力經營中! 每個週六夜晚9:00會舉辦不同的活動, 有時間的話就過來飲茶啦!",
+        },
+        { hid: "robots", name: "robots", content: "FOLLOW" },
+        { hid: "og:title", name: "og:title", content: "幻花茶屋" },
+        {
+          hid: "og:description",
+          name: "og:description",
+          content:
+            "幻花茶屋, 一間街角無人問津的茶屋, 由四位香港女性VTuber組合努力經營中! 每個週六夜晚9:00會舉辦不同的活動, 有時間的話就過來飲茶啦",
+        },
+        {
+          hid: "og:image",
+          name: "og:image",
+          content: "/img/teahousebanner.jpg",
+        },
+        { hid: "og:site_name", name: "og:site_name", content: "米亞HKVTuber" },
+        { hid: "twitter:title", name: "og:title", content: "幻花茶屋" },
+        {
+          hid: "twitter:description",
+          name: "og:description",
+          content:
+            "幻花茶屋, 一間街角無人問津的茶屋, 由四位香港女性VTuber組合努力經營中! 每個週六夜晚9:00會舉辦不同的活動, 有時間的話就過來飲茶啦",
+        },
+        {
+          hid: "twitter:image",
+          name: "og:image",
+          content: "/img/teahousebanner.jpg",
+        },
+        { hid: "twitter:site", name: "og:site_name", content: "@HKVTOPIA" },
+      ],
     };
   },
   components: { SubSections, FullSection, SecondarySection },
@@ -74,7 +143,9 @@ export default {
     if (process.server) {
       try {
         tempData = await $http
-          .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}")
+          .get(
+            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+          )
           .then((res) => res.json());
       } catch {
         tempData = await $http
@@ -85,7 +156,9 @@ export default {
       }
     } else {
       tempData = await $http
-        .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}")
+        .get(
+          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+        )
         .then((res) => res.json());
     }
     const content = tempData.data.queryHomeContents[0].flatData;
@@ -140,7 +213,7 @@ export default {
   font-size: 12px;
 }
 .big-banner {
-  height: 90vh;
+  height: calc(100vh - 60px);
   z-index: 1;
 }
 .full-banner {
@@ -167,6 +240,17 @@ export default {
   background-color: white;
   animation: lineAnimation 7s;
 }
+.img-head {
+  transition: ease-in-out;
+  transition-duration: 0.6s;
+  transform-style: preserve-3d;
+}
+@media (min-width: 480px) {
+  .img-head:hover {
+    transform: scale(1.3) rotateY(-360deg);
+  }
+}
+
 @keyframes showup {
   0% {
     opacity: 0;
