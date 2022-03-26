@@ -71,11 +71,3 @@ export default {
   },
 };
 </script>
-<style>
-.mya-live-statistics .video-col .v-responsive__sizer {
-  display: none !important;
-}
-.mya-live-statistics .video-col .v-responsive__content{
-  margin-left: 0;
-}
-</style>
