@@ -75,9 +75,9 @@ export default {
     if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
       this.$confetti.start({
         defaultSize: 5,
-        particlesPerFrame: 1,
+        particlesPerFrame: .1,
         windSpeedMax: 0,
-        defaultDropRate: 6
+        defaultDropRate: 2
       });
     }
   },
