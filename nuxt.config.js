@@ -36,7 +36,8 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     { src: '~/plugins/lightgallery.js', mode: 'client' },
-    { src: '~/plugins/lazy-iframe.js', mode: 'client' }
+    { src: '~/plugins/lazy-iframe.js', mode: 'client' },
+    { src: '~/plugins/vue-confetti.js', mode: 'client' }
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

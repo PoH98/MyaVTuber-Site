@@ -208,6 +208,9 @@ export default {
 body {
   max-width: 100vw;
 }
+#confetti-canvas{
+  z-index: 1;
+}
 #app {
   font-family: "Orbitron", sans-serif !important;
   -webkit-font-smoothing: antialiased;

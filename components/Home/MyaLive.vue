@@ -59,6 +59,10 @@ export default {
     return {
       status: {},
       futurevid: {},
+      celebrate: [
+        20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 200000,
+        3000000, 400000, 5000000,
+      ],
     };
   },
   async fetch() {
@@ -68,6 +72,13 @@ export default {
     this.futurevid = await this.$http
       .get("https://www.mya-hkvtuber.com/api/mya/getfuturevid")
       .then((res) => res.json());
+    if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
+      this.$confetti.start({
+        defaultSize: 5,
+        particlesPerFrame: 1,
+        windSpeedMax: 0
+      });
+    }
   },
 };
 </script>
