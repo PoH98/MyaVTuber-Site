@@ -110,7 +110,7 @@ export default {
         extensions: ['html', 'vue', 'js'],
       },
     ],
-    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid', 'col', 'v-responsive__sizer'],
+    whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid', 'col', 'v-responsive__sizer', 'confetti-canvas'],
     whitelistPatterns: () => [
       /^v-((?!application).)*$/,
       /^v-application--is-ltr.+/,
