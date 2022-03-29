@@ -76,7 +76,8 @@ export default {
       this.$confetti.start({
         defaultSize: 5,
         particlesPerFrame: 1,
-        windSpeedMax: 0
+        windSpeedMax: 0,
+        defaultDropRate: 6
       });
     }
   },
