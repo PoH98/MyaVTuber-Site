@@ -119,6 +119,12 @@
       </v-navigation-drawer>
       <v-main class="pt-15">
         <Nuxt />
+        <Particles
+          id="snow"
+          v-if="showSnow"
+          :options="snow"
+          :particlesLoaded="particlesLoaded"
+        />
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
@@ -165,7 +171,52 @@ export default {
       mdiGoogleController,
       mdiPartyPopper,
       mdiBook,
+      celebrate: [
+        20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 200000,
+        3000000, 400000, 5000000,
+      ],
+      showSnow: false,
+      snow: {
+        background: {
+          color: "#00000000",
+        },
+        fpsLimit: 30,
+        particles: {
+          color: {
+            value: "#fff",
+          },
+          move: {
+            bounce: !1,
+            direction: "bottom",
+            enable: !0,
+            random: !1,
+            straight: !1,
+          },
+          opacity: {
+            random: true,
+            value: {
+              min: .5,
+              max: 1
+            },
+          },
+          shape: {
+            type: "circle",
+          },
+          size: {
+            random: {
+              enable: true,
+              minimumValue: 2
+            },
+            value: 5,
+          },
+        },
+      },
     };
+  },
+  computed: {
+    status() {
+      return this.$store.state.sharedData.status;
+    },
   },
   watch: {
     $route() {
@@ -173,10 +224,39 @@ export default {
       document.dispatchEvent(event);
     },
   },
-  mounted() {
+  methods: {
+    particlesLoaded() {
+      setTimeout(() => {
+        const snow = document.querySelector("#snow canvas");
+        snow.style.zIndex = "1";
+        snow.style.background = "transparent";
+      }, 400);
+    },
+  },
+  async mounted() {
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
     });
+    await this.$store.dispatch("sharedData/fetchYTData");
+    if (process.client) {
+      if (!document.getElementById("confetti-canvas")) {
+        if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
+          const VueConfetti = await import("vue-confetti");
+          this.$confetti = new VueConfetti.Confetti();
+          this.$confetti.start({
+            defaultSize: 5,
+            particlesPerFrame: 0.1,
+            windSpeedMax: 0,
+            defaultDropRate: 2,
+          });
+        }
+      }
+      const month = new Date().getMonth() + 1;
+      // month will reduce 1 at here so we add 1 for real world month
+      if (month <= 2 || month == 12) {
+        this.showSnow = true;
+      }
+    }
   },
 };
 </script>
@@ -221,6 +301,9 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
+  #snow {
+    z-index: 1;
+  }
   .v-list-item__icon:first-child {
     margin-right: 32px;
   }
