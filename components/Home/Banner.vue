@@ -6,15 +6,28 @@
       data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
       data-img="/img/sayyouknow.jpg"
     ></div>
-    <div class="title">
+    <div class="title" v-if="!showBirthday">
       <p class="text-h4 text-top">「臭DD 幾時單推我啊」</p>
       <p class="text-right by text-bottom">by Mya 米亞</p>
+    </div>
+    <div class="title" v-else>
+      <p class="text-h4 text-top">米亞生日快樂！</p>
+      <p class="text-right by text-bottom">恭喜小熊貓</p>
     </div>
   </div>
 </template>
 <script>
 export default {
+  data() {
+    return {
+      showBirthday: false,
+    };
+  },
   mounted() {
+    if (month == 1 && date == 4) {
+      //mya birthday
+      this.showBirthday = true;
+    }
     window.onresize = () => {
       this.calcFrame();
     };

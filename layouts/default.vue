@@ -172,8 +172,9 @@ export default {
       mdiPartyPopper,
       mdiBook,
       celebrate: [
-        20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 200000,
-        3000000, 400000, 5000000,
+        10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000,
+        200000, 3000000, 400000, 5000000, 600000, 700000, 800000, 900000,
+        1000000,
       ],
       showSnow: false,
       snow: {
@@ -195,8 +196,8 @@ export default {
           opacity: {
             random: true,
             value: {
-              min: .5,
-              max: 1
+              min: 0.5,
+              max: 1,
             },
           },
           shape: {
@@ -205,7 +206,7 @@ export default {
           size: {
             random: {
               enable: true,
-              minimumValue: 2
+              minimumValue: 2,
             },
             value: 5,
           },
@@ -227,18 +228,21 @@ export default {
   methods: {
     particlesLoaded() {
       setTimeout(() => {
-        const snow = document.querySelector("#snow canvas");
+        const snow = document.querySelector("canvas");
         snow.style.zIndex = "1";
         snow.style.background = "transparent";
-      }, 400);
+      }, 500);
     },
   },
   async mounted() {
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
     });
+    const month = new Date().getMonth() + 1;
+    const date = new Date().getDate();
     await this.$store.dispatch("sharedData/fetchYTData");
     if (process.client) {
+      //subscribers celebrate or mya birthday celebrate
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
           const VueConfetti = await import("vue-confetti");
@@ -251,7 +255,6 @@ export default {
           });
         }
       }
-      const month = new Date().getMonth() + 1;
       // month will reduce 1 at here so we add 1 for real world month
       if (month <= 2 || month == 12) {
         this.showSnow = true;
