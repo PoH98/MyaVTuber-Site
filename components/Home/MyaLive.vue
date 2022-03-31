@@ -18,7 +18,7 @@
               futurevid.TimeTableUrl
             "
           />
-          <h3 class="mt-4">Upcomming</h3>
+          <h3 class="mt-4">Upcoming</h3>
           <p v-if="futurevid.Videos && futurevid.Videos.length < 1">
             暫無已計劃的直播，等待米亞中...
           </p>
