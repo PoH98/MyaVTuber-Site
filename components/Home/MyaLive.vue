@@ -1,5 +1,5 @@
 <template>
-  <div :class="'mya-live-statistics ' + color">
+  <v-lazy :class="'mya-live-statistics ' + color">
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col class="text-center">
@@ -47,7 +47,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </v-lazy>
 </template>
 <script>
 export default {
