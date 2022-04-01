@@ -239,7 +239,6 @@ export default {
       if (event.button === 1) event.preventDefault();
     });
     const month = new Date().getMonth() + 1;
-    const date = new Date().getDate();
     await this.$store.dispatch("sharedData/fetchYTData");
     if (process.client) {
       //subscribers celebrate or mya birthday celebrate

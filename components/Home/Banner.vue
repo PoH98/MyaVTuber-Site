@@ -24,6 +24,8 @@ export default {
     };
   },
   mounted() {
+    const month = new Date().getMonth() + 1;
+    const date = new Date().getDate();
     if (month == 1 && date == 4) {
       //mya birthday
       this.showBirthday = true;
