@@ -13,7 +13,7 @@
         <v-col cols="12">
           <v-img
             contain
-            :src="
+            :lazy-src="
               'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
               futurevid.TimeTableUrl
             "
@@ -36,7 +36,7 @@
               contain
               class="white--text align-end"
               height="250"
-              :src="
+              :lazy-src="
                 'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
                 v.Thumbnail
               "
