@@ -11,13 +11,19 @@
       <hr class="my-5" />
       <v-row>
         <v-col cols="12">
+          <v-responsive :aspect-ratio="1280/720">
           <v-img
             contain
+            width="100%"
+            height="100%"
             :lazy-src="
               'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
               futurevid.TimeTableUrl
             "
+            :src="'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
+              futurevid.TimeTableUrl"
           />
+          </v-responsive>
           <h3 class="mt-4">Upcoming</h3>
           <p v-if="futurevid.Videos && futurevid.Videos.length < 1">
             暫無已計劃的直播，等待米亞中...
