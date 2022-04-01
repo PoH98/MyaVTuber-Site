@@ -84,7 +84,7 @@ export default {
     },
     defaultAssets: {
       font: {
-        family: "Orbitron"
+        family: "Montserrat"
       },
       icons: 'mdiSvg'
     }

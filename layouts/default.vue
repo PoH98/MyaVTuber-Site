@@ -8,6 +8,11 @@
             <h1>米亞MYA</h1>
           </v-btn>
         </div>
+        <v-spacer />
+        <span class="d-md-flex d-none" v-if="showCelebrate">
+          <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
+          <p class="text-h6">恭喜米亞{{ status.subscriberCount }}訂閱!!</p>
+        </span>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" class="text-left" temporary fixed>
         <v-list-item class="my-3">
@@ -176,6 +181,7 @@ export default {
         200000, 3000000, 400000, 5000000, 600000, 700000, 800000, 900000,
         1000000,
       ],
+      showCelebrate: false,
       showSnow: false,
       snow: {
         background: {
@@ -244,6 +250,8 @@ export default {
       //subscribers celebrate or mya birthday celebrate
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
+          this.showCelebrate = true;
+          console.log(this.showCelebrate)
           const VueConfetti = await import("vue-confetti");
           this.$confetti = new VueConfetti.Confetti();
           this.$confetti.start({
@@ -295,7 +303,7 @@ body {
 }
 
 #app {
-  font-family: "Orbitron", sans-serif !important;
+  font-family: "Montserrat", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

@@ -94,6 +94,7 @@ export default {
   bottom: 0;
   transform: translate(0, 100%);
   opacity: 0;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 .text-bottom {
   opacity: 0;

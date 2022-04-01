@@ -77,6 +77,7 @@
         </v-container>
       </FSection>
     </div>
+    <Live2D/>
   </div>
 </template>
 <script>
@@ -93,6 +94,7 @@ export default {
   },
   name: "indexView",
   components: {
+    Live2D: () => import("~/components/Live2D/Live2D.vue"),
     Banner: () => import("~/components/Home/Banner.vue"),
     Gummy: () => import("~/components/Home/gummy-vid.vue"),
     Glitch: () => import("~/components/Home/glitch.vue"),
