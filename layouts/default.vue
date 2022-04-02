@@ -251,15 +251,24 @@ export default {
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
           this.showCelebrate = true;
-          console.log(this.showCelebrate)
+          console.log(this.showCelebrate);
           const VueConfetti = await import("vue-confetti");
           this.$confetti = new VueConfetti.Confetti();
-          this.$confetti.start({
-            defaultSize: 5,
-            particlesPerFrame: 0.1,
-            windSpeedMax: 0,
-            defaultDropRate: 2,
-          });
+          if (window.innerWidth > 480) {
+            this.$confetti.start({
+              defaultSize: 5,
+              particlesPerFrame: 0.1,
+              windSpeedMax: 0,
+              defaultDropRate: 2,
+            });
+          } else {
+            this.$confetti.start({
+              defaultSize: 5,
+              particlesPerFrame: 0.05,
+              windSpeedMax: 0,
+              defaultDropRate: 2,
+            });
+          }
         }
       }
       // month will reduce 1 at here so we add 1 for real world month

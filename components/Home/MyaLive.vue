@@ -11,18 +11,39 @@
       <hr class="my-5" />
       <v-row>
         <v-col cols="12">
-          <v-responsive :aspect-ratio="1280/720">
-          <v-img
-            contain
-            width="100%"
-            height="100%"
-            :lazy-src="
-              'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
-              futurevid.TimeTableUrl
-            "
-            :src="'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
-              futurevid.TimeTableUrl"
-          />
+          <v-responsive :aspect-ratio="1280 / 720">
+            <v-img
+              v-if="!isMobile"
+              contain
+              width="100%"
+              height="100%"
+              :lazy-src="
+                'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=1280&format=jpg'
+              "
+              :src="
+                'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=1280&format=jpg'
+              "
+            />
+            <v-img
+              v-else
+              contain
+              width="100%"
+              height="100%"
+              :lazy-src="
+                'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=480&format=jpg'
+              "
+              :src="
+                'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=480&format=jpg'
+              "
+            />
           </v-responsive>
           <h3 class="mt-4">Upcoming</h3>
           <p v-if="futurevid.Videos && futurevid.Videos.length < 1">
@@ -38,13 +59,39 @@
         >
           <v-card :href="v.Url">
             <v-img
+              v-if="!isMobile"
               gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
               contain
               class="white--text align-end"
               height="250"
               :lazy-src="
-                'https://www.mya-hkvtuber.com/api/mya/getimage?imgId=' +
-                v.Thumbnail
+                'https://www.mya-hkvtuber.com/img/' +
+                v.Thumbnail +
+                '.jpg?width=700&format=jpg'
+              "
+              :src="
+                'https://www.mya-hkvtuber.com/img/' +
+                v.Thumbnail +
+                '.jpg?width=700&format=jpg'
+              "
+            >
+              <v-card-title v-text="v.Title"></v-card-title>
+            </v-img>
+            <v-img
+              v-else
+              gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
+              contain
+              class="white--text align-end"
+              height="250"
+              :lazy-src="
+                'https://www.mya-hkvtuber.com/img/' +
+                v.Thumbnail +
+                '.jpg?width=480&format=jpg'
+              "
+              :src="
+                'https://www.mya-hkvtuber.com/img/' +
+                v.Thumbnail +
+                '.jpg?width=480&format=jpg'
               "
             >
               <v-card-title v-text="v.Title"></v-card-title>
@@ -61,13 +108,25 @@ export default {
     color: String,
     required: true,
   },
+  data() {
+    return {
+      isMobile: false,
+    };
+  },
   computed: {
-    status(){
-      return this.$store.state.sharedData.status
+    status() {
+      return this.$store.state.sharedData.status;
     },
-    futurevid(){
-      return this.$store.state.sharedData.futurevid
+    futurevid() {
+      return this.$store.state.sharedData.futurevid;
+    },
+  },
+  mounted() {
+    if (process.client) {
+      if (window.innerWidth < 480) {
+        this.isMobile = true;
+      }
     }
-  }
+  },
 };
 </script>
