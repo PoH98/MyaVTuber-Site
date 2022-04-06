@@ -1,5 +1,5 @@
 <template>
-  <div class="wiki">
+  <div class="wiki" v-if="!content.directlink">
     <v-img
       class="text-left"
       height="300px"
@@ -18,10 +18,28 @@
         <v-icon> {{ mdiChevronLeft }} </v-icon>Back
       </v-btn>
       <h1 class="text-center">{{ content.title }}</h1>
-      <p></p>
-      <hr />
+      <hr class="mb-5" />
       <div class="content" v-html="content.longdesc"></div>
     </v-container>
+  </div>
+  <div class="wiki" v-else>
+    <v-container class="text-left">
+      <v-btn @click="disableTimeout" plain to="/mya-meme">
+        <v-icon> {{ mdiChevronLeft }} </v-icon>Back
+      </v-btn>
+    </v-container>
+    <p class="mt-10 font-weight-bold loading text-h4">
+      5秒後自動跳轉
+      <span class="ball1"></span>
+      <span class="ball2"></span>
+      <span class="ball3"></span>
+    </p>
+    <p class="mt-4">
+      如果5秒後冇反應，可以點擊以下鏈接：
+      <a :href="getLink">
+        {{ getLink }}
+      </a>
+    </p>
   </div>
 </template>
 <script>
@@ -35,6 +53,7 @@ export default {
   data() {
     return {
       mdiChevronLeft,
+      timeout: null,
     };
   },
   async asyncData({ params, $http }) {
@@ -48,8 +67,84 @@ export default {
     const content = tempData.data;
     return { content };
   },
+  computed: {
+    getLink() {
+      return this.content.longdesc.replace(/<[^>]*>/g, "");
+    },
+  },
+  methods:{
+    disableTimeout(){
+      clearTimeout(this.timeout);
+    }
+  },
+  beforeMount() {
+    if (process.client) {
+      if (this.content.directlink) {
+        window.onpopstate = () => {
+          clearTimeout(this.timeout);
+        };
+        this.timeout = setTimeout(() => {
+          window.location.href = this.getLink;
+        }, 5000);
+      }
+    }
+  },
 };
 </script>
+<style scoped lang="scss">
+.loading {
+  animation: colorChange 3s infinite ease-in-out;
+  color: #6859a3;
+  span {
+    height: 10px;
+    width: 10px;
+    border-radius: 50%;
+    background: black;
+    margin: 0 2px;
+    display: inline-block;
+    background: #6859a3;
+  }
+  .ball1 {
+    z-index: 1;
+    animation: bounce 3s infinite ease-in-out;
+    -moz-animation: bounce 3s infinite ease-in-out;
+    -webkit-animation: bounce 3s infinite ease-in-out;
+  }
+  .ball2 {
+    animation: bounce 3s infinite ease-in-out;
+    -moz-animation: bounce 3s infinite ease-in-out;
+    -webkit-animation: bounce 3s infinite ease-in-out;
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+  }
+  .ball3 {
+    animation: bounce 3s infinite ease-in-out;
+    -moz-animation: bounce 3s infinite ease-in-out;
+    -webkit-animation: bounce 3s infinite ease-in-out;
+    -webkit-animation-delay: 1s;
+    animation-delay: 1s;
+  }
+}
+@keyframes bounce {
+  0%,
+  15% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(0, -20px);
+    background: #72c2c2;
+  }
+  85%,
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes colorChange {
+  50% {
+    color: #72c2c2;
+  }
+}
+</style>
 <style>
 .wiki .content * {
   margin-bottom: 10px !important;
