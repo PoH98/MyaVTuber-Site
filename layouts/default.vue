@@ -103,7 +103,7 @@
               <v-list-item-title>Instagram</v-list-item-title>
             </v-list-item>
 
-            <v-list-item href="https://mya.baguhkv.com/" target="_blank">
+            <v-list-item href="https://mya.baguhkv.com/edit" target="_blank">
               <v-list-item-icon>
                 <v-icon>{{ mdiFoodDrumstick }}</v-icon>
               </v-list-item-icon>
