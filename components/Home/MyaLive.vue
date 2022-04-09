@@ -10,6 +10,9 @@
       </v-row>
       <hr class="my-5" />
       <v-row>
+        <v-col cols="12" class="text-subtitle-1 font-weight-bold">
+          {{ getMonday() }} - {{ getSunday() }} 直播時間表</v-col
+        >
         <v-col cols="12">
           <v-responsive :aspect-ratio="1280 / 720">
             <v-img
@@ -61,9 +64,8 @@
             <v-img
               v-if="!isMobile"
               gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
-              contain
               class="white--text align-end"
-              height="250"
+              height="300"
               :lazy-src="
                 'https://www.mya-hkvtuber.com/img/' +
                 v.Thumbnail +
@@ -76,11 +78,15 @@
               "
             >
               <v-card-title v-text="v.Title"></v-card-title>
+              <hr />
+              <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
+                即將會在{{ convertTime(v.ScheduledStartTime) }} (9:00pm) 播出
+              </v-card-text>
+              <v-card-text v-else> 已結束播放 </v-card-text>
             </v-img>
             <v-img
               v-else
               gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
-              contain
               class="white--text align-end"
               height="250"
               :lazy-src="
@@ -95,6 +101,11 @@
               "
             >
               <v-card-title v-text="v.Title"></v-card-title>
+              <hr />
+              <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
+                即將會在{{ convertTime(v.ScheduledStartTime) }}播出
+              </v-card-text>
+              <v-card-text v-else> 已結束播放 </v-card-text>
             </v-img>
           </v-card>
         </v-col>
@@ -127,6 +138,32 @@ export default {
         this.isMobile = true;
       }
     }
+  },
+  methods: {
+    convertTime(time) {
+      return new Date(time).toLocaleDateString("zh-TW");
+    },
+    getMonday() {
+      let d = new Date();
+      var day = d.getDay(),
+        diff = d.getDate() - day + (day == 0 ? -6 : 1);
+      d.setHours(0);
+      d.setMinutes(0);
+      d.setSeconds(0);
+      return new Date(d.setDate(diff)).toLocaleDateString("zh-TW");
+    },
+    getIsFutureLive(time) {
+      console.log(time);
+      if (new Date() <= new Date(time).setHours(21, 0, 0, 0)) {
+        return true;
+      }
+      return false;
+    },
+    getSunday() {
+      var now = new Date();
+      now.setDate(now.getDate() + ((7 + (7 - now.getDay())) % 7));
+      return now.toLocaleDateString("zh-TW");
+    },
   },
 };
 </script>

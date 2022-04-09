@@ -68,7 +68,13 @@
           <p class="text-right by">講你知123</p>
         </v-container>
       </FSection>
-
+      <v-lazy>
+        <v-parallax
+          class="full-banner"
+          src="/img/myanewcloth.jpg"
+          alt="@HigashikataKou"
+        />
+      </v-lazy>
       <mya-live color="#fff" />
       <FSection>
         <v-container>
