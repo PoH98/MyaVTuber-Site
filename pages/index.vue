@@ -172,6 +172,11 @@ export default {
   max-height: 650px;
   overflow: auto;
 }
+@media (min-width: 960px){
+  .twitter{
+    max-height: 530px;
+  }
+}
 .twitter-follow-button {
   background-color: #1d9bf0;
   color: #fff;

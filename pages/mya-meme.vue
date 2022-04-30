@@ -95,7 +95,8 @@ export default {
 }
 .fixed-height {
   max-height: 93%;
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 .meme-card {
   transition: all .5s;

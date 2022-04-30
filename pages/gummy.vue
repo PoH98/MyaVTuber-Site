@@ -42,7 +42,7 @@
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
-            <h3 class="white--text mb-4">甘米的Social Media</h3>
+            <h3 class="white--text pb-4">甘米的Social Media</h3>
             <div
               class="d-flex flex-column justify-space-between"
               style="height: calc(100% - 28px)"
