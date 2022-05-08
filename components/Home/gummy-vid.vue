@@ -8,10 +8,14 @@
     ></div>
     <div class="title">
       <v-container>
-        <Glitch
-          classes="white--text text-h3 mb-5"
-          content="~ 甘米主人 ~"
-        ></Glitch>
+        <v-row justify="center">
+          <v-col cols="12" md="5">
+          <Glitch
+            classes="white--text text-h3 mb-5"
+            content="~ 甘米主人 ~"
+          ></Glitch>
+          </v-col>
+        </v-row>
         <div
           class="glass-bg-effect gummy-panel white--text text-left px-10 py-10"
           v-html="content.gummydesc"
@@ -48,7 +52,7 @@ export default {
           frame.style.left = -((1560 - window.innerWidth) / 2) + "px";
         } else if (window.innerWidth <= 480) {
           frame.style.width = "600px";
-          frame.style.height = "330px";
+          frame.style.height = "500px";
           frame.style.top = "-58px";
           frame.style.left = -((600 - window.innerWidth) / 2) + "px";
         } else {
@@ -116,7 +120,6 @@ export default {
   z-index: 1;
 }
 .disable-event {
-  pointer-events: none;
   position: relative;
   height: 600px;
   width: 100vw;
@@ -124,11 +127,10 @@ export default {
 }
 .title {
   font-family: "Orbitron", sans-serif !important;
-  top: 15%;
-  left: 0;
-  right: 0;
-  position: absolute;
   color: white;
+  position: absolute;
+  inset: 0;
+  padding-top: 30px;
   z-index: 2;
 }
 @media (max-width: 380px) {
@@ -137,12 +139,9 @@ export default {
   }
 }
 @media (max-width: 480px) {
-  .disable-event {
-    height: 280px;
-  }
-  .title .by {
-    width: 90%;
-    font-size: 6vw;
+  .gummy-panel {
+    font-size: 4vw;
+    line-height: 6vw;
   }
 }
 </style>
