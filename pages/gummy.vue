@@ -1,35 +1,6 @@
 <template>
   <div>
-    <Section color="#000">
-      <template v-slot:before>
-        <div class="background-gummy">
-          <Particles id="particle-bg" :options="particleoptions" />
-        </div>
-      </template>
-      <template v-slot:left>
-        <Glitch
-          classes="white--text text-h3 mb-5"
-          content="~ 甘米主人 ~"
-        ></Glitch>
-        <div
-          class="glass-bg-effect gummy-panel white--text text-left"
-          v-html="content.gummydesc"
-        ></div>
-      </template>
-      <template v-slot:right>
-        <div class="d-flex flex-column justify-center h-100">
-          <Gummy />
-          <div class="text-center gummy-panel">
-            <small class="white--text"
-              >Produced by
-              <a class="white--text" href="https://twitter.com/BASA8383"
-                >BASA
-              </a>
-            </small>
-          </div>
-        </div>
-      </template>
-    </Section>
+    <Gummy :content="content" />
     <SubSection :subsection="content.gummysubsection" />
     <v-lazy>
       <v-parallax
@@ -246,6 +217,12 @@ export default {
 };
 </script>
 <style scoped>
+.background-video * {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 500px;
+}
 #particle-bg {
   height: 100%;
 }
