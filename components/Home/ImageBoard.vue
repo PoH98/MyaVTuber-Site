@@ -2,11 +2,11 @@
   <FSection color="#f8bbd0">
     <v-container>
       <h2>院友作品</h2>
-      <P>來自院友關於米亞的Fan Art<br/>如果想自己的作品上架係到順便宣傳自己，可以到Discord Group搵Prince Of Hell(簡稱PoH98)哦！</P>
+      <P>來自院友關於米亞的Fan Art</P>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
-      <p v-if="list.length < 1">
+      <p v-if="patients.length < 1">
         無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！
       </p>
       <v-row v-else>
@@ -14,10 +14,10 @@
           cols="12"
           md="4"
           lg="3"
-          v-for="(data, index) in list"
+          v-for="(data, index) in patients"
           :key="'preview_' + index"
         >
-          <v-img :src="data.img" />
+          <v-img height="300" contain :src="data.img" />
           <p v-if="!data.link">{{ data.author }}</p>
           <a v-else :href="data.link">{{ data.author }}</a>
         </v-col>
@@ -34,19 +34,24 @@ export default {
   data() {
     return {
       mdiChevronDown,
-      list: [
-        {
-          img: "/img/panda_kenneth/pandakenneth_bike1.jpg",
-          link: "/patient/02574a43-ec82-4848-953d-7e1f222ba4b7",
-          author: "Panda Kenneth",
-        },
-        {
-          img: "/img/panda_kenneth/pandakenneth_bike2.jpg",
-          link: "/patient/02574a43-ec82-4848-953d-7e1f222ba4b7",
-          author: "Panda Kenneth",
-        },
-      ],
+      patients: [],
     };
+  },
+  async mounted() {
+    const tempData = await this.$http.get(
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{id flatData{name works{location img}}}}"
+      )
+      .then((res) => res.json());
+    tempData.data.queryPatientListContents.forEach(patient => {
+      patient.flatData.works.forEach(work =>{
+        this.patients.push({
+          link: "/patient/" + patient.id,
+          img: work.img,
+          author: patient.flatData.name
+        });
+      })
+    })
+    this.patients = this.patients.sort(() => 0.5 - Math.random()).slice(0, 20);
   },
 };
 </script>
