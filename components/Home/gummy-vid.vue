@@ -7,11 +7,11 @@
       data-img="/img/losemymind.jpg"
     ></div>
     <div class="title">
-      <Glitch
-        classes="white--text text-h3 mb-5"
-        content="~ 甘米主人 ~"
-      ></Glitch>
       <v-container>
+        <Glitch
+          classes="white--text text-h3 mb-5"
+          content="~ 甘米主人 ~"
+        ></Glitch>
         <div
           class="glass-bg-effect gummy-panel white--text text-left px-10 py-10"
           v-html="content.gummydesc"
