@@ -78,11 +78,8 @@
   </div>
 </template>
 <script>
-import Particles from "particles.vue";
 import SubSection from "~/components/Home/SubSections.vue";
-import Vue from "vue";
 import MyaLive from "../components/Home/MyaLive.vue";
-Vue.use(Particles);
 export default {
   head() {
     return {
