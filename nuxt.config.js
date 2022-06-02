@@ -52,17 +52,23 @@ export default {
   sitemap: {
     hostname: 'https://www.mya-hkvtuber.com',
     gzip: true,
-    exclude:['/privacy-policy'],
-    routes: async () =>{
-      const list = await $http
-      .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list",
-        { headers: { "X-Flatten": 1 } }
-      )
-      .then((res) => res.data);
-      return list.items.map(function(item) {
+    exclude: ['/privacy-policy'],
+    routes: async () => {
+      let list = await $http
+        .get(
+          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list",
+          { headers: { "X-Flatten": 1 } }
+        )
+        .then((res) => res.data);
+      const memes = await $http.get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id }}")
+        .then((res) => res.data.data.queryJokewikiContents);
+      list = list.items.map(function (item) {
         return '/patient/' + item.id;
       });
+      memes.forEach(meme => {
+        list.push('/meme/' + meme.id)
+      });
+      return list;
     }
   },
   robots: {
