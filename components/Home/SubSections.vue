@@ -1,92 +1,55 @@
 <template>
   <div class="subsections">
     <section v-for="(data, i) in subsection" :key="'section_' + i">
-      <Section
-        v-if="data.type === '左右' && i % 2 === 0"
-        :color="data.backgroundColor"
-        :mobileReverse="true"
-      >
+      <Section v-if="data.type === '左右' && i % 2 === 0" :color="data['background-color']" :mobileReverse="true">
         <template v-slot:left>
           <div class="text-md-left d-flex flex-column justify-center h-100">
-            <div :class="getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
+            <div :class="getContrastYIQ(data['background-color'])" v-html="data.content"></div>
             <div>
-              <v-btn
-                v-if="data.button"
-                x-large
-                target="_blank"
-                rounded
-                class="px-13 mt-5"
-                :href="data.button"
-              >
-                <v-img
-                  class="mr-2"
-                  :src="'/icons/' + data.buttonIcon + '.svg'"
-                />
-                {{ data.buttonText }}
+              <v-btn v-if="data.button" x-large target="_blank" rounded class="px-13 mt-5 mr-2" :href="data.button">
+                <v-img class="mr-2" :src="'/icons/' + data['button-icon'] + '.svg'" />
+                {{ data["button-text"] }}
+              </v-btn>
+              <v-btn v-if="data.button2" x-large target="_blank" rounded class="px-13 mt-5" :href="data.button2">
+                <v-img class="mr-2" :src="'/icons/' + data['button2-icon'] + '.svg'" />
+                {{ data["button2-text"] }}
               </v-btn>
             </div>
           </div>
         </template>
         <template v-slot:right>
-          <v-flex
-            class="justify-center h-100 align-center"
-            v-if="data.backgroundImage"
-          >
-            <v-img
-              contain
-              class="section-img"
-              :src="data.backgroundImage"
-            />
+          <v-flex class="justify-center h-100 align-center" v-if="data['background-image']">
+            <v-img contain class="section-img" :src="data['background-image']" />
           </v-flex>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
         </template>
       </Section>
-      <Section
-        v-else-if="data.type === '左右' && i % 2 !== 0"
-        :color="data.backgroundColor"
-      >
+      <Section v-else-if="data.type === '左右' && i % 2 !== 0" :color="data['background-color']">
         <template v-slot:left>
-          <v-flex
-            class="justify-center h-100 align-center"
-            v-if="data.backgroundImage"
-          >
-            <v-img
-              contain
-              class="section-img"
-              :src="data.backgroundImage"
-            />
+          <v-flex class="justify-center h-100 align-center" v-if="data['background-image']">
+            <v-img contain class="section-img" :src="data['background-image']" />
           </v-flex>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
         </template>
         <template v-slot:right>
           <div class="text-md-right d-flex flex-column justify-center h-100">
-            <div :class="getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
+            <div :class="getContrastYIQ(data['background-color'])" v-html="data.content"></div>
             <div>
-              <v-btn
-                v-if="data.button"
-                x-large
-                target="_blank"
-                rounded
-                class="px-13 mt-5"
-                :href="data.button"
-              >
-                <v-img
-                  class="mr-2"
-                  :src="'/icons/' + data.buttonIcon + '.svg'"
-                />
-                {{ data.buttonText }}
+              <v-btn v-if="data.button" x-large target="_blank" rounded class="px-13 mt-5" :href="data.button">
+                <v-img class="mr-2" :src="'/icons/' + data['button-icon'] + '.svg'" />
+                {{ data["button-text"] }}
+              </v-btn>
+              <v-btn v-if="data.button2" x-large target="_blank" rounded class="px-13 mt-5" :href="data.button2">
+                <v-img class="mr-2" :src="'/icons/' + data['button2-icon'] + '.svg'" />
+                {{ data["button2-text"] }}
               </v-btn>
             </div>
           </div>
         </template>
       </Section>
-      <FSection
-        :color="data.backgroundColor"
-        :image="data.backgroundImage"
-        v-else
-      >
+      <FSection :color="data['background-color']" :image="data['background-image']" v-else>
         <v-container>
-          <div :class="'content ' + getContrastYIQ(data.backgroundColor)" v-html="data.content"></div>
+          <div :class="'content ' + getContrastYIQ(data['background-color'])" v-html="data.content"></div>
         </v-container>
       </FSection>
     </section>
@@ -121,6 +84,7 @@ export default {
   max-height: 300px;
   max-width: 100%;
 }
+
 .h-100 {
   height: 100%;
 }
