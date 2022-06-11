@@ -110,7 +110,7 @@
               <v-list-item-title>烤肉</v-list-item-title>
             </v-list-item>
             <v-list-item
-              href="https://sites.google.com/view/mya-minecraft/home?authuser=0"
+              href="https://dd-paradise.net/"
               target="_blank"
               link
             >
