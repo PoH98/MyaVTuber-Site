@@ -10,16 +10,11 @@
         無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！
       </p>
       <v-row v-else>
-        <v-col
-          cols="12"
-          md="4"
-          lg="3"
-          v-for="(data, index) in patients"
-          :key="'preview_' + index"
-        >
-          <v-img height="300" contain :src="data.img" />
-          <p v-if="!data.link">{{ data.author }}</p>
-          <a v-else :href="data.link">{{ data.author }}</a>
+        <v-col cols="12" md="4" lg="3" v-for="(data, index) in patients" :key="'preview_' + index">
+          <a class="twitterName" target="__blank" :href="'https://www.twitter.com/' + data.UserAccountUserName + '/status/' + data.PostId">
+            <v-img class="mb-3 bg-dark" contain height="300" :src="data.ImageUrl + '?format=jpg&name=240x240'" />
+            {{ data.UserAccountName }}
+          </a>
         </v-col>
       </v-row>
     </v-container>
@@ -39,29 +34,32 @@ export default {
   },
   async mounted() {
     const tempData = await this.$http.get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{id flatData{name works{location img}}}}"
-      )
+      "https://www.mya-hkvtuber.com/api/mya/gettweets"
+    )
       .then((res) => res.json());
-    tempData.data.queryPatientListContents.forEach(patient => {
-      patient.flatData.works.forEach(work =>{
-        this.patients.push({
-          link: "/patient/" + patient.id,
-          img: work.img,
-          author: patient.flatData.name
-        });
-      })
-    })
-    this.patients = this.patients.sort(() => 0.5 - Math.random()).slice(0, 20);
+    this.patients = tempData.map(value => ({ value, sort: Math.random() }))
+      .sort((a, b) => a.sort - b.sort)
+      .map(({ value }) => value).slice(0, 20);
   },
 };
 </script>
 <style scoped>
+.bg-dark {
+  background: black;
+}
+
+.twitterName {
+  color: black;
+  text-decoration: none;
+}
+
 .down {
   -webkit-animation: pulse 1.5s 0s infinite normal ease forwards;
   -moz-animation: pulse 1.5s 0s infinite normal ease forwards;
   -o-animation: pulse 1.5s 0s infinite normal ease forwards;
   animation: pulse 1.5s 0s infinite normal ease forwards;
 }
+
 @-webkit-keyframes pulse {
   0% {
     opacity: 0;
@@ -71,9 +69,11 @@ export default {
     -webkit-background-size: 0 auto;
     background-size: 0 auto;
   }
+
   10% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
     -moz-background-size: 20% auto;
@@ -81,9 +81,11 @@ export default {
     -webkit-background-size: 20% auto;
     background-size: 20% auto;
   }
+
   90% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
     background-position: center bottom;
@@ -93,6 +95,7 @@ export default {
     background-size: 0 auto;
   }
 }
+
 @-moz-keyframes pulse {
   0% {
     opacity: 0;
@@ -102,9 +105,11 @@ export default {
     -webkit-background-size: 0 auto;
     background-size: 0 auto;
   }
+
   10% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
     -moz-background-size: 20% auto;
@@ -112,9 +117,11 @@ export default {
     -webkit-background-size: 20% auto;
     background-size: 20% auto;
   }
+
   90% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
     background-position: center bottom;
@@ -124,6 +131,7 @@ export default {
     background-size: 0 auto;
   }
 }
+
 @-ms-keyframes pulse {
   0% {
     opacity: 0;
@@ -133,9 +141,11 @@ export default {
     -webkit-background-size: 0 auto;
     background-size: 0 auto;
   }
+
   10% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
     -moz-background-size: 20% auto;
@@ -143,9 +153,11 @@ export default {
     -webkit-background-size: 20% auto;
     background-size: 20% auto;
   }
+
   90% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
     background-position: center bottom;
@@ -155,6 +167,7 @@ export default {
     background-size: 0 auto;
   }
 }
+
 @keyframes pulse {
   0% {
     opacity: 0;
@@ -164,9 +177,11 @@ export default {
     -webkit-background-size: 0 auto;
     background-size: 0 auto;
   }
+
   10% {
     opacity: 0;
   }
+
   50% {
     opacity: 1;
     -moz-background-size: 20% auto;
@@ -174,9 +189,11 @@ export default {
     -webkit-background-size: 20% auto;
     background-size: 20% auto;
   }
+
   90% {
     opacity: 0;
   }
+
   100% {
     opacity: 0;
     background-position: center bottom;
