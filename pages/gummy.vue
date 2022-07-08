@@ -74,7 +74,7 @@
         </v-row>
       </v-container>
     </FSection>
-    <mya-live color="#fff" />
+    <mya-live  />
   </div>
 </template>
 <script>

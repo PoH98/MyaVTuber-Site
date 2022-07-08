@@ -9,6 +9,10 @@
           </v-btn>
         </div>
         <v-spacer />
+        <v-btn plain v-if="!$vuetify.theme.dark" @click="$vuetify.theme.dark = true">
+          Darkmode
+        </v-btn>
+        <v-btn v-else plain @click="$vuetify.theme.dark = false"> Lightmode </v-btn>
         <span class="d-md-flex d-none" v-if="showCelebrate">
           <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
           <p class="text-h6">恭喜米亞{{ status.subscriberCount }}訂閱!!</p>
@@ -109,11 +113,7 @@
               </v-list-item-icon>
               <v-list-item-title>烤肉</v-list-item-title>
             </v-list-item>
-            <v-list-item
-              href="https://dd-paradise.net/"
-              target="_blank"
-              link
-            >
+            <v-list-item href="https://dd-paradise.net/" target="_blank" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiMinecraft }}</v-icon>
               </v-list-item-icon>
@@ -244,6 +244,13 @@ export default {
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
     });
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    ) {
+      console.log(this.$vuetify.theme.dark);
+      this.$vuetify.theme.dark = true;
+    }
     const month = new Date().getMonth() + 1;
     await this.$store.dispatch("sharedData/fetchYTData");
     if (process.client) {
@@ -320,6 +327,7 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
+
   #snow {
     z-index: 1;
   }
@@ -377,6 +385,9 @@ body {
     background-color: #ff00bb;
     border-radius: 10px;
     border: 3px solid #ffffff;
+  }
+  .theme--dark.v-sheet a{
+    color: white;
   }
 }
 .v-responsive__content {

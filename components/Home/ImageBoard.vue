@@ -10,11 +10,34 @@
         無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！
       </p>
       <v-row v-else>
-        <v-col cols="12" md="4" lg="3" v-for="(data, index) in patients" :key="'preview_' + index">
-          <a class="twitterName" target="__blank" :href="'https://www.twitter.com/' + data.UserAccountUserName + '/status/' + data.PostId">
-            <v-img class="mb-3 bg-dark" contain height="300" :src="data.ImageUrl + '?format=jpg&name=240x240'" />
-            {{ data.UserAccountName }}
-          </a>
+        <v-col
+          cols="12"
+          md="4"
+          lg="3"
+          v-for="(data, index) in patients"
+          :key="'preview_' + index"
+        >
+          <v-card
+            class="twitterName"
+            target="__blank"
+            flat
+            :href="
+              'https://www.twitter.com/' +
+              data.UserAccountUserName +
+              '/status/' +
+              data.PostId
+            "
+          >
+            <v-img
+              class="mb-3 bg-dark"
+              contain
+              height="300"
+              :src="data.ImageUrl + '?format=jpg&name=240x240'"
+            />
+            <v-card-text>
+              {{ data.UserAccountName }}
+            </v-card-text>
+          </v-card>
         </v-col>
       </v-row>
     </v-container>
@@ -33,13 +56,14 @@ export default {
     };
   },
   async mounted() {
-    const tempData = await this.$http.get(
-      "https://www.mya-hkvtuber.com/api/mya/gettweets"
-    )
+    const tempData = await this.$http
+      .get("https://www.mya-hkvtuber.com/api/mya/gettweets")
       .then((res) => res.json());
-    this.patients = tempData.map(value => ({ value, sort: Math.random() }))
+    this.patients = tempData
+      .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
-      .map(({ value }) => value).slice(0, 20);
+      .map(({ value }) => value)
+      .slice(0, 20);
   },
 };
 </script>
@@ -49,8 +73,8 @@ export default {
 }
 
 .twitterName {
-  color: black;
   text-decoration: none;
+  height: 100%;
 }
 
 .down {

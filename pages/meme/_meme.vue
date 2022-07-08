@@ -1,11 +1,24 @@
 <template>
-  <div class="wiki" v-if="!content.directlink">
+  <v-sheet class="wiki" v-if="!content.directlink">
     <v-img
       class="text-left"
       height="300px"
       v-if="content.image"
       :src="content.image"
-      gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.3)"
+      gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.2)"
+    >
+      <v-container>
+        <v-btn class="white--text" plain to="/mya-meme">
+          <v-icon> {{ mdiChevronLeft }} </v-icon>Back
+        </v-btn>
+      </v-container>
+    </v-img>
+    <v-img
+      class="text-left"
+      height="300px"
+      v-else
+      src="/img/sexymya.jpg"
+      gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.2)"
     >
       <v-container>
         <v-btn class="white--text" plain to="/mya-meme">
@@ -14,15 +27,12 @@
       </v-container>
     </v-img>
     <v-container class="text-left">
-      <v-btn v-if="!content.image" class="back-btn" plain to="/mya-meme">
-        <v-icon> {{ mdiChevronLeft }} </v-icon>Back
-      </v-btn>
       <h1 class="text-center">{{ content.title }}</h1>
       <hr class="mb-5" />
       <div class="content" v-html="content.longdesc"></div>
     </v-container>
-  </div>
-  <div class="wiki" v-else>
+  </v-sheet>
+  <v-sheet class="wiki" v-else>
     <v-container class="text-left">
       <v-btn @click="disableTimeout" plain to="/mya-meme">
         <v-icon> {{ mdiChevronLeft }} </v-icon>Back
@@ -40,7 +50,7 @@
         {{ getLink }}
       </a>
     </p>
-  </div>
+  </v-sheet>
 </template>
 <script>
 import { mdiChevronLeft } from "@mdi/js";
@@ -72,10 +82,10 @@ export default {
       return this.content.longdesc.replace(/<[^>]*>/g, "");
     },
   },
-  methods:{
-    disableTimeout(){
+  methods: {
+    disableTimeout() {
       clearTimeout(this.timeout);
-    }
+    },
   },
   beforeMount() {
     if (process.client) {
@@ -146,6 +156,9 @@ export default {
 }
 </style>
 <style>
+.wiki {
+  min-height: calc(100vh - 130px);
+}
 .wiki .content * {
   margin-bottom: 10px !important;
 }

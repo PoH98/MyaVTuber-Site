@@ -66,7 +66,7 @@
         <p class="text-left text-h6 mb-9" v-html="patient.desc"></p>
       </v-container>
     </FSection>
-    <FSection color="white">
+    <FSection >
       <v-container v-if="patient.Works && patient.Works.length > 0">
         <h2 class="mb-5">院友自創作品</h2>
         <v-flex id="lightgallery">

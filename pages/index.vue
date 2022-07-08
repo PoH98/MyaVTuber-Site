@@ -2,7 +2,7 @@
   <div>
     <banner />
     <div class="bg-white">
-      <FSection color="white" disableLazy>
+      <FSection disableLazy>
         <v-container class="text-left" v-html="content.myadesc"></v-container>
       </FSection>
       <SubSection :subsection="content.subsection" />
@@ -14,7 +14,7 @@
         />
       </v-lazy>
       <ImageBoard />
-      <Section color="white" disableLazy>
+      <Section disableLazy>
         <template v-slot:left>
           <div class="twitter-title row">
             <div class="col-12 col-lg-6 text-lg-right py-0 px-0">
@@ -75,7 +75,7 @@
           alt="@HigashikataKou"
         />
       </v-lazy>
-      <mya-live color="#fff" />
+      <mya-live  />
       <FSection>
         <v-container>
           <p class="text-h4 mb-0">院友期待你的加入！</p>

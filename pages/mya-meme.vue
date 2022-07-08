@@ -1,8 +1,28 @@
 <template>
-  <v-img height="calc(100vh - 130px)" alt="@Handmaker" src="/img/asshurt.jpg">
+  <v-sheet class="meme">
+    <v-carousel
+      hide-delimiters
+      interval="3000"
+      continuous
+      touchless
+      cycle
+      :show-arrows="false"
+      height="100vh"
+      class="background-img"
+    >
+      <v-carousel-item alt="@Handmaker" src="/img/asshurt.jpg" />
+      <v-carousel-item
+        alt="@Handmaker"
+        src="https://pbs.twimg.com/media/FNxryzMVUAAJudN?format=jpg&name=large"
+      />
+      <v-carousel-item
+        alt="@Handmaker"
+        src="https://pbs.twimg.com/media/FPGIyCgakAAEK3v?format=jpg&name=large"
+      />
+    </v-carousel>
     <v-container class="half-trans" v-if="!content.error">
       <h1 class="text-left my-4">米亞梗字典</h1>
-      <v-row class="fixed-height" v-if="content.length > 0">
+      <v-row v-if="content.length > 0">
         <v-col
           cols="12"
           sm="6"
@@ -36,7 +56,7 @@
         米亞禁止此頁面顯示，網頁作者已被捅爆屎眼
       </p>
     </v-container>
-  </v-img>
+  </v-sheet>
 </template>
 <script>
 import { mdiChevronTripleRight } from "@mdi/js";
@@ -80,26 +100,26 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.background-img {
+  position: fixed;
+  inset: 0;
+}
 .h-100 {
   height: 100%;
 }
 .half-trans {
   background: rgba(255, 255, 255, 0.6);
-  height: calc(100vh - 130px);
   padding-left: 40px;
   padding-right: 40px;
+  backdrop-filter: blur(1px);
   @media (max-width: 480px) {
     padding-left: 20px;
     padding-right: 20px;
   }
 }
-.fixed-height {
-  max-height: 93%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
+
 .meme-card {
-  transition: all .5s;
+  transition: all 0.5s;
   align-content: center;
   align-items: center;
   display: flex;
