@@ -6,12 +6,10 @@
           <v-timeline align-top dense>
             <v-timeline-item color="yellow">
               <v-card outlined elevation="2">
-                <v-card-title>
-                  今日
-                </v-card-title>
+                <v-card-title> 今日 </v-card-title>
                 <v-card-text class="text-left">
                   無論今日發生咩事，永遠記得：院友們都會陪著你一起度過！
-                </v-card-text>  
+                </v-card-text>
               </v-card>
             </v-timeline-item>
             <v-timeline-item
@@ -35,16 +33,14 @@
         </v-col>
         <v-col class="d-none d-lg-block pt-8" lg="5">
           <v-card outlined elevation="2" class="h-100">
-            <v-card-title class="text-center pb-4 text-h5"
-              >紀念墻</v-card-title
-            >
+            <v-card-title class="text-center pb-4 text-h5">紀念墻</v-card-title>
             <hr />
             <v-card-text class="text-h5 pt-5">
-              <v-img contain class="my-5" src="/img/MYA_Ver01_Persona_H.jpg"/>
+              <v-img contain class="my-5" src="/img/MYA_Ver01_Persona_H.jpg" />
               米亞1.0
-              <v-img contain class="my-5" src="/img/MYA_Ver02_H.jpg"/>
+              <v-img contain class="my-5" src="/img/MYA_Ver02_H.jpg" />
               米亞2.0
-              <v-img contain class="my-5" src="/img/MYA_Ver03_Persona.png"/>
+              <v-img contain class="my-5" src="/img/MYA_Ver03_Persona.png" />
               米亞3.0
             </v-card-text>
           </v-card>
@@ -94,7 +90,20 @@ export default {
   },
 };
 </script>
-<style >
+<style>
+.v-timeline--align-top
+  .v-timeline-item__body
+  > .v-card:not(.v-card--link):before {
+  top: 12px;
+  left: -10px;
+}
+.v-timeline:before{
+  left: 48px;
+}
+.v-timeline--align-top .v-timeline-item__body > .v-card:after {
+  top: 10px;
+  left: -10px;
+}
 .h-100 {
   height: calc(100% - 25px);
 }
