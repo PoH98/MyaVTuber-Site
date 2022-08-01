@@ -11,12 +11,18 @@
         <v-spacer />
         <v-btn
           plain
+          class="d-none d-md-block"
           v-if="!$vuetify.theme.dark"
           @click="$vuetify.theme.dark = true"
         >
           Darkmode
         </v-btn>
-        <v-btn v-else plain @click="$vuetify.theme.dark = false">
+        <v-btn
+          class="d-none d-md-block"
+          v-else
+          plain
+          @click="$vuetify.theme.dark = false"
+        >
           Lightmode
         </v-btn>
         <span class="d-md-flex d-none" v-if="showCelebrate">
@@ -133,6 +139,25 @@
               </v-list-item-icon>
               <v-list-item-title>Minecraft</v-list-item-title>
             </v-list-item>
+          </v-list-item-group>
+          <v-divider class="d-md-none mt-5"></v-divider>
+          <v-list-item-group class="d-md-none pt-3">
+            <v-btn
+              plain
+              block
+              v-if="!$vuetify.theme.dark"
+              @click="$vuetify.theme.dark = true"
+            >
+              Darkmode
+            </v-btn>
+            <v-btn
+              v-else
+              plain
+              block
+              @click="$vuetify.theme.dark = false"
+            >
+              Lightmode
+            </v-btn>
           </v-list-item-group>
         </v-list>
       </v-navigation-drawer>
