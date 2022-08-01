@@ -75,6 +75,13 @@ export default {
 .twitterName {
   text-decoration: none;
   height: 100%;
+  transition: all .3s linear;
+}
+
+.twitterName:hover{
+  transform: scale(1.1);
+  z-index: 1;
+  box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.7);
 }
 
 .down {

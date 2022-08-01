@@ -50,7 +50,7 @@
           </v-responsive>
           <h3 class="mt-4">Upcoming</h3>
           <p v-if="futurevid.Videos && futurevid.Videos.length < 1">
-            暫無已計劃的直播，等待米亞中...
+            暫無已計劃的直播，等待米亞編排中...
           </p>
         </v-col>
         <v-col
@@ -82,6 +82,9 @@
               <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
                 即將會在{{ convertTime(v.ScheduledStartTime) }} (9:00pm) 播出
               </v-card-text>
+              <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
+                正在播出
+              </v-card-text>
               <v-card-text v-else> 已結束播放 </v-card-text>
             </v-img>
             <v-img
@@ -104,6 +107,9 @@
               <hr />
               <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
                 即將會在{{ convertTime(v.ScheduledStartTime) }}播出
+              </v-card-text>
+              <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
+                正在播出
               </v-card-text>
               <v-card-text v-else> 已結束播放 </v-card-text>
             </v-img>
@@ -153,8 +159,13 @@ export default {
       return new Date(d.setDate(diff)).toLocaleDateString("zh-TW");
     },
     getIsFutureLive(time) {
-      console.log(time);
       if (new Date() <= new Date(time).setHours(21, 0, 0, 0)) {
+        return true;
+      }
+      return false;
+    },
+    getIsNowPlaying(time) {
+      if (new Date() <= new Date(time).setHours(22, 0, 0, 0)) {
         return true;
       }
       return false;

@@ -9,10 +9,16 @@
           </v-btn>
         </div>
         <v-spacer />
-        <v-btn plain v-if="!$vuetify.theme.dark" @click="$vuetify.theme.dark = true">
+        <v-btn
+          plain
+          v-if="!$vuetify.theme.dark"
+          @click="$vuetify.theme.dark = true"
+        >
           Darkmode
         </v-btn>
-        <v-btn v-else plain @click="$vuetify.theme.dark = false"> Lightmode </v-btn>
+        <v-btn v-else plain @click="$vuetify.theme.dark = false">
+          Lightmode
+        </v-btn>
         <span class="d-md-flex d-none" v-if="showCelebrate">
           <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
           <p class="text-h6">恭喜米亞{{ status.subscriberCount }}訂閱!!</p>
@@ -54,6 +60,13 @@
               <v-list-item-title>米亞梗字典</v-list-item-title>
             </v-list-item>
 
+            <v-list-item to="/achievement" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiTrophy }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>路程杯</v-list-item-title>
+            </v-list-item>
+
             <v-list-item to="/games" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiGoogleController }}</v-icon>
@@ -67,8 +80,9 @@
               </v-list-item-icon>
               <v-list-item-title>特別感謝</v-list-item-title>
             </v-list-item>
+
             <v-divider></v-divider>
-            <v-list-item :ripple="false" disabled class="black--text">
+            <v-list-item :ripple="false" disabled>
               <v-list-item-content>
                 <v-list-item-title> 米亞の外部鏈接 </v-list-item-title>
               </v-list-item-content>
@@ -158,6 +172,7 @@ import {
   mdiFoodDrumstick,
   mdiGoogleController,
   mdiPartyPopper,
+  mdiTrophy,
   mdiBook,
 } from "@mdi/js";
 export default {
@@ -176,6 +191,7 @@ export default {
       mdiGoogleController,
       mdiPartyPopper,
       mdiBook,
+      mdiTrophy,
       celebrate: [
         10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000,
         200000, 3000000, 400000, 5000000, 600000, 700000, 800000, 900000,
@@ -386,7 +402,7 @@ body {
     border-radius: 10px;
     border: 3px solid #ffffff;
   }
-  .theme--dark.v-sheet a{
+  .theme--dark.v-sheet a {
     color: white;
   }
 }
