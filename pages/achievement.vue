@@ -18,6 +18,7 @@
               :key="'achivement_' + i"
             >
               <v-card outlined elevation="2">
+                <v-img v-if="c.flatData.image" :src="c.flatData.image[0].url + '?width=585'"/>
                 <v-card-title>
                   {{ translateDate(c.flatData.date) }}
                 </v-card-title>
@@ -54,7 +55,7 @@ export default {
   async asyncData({ $http }) {
     let data = await $http
       .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description}}}"
+        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}"
       )
       .then((res) => res.json());
     const content = data.data.queryAchivementContents.sort((a, b) => {

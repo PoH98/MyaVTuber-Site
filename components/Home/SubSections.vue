@@ -9,6 +9,8 @@
         <template v-slot:left>
           <div class="text-md-left d-flex flex-column justify-center h-100">
             <div
+              data-aos="fade-up"
+              data-aos-duration="1500"
               :class="getContrastYIQ(data['backgroundColor'])"
               v-html="data.content"
             ></div>
@@ -70,6 +72,8 @@
         <template v-slot:right>
           <div class="text-md-right d-flex flex-column justify-center h-100">
             <div
+              data-aos="fade-up"
+              data-aos-duration="1500"
               :class="getContrastYIQ(data['background-color'])"
               v-html="data.content"
             ></div>
@@ -113,6 +117,8 @@
       >
         <v-container>
           <div
+            data-aos="fade-up"
+            data-aos-duration="1500"
             :class="'content ' + getContrastYIQ(data['backgroundColor'])"
             v-html="data.content"
           ></div>
@@ -142,10 +148,9 @@ export default {
         var b = parseInt(hexcolor.substr(4, 2), 16);
         var yiq = (r * 299 + g * 587 + b * 114) / 1000;
         return yiq >= 128 ? "black--text" : "white--text";
-      } else if(!this.$vuetify.theme.dark) {
+      } else if (!this.$vuetify.theme.dark) {
         return "black--text";
-      }
-      else{
+      } else {
         return "white--text";
       }
     },

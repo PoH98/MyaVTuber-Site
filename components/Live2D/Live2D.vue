@@ -58,8 +58,8 @@ export default {
         document.head.appendChild(script2);
         const circle = document.getElementById(this.live2dMainId);
         document.addEventListener("mousemove", (e) => {
-          let left = e.clientX - (circle.width/2) + 40;
-          let top = e.clientY - (circle.height/2) + 20;
+          let left = e.clientX - circle.width / 2 + 40;
+          let top = e.clientY - circle.height / 2 + 20;
           circle.style.left = left + "px";
           circle.style.top = top + "px";
         });

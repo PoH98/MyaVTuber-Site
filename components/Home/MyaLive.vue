@@ -60,60 +60,65 @@
           v-for="(v, i) in futurevid.Videos"
           :key="'vid_' + i"
         >
-          <v-card :href="v.Url">
-            <v-img
-              v-if="!isMobile"
-              gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
-              class="white--text align-end"
-              height="300"
-              :lazy-src="
-                'https://www.mya-hkvtuber.com/img/' +
-                v.Thumbnail +
-                '.jpg?width=700&format=jpg'
-              "
-              :src="
-                'https://www.mya-hkvtuber.com/img/' +
-                v.Thumbnail +
-                '.jpg?width=700&format=jpg'
-              "
+          <v-hover v-slot="{ hover }">
+            <v-card
+              :href="v.Url"
+              :elevation="hover ? 5 : 0"
+              :class="hover ? 'enlight upcoming-card' : 'upcoming-card darken'"
             >
-              <v-card-title v-text="v.Title"></v-card-title>
-              <hr />
-              <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
-                即將會在{{ convertTime(v.ScheduledStartTime) }} (9:00pm) 播出
-              </v-card-text>
-              <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
-                正在播出
-              </v-card-text>
-              <v-card-text v-else> 已結束播放 </v-card-text>
-            </v-img>
-            <v-img
-              v-else
-              gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
-              class="white--text align-end"
-              height="250"
-              :lazy-src="
-                'https://www.mya-hkvtuber.com/img/' +
-                v.Thumbnail +
-                '.jpg?width=480&format=jpg'
-              "
-              :src="
-                'https://www.mya-hkvtuber.com/img/' +
-                v.Thumbnail +
-                '.jpg?width=480&format=jpg'
-              "
-            >
-              <v-card-title v-text="v.Title"></v-card-title>
-              <hr />
-              <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
-                即將會在{{ convertTime(v.ScheduledStartTime) }}播出
-              </v-card-text>
-              <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
-                正在播出
-              </v-card-text>
-              <v-card-text v-else> 已結束播放 </v-card-text>
-            </v-img>
-          </v-card>
+              <v-img
+                v-if="!isMobile"
+                class="white--text align-end"
+                height="300"
+                :lazy-src="
+                  'https://www.mya-hkvtuber.com/img/' +
+                  v.Thumbnail +
+                  '.jpg?width=700&format=jpg'
+                "
+                :src="
+                  'https://www.mya-hkvtuber.com/img/' +
+                  v.Thumbnail +
+                  '.jpg?width=700&format=jpg'
+                "
+              >
+                <v-card-title v-text="v.Title"></v-card-title>
+                <hr />
+                <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
+                  即將會在{{ convertTime(v.ScheduledStartTime) }} (9:00pm) 播出
+                </v-card-text>
+                <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
+                  正在播出
+                </v-card-text>
+                <v-card-text v-else> 已結束播放 </v-card-text>
+              </v-img>
+              <v-img
+                v-else
+                gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
+                class="white--text align-end"
+                height="250"
+                :lazy-src="
+                  'https://www.mya-hkvtuber.com/img/' +
+                  v.Thumbnail +
+                  '.jpg?width=480&format=jpg'
+                "
+                :src="
+                  'https://www.mya-hkvtuber.com/img/' +
+                  v.Thumbnail +
+                  '.jpg?width=480&format=jpg'
+                "
+              >
+                <v-card-title v-text="v.Title"></v-card-title>
+                <hr />
+                <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
+                  即將會在{{ convertTime(v.ScheduledStartTime) }}播出
+                </v-card-text>
+                <v-card-text v-else-if="getIsNowPlaying(v.ScheduledStartTime)">
+                  正在播出
+                </v-card-text>
+                <v-card-text v-else> 已結束播放 </v-card-text>
+              </v-img>
+            </v-card>
+          </v-hover>
         </v-col>
       </v-row>
     </v-container>
@@ -178,3 +183,30 @@ export default {
   },
 };
 </script>
+<style>
+.upcoming-card {
+  transition: all 0.5s ease;
+}
+.upcoming-card .v-image__image::after {
+  content: "";
+  inset: 0;
+  position: absolute;
+  transition: all 0.5s ease;
+}
+.upcoming-card.darken .v-image__image::after {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.upcoming-card.enlight {
+  transform: scale(1.02);
+  z-index: 1;
+}
+.upcoming-card.enlight .v-image__image::after {
+  background-color: rgba(0, 0, 0, 0);
+}
+.upcoming-card .v-responsive__content {
+  transition: all 0.5s ease;
+}
+.upcoming-card.enlight .v-responsive__content {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+</style>

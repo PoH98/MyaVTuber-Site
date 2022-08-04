@@ -200,6 +200,8 @@ import {
   mdiTrophy,
   mdiBook,
 } from "@mdi/js";
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 export default {
   name: "defaultLayout",
   data() {
@@ -281,6 +283,9 @@ export default {
       }, 500);
     },
   },
+  updated(){
+    AOS.init();
+  },
   async mounted() {
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
@@ -289,7 +294,6 @@ export default {
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
     ) {
-      console.log(this.$vuetify.theme.dark);
       this.$vuetify.theme.dark = true;
     }
     const month = new Date().getMonth() + 1;

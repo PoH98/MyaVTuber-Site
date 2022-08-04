@@ -75,7 +75,7 @@
           alt="@HigashikataKou"
         />
       </v-lazy>
-      <mya-live  />
+      <mya-live />
       <FSection>
         <v-container>
           <p class="text-h4 mb-0">院友期待你的加入！</p>
@@ -83,7 +83,7 @@
         </v-container>
       </FSection>
     </div>
-    <Live2D/>
+    <Live2D />
   </div>
 </template>
 <script>
@@ -148,7 +148,9 @@ export default {
         );
       })(document, "script", "twitter-wjs");
     }
-    window.twttr.ready(() => window.twttr.widgets.load());
+    window.twttr.ready(() => {
+      window.twttr.widgets.load();
+    });
   },
 };
 </script>
@@ -172,8 +174,8 @@ export default {
   max-height: 650px;
   overflow: auto;
 }
-@media (min-width: 960px){
-  .twitter{
+@media (min-width: 960px) {
+  .twitter {
     max-height: 530px;
   }
 }
