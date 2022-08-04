@@ -200,8 +200,6 @@ import {
   mdiTrophy,
   mdiBook,
 } from "@mdi/js";
-import AOS from 'aos'
-import 'aos/dist/aos.css'
 export default {
   name: "defaultLayout",
   data() {
@@ -282,9 +280,6 @@ export default {
         snow.style.background = "transparent";
       }, 500);
     },
-  },
-  updated(){
-    AOS.init();
   },
   async mounted() {
     window.addEventListener("auxclick", (event) => {
