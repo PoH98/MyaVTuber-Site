@@ -1,5 +1,19 @@
 # myahome
 
+## Prerequisites
+
+- NodeJs v14.18.2 (LTS)
+
+Suggest using [nvm](https://github.com/nvm-sh/nvm) to manage node version:
+
+```bash
+# install node v14.18.2
+$ nvm install 14.18.2
+
+# use node version
+$ nvm use 14.18.2
+```
+
 ## Build Setup
 
 ```bash
