@@ -1,4 +1,11 @@
 import $http from 'axios';
+const apiServerCorsRewriteTarget = {
+  target: "https://www.mya-hkvtuber.com",
+  pathRewrite: {
+    "^(/api|/Resources)": "/",
+  },
+}
+
 export default {
     // Target: https://go.nuxtjs.dev/config-target
     target: 'server',
@@ -134,13 +141,10 @@ export default {
         transpile: ['mdi-vue', ({ filePath }) => /(\.esm\.js|\.mjs)$/.test(filePath)]
     },
 
-    ...process.env.NODE_ENV === 'development' && {proxy: {
-      '/api': {
-        target: 'https://www.mya-hkvtuber.com',
-        pathRewrite: {
-          '^/api' : '/'
-        }
-      }
+    ...process.env.NODE_ENV === 'development' && {
+      proxy: {
+        "/api": apiServerCorsRewriteTarget,
+        "/Resources": apiServerCorsRewriteTarget,
     }
   }
 }
