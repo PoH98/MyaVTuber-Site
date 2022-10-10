@@ -9,7 +9,7 @@
         {{ title }}
       </v-col>
       <v-col cols="12" md="4" v-for="(c, i) in content" :key="i">
-        <v-card class="h-100 comment-cards">
+        <v-card class="h-100 comment-cards" :style="$vuetify.theme.dark?'--bg-color: white;':'--bg-color: black;'">
           <div class="design-container">
             <span class="design design--1"></span>
             <span class="design design--2"></span>
@@ -103,6 +103,7 @@ export default {
   position: relative;
   --tr: 90;
   --op: 0.5;
+  filter: opacity(0.8);
 }
 
 .comment-cards .design-container {
@@ -115,14 +116,16 @@ export default {
   overflow: hidden;
   pointer-events: none;
 }
+
 .comment-cards:hover {
   --tr: 20;
   --op: 0.7;
+  filter: opacity(1);
 }
 
 .design {
   display: block;
-  background: white;
+  background: var(--bg-color);
   position: absolute;
 
   opacity: var(--op);

@@ -164,11 +164,9 @@
           :options="snow"
           :particlesLoaded="particlesLoaded"
         />
-        <v-dialog v-model="showSpecialCelebrate" max-width="500">
+        <v-dialog v-model="showSpecialModel" max-width="500">
           <v-card>
-            <v-card-title>
-              米亞再次達成突破性路程杯啦！！
-            </v-card-title>
+            <v-card-title> 米亞再次達成突破性路程杯啦！！ </v-card-title>
             <v-card-text>
               <span class="d-md-flex d-none" v-if="showSpecialCelebrate">
                 <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
@@ -177,7 +175,19 @@
               </span>
             </v-card-text>
             <v-card-actions class="justify-center">
-              <v-btn color="pink" class="w-100" to="/celebrate3Dsuccess" @click="showSpecialCelebrate = false">
+              <v-btn
+                color="red"
+                class="w-50"
+                @click="showSpecialModel = false"
+              >
+                關閉
+              </v-btn>
+              <v-btn
+                color="pink"
+                class="w-50"
+                to="/celebrate3Dsuccess"
+                @click="showSpecialModel = false"
+              >
                 精彩彩蛋
               </v-btn>
             </v-card-actions>
@@ -241,6 +251,7 @@ export default {
       ],
       showCelebrate: false,
       showSpecialCelebrate: false,
+      showSpecialModel: false,
       specialCelebrateText: "恭喜米亞3D化大成功！",
       showSnow: false,
       snow: {
@@ -336,6 +347,9 @@ export default {
           }
         }
         if (this.showSpecialCelebrate) {
+          if (this.$route.name !== "celebrate3Dsuccess") {
+            this.showSpecialModel = true;
+          }
           const VueConfetti = await import("vue-confetti");
           this.$confetti = new VueConfetti.Confetti();
           if (window.innerWidth > 480) {
@@ -470,7 +484,7 @@ body {
 .v-responsive__content {
   margin-left: -100% !important;
 }
-.w-100{
-  width: 100%;
+.w-50 {
+  width: 50%;
 }
 </style>
