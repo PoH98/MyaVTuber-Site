@@ -1,15 +1,17 @@
 <template>
-  <v-container v-if="isLoading">
-    <img id="backimg" src="/img/fullwidth.jpg" class="bg-img" />
-  </v-container>
-  <v-container class="mt-10" v-else>
-    <img src="/img/fullwidth.jpg" class="bg-img no-animation" />
-    <v-row class="mt-5">
+  <v-container class="mt-10">
+    <img src="/img/fullwidth.jpg" class="bg-img" />
+    <v-row class="mt-5" v-if="!isLoading">
       <v-col cols="12" class="white--text big-title">
         {{ title }}
       </v-col>
       <v-col cols="12" md="4" v-for="(c, i) in content" :key="i">
-        <v-card class="h-100 comment-cards" :style="$vuetify.theme.dark?'--bg-color: white;':'--bg-color: black;'">
+        <v-card
+          class="h-100 comment-cards"
+          :style="
+            $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
+          "
+        >
           <div class="design-container">
             <span class="design design--1"></span>
             <span class="design design--2"></span>
@@ -82,6 +84,9 @@ export default {
   z-index: 1;
   font-size: 24px;
   font-weight: bold;
+  text-shadow: 1px 0px 1px #5c5c5c, 0px 1px 1px #535353, 2px 1px 1px #5c5c5c,
+    1px 2px 1px #535353, 3px 2px 1px #5c5c5c, 2px 3px 1px #535353,
+    4px 3px 1px #5c5c5c, 3px 4px 1px #535353, 2px 2px 2px rgba(206, 89, 55, 0);
 }
 .bg-img {
   position: absolute;
@@ -95,8 +100,7 @@ export default {
   animation-fill-mode: forwards;
 }
 .bg-img.no-animation {
-  animation-name: reverse;
-  animation-duration: 3s;
+  animation-name: none;
 }
 
 .comment-cards {
@@ -208,16 +212,11 @@ export default {
   0% {
     filter: brightness(40%) grayscale(100%);
   }
-  100% {
-    filter: brightness(100%) grayscale(0%);
-  }
-}
-@keyframes reverse {
-  0% {
+  80% {
     filter: brightness(100%) grayscale(0%);
   }
   100% {
-    filter: brightness(40%) grayscale(100%);
+    filter: brightness(80%) grayscale(0%);
   }
 }
 </style>

@@ -250,7 +250,7 @@ export default {
         1000000,
       ],
       showCelebrate: false,
-      showSpecialCelebrate: false,
+      showSpecialCelebrate: true,
       showSpecialModel: false,
       specialCelebrateText: "恭喜米亞3D化大成功！",
       showSnow: false,
