@@ -150,12 +150,7 @@
             >
               Darkmode
             </v-btn>
-            <v-btn
-              v-else
-              plain
-              block
-              @click="$vuetify.theme.dark = false"
-            >
+            <v-btn v-else plain block @click="$vuetify.theme.dark = false">
               Lightmode
             </v-btn>
           </v-list-item-group>
@@ -169,6 +164,25 @@
           :options="snow"
           :particlesLoaded="particlesLoaded"
         />
+        <v-dialog v-model="showSpecialCelebrate" max-width="500">
+          <v-card>
+            <v-card-title>
+              米亞再次達成突破性路程杯啦！！
+            </v-card-title>
+            <v-card-text>
+              <span class="d-md-flex d-none" v-if="showSpecialCelebrate">
+                <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
+                <p class="text-h6">{{ specialCelebrateText }}</p>
+                <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
+              </span>
+            </v-card-text>
+            <v-card-actions class="justify-center">
+              <v-btn color="pink" class="w-100" to="/celebrate3Dsuccess" @click="showSpecialCelebrate = false">
+                精彩彩蛋
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
@@ -186,6 +200,7 @@
   </div>
 </template>
 <script>
+import Particles from "particles.vue";
 import {
   mdiYoutube,
   mdiTwitter,
@@ -200,6 +215,8 @@ import {
   mdiTrophy,
   mdiBook,
 } from "@mdi/js";
+import Vue from "vue";
+Vue.use(Particles);
 export default {
   name: "defaultLayout",
   data() {
@@ -223,6 +240,8 @@ export default {
         1000000,
       ],
       showCelebrate: false,
+      showSpecialCelebrate: false,
+      specialCelebrateText: "恭喜米亞3D化大成功！",
       showSnow: false,
       snow: {
         background: {
@@ -298,7 +317,25 @@ export default {
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
           this.showCelebrate = true;
-          console.log(this.showCelebrate);
+          const VueConfetti = await import("vue-confetti");
+          this.$confetti = new VueConfetti.Confetti();
+          if (window.innerWidth > 480) {
+            this.$confetti.start({
+              defaultSize: 5,
+              particlesPerFrame: 0.1,
+              windSpeedMax: 0,
+              defaultDropRate: 2,
+            });
+          } else {
+            this.$confetti.start({
+              defaultSize: 5,
+              particlesPerFrame: 0.05,
+              windSpeedMax: 0,
+              defaultDropRate: 2,
+            });
+          }
+        }
+        if (this.showSpecialCelebrate) {
           const VueConfetti = await import("vue-confetti");
           this.$confetti = new VueConfetti.Confetti();
           if (window.innerWidth > 480) {
@@ -432,5 +469,8 @@ body {
 }
 .v-responsive__content {
   margin-left: -100% !important;
+}
+.w-100{
+  width: 100%;
 }
 </style>
