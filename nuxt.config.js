@@ -134,7 +134,7 @@ export default {
         transpile: ['mdi-vue', ({ filePath }) => /(\.esm\.js|\.mjs)$/.test(filePath)]
     },
 
-    proxy: {
+    ...process.env.NODE_ENV === 'development' && {proxy: {
       '/api': {
         target: 'https://www.mya-hkvtuber.com',
         pathRewrite: {
@@ -143,3 +143,4 @@ export default {
       }
     }
   }
+}
