@@ -36,6 +36,7 @@
     "@nuxtjs/device": "^2.1.0",
     "@nuxtjs/eslint-config": "^8.0.0",
     "@nuxtjs/eslint-module": "^3.0.2",
+    "@nuxtjs/proxy": "^2.1.0",
     "@nuxtjs/stylelint-module": "^4.1.0",
     "@nuxtjs/vuetify": "^1.12.3",
     "nuxt-purgecss": "^1.0.0"
