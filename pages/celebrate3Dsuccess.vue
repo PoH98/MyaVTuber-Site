@@ -1,41 +1,82 @@
 <template>
-  <v-container class="mt-10">
+  <section>
     <img src="/img/fullwidth.jpg" class="bg-img" />
-    <v-row class="mt-5" v-if="!isLoading">
-      <v-col cols="12" class="white--text big-title">
-        {{ title }}
-      </v-col>
-      <v-col cols="12" md="4" v-for="(c, i) in content" :key="i">
-        <v-card
-          class="h-100 comment-cards"
-          :style="
-            $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
-          "
+    <v-container
+      :class="isLoading ? 'pt-1' : 'pt-10 no-scroll'"
+      style="z-index: 1"
+    >
+      <v-progress-linear
+        v-if="isLoading"
+        indeterminate
+        color="pink"
+        height="10px"
+      ></v-progress-linear>
+      <v-row class="mt-5">
+        <v-col cols="12" class="white--text big-title">
+          {{ title }}
+        </v-col>
+      </v-row>
+      <v-row class="scrollable" v-if="!isLoading">
+        <v-col cols="12" md="4" v-for="(c, i) in content" :key="i">
+          <v-card
+            class="h-100 comment-cards"
+            :style="
+              $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
+            "
+          >
+            <div class="design-container">
+              <span class="design design--1"></span>
+              <span class="design design--2"></span>
+              <span class="design design--3"></span>
+              <span class="design design--4"></span>
+              <span class="design design--5"></span>
+              <span class="design design--6"></span>
+              <span class="design design--7"></span>
+              <span class="design design--8"></span>
+            </div>
+            <div class="px-3 py-1">
+              <v-card-title>
+                {{ c.data.name.iv }}
+              </v-card-title>
+              <v-card-text class="text-left">
+                <span
+                  class="typing"
+                  :style="'--steps:' + c.data.wish.iv.length"
+                >
+                  {{ c.data.wish.iv }}
+                </span>
+              </v-card-text>
+            </div>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="mt-15 pt-15" v-else>
+        <v-col
+          cols="12"
+          class="white--text half-transparent-bg justify-center d-flex text-h6"
+          style="z-index: 1"
         >
-          <div class="design-container">
-            <span class="design design--1"></span>
-            <span class="design design--2"></span>
-            <span class="design design--3"></span>
-            <span class="design design--4"></span>
-            <span class="design design--5"></span>
-            <span class="design design--6"></span>
-            <span class="design design--7"></span>
-            <span class="design design--8"></span>
-          </div>
-          <div class="px-3 py-1">
-            <v-card-title>
-              {{ c.data.name.iv }}
-            </v-card-title>
-            <v-card-text class="text-left">
-              <span class="typing" :style="'--steps:' + c.data.wish.iv.length">
-                {{ c.data.wish.iv }}
-              </span>
-            </v-card-text>
-          </div>
-        </v-card>
-      </v-col>
-    </v-row>
-  </v-container>
+          <span class="bouncing-0" style="--dl: 1s">L</span>
+          <span class="bouncing-1" style="--dl: 1.2s">o</span>
+          <span class="bouncing-2" style="--dl: 1.4s">a</span>
+          <span class="bouncing-3" style="--dl: 1.6s">d</span>
+          <span class="bouncing-4" style="--dl: 1.8s">i</span>
+          <span class="bouncing-5" style="--dl: 2s">n</span>
+          <span class="bouncing-6" style="--dl: 2.2s">g</span>
+          <span class="bouncing-7" style="--dl: 2.4s">.</span>
+          <span class="bouncing-8" style="--dl: 2.6s">.</span>
+          <span class="bouncing-9" style="--dl: 2.8s">.</span>
+        </v-col>
+        <v-col
+          cols="12"
+          class="green--text black text-left"
+          style="z-index: 1"
+          v-html="fakeLoading"
+        >
+        </v-col>
+      </v-row>
+    </v-container>
+  </section>
 </template>
 <script>
 export default {
@@ -45,11 +86,26 @@ export default {
       titleIndex: 0,
       typingInterval: null,
       isLoading: true,
+      fakeLoading: "",
+      fakeLoadingInterval: null,
     };
   },
   mounted() {
+    this.fakeLoadingInterval = setInterval(() => {
+      let str = `Detecting system...<br/>Loading virus...<br/>Installing MYA virus...10% 20% 30% 40% 50% 60% 70% 80% 90% 100%<br/>Initializing virus...
+      <br/>Device scan completed, analyzing best destroy method...<br/>Done...<br/>Starting up...<span></span>
+      <br/>Start encrypting device...10% 20% 30% 40% 50% 60% 70% 80% 90% 100%<br/>Encryption completed...<br/>Please pay 1647 BTC to unlock your PC!<br/>You are fooled XD`;
+      this.fakeLoading = this.fakeLoading.slice(0, -1);
+      this.fakeLoading += str[this.titleIndex] + "_";
+      this.titleIndex++;
+      if (this.titleIndex >= str.length) {
+        this.fakeLoading = this.fakeLoading.slice(0, -1);
+        clearInterval(this.fakeLoadingInterval);
+      }
+    }, 10);
     setTimeout(() => {
       this.isLoading = false;
+      this.titleIndex = 0;
       this.typingInterval = setInterval(() => {
         let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
         this.title = this.title.slice(0, -1);
@@ -60,7 +116,7 @@ export default {
           clearInterval(this.typingInterval);
         }
       }, 100);
-    }, 6000);
+    }, 7000);
   },
   async asyncData({ $http }) {
     let tempData = await $http
@@ -77,6 +133,55 @@ export default {
 .h-100 {
   height: 100%;
 }
+
+.half-transparent-bg {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.bouncing-0,
+.bouncing-1,
+.bouncing-2,
+.bouncing-3,
+.bouncing-4,
+.bouncing-5,
+.bouncing-6,
+.bouncing-7,
+.bouncing-8,
+.bouncing-9 {
+  display: block;
+  animation: bounce;
+  animation-duration: 3.5s;
+  animation-iteration-count: infinite;
+  animation-delay: var(--dl);
+}
+
+.no-scroll {
+  overflow: hidden;
+  max-height: calc(100vh - 67px - 67px);
+}
+
+.scrollable {
+  position: relative;
+  height: calc(100vh - 67px - 90px - 67px);
+  overflow-y: visible;
+  overflow-x: hidden;
+  padding-bottom: 30px;
+}
+
+.scrollable::-webkit-scrollbar {
+  width: 14px;
+}
+
+.scrollable::-webkit-scrollbar-track {
+  background: #ffffff;
+}
+
+.scrollable::-webkit-scrollbar-thumb {
+  background-color: #ff00bb;
+  border-radius: 10px;
+  border: 3px solid #ffffff;
+}
+
 .big-title {
   opacity: 1;
   text-align: center;
@@ -92,12 +197,13 @@ export default {
   position: absolute;
   inset: 0;
   width: 100%;
-  height: 100%;
+  height: calc(100vh - 67px - 67px);
   object-fit: cover;
   filter: brightness(40%) grayscale(100%);
   animation-name: colorChange;
   animation-duration: 6s;
   animation-fill-mode: forwards;
+  z-index: 0;
 }
 .bg-img.no-animation {
   animation-name: none;
@@ -217,6 +323,30 @@ export default {
   }
   100% {
     filter: brightness(80%) grayscale(0%);
+  }
+}
+
+@keyframes bounce {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, 0.9) translateY(0);
+  }
+  30% {
+    transform: scale(0.9, 1.1) translateY(-10px);
+  }
+  50% {
+    transform: scale(1.05, 0.95) translateY(0);
+  }
+  58% {
+    transform: scale(1, 1) translateY(-1px);
+  }
+  65% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
   }
 }
 </style>

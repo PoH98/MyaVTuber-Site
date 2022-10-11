@@ -1,6 +1,6 @@
 <template>
   <v-row class="flex-column text-center h-100 justify-center">
-    <v-container>
+    <v-container :class="$vuetify.theme.dark?'white--text':''">
       <v-img width="50" height="50" src="/img/lol.png" class="mx-auto mb-8" />
       <div class="mb-5" v-if="error.statusCode === 404">
         <h1>
@@ -16,7 +16,7 @@
           米亞唔知你做左咩，不過似乎網頁已經崩潰，不如我哋返翻首頁?
         </p>
       </div>
-      <NuxtLink to="/"> 首頁 </NuxtLink>
+      <NuxtLink :class="$vuetify.theme.dark?'white--text':''" to="/"> 首頁 </NuxtLink>
     </v-container>
   </v-row>
 </template>
