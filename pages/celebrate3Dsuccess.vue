@@ -88,16 +88,31 @@ export default {
       isLoading: true,
       fakeLoading: "",
       fakeLoadingInterval: null,
+      fakeLoadingHold: false,
+      fakeLoadingHoldInteger: 0,
     };
   },
   mounted() {
     this.fakeLoadingInterval = setInterval(() => {
-      let str = `Detecting system...<br/>Loading virus...<br/>Installing MYA virus...10% 20% 30% 40% 50% 60% 70% 80% 90% 100%<br/>Initializing virus...
-      <br/>Device scan completed, analyzing best destroy method...<br/>Done...<br/>Starting up...<span></span>
-      <br/>Start encrypting device...10% 20% 30% 40% 50% 60% 70% 80% 90% 100%<br/>Encryption completed...<br/>Please pay 1647 BTC to unlock your PC!<br/>You are fooled XD`;
-      this.fakeLoading = this.fakeLoading.slice(0, -1);
-      this.fakeLoading += str[this.titleIndex] + "_";
-      this.titleIndex++;
+      let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
+      <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
+      if (this.fakeLoadingHold) {
+        this.fakeLoading += "&#9632; ";
+        this.fakeLoadingHoldInteger++;
+        if (this.fakeLoadingHoldInteger >= 15) {
+          this.fakeLoadingHold = false;
+          this.fakeLoadingHoldInteger = 0;
+        }
+      } else {
+        if (str[this.titleIndex] === "|") {
+          this.fakeLoadingHold = true;
+          this.fakeLoading = this.fakeLoading.slice(0, -1);
+        } else {
+          this.fakeLoading = this.fakeLoading.slice(0, -1);
+          this.fakeLoading += str[this.titleIndex] + "_";
+        }
+        this.titleIndex++;
+      }
       if (this.titleIndex >= str.length) {
         this.fakeLoading = this.fakeLoading.slice(0, -1);
         clearInterval(this.fakeLoadingInterval);
