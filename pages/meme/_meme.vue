@@ -159,6 +159,22 @@ export default {
 .wiki {
   min-height: calc(100vh - 130px);
 }
+
+.wiki .content .responsive-iframe {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 */
+  padding-top: 25px;
+  height: 0;
+}
+
+.wiki .content  iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .wiki .content * {
   margin-bottom: 10px !important;
 }
