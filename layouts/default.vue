@@ -196,7 +196,7 @@
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
-          Crafted By <a href="https://github.com/PoH98">PoH98</a>
+          Crafted By <a href="https://github.com/PoH98">PoH98</a>, <a href="https://github.com/sawaYch">Sawa</a>
         </p>
         <v-spacer />
         <div class="footer">

@@ -154,11 +154,13 @@ export default {
     color: #72c2c2;
   }
 }
+//used better css
+/*
 .wiki {
   .content {
     :deep(.responsive-iframe) {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 56.25%; /* 16:9 *//*
       padding-top: 25px;
       height: 0;
 
@@ -171,7 +173,7 @@ export default {
       }
     }
   }
-}
+}*/
 </style>
 <style>
 .wiki {
@@ -180,5 +182,12 @@ export default {
 
 .wiki .content * {
   margin-bottom: 10px !important;
+}
+
+.wiki .content iframe {
+  position: relative;
+  width: 100% !important;
+  aspect-ratio: 16 / 9;
+  height: 100% !important;
 }
 </style>
