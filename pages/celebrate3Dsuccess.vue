@@ -1,5 +1,5 @@
 <template>
-  <section>
+  <section class="celebrate">
     <img src="/img/fullwidth.jpg" class="bg-img" />
     <v-container
       :class="isLoading ? 'pt-1' : 'pt-10 no-scroll'"
@@ -69,7 +69,7 @@
         </v-col>
         <v-col
           cols="12"
-          class="green--text black text-left"
+          class="green--text black text-left fake-console"
           style="z-index: 1"
           v-html="fakeLoading"
         >
@@ -80,6 +80,11 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: "祝賀米亞3D化成功",
+    };
+  },
   data() {
     return {
       title: "",
@@ -246,6 +251,10 @@ export default {
   --tr: 20;
   --op: 0.7;
   filter: opacity(1);
+}
+
+.fake-console{
+  user-select: text;
 }
 
 .design {

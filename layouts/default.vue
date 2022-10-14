@@ -164,21 +164,21 @@
           :options="snow"
           :particlesLoaded="particlesLoaded"
         />
-        <v-dialog v-model="showSpecialModel" max-width="500">
+        <v-dialog v-model="specialCelebrate.showSpecialModel" max-width="500">
           <v-card>
             <v-card-title> 米亞再次達成突破性路程杯啦！！ </v-card-title>
             <v-card-text>
-              <span class="d-md-flex d-none" v-if="showSpecialCelebrate">
+              <span class="d-md-flex d-none" v-if="specialCelebrate.showSpecialCelebrate">
                 <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
-                <p class="text-h6">{{ specialCelebrateText }}</p>
+                <p class="text-h6">{{ specialCelebrate.specialCelebrateText }}</p>
                 <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
               </span>
             </v-card-text>
-            <v-card-actions class="justify-center">
+            <v-card-actions class="justify-space-between">
               <v-btn
                 color="red"
                 class="w-50"
-                @click="showSpecialModel = false"
+                @click="specialCelebrate.showSpecialModel = false"
               >
                 關閉
               </v-btn>
@@ -186,7 +186,7 @@
                 color="pink"
                 class="w-50"
                 to="/celebrate3Dsuccess"
-                @click="showSpecialModel = false"
+                @click="specialCelebrate.showSpecialModel = false"
               >
                 精彩彩蛋
               </v-btn>
@@ -225,6 +225,7 @@ import {
   mdiTrophy,
   mdiBook,
 } from "@mdi/js";
+import config from '@/plugins/specialEvent.json'
 import Vue from "vue";
 Vue.use(Particles);
 export default {
@@ -250,9 +251,7 @@ export default {
         1000000,
       ],
       showCelebrate: false,
-      showSpecialCelebrate: true,
-      showSpecialModel: false,
-      specialCelebrateText: "恭喜米亞3D化大成功！",
+      specialCelebrate:{},
       showSnow: false,
       snow: {
         background: {
@@ -312,6 +311,7 @@ export default {
     },
   },
   async mounted() {
+    this.specialCelebrate = config;
     window.addEventListener("auxclick", (event) => {
       if (event.button === 1) event.preventDefault();
     });
@@ -346,9 +346,9 @@ export default {
             });
           }
         }
-        if (this.showSpecialCelebrate) {
+        if (this.specialCelebrate.showSpecialCelebrate) {
           if (this.$route.name !== "celebrate3Dsuccess") {
-            this.showSpecialModel = true;
+            this.specialCelebrate.showSpecialModel = true;
           }
           const VueConfetti = await import("vue-confetti");
           this.$confetti = new VueConfetti.Confetti();
@@ -485,6 +485,6 @@ body {
   margin-left: -100% !important;
 }
 .w-50 {
-  width: 50%;
+  width: 49%;
 }
 </style>
