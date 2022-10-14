@@ -31,6 +31,18 @@
       <hr class="mb-5" />
       <div class="content" v-html="content.longdesc"></div>
     </v-container>
+    <hr />
+    <v-container>
+      <v-row>
+        <v-btn
+          :class="$vuetify.theme.dark ? 'white--text' : 'dark--text'"
+          plain
+          to="/mya-meme"
+        >
+          <v-icon> {{ mdiChevronLeft }} </v-icon>Back
+        </v-btn>
+      </v-row>
+    </v-container>
   </v-sheet>
   <v-sheet class="wiki" v-else>
     <v-container class="text-left">
@@ -160,7 +172,7 @@ export default {
   .content {
     :deep(.responsive-iframe) {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 *//*
+      padding-bottom: 56.25%; /* 16:9 */ /*
       padding-top: 25px;
       height: 0;
 
