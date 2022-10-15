@@ -1,6 +1,10 @@
 <template>
   <section class="celebrate">
-    <img src="/img/fullwidth.jpg" class="bg-img" />
+    <v-row class="bg-img">
+      <v-col class="py-0 px-0" cols="2" v-for="i in bgimgs" :key="i">
+        <img class="img-fluid" :src="'/img/YoutubeVideos/' + i + '.jpg'" />
+      </v-col>
+    </v-row>
     <v-container
       :class="isLoading ? 'pt-1' : 'pt-10 no-scroll'"
       style="z-index: 1"
@@ -95,6 +99,7 @@ export default {
       fakeLoadingInterval: null,
       fakeLoadingHold: false,
       fakeLoadingHoldInteger: 0,
+      bgimgs: [],
     };
   },
   mounted() {
@@ -137,6 +142,13 @@ export default {
         }
       }, 100);
     }, 7000);
+    for (let x = 0; x < 42; x++) {
+      let rnd = Math.floor(Math.random() * (251 - 1 + 1)) + 1;
+      while (this.bgimgs.includes(rnd)) {
+        rnd = Math.floor(Math.random() * (251 - 1 + 1)) + 1;
+      }
+      this.bgimgs.push(rnd);
+    }
   },
   async asyncData({ $http }) {
     let tempData = await $http
@@ -175,33 +187,6 @@ export default {
   animation-delay: var(--dl);
 }
 
-.no-scroll {
-  overflow: hidden;
-  max-height: calc(100vh - 67px - 67px);
-}
-
-.scrollable {
-  position: relative;
-  height: calc(100vh - 67px - 90px - 67px);
-  overflow-y: visible;
-  overflow-x: hidden;
-  padding-bottom: 30px;
-}
-
-.scrollable::-webkit-scrollbar {
-  width: 14px;
-}
-
-.scrollable::-webkit-scrollbar-track {
-  background: #ffffff;
-}
-
-.scrollable::-webkit-scrollbar-thumb {
-  background-color: #ff00bb;
-  border-radius: 10px;
-  border: 3px solid #ffffff;
-}
-
 .big-title {
   opacity: 1;
   text-align: center;
@@ -214,10 +199,9 @@ export default {
     4px 3px 1px #5c5c5c, 3px 4px 1px #535353, 2px 2px 2px rgba(206, 89, 55, 0);
 }
 .bg-img {
-  position: absolute;
+  position: fixed;
   inset: 0;
   width: 100%;
-  height: calc(100vh - 67px - 67px);
   object-fit: cover;
   filter: brightness(40%) grayscale(100%);
   animation-name: colorChange;
@@ -225,6 +209,13 @@ export default {
   animation-fill-mode: forwards;
   z-index: 0;
 }
+
+.bg-img img {
+  user-select: none;
+  pointer-events: none;
+  filter: blur(1px);
+}
+
 .bg-img.no-animation {
   animation-name: none;
 }
@@ -233,7 +224,8 @@ export default {
   position: relative;
   --tr: 90;
   --op: 0.5;
-  filter: opacity(0.8);
+  filter: opacity(0.9);
+  transition: all 0.5s ease;
 }
 
 .comment-cards .design-container {
@@ -253,7 +245,7 @@ export default {
   filter: opacity(1);
 }
 
-.fake-console{
+.fake-console {
   user-select: text;
 }
 
@@ -346,7 +338,7 @@ export default {
     filter: brightness(100%) grayscale(0%);
   }
   100% {
-    filter: brightness(80%) grayscale(0%);
+    filter: brightness(65%) grayscale(0%);
   }
 }
 
