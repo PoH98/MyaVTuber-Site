@@ -108,6 +108,7 @@ export default {
             'plugins/**/*.js',
             'node_modules/@nuxt/vue-app/template/**/*.html',
             'node_modules/@nuxt/vue-app/template/**/*.vue',
+            'node_modules/video.js/dist/*.css'
         ],
         extractors: [{
             extractor: (content) => content.match(/[A-z0-9-:\\/]+/g) || [],
