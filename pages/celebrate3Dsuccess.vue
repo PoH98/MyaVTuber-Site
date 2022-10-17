@@ -18,7 +18,7 @@
         </v-col>
       </v-row>
       <div v-if="!isLoading">
-        <v-row v-for="i in arrayLength" :key="i">
+        <v-row class="mx-0" v-for="i in arrayLength" :key="i">
           <v-col cols="12">
             <video-row
               :video="videos[i]"
@@ -126,7 +126,12 @@ export default {
       fakeLoadingHold: false,
       fakeLoadingHoldInteger: 0,
       bgimgs: [],
-      videos:["/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4"]
+      videos: [
+        "/img/vid_celebrate3D.mp4",
+        "/img/vid_celebrate3D.mp4",
+        "/img/vid_celebrate3D.mp4",
+        "/img/vid_celebrate3D.mp4",
+      ],
     };
   },
   computed: {
