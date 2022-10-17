@@ -107,8 +107,7 @@ export default {
             'pages/**/*.vue',
             'plugins/**/*.js',
             'node_modules/@nuxt/vue-app/template/**/*.html',
-            'node_modules/@nuxt/vue-app/template/**/*.vue',
-            'node_modules/video.js/dist/*.css'
+            'node_modules/@nuxt/vue-app/template/**/*.vue'
         ],
         extractors: [{
             extractor: (content) => content.match(/[A-z0-9-:\\/]+/g) || [],
@@ -124,7 +123,9 @@ export default {
             /^d-.+/,
             /^col-.+/,
             /^lg-.+/,
-            /^order-.+/
+            /^order-.+/,
+            /^video-js.+/,
+            /^vjs-.+/
         ],
         whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--light*/, /^theme--dark*/],
     },
