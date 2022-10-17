@@ -46,8 +46,7 @@ export default {
     // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
     buildModules: [
         // https://go.nuxtjs.dev/vuetify
-        '@nuxtjs/vuetify',
-        "nuxt-purgecss"
+        '@nuxtjs/vuetify'
     ],
     sitemap: {
         hostname: 'https://www.mya-hkvtuber.com',
@@ -94,39 +93,6 @@ export default {
             },
             icons: 'mdiSvg'
         }
-    },
-    '@fullhuman/postcss-purgecss': {
-        content: ['./pages/**/*.vue', './layouts/**/*.vue', './components/**/*.vue'],
-        safelist: ['html', 'body']
-    },
-    purgeCSS: {
-        styleExtensions: ['.css', '.scss', '.styl', '.sass', '.postcss'],
-        paths: [
-            'components/**/*.vue',
-            'layouts/**/*.vue',
-            'pages/**/*.vue',
-            'plugins/**/*.js',
-            'node_modules/@nuxt/vue-app/template/**/*.html',
-            'node_modules/@nuxt/vue-app/template/**/*.vue',
-            'node_modules/video.js/**/*.css'
-        ],
-        extractors: [{
-            extractor: (content) => content.match(/[A-z0-9-:\\/]+/g) || [],
-            extensions: ['html', 'vue', 'js'],
-        }, ],
-        whitelist: ['v-application', 'v-application--wrap', 'container', 'spacer', 'img-fluid', 'col', 'v-responsive__sizer', 'confetti-canvas'],
-        whitelistPatterns: () => [
-            /^v-((?!application).)*$/,
-            /^v-application--is-ltr.+/,
-            /^\.theme--light*/,
-            /^\.theme--dark*/,
-            /.*-transition/,
-            /^d-.+/,
-            /^col-.+/,
-            /^lg-.+/,
-            /^order-.+/
-        ],
-        whitelistPatternsChildren: [/^v-((?!application).)*$/, /^theme--light*/, /^theme--dark*/],
     },
     // Build Configuration: https://go.nuxtjs.dev/config-build
     build: {
