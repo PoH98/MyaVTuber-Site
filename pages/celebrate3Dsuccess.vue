@@ -5,10 +5,7 @@
         <img class="img-fluid" :src="'/img/YoutubeVideos/' + i + '.jpg'" />
       </v-col>
     </v-row>
-    <v-container
-      :class="isLoading ? 'pt-1' : 'pt-10 no-scroll'"
-      style="z-index: 1"
-    >
+    <v-container :class="isLoading ? 'pt-1 ccontainer' : 'pt-10 ccontainer'">
       <v-progress-linear
         v-if="isLoading"
         indeterminate
@@ -20,40 +17,63 @@
           {{ title }}
         </v-col>
       </v-row>
-      <v-row class="scrollable" v-if="!isLoading">
-        <v-col cols="12" md="4" v-for="(c, i) in content" :key="i">
-          <v-card
-            class="h-100 comment-cards"
-            :style="
-              $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
-            "
+      <div v-if="!isLoading">
+        <v-row v-for="i in arrayLength" :key="i">
+          <v-col cols="12">
+            <video-row
+              :video="videos[i]"
+              :post="
+                Math.min((i - 1) * 8, content.length) === 0
+                  ? content
+                  : content.slice(Math.min((i - 1) * 8, content.length))
+              "
+              :position="i % 2 === 0 ? 'right' : 'left'"
+            />
+          </v-col>
+          <v-col
+            cols="12"
+            md="4"
+            v-for="(c, v) in content.slice(
+              Math.min((i - 1) * 8 + 2, content.length),
+              Math.min((i - 1) * 8 + 8, content.length)
+            )"
+            :key="i + '_' + v"
           >
-            <div class="design-container">
-              <span class="design design--1"></span>
-              <span class="design design--2"></span>
-              <span class="design design--3"></span>
-              <span class="design design--4"></span>
-              <span class="design design--5"></span>
-              <span class="design design--6"></span>
-              <span class="design design--7"></span>
-              <span class="design design--8"></span>
-            </div>
-            <div class="px-3 py-1">
-              <v-card-title>
-                {{ c.data.name.iv }}
-              </v-card-title>
-              <v-card-text class="text-left">
-                <span
-                  class="typing"
-                  :style="'--steps:' + c.data.wish.iv.length"
-                >
-                  {{ c.data.wish.iv }}
-                </span>
-              </v-card-text>
-            </div>
-          </v-card>
-        </v-col>
-      </v-row>
+            <v-card
+              class="h-100 comment-cards"
+              :style="
+                $vuetify.theme.dark
+                  ? '--bg-color: white;'
+                  : '--bg-color: black;'
+              "
+            >
+              <div class="design-container">
+                <span class="design design--1"></span>
+                <span class="design design--2"></span>
+                <span class="design design--3"></span>
+                <span class="design design--4"></span>
+                <span class="design design--5"></span>
+                <span class="design design--6"></span>
+                <span class="design design--7"></span>
+                <span class="design design--8"></span>
+              </div>
+              <div class="px-3 py-1">
+                <v-card-title>
+                  {{ c.data.name.iv }}
+                </v-card-title>
+                <v-card-text class="text-left">
+                  <span
+                    class="typing"
+                    :style="'--steps:' + c.data.wish.iv.length"
+                  >
+                    {{ c.data.wish.iv }}
+                  </span>
+                </v-card-text>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+      </div>
       <v-row class="mt-15 pt-15" v-else>
         <v-col
           cols="12"
@@ -83,11 +103,17 @@
   </section>
 </template>
 <script>
+import VideoPlayer from "@/components/VideoPlayer.vue";
+import VideoRow from "../components/Celebrate3D/VideoRow.vue";
 export default {
   head() {
     return {
       title: "祝賀米亞3D化成功",
     };
+  },
+  components: {
+    VideoPlayer,
+    VideoRow,
   },
   data() {
     return {
@@ -100,7 +126,15 @@ export default {
       fakeLoadingHold: false,
       fakeLoadingHoldInteger: 0,
       bgimgs: [],
+      videos:["/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4", "/img/vid_celebrate3D.mp4"]
     };
+  },
+  computed: {
+    arrayLength() {
+      let result = Math.round(this.content.length / 8);
+      console.log(result);
+      return result;
+    },
   },
   mounted() {
     this.fakeLoadingInterval = setInterval(() => {
@@ -218,6 +252,11 @@ export default {
 
 .bg-img.no-animation {
   animation-name: none;
+}
+
+.ccontainer {
+  position: relative;
+  z-index: 1;
 }
 
 .comment-cards {
@@ -363,6 +402,12 @@ export default {
   }
   100% {
     transform: scale(1, 1) translateY(0);
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .h-md-50 {
+    height: 49%;
   }
 }
 </style>

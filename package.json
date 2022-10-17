@@ -24,6 +24,7 @@
     "mdi-vue": "^3.0.12",
     "nuxt": "^2.15.8",
     "particles.vue": "^2.42.1",
+    "video.js": "^7.20.3",
     "vue": "^2.7.8",
     "vue-confetti": "^2.3.0",
     "vue-product-zoomer": "^3.0.1",
