@@ -18,7 +18,7 @@
         </v-col>
       </v-row>
       <div v-if="!isLoading">
-        <v-row class="mx-0" v-for="i in arrayLength" :key="i">
+        <v-row class="mx-0" v-for="i in arrayLength" :key="'group_' + i">
           <v-col cols="12">
             <video-row
               :video="videos[i]"
@@ -39,6 +39,42 @@
             )"
             :key="i + '_' + v"
           >
+            <v-card
+              class="h-100 comment-cards"
+              :style="
+                $vuetify.theme.dark
+                  ? '--bg-color: white;'
+                  : '--bg-color: black;'
+              "
+            >
+              <div class="design-container">
+                <span class="design design--1"></span>
+                <span class="design design--2"></span>
+                <span class="design design--3"></span>
+                <span class="design design--4"></span>
+                <span class="design design--5"></span>
+                <span class="design design--6"></span>
+                <span class="design design--7"></span>
+                <span class="design design--8"></span>
+              </div>
+              <div class="px-3 py-1">
+                <v-card-title>
+                  {{ c.data.name.iv }}
+                </v-card-title>
+                <v-card-text class="text-left">
+                  <span
+                    class="typing"
+                    :style="'--steps:' + c.data.wish.iv.length"
+                  >
+                    {{ c.data.wish.iv }}
+                  </span>
+                </v-card-text>
+              </div>
+            </v-card>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col cols="12" md="4" v-for="(c, i) in content.slice(-arrayLeft)" :key="'single_' + i">
             <v-card
               class="h-100 comment-cards"
               :style="
@@ -137,7 +173,10 @@ export default {
   computed: {
     arrayLength() {
       let result = Math.round(this.content.length / 8);
-      console.log(result);
+      return result;
+    },
+    arrayLeft() {
+      let result = this.content.length % 8;
       return result;
     },
   },

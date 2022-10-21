@@ -1,5 +1,5 @@
 <template>
-  <v-row class="mx-0">
+  <v-row>
     <v-col cols="12" md="8" v-if="position === 'left'">
       <v-card
         class="comment-cards"
