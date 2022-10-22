@@ -1,8 +1,14 @@
 <template>
   <section class="celebrate">
     <v-row class="bg-img">
-      <v-col class="py-0 px-0" cols="2" v-for="i in bgimgs" :key="i">
-        <img class="img-fluid" :src="'/img/YoutubeVideos/' + i + '.jpg'" />
+      <v-col
+        class="py-0 px-0 position-relative"
+        cols="2"
+        v-for="i in 42"
+        :key="i"
+      >
+        <img :ref="'bg_' + i" class="img-fluid bg-img-content" />
+        <img :ref="'bg_clone_' + i" class="img-fluid bg-img-clone" />
       </v-col>
     </v-row>
     <v-container :class="isLoading ? 'pt-1 ccontainer' : 'pt-10 ccontainer'">
@@ -20,8 +26,9 @@
       <div v-if="!isLoading">
         <v-row class="mx-0" v-for="i in arrayLength" :key="'group_' + i">
           <v-col cols="12">
+            {{ i }}
             <video-row
-              :video="videos[i]"
+              :video="videos[i - 1]"
               :post="
                 Math.min((i - 1) * 8, content.length) === 0
                   ? content
@@ -74,7 +81,12 @@
           </v-col>
         </v-row>
         <v-row>
-          <v-col cols="12" md="4" v-for="(c, i) in content.slice(-arrayLeft)" :key="'single_' + i">
+          <v-col
+            cols="12"
+            md="4"
+            v-for="(c, i) in content.slice(-arrayLeft)"
+            :key="'single_' + i"
+          >
             <v-card
               class="h-100 comment-cards"
               :style="
@@ -163,11 +175,14 @@ export default {
       fakeLoadingHoldInteger: 0,
       bgimgs: [],
       videos: [
-        "/img/vid_celebrate3D.mp4",
-        "/img/vid_celebrate3D.mp4",
-        "/img/vid_celebrate3D.mp4",
-        "/img/vid_celebrate3D.mp4",
+        "/img/vid_celebrate3D_1.mp4",
+        "/img/vid_celebrate3D_2.mp4",
+        "/img/vid_celebrate3D_3.mp4",
+        "/img/vid_celebrate3D_4.mp4",
+        "/img/vid_celebrate3D_5.mp4",
       ],
+      tickIdentifier: 0,
+      lastIndex: 0,
     };
   },
   computed: {
@@ -178,6 +193,43 @@ export default {
     arrayLeft() {
       let result = this.content.length % 8;
       return result;
+    },
+    bgimg() {
+      return this.bgimgs;
+    },
+  },
+  methods: {
+    intervalTimer() {
+      let vm = this;
+      let rnd = vm.getRandomInt(1, 251);
+      while (vm.bgimgs.includes(rnd)) {
+        rnd = vm.getRandomInt(1, 251);
+      }
+      let index = vm.getRandomInt(1, 42);
+      while (vm.lastIndex === rnd){
+        index  = vm.getRandomInt(1, 42);
+      }
+      vm.lastIndex = index;
+      vm.bgimgs[index] = rnd;
+      vm.tickIdentifier++;
+      if (!vm.$refs["bg_" + index]) {
+        return;
+      }
+      vm.$refs["bg_clone_" + index][0].src =
+        "/img/YoutubeVideos/" + rnd + ".jpg";
+      vm.$refs["bg_" + index][0].classList.remove("active");
+      vm.$refs["bg_clone_" + index][0].classList.add("active");
+
+      setTimeout(() => {
+        vm.$refs["bg_" + index][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
+        vm.$refs["bg_" + index][0].classList.add("active");
+        vm.$refs["bg_clone_" + index][0].classList.remove("active");
+      }, 2000);
+    },
+    getRandomInt(min, max) {
+      min = Math.ceil(min);
+      max = Math.floor(max);
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     },
   },
   mounted() {
@@ -221,12 +273,14 @@ export default {
       }, 100);
     }, 7000);
     for (let x = 0; x < 42; x++) {
-      let rnd = Math.floor(Math.random() * (251 - 1 + 1)) + 1;
+      let rnd = this.getRandomInt(1, 251);
       while (this.bgimgs.includes(rnd)) {
-        rnd = Math.floor(Math.random() * (251 - 1 + 1)) + 1;
+        rnd = this.getRandomInt(1, 251);
       }
-      this.bgimgs.push(rnd);
+      this.$refs["bg_" + (x + 1)][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
+      this.$refs["bg_" + (x + 1)][0].classList.add("active");
     }
+    setInterval(this.intervalTimer, 1000);
   },
   async asyncData({ $http }) {
     let tempData = await $http
@@ -412,7 +466,25 @@ export default {
 .design--8 {
   top: 98%;
 }
-
+.position-relative {
+  position: relative;
+}
+.bg-img-content {
+  transition: opacity 1s ease-in-out;
+  position: absolute;
+  z-index: 1;
+  opacity: 0;
+  inset: 0;
+}
+.bg-img-clone {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 1;
+}
+.bg-img-content.active {
+  opacity: 1;
+}
 @keyframes colorChange {
   0% {
     filter: brightness(40%) grayscale(100%);
