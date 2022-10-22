@@ -80,7 +80,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row>
+        <v-row v-if="arrayLeft > 0">
           <v-col
             cols="12"
             md="4"
