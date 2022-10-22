@@ -187,7 +187,7 @@ export default {
   },
   computed: {
     arrayLength() {
-      let result = Math.round(this.content.length / 8);
+      let result = Math.round(this.content.length / 8) - 1;
       return result;
     },
     arrayLeft() {
