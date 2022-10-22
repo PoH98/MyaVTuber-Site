@@ -64,7 +64,7 @@
                 <span class="design design--7"></span>
                 <span class="design design--8"></span>
               </div>
-              <div class="px-3 py-1">
+              <div class="px-3 pt-1 pb-2">
                 <v-card-title>
                   {{ c.data.name.iv }}
                 </v-card-title>
@@ -186,28 +186,35 @@ export default {
     };
   },
   computed: {
+    arrayTotal() {
+      return this.content.length;
+    },
     arrayLength() {
-      let result = Math.round(this.content.length / 8);
+      let result = Math.floor(this.arrayTotal / 8);
       return result;
     },
     arrayLeft() {
-      let result = this.content.length % 8;
+      let result = this.arrayTotal % 8;
       return result;
     },
     bgimg() {
       return this.bgimgs;
-    },
+    }
   },
   methods: {
     intervalTimer() {
+      if (document.hidden || !document.hasFocus()) {
+        setTimeout(this.intervalTimer, 1000);
+        return;
+      }
       let vm = this;
       let rnd = vm.getRandomInt(1, 251);
       while (vm.bgimgs.includes(rnd)) {
         rnd = vm.getRandomInt(1, 251);
       }
       let index = vm.getRandomInt(1, 42);
-      while (vm.lastIndex === rnd){
-        index  = vm.getRandomInt(1, 42);
+      while (vm.lastIndex === rnd) {
+        index = vm.getRandomInt(1, 42);
       }
       vm.lastIndex = index;
       vm.bgimgs[index] = rnd;
@@ -225,6 +232,7 @@ export default {
         vm.$refs["bg_" + index][0].classList.add("active");
         vm.$refs["bg_clone_" + index][0].classList.remove("active");
       }, 2000);
+      setTimeout(this.intervalTimer, 1000);
     },
     getRandomInt(min, max) {
       min = Math.ceil(min);
@@ -234,6 +242,9 @@ export default {
   },
   mounted() {
     this.fakeLoadingInterval = setInterval(() => {
+      if (document.hidden) {
+        return;
+      }
       let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
       <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
       if (this.fakeLoadingHold) {
@@ -280,7 +291,7 @@ export default {
       this.$refs["bg_" + (x + 1)][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
       this.$refs["bg_" + (x + 1)][0].classList.add("active");
     }
-    setInterval(this.intervalTimer, 1000);
+    setTimeout(this.intervalTimer, 1000);
   },
   async asyncData({ $http }) {
     let tempData = await $http
@@ -288,7 +299,23 @@ export default {
         "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"
       )
       .then((res) => res.json());
-    const content = tempData.data.queryCelebrate3dContents;
+    let content = tempData.data.queryCelebrate3dContents;
+    let index = 0;
+    content = content.sort((x,y) => {
+      index++;
+      if((index % 8) < 2){
+        if(x.data.wish.iv.length >= 35 && y.data.wish.iv.length < 35){
+          return 1;
+        }
+        else if(x.data.wish.iv.length < 35 && y.data.wish.iv.length >= 35){
+          return -1;
+        }
+        else{
+          return 0;
+        }
+      }
+      return -1;
+    })
     return { content };
   },
 };

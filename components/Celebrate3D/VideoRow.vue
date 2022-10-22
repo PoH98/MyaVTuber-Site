@@ -40,7 +40,7 @@
             <span class="design design--7"></span>
             <span class="design design--8"></span>
           </div>
-          <div class="px-3 py-1">
+          <div class="px-3 pt-1 pb-2">
             <v-card-title>
               {{ c.data.name.iv }}
             </v-card-title>
