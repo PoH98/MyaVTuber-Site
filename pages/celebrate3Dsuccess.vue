@@ -304,15 +304,19 @@ export default {
     content = content.sort((x,y) => {
       index++;
       if((index % 8) < 2){
-        if(x.data.wish.iv.length >= 35 && y.data.wish.iv.length < 35){
+        if(x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30){
           return 1;
         }
-        else if(x.data.wish.iv.length < 35 && y.data.wish.iv.length >= 35){
+        else if(x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30){
           return -1;
         }
-        else{
-          return 0;
+        else if(x.data.wish.iv.length > y.data.wish.iv.length){
+          return 1;
         }
+        else if(x.data.wish.iv.length < y.data.wish.iv.length){
+          return -1;
+        }
+        return 0;
       }
       return -1;
     })
