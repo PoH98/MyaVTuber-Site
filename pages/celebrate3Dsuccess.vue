@@ -26,7 +26,6 @@
       <div v-if="!isLoading">
         <v-row class="mx-0" v-for="i in arrayLength" :key="'group_' + i">
           <v-col cols="12">
-            {{ i }}
             <video-row
               :video="videos[i - 1]"
               :post="
