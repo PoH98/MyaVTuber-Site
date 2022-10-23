@@ -196,9 +196,6 @@ export default {
     arrayLeft() {
       let result = this.arrayTotal % 8;
       return result;
-    },
-    bgimg() {
-      return this.bgimgs;
     }
   },
   methods: {
