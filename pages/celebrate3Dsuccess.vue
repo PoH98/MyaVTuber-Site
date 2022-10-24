@@ -3,8 +3,9 @@
     <v-row class="bg-img">
       <v-col
         class="py-0 px-0 position-relative"
-        cols="2"
-        v-for="i in 42"
+        cols="4"
+        md="2"
+        v-for="i in bgimgCount"
         :key="i"
       >
         <img
@@ -190,6 +191,7 @@ export default {
       ],
       tickIdentifier: 0,
       lastIndex: 0,
+      bgimgCount: 42
     };
   },
   computed: {
@@ -216,9 +218,9 @@ export default {
       while (vm.bgimgs.includes(rnd)) {
         rnd = vm.getRandomInt(1, 251);
       }
-      let index = vm.getRandomInt(1, 42);
+      let index = vm.getRandomInt(1, this.bgimgCount);
       while (vm.lastIndex === rnd) {
-        index = vm.getRandomInt(1, 42);
+        index = vm.getRandomInt(1, this.bgimgCount);
       }
       vm.lastIndex = index;
       vm.bgimgs[index] = rnd;
@@ -243,6 +245,18 @@ export default {
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
+    typingAnimation(){
+        let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
+        this.title = this.title.slice(0, -1);
+        this.title += str[this.titleIndex] + "_";
+        this.titleIndex++;
+        if (this.titleIndex >= str.length) {
+          this.title = this.title.slice(0, -1);
+        }
+        else{
+          setTimeout(this.typingAnimation, 100);
+        }
+      }
   },
   mounted() {
     this.fakeLoadingInterval = setInterval(() => {
@@ -282,21 +296,7 @@ export default {
     setTimeout(() => {
       this.isLoading = false;
       this.titleIndex = 0;
-      this.typingInterval = setInterval(() => {
-        let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
-        if (window.innerWidth < 480) {
-          //phone device
-          this.title = str;
-          clearInterval(this.fakeLoadingInterval);
-        }
-        this.title = this.title.slice(0, -1);
-        this.title += str[this.titleIndex] + "_";
-        this.titleIndex++;
-        if (this.titleIndex >= str.length) {
-          this.title = this.title.slice(0, -1);
-          clearInterval(this.typingInterval);
-        }
-      }, 100);
+      this.typingInterval = setTimeout(this.typingAnimation, 100);
     }, 7000);
     for (let x = 0; x < 42; x++) {
       let rnd = this.getRandomInt(1, 251);
