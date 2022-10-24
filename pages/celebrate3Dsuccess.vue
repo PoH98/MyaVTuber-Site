@@ -129,6 +129,26 @@
             </v-card>
           </v-col>
         </v-row>
+        <v-card
+          class="mx-3 py-2 mt-5 px-4 comment-cards"
+          :style="
+            ($vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;') + ' opacity: 1;'
+          "
+        >
+          <v-card-title class="cyan--text accent-1 font-weight-bold">
+            多謝今次參與投稿的大家，以及參與演出的院友們！
+          </v-card-title>
+          <v-card-text class="text-left">
+            <p>打藝聯盟成員：</p>
+            <ul>
+              <li>Pizza</li>
+              <li>Ben</li>
+              <li>PotatoCrux</li>
+              <li>Taddeo</li>
+              <li>SW</li>
+            </ul>
+          </v-card-text>
+        </v-card>
       </div>
       <v-row class="mt-15 pt-15" v-else>
         <v-col
@@ -191,7 +211,8 @@ export default {
       ],
       tickIdentifier: 0,
       lastIndex: 0,
-      bgimgCount: 42
+      bgimgCount: 42,
+      images: [],
     };
   },
   computed: {
@@ -245,18 +266,17 @@ export default {
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    typingAnimation(){
-        let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
+    typingAnimation() {
+      let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
+      this.title = this.title.slice(0, -1);
+      this.title += str[this.titleIndex] + "_";
+      this.titleIndex++;
+      if (this.titleIndex >= str.length) {
         this.title = this.title.slice(0, -1);
-        this.title += str[this.titleIndex] + "_";
-        this.titleIndex++;
-        if (this.titleIndex >= str.length) {
-          this.title = this.title.slice(0, -1);
-        }
-        else{
-          setTimeout(this.typingAnimation, 100);
-        }
+      } else {
+        setTimeout(this.typingAnimation, 100);
       }
+    },
   },
   mounted() {
     this.fakeLoadingInterval = setInterval(() => {
