@@ -12,6 +12,7 @@
     "dependencies": {
         "@mdi/js": "^6.9.96",
         "@mdi/svg": "^6.9.96",
+        "@microsoft/signalr": "^6.0.10",
         "@nuxt/http": "^0.6.4",
         "@nuxtjs/robots": "^2.5.0",
         "@nuxtjs/sitemap": "^2.4.0",
