@@ -145,7 +145,7 @@
               <li>Ben</li>
               <li>PotatoCrux</li>
               <li>Taddeo</li>
-              <li>SW</li>
+              <li>SW（屎太濃）</li>
             </ul>
           </v-card-text>
         </v-card>
