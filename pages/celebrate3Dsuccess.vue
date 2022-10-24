@@ -146,6 +146,7 @@
               <li>PotatoCrux</li>
               <li>Taddeo</li>
               <li>SW（屎太濃）</li>
+              <li>Alden</li>
             </ul>
           </v-card-text>
         </v-card>
