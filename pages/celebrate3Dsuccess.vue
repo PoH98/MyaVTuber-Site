@@ -87,7 +87,7 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-row v-if="arrayLeft > 0">
+        <v-row class="mx-0" v-if="arrayLeft > 0">
           <v-col
             cols="12"
             md="4"
@@ -251,6 +251,12 @@ export default {
       }
       let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
       <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
+      if (window.innerWidth < 480) {
+        //phone device
+        this.fakeLoading = `System encrypting device...<br/>Please be patient...<hr/><p>Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
+      <hr/><p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>`;
+        clearInterval(this.fakeLoadingInterval);
+      }
       if (this.fakeLoadingHold) {
         this.fakeLoading += "&#9632; ";
         this.fakeLoadingHoldInteger++;
@@ -278,6 +284,11 @@ export default {
       this.titleIndex = 0;
       this.typingInterval = setInterval(() => {
         let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
+        if (window.innerWidth < 480) {
+          //phone device
+          this.title = str;
+          clearInterval(this.fakeLoadingInterval);
+        }
         this.title = this.title.slice(0, -1);
         this.title += str[this.titleIndex] + "_";
         this.titleIndex++;
@@ -304,26 +315,23 @@ export default {
       )
       .then((res) => res.json());
     let content = tempData.data.queryCelebrate3dContents;
-        let index = 0;
-    content = content.sort((x,y) => {
+    let index = 0;
+    content = content.sort((x, y) => {
       index++;
-      if((index % 8) < 2){
-        if(x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30){
+      if (index % 8 < 2) {
+        if (x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30) {
           return 1;
-        }
-        else if(x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30){
+        } else if (x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30) {
           return -1;
-        }
-        else if(x.data.wish.iv.length > y.data.wish.iv.length){
+        } else if (x.data.wish.iv.length > y.data.wish.iv.length) {
           return 1;
-        }
-        else if(x.data.wish.iv.length < y.data.wish.iv.length){
+        } else if (x.data.wish.iv.length < y.data.wish.iv.length) {
           return -1;
         }
         return 0;
       }
       return -1;
-    })
+    });
     return { content };
   },
 };
