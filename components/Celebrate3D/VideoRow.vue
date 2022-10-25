@@ -22,7 +22,11 @@
         </v-card-text>
       </v-card>
     </v-col>
-    <v-col cols="12" md="4" class="d-flex flex-column justify-space-between py-0">
+    <v-col
+      cols="12"
+      md="4"
+      class="d-flex flex-column justify-space-between py-0"
+    >
       <div class="h-md-50 py-3" v-for="(c, i) in content" :key="i">
         <v-card
           class="h-100 comment-cards"
@@ -95,6 +99,9 @@ export default {
       return {
         autoplay: false,
         controls: true,
+        controlBar: {
+          fullscreenToggle: false,
+        },
         sources: [
           {
             src: this.video,
