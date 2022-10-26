@@ -132,7 +132,9 @@
         <v-card
           class="mx-3 py-2 mt-5 px-4 comment-cards"
           :style="
-            ($vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;') + ' opacity: 1;'
+            ($vuetify.theme.dark
+              ? '--bg-color: white;'
+              : '--bg-color: black;') + ' opacity: 1;'
           "
         >
           <v-card-title class="cyan--text accent-1 font-weight-bold">
@@ -148,6 +150,46 @@
               <li>SW（屎太濃）</li>
               <li>Alden</li>
             </ul>
+          </v-card-text>
+        </v-card>
+        <hr class="my-5" />
+        <v-card class="mx-3">
+          <v-card-title class="text-center justify-center font-weight-bold">
+            米亞廣告牌記錄
+          </v-card-title>
+          <hr/>
+          <v-card-text>
+            <v-row class="mx-0 my-0">
+              <v-col
+                cols="12"
+                md="4"
+                lg="3"
+                v-for="(data, index) in specialTweets"
+                :key="'preview_' + index"
+              >
+                <v-card
+                  class="twitterName"
+                  target="__blank"
+                  flat
+                  :href="
+                    'https://www.twitter.com/' +
+                    data.UserAccountUserName +
+                    '/status/' +
+                    data.PostId
+                  "
+                >
+                  <v-img
+                    class="mb-3 bg-dark"
+                    contain
+                    height="300"
+                    :src="data.ImageUrl + '?format=jpg&name=240x240'"
+                  />
+                  <v-card-text>
+                    {{ data.UserAccountName }}
+                  </v-card-text>
+                </v-card>
+              </v-col>
+            </v-row>
           </v-card-text>
         </v-card>
       </div>
@@ -335,6 +377,9 @@ export default {
         "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"
       )
       .then((res) => res.json());
+    let specialTweets = await $http
+      .get("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
+      .then((res) => res.json());
     let content = tempData.data.queryCelebrate3dContents;
     let index = 0;
     content = content.sort((x, y) => {
@@ -353,7 +398,7 @@ export default {
       }
       return -1;
     });
-    return { content };
+    return { content, specialTweets };
   },
 };
 </script>
@@ -532,6 +577,25 @@ export default {
 .design--8 {
   top: 98%;
 }
+
+.bg-dark {
+  background: black;
+}
+
+.twitterName {
+  text-decoration: none;
+  height: 100%;
+  transition: all 0.3s linear;
+  border: solid black 1px;
+  border-radius: 20px;
+}
+
+.twitterName:hover {
+  transform: scale(1.1);
+  z-index: 1;
+  box-shadow: 15px 15px 5px 0px rgba(0, 0, 0, 0.7);
+}
+
 .position-relative {
   position: relative;
 }
