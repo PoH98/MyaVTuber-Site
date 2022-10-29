@@ -157,7 +157,7 @@
           <v-card-title class="text-center justify-center font-weight-bold">
             米亞廣告牌記錄
           </v-card-title>
-          <hr/>
+          <hr />
           <v-card-text>
             <v-row class="mx-0 my-0">
               <v-col
@@ -591,8 +591,9 @@ export default {
 }
 
 .twitterName:hover {
-  transform: scale(1.1);
+  transform: scale(1.1) ;
   z-index: 5;
+  filter: brightness(110%);
   box-shadow: 15px 15px 5px 0px rgba(0, 0, 0, 0.7);
 }
 
@@ -658,7 +659,7 @@ export default {
 }
 </style>
 <style>
-.theme--dark .twitterName{
+.theme--dark .twitterName {
   border: solid white 1px;
 }
 </style>
