@@ -662,4 +662,7 @@ export default {
 .theme--dark .twitterName {
   border: solid white 1px;
 }
+.celebrate .video-js{
+  max-height: 500px;
+}
 </style>

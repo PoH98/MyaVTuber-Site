@@ -2,7 +2,7 @@
   <v-row>
     <v-col cols="12" md="8" v-if="position === 'left'">
       <v-card
-        class="comment-cards"
+        class="comment-cards h-100 d-flex align-center"
         :style="
           $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
         "
@@ -59,7 +59,7 @@
     </v-col>
     <v-col cols="12" md="8" v-if="position === 'right'">
       <v-card
-        class="comment-cards"
+        class="comment-cards h-100 d-flex align-center"
         :style="
           $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
         "
@@ -108,6 +108,7 @@ export default {
             type: "video/mp4",
           },
         ],
+        maxHeight: 400
       };
     },
     content() {
