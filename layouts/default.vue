@@ -139,6 +139,12 @@
               </v-list-item-icon>
               <v-list-item-title>Minecraft</v-list-item-title>
             </v-list-item>
+            <v-list-item href="https://discord.com/invite/erB5AW9Vrp" target="_blank" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiDiscord }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>Discord</v-list-item-title>
+            </v-list-item>
           </v-list-item-group>
           <v-divider class="d-md-none mt-5"></v-divider>
           <v-list-item-group class="d-md-none pt-3">
@@ -168,9 +174,14 @@
           <v-card>
             <v-card-title> 米亞再次達成突破性路程杯啦！！ </v-card-title>
             <v-card-text>
-              <span class="d-md-flex d-none" v-if="specialCelebrate.showSpecialCelebrate">
+              <span
+                class="d-md-flex d-none"
+                v-if="specialCelebrate.showSpecialCelebrate"
+              >
                 <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
-                <p class="text-h6">{{ specialCelebrate.specialCelebrateText }}</p>
+                <p class="text-h6">
+                  {{ specialCelebrate.specialCelebrateText }}
+                </p>
                 <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
               </span>
             </v-card-text>
@@ -196,7 +207,8 @@
       </v-main>
       <v-footer app class="px-md-15" absolute>
         <p class="mb-0 py-5 footer">
-          Crafted By <a href="https://github.com/PoH98">PoH98</a>, <a href="https://github.com/sawaYch">Sawa</a>
+          Crafted By <a href="https://github.com/PoH98">PoH98</a>,
+          <a href="https://github.com/sawaYch">Sawa</a>
         </p>
         <v-spacer />
         <div class="footer">
@@ -224,8 +236,9 @@ import {
   mdiPartyPopper,
   mdiTrophy,
   mdiBook,
+  mdiDiscord,
 } from "@mdi/js";
-import config from '@/plugins/specialEvent.json'
+import config from "@/plugins/specialEvent.json";
 import Vue from "vue";
 Vue.use(Particles);
 export default {
@@ -245,13 +258,14 @@ export default {
       mdiPartyPopper,
       mdiBook,
       mdiTrophy,
+      mdiDiscord,
       celebrate: [
         10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000,
         200000, 3000000, 400000, 5000000, 600000, 700000, 800000, 900000,
         1000000,
       ],
       showCelebrate: false,
-      specialCelebrate:{},
+      specialCelebrate: {},
       showSnow: false,
       snow: {
         background: {
