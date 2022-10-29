@@ -592,7 +592,7 @@ export default {
 
 .twitterName:hover {
   transform: scale(1.1);
-  z-index: 1;
+  z-index: 5;
   box-shadow: 15px 15px 5px 0px rgba(0, 0, 0, 0.7);
 }
 
@@ -655,5 +655,10 @@ export default {
   .h-md-50 {
     height: 49%;
   }
+}
+</style>
+<style>
+.theme--dark .twitterName{
+  border: solid white 1px;
 }
 </style>
