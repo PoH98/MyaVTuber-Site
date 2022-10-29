@@ -38,9 +38,9 @@
             <video-row
               :video="videos[i - 1]"
               :post="
-                Math.min((i - 1) * 8, content.length) === 0
+                Math.min((i - 1) * 11, content.length) === 0
                   ? content
-                  : content.slice(Math.min((i - 1) * 8, content.length))
+                  : content.slice(Math.min((i - 1) * 11, content.length))
               "
               :position="i % 2 === 0 ? 'right' : 'left'"
             />
@@ -49,8 +49,8 @@
             cols="12"
             md="4"
             v-for="(c, v) in content.slice(
-              Math.min((i - 1) * 8 + 2, content.length),
-              Math.min((i - 1) * 8 + 8, content.length)
+              Math.min((i - 1) * 11 + 2, content.length),
+              Math.min((i - 1) * 11 + 11, content.length)
             )"
             :key="i + '_' + v"
           >
@@ -248,7 +248,6 @@ export default {
       videos: [
         "/img/vid_celebrate3D_1.mp4",
         "/img/vid_celebrate3D_2.mp4",
-        "/img/vid_celebrate3D_3.mp4",
         "/img/vid_celebrate3D_4.mp4",
         "/img/vid_celebrate3D_5.mp4",
       ],
@@ -263,11 +262,11 @@ export default {
       return this.content.length;
     },
     arrayLength() {
-      let result = Math.floor(this.arrayTotal / 8);
+      let result = Math.floor(this.arrayTotal / 11);
       return result;
     },
     arrayLeft() {
-      let result = this.arrayTotal % 8;
+      let result = this.arrayTotal % 11;
       return result;
     },
   },
