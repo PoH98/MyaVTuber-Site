@@ -24,8 +24,7 @@
                 </v-card-title>
                 <v-card-text class="text-left">
                   <div class="text-body-1">{{ c.flatData.name }}</div>
-                  <div v-if="c.flatData.description" class="text-caption">
-                    {{ c.flatData.description }}
+                  <div v-if="c.flatData.description" class="text-caption" v-html="c.flatData.description">
                   </div>
                 </v-card-text>
               </v-card>
