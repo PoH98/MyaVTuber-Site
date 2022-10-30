@@ -18,14 +18,20 @@
               :key="'achivement_' + i"
             >
               <v-card outlined elevation="2">
-                <v-img v-if="c.flatData.image" :src="c.flatData.image[0].url + '?width=585'"/>
+                <v-img
+                  v-if="c.flatData.image"
+                  :src="c.flatData.image[0].url + '?width=585'"
+                />
                 <v-card-title>
                   {{ translateDate(c.flatData.date) }}
                 </v-card-title>
                 <v-card-text class="text-left">
                   <div class="text-body-1">{{ c.flatData.name }}</div>
-                  <div v-if="c.flatData.description" class="text-caption" v-html="c.flatData.description">
-                  </div>
+                  <div
+                    v-if="c.flatData.description"
+                    class="text-caption"
+                    v-html="c.flatData.description"
+                  ></div>
                 </v-card-text>
               </v-card>
             </v-timeline-item>
@@ -51,6 +57,11 @@
 </template>
 <script>
 export default {
+  head() {
+    return {
+      title: "米亞路程杯",
+    };
+  },
   async asyncData({ $http }) {
     let data = await $http
       .get(
@@ -97,7 +108,7 @@ export default {
   top: 12px;
   left: -10px;
 }
-.v-timeline:before{
+.v-timeline:before {
   left: 48px;
 }
 .v-timeline--align-top .v-timeline-item__body > .v-card:after {
