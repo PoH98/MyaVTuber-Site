@@ -271,95 +271,103 @@ export default {
     },
   },
   methods: {
-    intervalTimer() {
-      if (document.hidden || !document.hasFocus()) {
-        setTimeout(this.intervalTimer, 1000);
-        return;
-      }
-      let vm = this;
-      let rnd = vm.getRandomInt(1, 251);
-      while (vm.bgimgs.includes(rnd)) {
-        rnd = vm.getRandomInt(1, 251);
-      }
-      let index = vm.getRandomInt(1, this.bgimgCount);
-      while (vm.lastIndex === rnd) {
-        index = vm.getRandomInt(1, this.bgimgCount);
-      }
-      vm.lastIndex = index;
-      vm.bgimgs[index] = rnd;
-      vm.tickIdentifier++;
-      if (!vm.$refs["bg_" + index]) {
-        return;
-      }
-      vm.$refs["bg_clone_" + index][0].src =
-        "/img/YoutubeVideos/" + rnd + ".jpg";
-      vm.$refs["bg_" + index][0].classList.remove("active");
-      vm.$refs["bg_clone_" + index][0].classList.add("active");
+    async intervalTimer() {
+      return await new Promise(() => {
+        if (document.hidden || !document.hasFocus()) {
+          setTimeout(this.intervalTimer, 1000);
+          return;
+        }
+        let vm = this;
+        let rnd = vm.getRandomInt(1, 251);
+        while (vm.bgimgs.includes(rnd)) {
+          rnd = vm.getRandomInt(1, 251);
+        }
+        let index = vm.getRandomInt(1, this.bgimgCount);
+        while (vm.lastIndex === rnd) {
+          index = vm.getRandomInt(1, this.bgimgCount);
+        }
+        vm.lastIndex = index;
+        vm.bgimgs[index] = rnd;
+        vm.tickIdentifier++;
+        if (!vm.$refs["bg_" + index]) {
+          return;
+        }
+        vm.$refs["bg_clone_" + index][0].src =
+          "/img/YoutubeVideos/" + rnd + ".jpg";
+        vm.$refs["bg_" + index][0].classList.remove("active");
+        vm.$refs["bg_clone_" + index][0].classList.add("active");
 
-      setTimeout(() => {
-        vm.$refs["bg_" + index][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
-        vm.$refs["bg_" + index][0].classList.add("active");
-        vm.$refs["bg_clone_" + index][0].classList.remove("active");
-      }, 2000);
-      setTimeout(this.intervalTimer, 1000);
+        setTimeout(() => {
+          vm.$refs["bg_" + index][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
+          vm.$refs["bg_" + index][0].classList.add("active");
+          vm.$refs["bg_clone_" + index][0].classList.remove("active");
+          this.intervalTimer();
+        }, 2000);
+      });
+    },
+    async fakeLoadingAnimation() {
+      return await new Promise(() => {
+        if (document.hidden) {
+          return;
+        }
+        let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
+      <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
+        if (window.innerWidth < 480) {
+          //phone device
+          this.fakeLoading = `System encrypting device...<br/>Please be patient...<hr/><p>Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
+      <hr/><p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>`;
+          clearTimeout(this.fakeLoadingInterval);
+        }
+        if (this.fakeLoadingHold) {
+          this.fakeLoading += "&#9632; ";
+          this.fakeLoadingHoldInteger++;
+          if (this.fakeLoadingHoldInteger >= 15) {
+            this.fakeLoadingHold = false;
+            this.fakeLoadingHoldInteger = 0;
+          }
+        } else {
+          if (str[this.titleIndex] === "|") {
+            this.fakeLoadingHold = true;
+            this.fakeLoading = this.fakeLoading.slice(0, -1);
+          } else {
+            this.fakeLoading = this.fakeLoading.slice(0, -1);
+            this.fakeLoading += str[this.titleIndex] + "_";
+          }
+          this.titleIndex++;
+        }
+        if (this.titleIndex >= str.length) {
+          this.fakeLoading = this.fakeLoading.slice(0, -1);
+        } else {
+          setTimeout(this.fakeLoadingAnimation, 10);
+        }
+      });
     },
     getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     },
-    typingAnimation() {
-      let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
-      this.title = this.title.slice(0, -1);
-      this.title += str[this.titleIndex] + "_";
-      this.titleIndex++;
-      if (this.titleIndex >= str.length) {
+    async typingAnimation() {
+      return await new Promise(() => {
+        let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
         this.title = this.title.slice(0, -1);
-      } else {
-        setTimeout(this.typingAnimation, 100);
-      }
+        this.title += str[this.titleIndex] + "_";
+        this.titleIndex++;
+        if (this.titleIndex >= str.length) {
+          this.title = this.title.slice(0, -1);
+        } else {
+          setTimeout(this.typingAnimation, 100);
+        }
+      });
     },
   },
   mounted() {
-    this.fakeLoadingInterval = setInterval(() => {
-      if (document.hidden) {
-        return;
-      }
-      let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
-      <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
-      if (window.innerWidth < 480) {
-        //phone device
-        this.fakeLoading = `System encrypting device...<br/>Please be patient...<hr/><p>Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
-      <hr/><p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>`;
-        clearInterval(this.fakeLoadingInterval);
-      }
-      if (this.fakeLoadingHold) {
-        this.fakeLoading += "&#9632; ";
-        this.fakeLoadingHoldInteger++;
-        if (this.fakeLoadingHoldInteger >= 15) {
-          this.fakeLoadingHold = false;
-          this.fakeLoadingHoldInteger = 0;
-        }
-      } else {
-        if (str[this.titleIndex] === "|") {
-          this.fakeLoadingHold = true;
-          this.fakeLoading = this.fakeLoading.slice(0, -1);
-        } else {
-          this.fakeLoading = this.fakeLoading.slice(0, -1);
-          this.fakeLoading += str[this.titleIndex] + "_";
-        }
-        this.titleIndex++;
-      }
-      if (this.titleIndex >= str.length) {
-        this.fakeLoading = this.fakeLoading.slice(0, -1);
-        clearInterval(this.fakeLoadingInterval);
-      }
-    }, 10);
+    this.fakeLoadingInterval = setTimeout(this.fakeLoadingAnimation, 10);
     setTimeout(() => {
       this.isLoading = false;
       this.titleIndex = 0;
       this.typingInterval = setTimeout(this.typingAnimation, 100);
-    }, 7000);
+    }, 10000);
     for (let x = 0; x < 42; x++) {
       let rnd = this.getRandomInt(1, 251);
       while (this.bgimgs.includes(rnd)) {
@@ -590,7 +598,7 @@ export default {
 }
 
 .twitterName:hover {
-  transform: scale(1.1) ;
+  transform: scale(1.1);
   z-index: 5;
   filter: brightness(110%);
   box-shadow: 15px 15px 5px 0px rgba(0, 0, 0, 0.7);
@@ -661,7 +669,7 @@ export default {
 .theme--dark .twitterName {
   border: solid white 1px;
 }
-.celebrate .video-js{
+.celebrate .video-js {
   max-height: 500px;
 }
 </style>
