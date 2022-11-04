@@ -30,7 +30,7 @@ export default {
             { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
         ],
     },
-    serverMiddleware: ['~/serverMiddleware/selectiveSSR.js', '~/serverMiddleware/redirectRouter.js'],
+    serverMiddleware: ['~/serverMiddleware/selectiveSSR.js'],
     // Global CSS: https://go.nuxtjs.dev/config-css
     css: [],
 
