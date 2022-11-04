@@ -1,12 +1,21 @@
 <template>
-  <v-container> </v-container>
+  <v-container>
+    <v-btn @click="Draw"> Test Draw </v-btn>
+  </v-container>
 </template>
 <script>
 export default {
   data() {
     return {
       connection: null,
+      player: {},
+      joinedRoom: {},
     };
+  },
+  methods: {
+    Draw() {
+      this.connection.invoke("DrawCard", this.player.player);
+    },
   },
   mounted() {
     //get room id
@@ -17,13 +26,23 @@ export default {
       .withUrl("/advhub")
       .build();
 
+    //connected
     this.connection.on("Connected", (data) => {
-      console.log(data);
+      this.player = data;
+      this.connection.invoke("JoinRoom", {
+        Guid: this.$route.params.advgame,
+      });
     });
 
-    this.connection
-      .start()
-      .then(() => this.connection.invoke("Connect"));
+    //player join or create room success
+    this.connection.on("PlayerSuccess", (data) => {
+      this.joinedRoom = data;
+      console.log(this.joinedRoom);
+    });
+
+    this.connection.start().then(() => {
+      this.connection.invoke("Connect");
+    });
   },
 };
 </script>
