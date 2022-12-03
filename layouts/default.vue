@@ -139,7 +139,11 @@
               </v-list-item-icon>
               <v-list-item-title>Minecraft</v-list-item-title>
             </v-list-item>
-            <v-list-item href="https://discord.com/invite/erB5AW9Vrp" target="_blank" link>
+            <v-list-item
+              href="https://discord.com/invite/erB5AW9Vrp"
+              target="_blank"
+              link
+            >
               <v-list-item-icon>
                 <v-icon>{{ mdiDiscord }}</v-icon>
               </v-list-item-icon>
@@ -435,6 +439,12 @@ body {
 
   #snow {
     z-index: 1;
+    background: transparent;
+    position: fixed;
+    inset: 0;
+    canvas {
+      background: transparent !important;
+    }
   }
   .v-list-item__icon:first-child {
     margin-right: 32px;
