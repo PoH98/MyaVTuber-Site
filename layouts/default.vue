@@ -442,8 +442,10 @@ body {
     background: transparent;
     position: fixed;
     inset: 0;
+    pointer-events: none;
     canvas {
       background: transparent !important;
+      pointer-events: none;
     }
   }
   .v-list-item__icon:first-child {
