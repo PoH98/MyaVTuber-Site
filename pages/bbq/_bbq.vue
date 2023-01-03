@@ -80,7 +80,7 @@
       <v-card>
         <v-sheet>
           <v-row class="justify-end my-0 mx-0">
-            <v-col cols="1">
+            <v-col cols="2" sm="1">
               <v-btn icon @click="showDialog = false">
                 <v-icon> {{ mdiClose }} </v-icon>
               </v-btn>
@@ -88,6 +88,7 @@
           </v-row>
           <v-card-text class="video-card-body py-0">
             <iframe
+              ref="iframe"
               frameborder="0"
               scrolling="no"
               marginheight="0"
@@ -110,6 +111,11 @@
 <script>
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";
 export default {
+  head() {
+    return {
+      title: "米亞烤肉組",
+    };
+  },
   data() {
     return {
       isMobile: false,
@@ -118,6 +124,17 @@ export default {
       selectedVideo: null,
       showDialog: false,
     };
+  },
+  watch: {
+    showDialog() {
+      if (this.isMobile) {
+        if (this.$refs.iframe.mozRequestFullScreen) {
+          this.$refs.iframe.mozRequestFullScreen();
+        } else if (this.$refs.iframe.webkitRequestFullScreen) {
+          this.$refs.iframe.webkitRequestFullScreen();
+        }
+      }
+    },
   },
   mounted() {
     if (process.client) {
@@ -190,6 +207,7 @@ export default {
   position: relative;
   min-height: calc(100vh - 80px);
 }
+
 .bbq .author-link {
   opacity: 0.8;
   text-decoration: none;
