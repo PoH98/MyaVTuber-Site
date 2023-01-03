@@ -14,7 +14,7 @@ export const mutations = {
 
 export const actions = {
     fetchYTData(context) {
-        return new Promise(async (resolve) => {
+        return new Promise(async(resolve) => {
             context.commit('status', await this.$http
                 .get("https://www.mya-hkvtuber.com/api/mya/getytstatus")
                 .then((res) => res.json()));

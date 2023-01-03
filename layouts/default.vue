@@ -73,6 +73,13 @@
               <v-list-item-title>路程杯</v-list-item-title>
             </v-list-item>
 
+            <v-list-item to="/bbq" link>
+              <v-list-item-icon>
+                <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-title>米亞烤肉</v-list-item-title>
+            </v-list-item>
+
             <v-list-item to="/games" link>
               <v-list-item-icon>
                 <v-icon>{{ mdiGoogleController }}</v-icon>
@@ -127,7 +134,7 @@
               <v-list-item-title>Instagram</v-list-item-title>
             </v-list-item>
 
-            <v-list-item href="https://mya.baguhkv.com/edit" target="_blank">
+            <v-list-item href="https://mya.baguhkv.com/edit.php" target="_blank">
               <v-list-item-icon>
                 <v-icon>{{ mdiFoodDrumstick }}</v-icon>
               </v-list-item-icon>
