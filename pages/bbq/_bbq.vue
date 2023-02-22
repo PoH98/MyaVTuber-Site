@@ -8,18 +8,8 @@
       </h1>
       <h3 class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
       <v-row>
-        <v-col
-          cols="12"
-          md="3"
-          class="video-col"
-          v-for="c in content"
-          :key="c.Thumbnail"
-        >
-          <v-card
-            @click="() => {}"
-            elevation="0"
-            :class="hover ? 'enlight video-card' : 'video-card darken'"
-          >
+        <v-col cols="12" md="3" class="video-col" v-for="c in content" :key="c.Thumbnail">
+          <v-card elevation="0" class="video-card darken">
             <v-img
               contain
               @click="
@@ -72,7 +62,8 @@
       </v-row>
       <v-pagination
         color="rgb(248, 187, 208)"
-        v-model="currentPage"
+        :value="currentPage"
+        @input="changePage"
         :length="page"
       ></v-pagination>
     </v-container>
@@ -96,11 +87,7 @@
               type="text/html"
               class="full-frame"
               allowfullscreen
-              :src="
-                'https://www.youtube-nocookie.com/embed/' +
-                selectedVideo +
-                '?rel=0'
-              "
+              :src="'https://www.youtube-nocookie.com/embed/' + selectedVideo + '?rel=0'"
             ></iframe>
           </v-card-text>
         </v-sheet>
@@ -146,14 +133,11 @@ export default {
   async asyncData({ $http, params }) {
     let currentPage = 1;
     if (params.bbq) {
-      if (!isNaN(params)) {
-        currentPage = parseInt(params.bbq);
-      }
+      currentPage = parseInt(params.bbq);
     }
     const tempData = await $http
       .get(
-        "https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" +
-          (currentPage - 1)
+        "https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1)
       )
       .then((res) => res.json());
     const content = tempData.Videos;
@@ -161,15 +145,9 @@ export default {
     const total = tempData.TotalVideos;
     return { content, page, total, currentPage };
   },
-  watch: {
-    async currentPage(val) {
-      const tempData = await this.$http
-        .get(
-          "https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" +
-            (val - 1)
-        )
-        .then((res) => res.json());
-      this.content = tempData.Videos;
+  methods: {
+    changePage(val) {
+      this.$router.push("/bbq/" + val);
     },
   },
 };
