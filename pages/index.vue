@@ -1,74 +1,70 @@
 <template>
-  <div>
-    <banner />
-    <div class="bg-white">
-      <FSection disableLazy>
-        <v-container class="text-left" v-html="content.myadesc"></v-container>
-      </FSection>
-      <SubSection :subsection="content.subsection" />
-      <v-lazy>
-        <v-parallax class="full-banner" src="/img/fullwidth.jpg" alt="@/yuentsz123" />
-      </v-lazy>
-      <ImageBoard />
-      <Section disableLazy>
-        <template v-slot:left>
-          <div class="twitter-title row">
-            <div class="col-12 col-lg-6 text-lg-right py-0 px-0">
-              <h2>最新官方Twitter</h2>
-            </div>
-            <span class="col-12 col-lg-6 px-0 py-0">
-              <a href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw" class="twitter-follow-button"
-                data-show-count="true">Follow @MyaVtuber</a>
-            </span>
+  <banner />
+  <div class="bg-white">
+    <FSection disableLazy>
+      <v-container class="text-left" v-html="content.myadesc"></v-container>
+    </FSection>
+    <SubSection :subsection="content.subsection" />
+    <v-lazy>
+      <v-parallax class="full-banner" src="/img/fullwidth.jpg" alt="@/yuentsz123" />
+    </v-lazy>
+    <ImageBoard />
+    <Section disableLazy>
+      <template v-slot:left>
+        <div class="twitter-title row">
+          <div class="col-12 col-lg-6 text-lg-right py-0 px-0">
+            <h2>最新官方Twitter</h2>
           </div>
-          <v-container>
-            <div class="twitter" ref="myaTweets">
-              <a data-chrome="noborders noheader nofooter noscrollbar" data-tweet-limit="3" class="twitter-timeline"
-                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>
-            </div>
-          </v-container>
-        </template>
-        <template v-slot:right>
-          <v-lazy>
-            <v-parallax class="full-banner" src="/img/fullwidth2.jpg" alt="綽貓喵CheukCat🍣-【HKVtuber】" />
-          </v-lazy>
-        </template>
-      </Section>
-      <FSection color="rgb(248, 187, 208)">
-        <v-container class="text-banner">
-          <p class="pr-15 text-h4 mb-0 d-none d-md-block">
-            「很喜歡你，但我未能完全說出口
-          </p>
-          <p class="pl-15 text-h4 mb-0 d-none d-md-block">
-            在現實的交錯裡，我跟你的邂逅」
-          </p>
-          <p class="pr-15 text-h6 font-weight-bold mb-0 d-md-none">
-            「很喜歡你，但我未能完全說出口
-          </p>
-          <p class="pl-15 text-h6 font-weight-bold mb-0 d-md-none">
-            在現實的交錯裡，我跟你的邂逅」
-          </p>
-          <p class="text-right by">講你知123</p>
-        </v-container>
-      </FSection>
-      <v-lazy>
-        <v-parallax class="full-banner" src="/img/myanewcloth.jpg" alt="@HigashikataKou" />
-      </v-lazy>
-      <mya-live />
-      <FSection>
+          <span class="col-12 col-lg-6 px-0 py-0">
+            <a href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+              data-show-count="true">Follow @MyaVtuber</a>
+          </span>
+        </div>
         <v-container>
-          <p class="text-h4 mb-0">院友期待你的加入！</p>
-          <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
+          <div class="twitter" ref="myaTweets">
+            <a data-chrome="noborders noheader nofooter noscrollbar" data-tweet-limit="3" class="twitter-timeline"
+              href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>
+          </div>
         </v-container>
-      </FSection>
-    </div>
-    <Live2D />
+      </template>
+      <template v-slot:right>
+        <v-lazy>
+          <v-parallax class="full-banner" src="/img/fullwidth2.jpg" alt="綽貓喵CheukCat🍣-【HKVtuber】" />
+        </v-lazy>
+      </template>
+    </Section>
+    <FSection color="rgb(248, 187, 208)">
+      <v-container class="text-banner">
+        <p class="pr-15 text-h4 mb-0 d-none d-md-block">
+          「很喜歡你，但我未能完全說出口
+        </p>
+        <p class="pl-15 text-h4 mb-0 d-none d-md-block">
+          在現實的交錯裡，我跟你的邂逅」
+        </p>
+        <p class="pr-15 text-h6 font-weight-bold mb-0 d-md-none">
+          「很喜歡你，但我未能完全說出口
+        </p>
+        <p class="pl-15 text-h6 font-weight-bold mb-0 d-md-none">
+          在現實的交錯裡，我跟你的邂逅」
+        </p>
+        <p class="text-right by">講你知123</p>
+      </v-container>
+    </FSection>
+    <v-lazy>
+      <v-parallax class="full-banner" src="/img/myanewcloth.jpg" alt="@HigashikataKou" />
+    </v-lazy>
+    <mya-live />
+    <FSection>
+      <v-container>
+        <p class="text-h4 mb-0">院友期待你的加入！</p>
+        <NuxtLink class="mb-0" to="/thanks">特別感謝院友名單</NuxtLink>
+      </v-container>
+    </FSection>
   </div>
 </template>
 <script>
 import SubSection from "~/components/Home/SubSections.vue";
 import MyaLive from "~/components/Home/MyaLive.vue";
-import Live2D from "~/components/Live2D/Live2D.vue";
 import Banner from "~/components/Home/Banner.vue";
 import Gummy from "~/components/Home/gummy-vid.vue";
 import Glitch from "~/components/Home/glitch.vue";
@@ -88,7 +84,6 @@ export default {
   },
   name: "indexView",
   components: {
-    Live2D,
     Banner,
     Gummy,
     Glitch,

@@ -21,6 +21,8 @@
     "nuxt-delay-hydration": "^1.1.4",
     "nuxt-purgecss": "^2.0.0",
     "pinia": "^2.0.33",
+    "pixi-live2d-display": "^0.4.0",
+    "pixi.js": "^6.5.9",
     "sass": "^1.60.0",
     "video.js": "^8.0.4",
     "vue-confetti": "^2.3.0",

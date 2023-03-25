@@ -38,7 +38,8 @@ export default defineNuxtConfig({
                 { rel: 'preconnect', href: 'https://fonts.googleapis.com' }
             ],
             script:[
-                { src: '/script/lazy-iframe.js', async: true, defer: true }
+                { src: '/script/lazy-iframe.js', async: true, defer: true },
+                { src: '/script/live2dcubismcore.min.js', async: true, defer: false }
             ],
             meta: [
                 {

@@ -159,6 +159,8 @@
       </v-footer>
     </v-app>
   </div>
+  <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250"
+    class="vue-live2d-main"></canvas>
 </template>
 <script>
 import Particles from "vue3-particles";
@@ -342,6 +344,11 @@ export default {
 };
 </script>
 <style scoped>
+.vue-live2d-main{
+  position: fixed;
+  z-index: 1010;
+  pointer-events: none;
+}
 .nav-item {
   margin-left: 5px;
   margin-right: 5px;
@@ -438,9 +445,11 @@ body {
       max-width: 1185px !important;
     }
   }
-  .v-container{
+
+  .v-container {
     max-width: 1200px;
   }
+
   .home {
     border: 3px solid currentColor !important;
     padding: 10px 32px !important;

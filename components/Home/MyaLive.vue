@@ -13,7 +13,7 @@
         <v-col cols="12" class="text-subtitle-1 font-weight-bold">
           {{ getMonday() }} - {{ getSunday() }} 直播時間表</v-col>
         <v-col cols="12">
-          <v-responsive :aspect-ratio="1280 / 720">
+          <v-responsive v-if="futurevid.TimeTableUrl" :aspect-ratio="1280 / 720">
             <v-img v-if="!isMobile" contain width="100%" height="100%" :lazy-src="
               'https://www.mya-hkvtuber.com/img/' +
               futurevid.TimeTableUrl +
