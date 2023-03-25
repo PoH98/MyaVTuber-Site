@@ -89,6 +89,11 @@
       </v-row>
     </v-container>
   </v-sheet>
+  <div class="floating-video" v-if="selectedVideo">
+    <iframe ref="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" type="text/html"
+      class="full-frame" allowfullscreen allow="autoplay"
+      :src="'https://www.youtube-nocookie.com/embed/' + selectedVideo?.Thumbnail + '?rel=0&autoplay=1'"></iframe>
+  </div>
 </template>
 <script>
 import { useSharedDataStore } from '@/store/sharedData.js';
@@ -113,6 +118,22 @@ export default {
     futurevid() {
       return this.store.futurevid;
     },
+    selectedVideo() {
+      let result = null;
+      if (!this.futurevid.Videos) {
+        return result;
+      }
+      if (this.futurevid.Videos.length > 0) {
+        this.futurevid.Videos.forEach((v) => {
+          if (this.getIsNowPlaying(v.ScheduledStartTime) && !this.getIsFutureLive(v.ScheduledStartTime)) {
+            result = v;
+            return result;
+          }
+        })
+      }
+
+      return result;
+    }
   },
   mounted() {
     if (process.client) {
@@ -190,5 +211,13 @@ export default {
 
 .upcoming-card.enlight .v-responsive__content {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+.floating-video {
+  position: fixed;
+  right: 150px;
+  bottom: 80px;
+  width: 192px;
+  height: 108px;
 }
 </style>

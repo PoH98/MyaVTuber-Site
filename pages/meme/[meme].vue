@@ -3,15 +3,15 @@
     <v-img class="text-left" height="300px" v-if="content.image" :src="content.image"
       gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.2)">
       <v-container>
-        <v-btn class="white--text" plain to="/mya-meme">
+        <v-btn class="text-white" variant="plain" to="/mya-meme">
           <v-icon> {{ mdiChevronLeft }} </v-icon>Back
         </v-btn>
       </v-container>
     </v-img>
-    <v-img class="text-left" height="300px" v-else src="/img/sexymya.jpg"
+    <v-img class="text-left" height="300px" v-else cover src="/img/sexymya.jpg"
       gradient="to bottom, rgba(0,0,0,.6), rgba(0,0,0,.2)">
       <v-container>
-        <v-btn class="white--text" plain to="/mya-meme">
+        <v-btn class="text-white" variant="plain" to="/mya-meme">
           <v-icon> {{ mdiChevronLeft }} </v-icon>Back
         </v-btn>
       </v-container>
