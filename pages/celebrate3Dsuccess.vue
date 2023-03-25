@@ -1,67 +1,40 @@
 <template>
   <section class="celebrate">
     <v-row class="bg-img">
-      <v-col
-        class="py-0 px-0 position-relative"
-        cols="4"
-        md="2"
-        v-for="i in bgimgCount"
-        :key="i"
-      >
-        <img
-          :ref="'bg_' + i"
-          class="img-fluid bg-img-content"
-          src="data:image/gif;base64,R0lGODlhAQABAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAABAAEAAAgEAP8FBAA7"
-        />
-        <img
-          :ref="'bg_clone_' + i"
-          class="img-fluid bg-img-clone"
-          src="data:image/gif;base64,R0lGODlhAQABAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAABAAEAAAgEAP8FBAA7"
-        />
+      <v-col class="py-0 px-0 position-relative" cols="4" md="2" v-for="i in bgimgCount" :key="i">
+        <img :ref="'bg_' + i" class="img-fluid bg-img-content"
+          src="data:image/gif;base64,R0lGODlhAQABAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAABAAEAAAgEAP8FBAA7" />
+        <img :ref="'bg_clone_' + i" class="img-fluid bg-img-clone"
+          src="data:image/gif;base64,R0lGODlhAQABAPcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAEAAP8ALAAAAAABAAEAAAgEAP8FBAA7" />
       </v-col>
     </v-row>
     <v-container :class="isLoading ? 'pt-1 ccontainer' : 'pt-10 ccontainer'">
-      <v-progress-linear
-        v-if="isLoading"
-        indeterminate
-        color="pink"
-        height="10px"
-      ></v-progress-linear>
+      <v-progress-linear v-if="isLoading" indeterminate color="pink" height="10px"></v-progress-linear>
       <v-row class="mt-5">
-        <v-col cols="12" class="white--text big-title">
-          {{ title }}
-        </v-col>
+        <client-only>
+          <v-col cols="12" class="white--text big-title">
+            {{ title }}
+          </v-col>
+        </client-only>
       </v-row>
       <div v-if="!isLoading">
         <v-row class="mx-0" v-for="i in arrayLength" :key="'group_' + i">
           <v-col cols="12">
-            <video-row
-              :video="videos[i - 1]"
-              :post="
-                Math.min((i - 1) * 11, content.length) === 0
-                  ? content
-                  : content.slice(Math.min((i - 1) * 11, content.length))
-              "
-              :position="i % 2 === 0 ? 'right' : 'left'"
-            />
+            <video-row :video="videos[i - 1]" :post="
+              Math.min((i - 1) * 11, content.length) === 0
+                ? content
+                : content.slice(Math.min((i - 1) * 11, content.length))
+            " :position="i % 2 === 0 ? 'right' : 'left'" />
           </v-col>
-          <v-col
-            cols="12"
-            md="4"
-            v-for="(c, v) in content.slice(
-              Math.min((i - 1) * 11 + 2, content.length),
-              Math.min((i - 1) * 11 + 11, content.length)
-            )"
-            :key="i + '_' + v"
-          >
-            <v-card
-              class="h-100 comment-cards"
-              :style="
-                $vuetify.theme.dark
-                  ? '--bg-color: white;'
-                  : '--bg-color: black;'
-              "
-            >
+          <v-col cols="12" md="4" v-for="(c, v) in content.slice(
+            Math.min((i - 1) * 11 + 2, content.length),
+            Math.min((i - 1) * 11 + 11, content.length)
+          )" :key="i + '_' + v">
+            <v-card class="h-100 comment-cards" :style="
+              theme.global.current.value.dark
+                ? '--bg-color: white;'
+                : '--bg-color: black;'
+            ">
               <div class="design-container">
                 <span class="design design--1"></span>
                 <span class="design design--2"></span>
@@ -77,10 +50,7 @@
                   {{ c.data.name.iv }}
                 </v-card-title>
                 <v-card-text class="text-left">
-                  <span
-                    class="typing"
-                    :style="'--steps:' + c.data.wish.iv.length"
-                  >
+                  <span class="typing" :style="'--steps:' + c.data.wish.iv.length">
                     {{ c.data.wish.iv }}
                   </span>
                 </v-card-text>
@@ -89,20 +59,12 @@
           </v-col>
         </v-row>
         <v-row class="mx-0" v-if="arrayLeft > 0">
-          <v-col
-            cols="12"
-            md="4"
-            v-for="(c, i) in content.slice(-arrayLeft)"
-            :key="'single_' + i"
-          >
-            <v-card
-              class="h-100 comment-cards"
-              :style="
-                $vuetify.theme.dark
-                  ? '--bg-color: white;'
-                  : '--bg-color: black;'
-              "
-            >
+          <v-col cols="12" md="4" v-for="(c, i) in content.slice(-arrayLeft)" :key="'single_' + i">
+            <v-card class="h-100 comment-cards" :style="
+              theme.global.current.value.dark
+                ? '--bg-color: white;'
+                : '--bg-color: black;'
+            ">
               <div class="design-container">
                 <span class="design design--1"></span>
                 <span class="design design--2"></span>
@@ -118,10 +80,7 @@
                   {{ c.data.name.iv }}
                 </v-card-title>
                 <v-card-text class="text-left">
-                  <span
-                    class="typing"
-                    :style="'--steps:' + c.data.wish.iv.length"
-                  >
+                  <span class="typing" :style="'--steps:' + c.data.wish.iv.length">
                     {{ c.data.wish.iv }}
                   </span>
                 </v-card-text>
@@ -129,14 +88,11 @@
             </v-card>
           </v-col>
         </v-row>
-        <v-card
-          class="mx-3 py-2 mt-5 px-4 comment-cards"
-          :style="
-            ($vuetify.theme.dark
-              ? '--bg-color: white;'
-              : '--bg-color: black;') + ' opacity: 1;'
-          "
-        >
+        <v-card class="mx-3 py-2 mt-5 px-4 comment-cards" :style="
+          (theme.global.current.value.dark
+            ? '--bg-color: white;'
+            : '--bg-color: black;') + ' opacity: 1;'
+        ">
           <v-card-title class="cyan--text accent-1 font-weight-bold">
             多謝今次參與投稿的大家，以及參與演出的院友們！
           </v-card-title>
@@ -160,30 +116,14 @@
           <hr />
           <v-card-text>
             <v-row class="mx-0 my-0">
-              <v-col
-                cols="12"
-                md="4"
-                lg="3"
-                v-for="(data, index) in specialTweets"
-                :key="'preview_' + index"
-              >
-                <v-card
-                  class="twitterName"
-                  target="__blank"
-                  flat
-                  :href="
-                    'https://www.twitter.com/' +
-                    data.UserAccountUserName +
-                    '/status/' +
-                    data.PostId
-                  "
-                >
-                  <v-img
-                    class="mb-3 bg-dark"
-                    contain
-                    height="300"
-                    :src="data.ImageUrl + '?format=jpg&name=240x240'"
-                  />
+              <v-col cols="12" md="4" lg="3" v-for="(data, index) in specialTweets" :key="'preview_' + index">
+                <v-card class="twitterName" target="__blank" flat :href="
+                  'https://www.twitter.com/' +
+                  data.UserAccountUserName +
+                  '/status/' +
+                  data.PostId
+                ">
+                  <v-img class="mb-3 bg-dark" contain height="300" :src="data.ImageUrl + '?format=jpg&name=240x240'" />
                   <v-card-text>
                     {{ data.UserAccountName }}
                   </v-card-text>
@@ -194,11 +134,7 @@
         </v-card>
       </div>
       <v-row class="mt-15 pt-15" v-else>
-        <v-col
-          cols="12"
-          class="white--text half-transparent-bg justify-center d-flex text-h6"
-          style="z-index: 1"
-        >
+        <v-col cols="12" class="white--text half-transparent-bg justify-center d-flex text-h6" style="z-index: 1">
           <span class="bouncing-0" style="--dl: 1s">L</span>
           <span class="bouncing-1" style="--dl: 1.2s">o</span>
           <span class="bouncing-2" style="--dl: 1.4s">a</span>
@@ -210,20 +146,16 @@
           <span class="bouncing-8" style="--dl: 2.6s">.</span>
           <span class="bouncing-9" style="--dl: 2.8s">.</span>
         </v-col>
-        <v-col
-          cols="12"
-          class="green--text black text-left fake-console"
-          style="z-index: 1"
-          v-html="fakeLoading"
-        >
+        <v-col cols="12" class="green--text black text-left fake-console" style="z-index: 1" v-html="fakeLoading">
         </v-col>
       </v-row>
     </v-container>
   </section>
 </template>
 <script>
-import VideoPlayer from "@/components/VideoPlayer.vue";
-import VideoRow from "../components/Celebrate3D/VideoRow.vue";
+import VideoPlayer from "~/components/VideoPlayer.vue";
+import VideoRow from "~/components/Celebrate3D/VideoRow.vue";
+import { useTheme } from 'vuetify'
 export default {
   head() {
     return {
@@ -350,9 +282,10 @@ export default {
     async typingAnimation() {
       return await new Promise(() => {
         let str = "多謝米亞的努力，讓大家一起見證依個特別的時刻！";
-        this.title = this.title.slice(0, -1);
-        this.title += str[this.titleIndex] + "_";
+        let currentTitle = this.title.slice(0, -1);
+        currentTitle += str[this.titleIndex] + "_";
         this.titleIndex++;
+        this.title = currentTitle;
         if (this.titleIndex >= str.length) {
           this.title = this.title.slice(0, -1);
         } else {
@@ -378,16 +311,13 @@ export default {
     }
     setTimeout(this.intervalTimer, 1000);
   },
-  async asyncData({ $http }) {
-    let tempData = await $http
-      .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"
-      )
-      .then((res) => res.json());
-    let specialTweets = await $http
-      .get("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
-      .then((res) => res.json());
-    let content = tempData.data.queryCelebrate3dContents;
+  async setup() {
+    const theme = useTheme()
+    const [tempData, tweetsData] = await Promise.all([
+      useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
+      useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
+    ])
+    let content = tempData.data.value.data.queryCelebrate3dContents
     let index = 0;
     content = content.sort((x, y) => {
       index++;
@@ -405,8 +335,9 @@ export default {
       }
       return -1;
     });
-    return { content, specialTweets };
-  },
+    const specialTweets = tweetsData.data.value;
+    return { content, specialTweets, theme };
+  }
 };
 </script>
 <style scoped>
@@ -446,6 +377,7 @@ export default {
     1px 2px 1px #535353, 3px 2px 1px #5c5c5c, 2px 3px 1px #535353,
     4px 3px 1px #5c5c5c, 3px 4px 1px #535353, 2px 2px 2px rgba(206, 89, 55, 0);
 }
+
 .bg-img {
   position: fixed;
   inset: 0;
@@ -607,6 +539,7 @@ export default {
 .position-relative {
   position: relative;
 }
+
 .bg-img-content {
   transition: opacity 1s ease-in-out;
   position: absolute;
@@ -614,22 +547,27 @@ export default {
   opacity: 0;
   inset: 0;
 }
+
 .bg-img-clone {
   position: absolute;
   inset: 0;
   z-index: 0;
   opacity: 1;
 }
+
 .bg-img-content.active {
   opacity: 1;
 }
+
 @keyframes colorChange {
   0% {
     filter: brightness(40%) grayscale(100%);
   }
+
   80% {
     filter: brightness(100%) grayscale(0%);
   }
+
   100% {
     filter: brightness(65%) grayscale(0%);
   }
@@ -639,21 +577,27 @@ export default {
   0% {
     transform: scale(1, 1) translateY(0);
   }
+
   10% {
     transform: scale(1.1, 0.9) translateY(0);
   }
+
   30% {
     transform: scale(0.9, 1.1) translateY(-10px);
   }
+
   50% {
     transform: scale(1.05, 0.95) translateY(0);
   }
+
   58% {
     transform: scale(1, 1) translateY(-1px);
   }
+
   65% {
     transform: scale(1, 1) translateY(0);
   }
+
   100% {
     transform: scale(1, 1) translateY(0);
   }
@@ -669,6 +613,7 @@ export default {
 .theme--dark .twitterName {
   border: solid white 1px;
 }
+
 .celebrate .video-js {
   max-height: 500px;
 }
