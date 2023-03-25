@@ -51,24 +51,22 @@ export default {
     return {
       mdiPartyPopper,
       frameworks: [
-        "Vue js 2",
-        "Vimeo Player",
-        "MDI js",
-        "Lightgallery js",
-        "Particles js",
-        "Vuetify",
-        "Nuxt js",
+        "vuejs3",
+        "@mdi/js",
+        "video.js",
+        "vue3-particles",
+        "vue3-photo-preview",
+        "vue3-simple-icons",
+        "@pinia/nuxt",
+        "nuxtjs3",
+        "squidex"
       ],
     };
   },
-  async asyncData({ $http }) {
-    const tempData = await $http
-      .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"
-      )
-      .then((res) => res.json());
-    const users = tempData.data.queryPatientListContents;
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
+    const users = tempData.data.value.data.queryPatientListContents
     return { users };
-  },
+  }
 };
 </script>

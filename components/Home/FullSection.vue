@@ -1,8 +1,5 @@
 <template>
-  <v-sheet
-    :class="disablePadding ? 'fsec' : 'fsec py-15'"
-    :style="'background-color: ' + getColor"
-  >
+  <v-sheet :class="disablePadding ? 'fsec' : 'fsec py-15'" :style="'background-color: ' + getColor">
     <v-parallax v-if="image" class="background-image" :src="image" />
     <div :class="image ? 'content with-image' : 'content'">
       <slot name="default" />
@@ -10,6 +7,7 @@
   </v-sheet>
 </template>
 <script>
+import { useTheme } from 'vuetify'
 export default {
   props: {
     color: {
@@ -28,9 +26,20 @@ export default {
       },
     },
   },
+  setup() {
+    const theme = useTheme()
+    return {
+      theme,
+    }
+  },
+  data(){
+    return{
+      pSBCr: null
+    }
+  },
   computed: {
     getColor() {
-      if (this.$vuetify.theme.dark) {
+      if (this.theme.global.current.value.dark) {
         return this.pSBC(-0.7, this.color, false, true);
       } else {
         return this.color;
@@ -103,8 +112,8 @@ export default {
           c1 && c1 != "c"
             ? this.pSBCr(c1)
             : P
-            ? { r: 0, g: 0, b: 0, a: -1 }
-            : { r: 255, g: 255, b: 255, a: -1 }),
+              ? { r: 0, g: 0, b: 0, a: -1 }
+              : { r: 255, g: 255, b: 255, a: -1 }),
         (p = P ? p * -1 : p),
         (P = 1 - p);
       if (!f || !t) return null;
@@ -153,10 +162,12 @@ export default {
 .fsec {
   position: relative;
 }
+
 .background-image {
   position: absolute;
   inset: 0;
 }
+
 .background-image::after {
   content: " ";
   position: absolute;
@@ -164,9 +175,11 @@ export default {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .content {
   position: relative;
 }
+
 .with-image {
   color: white;
 }

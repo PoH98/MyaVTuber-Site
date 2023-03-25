@@ -7,11 +7,7 @@
       </FSection>
       <SubSection :subsection="content.subsection" />
       <v-lazy>
-        <v-parallax
-          class="full-banner"
-          src="/img/fullwidth.jpg"
-          alt="@/yuentsz123"
-        />
+        <v-parallax class="full-banner" src="/img/fullwidth.jpg" alt="@/yuentsz123" />
       </v-lazy>
       <ImageBoard />
       <Section disableLazy>
@@ -21,33 +17,20 @@
               <h2>最新官方Twitter</h2>
             </div>
             <span class="col-12 col-lg-6 px-0 py-0">
-              <a
-                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
-                class="twitter-follow-button"
-                data-show-count="true"
-                >Follow @MyaVtuber</a
-              >
+              <a href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="true">Follow @MyaVtuber</a>
             </span>
           </div>
           <v-container>
             <div class="twitter" ref="myaTweets">
-              <a
-                data-chrome="noborders noheader nofooter noscrollbar"
-                data-tweet-limit="3"
-                class="twitter-timeline"
-                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw"
-                >Tweets by MyaVtuber</a
-              >
+              <a data-chrome="noborders noheader nofooter noscrollbar" data-tweet-limit="3" class="twitter-timeline"
+                href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>
             </div>
           </v-container>
         </template>
         <template v-slot:right>
           <v-lazy>
-            <v-parallax
-              class="full-banner"
-              src="/img/fullwidth2.jpg"
-              alt="綽貓喵CheukCat🍣-【HKVtuber】"
-            />
+            <v-parallax class="full-banner" src="/img/fullwidth2.jpg" alt="綽貓喵CheukCat🍣-【HKVtuber】" />
           </v-lazy>
         </template>
       </Section>
@@ -69,11 +52,7 @@
         </v-container>
       </FSection>
       <v-lazy>
-        <v-parallax
-          class="full-banner"
-          src="/img/myanewcloth.jpg"
-          alt="@HigashikataKou"
-        />
+        <v-parallax class="full-banner" src="/img/myanewcloth.jpg" alt="@HigashikataKou" />
       </v-lazy>
       <mya-live />
       <FSection>
@@ -88,40 +67,41 @@
 </template>
 <script>
 import SubSection from "~/components/Home/SubSections.vue";
-import MyaLive from "../components/Home/MyaLive.vue";
-
+import MyaLive from "~/components/Home/MyaLive.vue";
+import Live2D from "~/components/Live2D/Live2D.vue";
+import Banner from "~/components/Home/Banner.vue";
+import Gummy from "~/components/Home/gummy-vid.vue";
+import Glitch from "~/components/Home/glitch.vue";
+import Section from "~/components/Home/SecondarySection.vue";
+import FSection from "~/components/Home/FullSection.vue";
+import ImageBoard from "~/components/Home/ImageBoard.vue";
 export default {
   head() {
     return {
       title: "主頁",
     };
   },
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
+    const content = tempData.data.value.data.queryHomeContents[0].flatData
+    return { content };
+  },
   name: "indexView",
   components: {
-    Live2D: () => import("~/components/Live2D/Live2D.vue"),
-    Banner: () => import("~/components/Home/Banner.vue"),
-    Gummy: () => import("~/components/Home/gummy-vid.vue"),
-    Glitch: () => import("~/components/Home/glitch.vue"),
-    Section: () => import("~/components/Home/SecondarySection.vue"),
-    FSection: () => import("~/components/Home/FullSection.vue"),
-    ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
+    Live2D,
+    Banner,
+    Gummy,
+    Glitch,
+    Section,
+    FSection,
+    ImageBoard,
     SubSection,
     MyaLive,
   },
   data() {
     return {
-      autoScroll: null,
-      content: {},
+      autoScroll: null
     };
-  },
-  async asyncData({ $http }) {
-    const tempData = await $http
-      .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"
-      )
-      .then((res) => res.json());
-    const content = tempData.data.queryHomeContents[0].flatData;
-    return { content };
   },
   mounted() {
     if (!window.twttr) {
@@ -158,6 +138,7 @@ export default {
     font-size: 4.5vw !important;
   }
 }
+
 .bg-white {
   background-color: white;
   min-height: 55px;
@@ -165,18 +146,22 @@ export default {
   position: relative;
   overflow: hidden;
 }
+
 .full-banner {
   min-height: 60vh;
 }
+
 .twitter {
   max-height: 650px;
   overflow: auto;
 }
+
 @media (min-width: 960px) {
   .twitter {
     max-height: 530px;
   }
 }
+
 .twitter-follow-button {
   background-color: #1d9bf0;
   color: #fff;
@@ -185,12 +170,15 @@ export default {
   height: 20px;
   font-size: 12px;
 }
+
 .by {
   width: 80%;
 }
+
 .h-100 {
   height: 100%;
 }
+
 .filter-dark::after {
   content: " ";
   position: absolute;

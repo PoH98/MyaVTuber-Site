@@ -47,12 +47,11 @@
           </div>
         </template>
         <template v-slot:right>
-          <v-flex
-            class="justify-center h-100 align-center"
+          <div class="d-flex justify-center h-100 align-center"
             v-if="data['backgroundImage']"
           >
             <v-img contain class="section-img" :src="data['backgroundImage']" />
-          </v-flex>
+          </div>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
         </template>
       </Section>
@@ -61,12 +60,11 @@
         :color="data['backgroundColor']"
       >
         <template v-slot:left>
-          <v-flex
-            class="justify-center h-100 align-center"
+          <div class="d-flex justify-center h-100 align-center"
             v-if="data['backgroundImage']"
           >
             <v-img contain class="section-img" :src="data['backgroundImage']" />
-          </v-flex>
+          </div>
           <p class="mt-10 mb-10" v-else>暫時無圖片</p>
         </template>
         <template v-slot:right>
@@ -128,10 +126,12 @@
   </v-sheet>
 </template>
 <script>
+import Section from "~/components/Home/SecondarySection.vue";
+import FSection from "~/components/Home/FullSection.vue";
 export default {
   components: {
-    Section: () => import("~/components/Home/SecondarySection.vue"),
-    FSection: () => import("~/components/Home/FullSection.vue"),
+    Section,
+    FSection,
   },
   props: {
     subsection: {

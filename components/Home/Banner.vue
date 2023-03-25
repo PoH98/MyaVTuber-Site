@@ -1,11 +1,11 @@
 <template>
   <div class="disable-event">
     <div class="gradient"></div>
-    <div
-      id="background-frame"
-      data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
-      data-img="/img/sayyouknow.jpg"
-    ></div>
+    <ClientOnly>
+      <div id="background-frame"
+        data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-img="/img/sayyouknow.jpg"></div>
+    </ClientOnly>
     <div class="title" v-if="!showBirthday">
       <p class="text-h4 text-top">「臭DD 幾時單推我啊」</p>
       <p class="text-right by text-bottom">by Mya 米亞</p>
@@ -21,6 +21,7 @@ export default {
   data() {
     return {
       showBirthday: false,
+      interval: null
     };
   },
   mounted() {
@@ -30,10 +31,12 @@ export default {
       //mya birthday
       this.showBirthday = true;
     }
-    window.onresize = () => {
+    this.interval = setInterval(()=>{
       this.calcFrame();
-    };
-    this.calcFrame();
+    }, 100)
+  },
+  beforeUnmount(){
+    clearInterval(this.interval)
   },
   methods: {
     calcFrame() {
@@ -66,27 +69,33 @@ export default {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+
 @keyframes showBottomText {
   0% {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+
 .h-100 {
   height: 100%;
 }
+
 .by {
   width: 60%;
 }
+
 .text-top {
   animation: showTopText 1s;
   animation-delay: 0.5s;
@@ -94,8 +103,9 @@ export default {
   bottom: 0;
   transform: translate(0, 100%);
   opacity: 0;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 .text-bottom {
   opacity: 0;
   animation: showBottomText 0.5s;
@@ -104,6 +114,7 @@ export default {
   top: 0;
   transform: translate(0, -100%);
 }
+
 .gradient {
   position: absolute;
   top: 0;
@@ -113,6 +124,7 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
+
 .disable-event {
   pointer-events: none;
   position: relative;
@@ -120,6 +132,7 @@ export default {
   width: 100vw;
   overflow: hidden;
 }
+
 .title {
   font-family: "Orbitron", sans-serif !important;
   top: 45%;
@@ -129,18 +142,20 @@ export default {
   color: white;
   z-index: 2;
 }
+
 @media (max-width: 380px) {
   .title .text-h4 {
     font-size: 8.2vw !important;
   }
 }
+
 @media (max-width: 480px) {
   .disable-event {
     height: 280px;
   }
+
   .title .by {
     width: 90%;
     font-size: 6vw;
   }
-}
-</style>
+}</style>

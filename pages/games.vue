@@ -2,9 +2,9 @@
   <v-sheet>
     <v-container class="games">
       <h1>
-        <v-icon>{{ mdiGoogleController }}</v-icon>
+        <v-icon>{{ mdiController }}</v-icon>
         院友自創遊戲
-        <v-icon>{{ mdiGoogleController }}</v-icon>
+        <v-icon>{{ mdiController }}</v-icon>
       </h1>
       <p>來自各位觀眾所創作的遊戲列表</p>
       <v-row class="mt-8">
@@ -37,29 +37,28 @@
   </v-sheet>
 </template>
 <script>
-import { mdiGoogleController } from "@mdi/js";
+import {mdiController} from '@mdi/js'
 export default {
   head() {
     return {
       title: "院友自創遊戲",
     };
   },
-  data() {
-    return {
-      mdiGoogleController,
-    };
+  data(){
+    return{
+      mdiController
+    }
   },
-  async asyncData({ $http }) {
-    const tempData = await $http
-      .get("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch(
+      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
         headers: {
           "X-Flatten": 1,
         },
-      })
-      .then((res) => res.json());
-    const content = tempData.items;
+      }));
+    const content = tempData.data.value.items
     return { content };
-  },
+  }
 };
 </script>
 <style scoped>

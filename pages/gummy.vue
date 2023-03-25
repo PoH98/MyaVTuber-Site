@@ -3,47 +3,25 @@
     <Gummy :content="content" />
     <SubSection :subsection="content.gummysubsection" />
     <v-lazy>
-      <v-parallax
-        class="full-banner filter-dark"
-        src="/img/gummies.jpg"
-        alt="@cheukcat"
-      />
+      <v-parallax class="full-banner filter-dark" src="/img/gummies.jpg" alt="@cheukcat" />
     </v-lazy>
     <FSection color="black" disableLazy>
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
             <h3 class="white--text pb-4">甘米的Social Media</h3>
-            <div
-              class="d-flex flex-column justify-space-between"
-              style="height: calc(100% - 28px)"
-            >
+            <div class="d-flex flex-column justify-space-between" style="height: calc(100% - 28px)">
               <div>
-                <v-btn
-                  href="https://www.instagram.com/gummy_forest"
-                  target="_blank"
-                  class="mb-5 white--text"
-                  color="blue-grey darken-2"
-                  block
-                >
+                <v-btn href="https://www.instagram.com/gummy_forest" target="_blank" class="mb-5 white--text"
+                  color="blue-grey darken-2" block>
                   Instagram
                 </v-btn>
-                <v-btn
-                  href="https://twitter.com/gummy_forest"
-                  target="_blank"
-                  class="mb-5 white--text"
-                  color="blue-grey darken-2"
-                  block
-                >
+                <v-btn href="https://twitter.com/gummy_forest" target="_blank" class="mb-5 white--text"
+                  color="blue-grey darken-2" block>
                   Twitter
                 </v-btn>
-                <v-btn
-                  href="https://www.youtube.com/channel/UCfllDiny72kp9ppGDdaBGWQ"
-                  target="_blank"
-                  color="blue-grey darken-2"
-                  class="mb-5 white--text"
-                  block
-                >
+                <v-btn href="https://www.youtube.com/channel/UCfllDiny72kp9ppGDdaBGWQ" target="_blank"
+                  color="blue-grey darken-2" class="mb-5 white--text" block>
                   Youtube
                 </v-btn>
               </div>
@@ -54,32 +32,29 @@
           </v-col>
           <v-col cols="12" md="6" class="twitter mt-5 mt-md-0">
             <span class="col-12 col-md-6 px-0 py-0">
-              <a
-                href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw"
-                class="twitter-follow-button"
-                data-show-count="true"
-                >Follow @gummy_forest</a
-              >
+              <a href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+                data-show-count="true">Follow @gummy_forest</a>
             </span>
             <div ref="gummyTweets">
-              <a
-                data-chrome="noborders noheader nofooter noscrollbar"
-                data-tweet-limit="3"
-                class="twitter-timeline"
-                href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw"
-                >Tweets by Gummy</a
-              >
+              <a data-chrome="noborders noheader nofooter noscrollbar" data-tweet-limit="3" class="twitter-timeline"
+                href="https://twitter.com/gummy_forest?ref_src=twsrc%5Etfw">Tweets by Gummy</a>
             </div>
           </v-col>
         </v-row>
       </v-container>
     </FSection>
-    <mya-live  />
+    <mya-live />
   </div>
 </template>
 <script>
 import SubSection from "~/components/Home/SubSections.vue";
-import MyaLive from "../components/Home/MyaLive.vue";
+import MyaLive from "~/components/Home/MyaLive.vue";
+import Banner from "~/components/Home/Banner.vue";
+import Gummy from "~/components/Home/gummy-vid.vue";
+import Glitch from "~/components/Home/glitch.vue";
+import Section from "~/components/Home/SecondarySection.vue";
+import FSection from "~/components/Home/FullSection.vue";
+import ImageBoard from "~/components/Home/ImageBoard.vue";
 export default {
   head() {
     return {
@@ -88,39 +63,20 @@ export default {
   },
   name: "gummyView",
   components: {
-    Banner: () => import("~/components/Home/Banner.vue"),
-    Gummy: () => import("~/components/Home/gummy-vid.vue"),
-    Glitch: () => import("~/components/Home/glitch.vue"),
-    Section: () => import("~/components/Home/SecondarySection.vue"),
-    FSection: () => import("~/components/Home/FullSection.vue"),
-    ImageBoard: () => import("~/components/Home/ImageBoard.vue"),
+    Banner,
+    Gummy,
+    Glitch,
+    Section,
+    FSection,
+    ImageBoard,
     SubSection,
     MyaLive,
   },
-  async asyncData({ $http }) {
-    let tempData = null;
-    if (process.server) {
-      try {
-        tempData = await $http
-          .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-          )
-          .then((res) => res.json());
-      } catch {
-        tempData = await $http
-          .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-          )
-          .then((res) => res.json());
-      }
-    } else {
-      tempData = await $http
-        .get(
-          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-        )
-        .then((res) => res.json());
-    }
-    const content = tempData.data.queryHomeContents[0].flatData;
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch(
+      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+    ));
+    const content = tempData.data.value.data.queryHomeContents[0].flatData
     return { content };
   },
   mounted() {
@@ -220,9 +176,11 @@ export default {
   right: 0;
   height: 500px;
 }
+
 #particle-bg {
   height: 100%;
 }
+
 .background-gummy {
   position: absolute;
   top: 0;
@@ -230,10 +188,12 @@ export default {
   bottom: 0;
   right: 0;
 }
+
 .gummy-panel {
   position: relative;
   z-index: 1;
 }
+
 .filter-dark::after {
   content: " ";
   position: absolute;
@@ -241,14 +201,17 @@ export default {
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
 .gummy-banner {
   max-height: 200px;
   min-height: 150px;
 }
+
 .twitter {
   max-height: 650px;
   overflow: auto;
 }
+
 .twitter-follow-button {
   background-color: #1d9bf0;
   color: #fff;
@@ -263,13 +226,16 @@ export default {
   background: rgba(0, 0, 0, 0.4);
   padding: 10px;
 }
+
 .glass-bg-effect p {
   margin-bottom: 0;
 }
+
 .glass-bg-effect ul {
   margin-top: 8px;
   margin-bottom: 8px;
 }
+
 .glass-bg-effect a {
   color: white;
 }

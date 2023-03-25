@@ -1,28 +1,22 @@
-export const state = () => ({
-    status: {},
-    futurevid: {}
+import { defineStore } from 'pinia'
+import axios from 'axios';
+export const useSharedDataStore = defineStore('sharedData', {
+    state: () => ({
+        status: {},
+        futurevid: {}
+    }),
+    actions: {
+        fetchYTData() {
+            return new Promise(async (resolve) => {
+                let temp = await axios
+                    .get("https://www.mya-hkvtuber.com/api/mya/getytstatus");
+                this.status = temp.data;
+                temp = await axios
+                    .get("https://www.mya-hkvtuber.com/api/mya/getfuturevid");
+                this.futurevid = temp.data;
+                resolve();
+            })
+
+        }
+    }
 })
-
-export const mutations = {
-    status(state, data) {
-        state.status = data;
-    },
-    futurevid(state, data) {
-        state.futurevid = data;
-    }
-}
-
-export const actions = {
-    fetchYTData(context) {
-        return new Promise(async(resolve) => {
-            context.commit('status', await this.$http
-                .get("https://www.mya-hkvtuber.com/api/mya/getytstatus")
-                .then((res) => res.json()));
-            context.commit('futurevid', await this.$http
-                .get("https://www.mya-hkvtuber.com/api/mya/getfuturevid")
-                .then((res) => res.json()));
-            resolve();
-        })
-
-    }
-}

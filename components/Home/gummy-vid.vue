@@ -1,33 +1,28 @@
 <template>
   <div class="disable-event">
     <div class="gradient"></div>
-    <div
-      id="gummy-vid"
-      data-iframe="https://www.youtube.com/embed/x7-X9snnEZI?playlist=x7-X9snnEZI&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
-      data-img="/img/losemymind.jpg"
-    ></div>
+    <ClientOnly>
+      <div id="gummy-vid"
+        data-iframe="https://www.youtube.com/embed/x7-X9snnEZI?playlist=x7-X9snnEZI&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-img="/img/losemymind.jpg"></div>
+    </ClientOnly>
     <div class="title">
       <v-container>
         <v-row justify="center">
           <v-col cols="12" md="5">
-          <Glitch
-            classes="white--text text-h3 mb-5"
-            content="~ 甘米主人 ~"
-          ></Glitch>
+            <Glitch classes="white--text text-h3 mb-5" content="~ 甘米主人 ~"></Glitch>
           </v-col>
         </v-row>
-        <div
-          class="glass-bg-effect gummy-panel white--text text-left px-10 py-10"
-          v-html="content.gummydesc"
-        ></div>
+        <div class="glass-bg-effect gummy-panel white--text text-left px-10 py-10" v-html="content.gummydesc"></div>
       </v-container>
     </div>
   </div>
 </template>
 <script>
+import Glitch from "~/components/Home/glitch.vue"
 export default {
   components: {
-    Glitch: () => import("~/components/Home/glitch.vue"),
+    Glitch,
   },
   props: {
     content: {
@@ -35,11 +30,18 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      interval: null
+    }
+  },
   mounted() {
-    window.onresize = () => {
+    this.interval = setInterval(() => {
       this.calcFrame();
-    };
-    this.calcFrame();
+    }, 100);
+  },
+  beforeUnmount() {
+    clearInterval(this.interval)
   },
   methods: {
     calcFrame() {
@@ -72,27 +74,33 @@ export default {
     opacity: 0;
     transform: translate3d(0, 100%, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+
 @keyframes showBottomText {
   0% {
     opacity: 0;
     transform: translate3d(0, -100%, 0);
   }
+
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
   }
 }
+
 .h-100 {
   height: 100%;
 }
+
 .by {
   width: 60%;
 }
+
 .text-top {
   animation: showTopText 1s;
   animation-delay: 0.5s;
@@ -102,6 +110,7 @@ export default {
   opacity: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
+
 .text-bottom {
   opacity: 0;
   animation: showBottomText 0.5s;
@@ -110,6 +119,7 @@ export default {
   top: 0;
   transform: translate(0, -100%);
 }
+
 .gradient {
   position: absolute;
   top: 0;
@@ -119,12 +129,14 @@ export default {
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 1;
 }
+
 .disable-event {
   position: relative;
   height: 600px;
   width: 100vw;
   overflow: hidden;
 }
+
 .title {
   font-family: "Orbitron", sans-serif !important;
   color: white;
@@ -133,11 +145,13 @@ export default {
   padding-top: 30px;
   z-index: 2;
 }
+
 @media (max-width: 380px) {
   .title .text-h4 {
     font-size: 8.2vw !important;
   }
 }
+
 @media (max-width: 480px) {
   .gummy-panel {
     font-size: 4vw;

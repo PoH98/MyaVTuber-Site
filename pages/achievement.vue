@@ -13,7 +13,7 @@
               </v-card>
             </v-timeline-item>
             <v-timeline-item
-              :color="c.flatData.color"
+              :dotColor="c.flatData.color"
               v-for="(c, i) in content"
               :key="'achivement_' + i"
             >
@@ -62,13 +62,9 @@ export default {
       title: "米亞路程杯",
     };
   },
-  async asyncData({ $http }) {
-    let data = await $http
-      .get(
-        "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}"
-      )
-      .then((res) => res.json());
-    const content = data.data.queryAchivementContents.sort((a, b) => {
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}"));
+    const content = tempData.data.value.data.queryAchivementContents.sort((a, b) => {
       return new Date(b.flatData.date) - new Date(a.flatData.date);
     });
     return { content };

@@ -2,7 +2,7 @@
   <FSection color="#f8bbd0">
     <v-container>
       <h2>院友作品</h2>
-      <P>來自院友關於米亞的Fan Art</P>
+      <p>來自院友關於米亞的Fan Art</p>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
       <v-icon class="white--text down">{{ mdiChevronDown }}</v-icon>
@@ -10,30 +10,14 @@
         無啊，頂都無人放卑我，睇咩睇啦，走開啦，躝返上去啊！
       </p>
       <v-row v-else>
-        <v-col
-          cols="12"
-          md="4"
-          lg="3"
-          v-for="(data, index) in patients"
-          :key="'preview_' + index"
-        >
-          <v-card
-            class="twitterName"
-            target="__blank"
-            flat
-            :href="
-              'https://www.twitter.com/' +
-              data.UserAccountUserName +
-              '/status/' +
-              data.PostId
-            "
-          >
-            <v-img
-              class="mb-3 bg-dark"
-              contain
-              height="300"
-              :src="data.ImageUrl + '?format=jpg&name=240x240'"
-            />
+        <v-col cols="12" md="4" lg="3" v-for="(data, index) in patients" :key="'preview_' + index">
+          <v-card class="twitterName" target="__blank" flat :href="
+            'https://www.twitter.com/' +
+            data.UserAccountUserName +
+            '/status/' +
+            data.PostId
+          ">
+            <v-img class="mb-3 bg-dark" contain height="300" :src="data.ImageUrl + '?format=jpg&name=240x240'" />
             <v-card-text>
               {{ data.UserAccountName }}
             </v-card-text>
@@ -45,9 +29,11 @@
 </template>
 <script>
 import { mdiChevronDown } from "@mdi/js";
+import FSection from "./FullSection.vue"
+import axios from 'axios';
 export default {
   components: {
-    FSection: () => import("./FullSection.vue"),
+    FSection,
   },
   data() {
     return {
@@ -56,10 +42,9 @@ export default {
     };
   },
   async mounted() {
-    const tempData = await this.$http
-      .get("https://www.mya-hkvtuber.com/api/mya/gettweets")
-      .then((res) => res.json());
-    this.patients = tempData
+    const tempData = await axios
+      .get("https://www.mya-hkvtuber.com/api/mya/gettweets");
+    this.patients = tempData.data
       .map((value) => ({ value, sort: Math.random() }))
       .sort((a, b) => a.sort - b.sort)
       .map(({ value }) => value)
@@ -78,10 +63,10 @@ export default {
   transition: all .3s linear;
 }
 
-.twitterName:hover{
+.twitterName:hover {
   transform: scale(1.1);
   z-index: 1;
-  box-shadow: 15px 15px 5px 0px rgba(0,0,0,0.7);
+  box-shadow: 15px 15px 5px 0px rgba(0, 0, 0, 0.7);
 }
 
 .down {

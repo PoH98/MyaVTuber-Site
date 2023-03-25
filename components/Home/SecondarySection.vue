@@ -28,6 +28,7 @@
   </v-sheet>
 </template>
 <script>
+import { useTheme } from 'vuetify'
 export default {
   props: {
     color: {
@@ -49,9 +50,20 @@ export default {
       },
     },
   },
+  setup() {
+    const theme = useTheme()
+    return {
+      theme,
+    }
+  },
+  data(){
+    return{
+      pSBCr: null
+    }
+  },
   computed: {
     getColor() {
-      if (this.$vuetify.theme.dark) {
+      if (this.theme.global.current.value.dark) {
         return this.pSBC(-0.7, this.color, false, true);
       }
       else{

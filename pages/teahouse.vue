@@ -4,6 +4,7 @@
       gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)"
       class="big-banner align-center"
       alt="幽"
+      cover
       src="/img/teahousebanner.jpg"
     >
       <h1 class="white--text banner-title">
@@ -138,32 +139,14 @@ export default {
     };
   },
   components: { SubSections, FullSection, SecondarySection },
-  async asyncData({ $http }) {
-    let tempData = null;
-    if (process.server) {
-      try {
-        tempData = await $http
-          .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-          )
-          .then((res) => res.json());
-      } catch {
-        tempData = await $http
-          .get(
-            "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}/"
-          )
-          .then((res) => res.json());
-      }
-    } else {
-      tempData = await $http
-        .get(
-          "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-        )
-        .then((res) => res.json());
-    }
-    const content = tempData.data.queryHomeContents[0].flatData;
+  async setup() {
+    const tempData = await useAsyncData(() => $fetch(
+      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+    ));
+    const content = tempData.data.value.data.queryHomeContents[0].flatData
     return { content };
   },
+
   mounted() {
     if (!window.twttr) {
       window.twttr = (function (d, s, id) {
@@ -224,7 +207,6 @@ export default {
 }
 .reveal {
   animation: slidein 7s;
-  margin-left: -10px;
 }
 .banner-title {
   position: relative;
@@ -284,14 +266,14 @@ export default {
   35% {
     opacity: 0;
     width: 355px;
-    margin-left: -10px;
+    margin-left: 0px;
   }
   80% {
     opacity: 1;
   }
   100% {
     width: 355px;
-    margin-left: -10px;
+    margin-left: 0px;
   }
 }
 </style>
