@@ -164,7 +164,7 @@
   <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250" class="vue-live2d-main"></canvas>
 </template>
 <script>
-import ParticlesComponent from 'vue3-particles';
+import * as Particles from 'vue3-particles';
 import { useSharedDataStore } from '@/store/sharedData.js';
 import { useTheme } from 'vuetify'
 import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon } from 'vue3-simple-icons'
@@ -180,6 +180,7 @@ import {
   mdiBook,
 } from "@mdi/js";
 import config from "@/plugins/specialEvent.json";
+const { ParticlesComponent } = Particles;
 export default {
   name: "defaultLayout",
   components: {
