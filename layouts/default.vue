@@ -122,8 +122,10 @@
       </v-navigation-drawer>
       <v-main class="pt-15">
         <slot></slot>
-        <Particles id="snow" v-if="showSnow" :options="snow" :particlesLoaded="particlesLoaded" />
-        <v-dialog v-model="specialCelebrate.showSpecialModel" max-width="500">
+        <ClientOnly>
+          <ParticlesComponent id="snow" v-if="showSnow" :options="snow" :particlesLoaded="particlesLoaded" />
+        </ClientOnly>
+        <v-dialog v-if="specialCelebrate.showSpecialModel" v-model="specialCelebrate.showSpecialModel" max-width="500">
           <v-card>
             <v-card-title> 米亞再次達成突破性路程杯啦！！ </v-card-title>
             <v-card-text>
@@ -159,11 +161,10 @@
       </v-footer>
     </v-app>
   </div>
-  <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250"
-    class="vue-live2d-main"></canvas>
+  <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250" class="vue-live2d-main"></canvas>
 </template>
 <script>
-import Particles from "vue3-particles";
+import { ParticlesComponent } from 'vue3-particles';
 import { useSharedDataStore } from '@/store/sharedData.js';
 import { useTheme } from 'vuetify'
 import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon } from 'vue3-simple-icons'
@@ -182,7 +183,7 @@ import config from "@/plugins/specialEvent.json";
 export default {
   name: "defaultLayout",
   components: {
-    Particles,
+    ParticlesComponent,
     YoutubeIcon,
     TwitterIcon,
     DiscordIcon,
@@ -216,7 +217,7 @@ export default {
       ],
       showCelebrate: false,
       specialCelebrate: {},
-      showSnow: false,
+      showSnow: true,
       snow: {
         background: {
           color: "#00000000",
@@ -274,11 +275,7 @@ export default {
       }, 500);
     },
   },
-  async mounted() {
-    this.specialCelebrate = config;
-    window.addEventListener("auxclick", (event) => {
-      if (event.button === 1) event.preventDefault();
-    });
+  beforeMount() {
     if (
       window.matchMedia &&
       window.matchMedia("(prefers-color-scheme: dark)").matches
@@ -287,6 +284,12 @@ export default {
         this.toggleTheme();
       }, 100)
     }
+  },
+  async mounted() {
+    this.specialCelebrate = config;
+    window.addEventListener("auxclick", (event) => {
+      if (event.button === 1) event.preventDefault();
+    });
     const month = new Date().getMonth() + 1;
     await this.store.fetchYTData();
     if (process.client) {
@@ -344,11 +347,12 @@ export default {
 };
 </script>
 <style scoped>
-.vue-live2d-main{
+.vue-live2d-main {
   position: fixed;
   z-index: 1010;
   pointer-events: none;
 }
+
 .nav-item {
   margin-left: 5px;
   margin-right: 5px;
