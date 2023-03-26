@@ -220,7 +220,16 @@ export default {
   width: 400px;
   height: 225px;
 }
-.floating-video iframe{
+
+@media(max-width: 500px) {
+  .floating-video {
+    right: 10vw;
+    width: 80vw;
+    height: 50vw;
+  }
+}
+
+.floating-video iframe {
   width: 100%;
   height: 100%;
 }
