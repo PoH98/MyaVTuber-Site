@@ -19,6 +19,7 @@ export default defineNuxtConfig({
             nuxt.hooks.hook("vite:extendConfig", (config) => config.plugins.push(vuetify()));
         },
         '@pinia/nuxt',
+        '@nuxtjs/robots',
         '@nuxtjs/device'
     ],
     delayHydration: {

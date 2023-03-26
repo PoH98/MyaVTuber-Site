@@ -215,9 +215,13 @@ export default {
 
 .floating-video {
   position: fixed;
-  right: 150px;
-  bottom: 80px;
-  width: 192px;
-  height: 108px;
+  right: 50px;
+  bottom: 50px;
+  width: 400px;
+  height: 225px;
+}
+.floating-video iframe{
+  width: 100%;
+  height: 100%;
 }
 </style>
