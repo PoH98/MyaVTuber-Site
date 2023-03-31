@@ -2,17 +2,24 @@
   <div class="disable-event">
     <div class="gradient"></div>
     <ClientOnly>
-      <div id="background-frame"
+      <div id="background-frame" v-if="!showFools"
         data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
         data-img="/img/sayyouknow.jpg"></div>
+      <div id="background-frame" v-else
+        data-iframe="https://www.youtube.com/embed/dQw4w9WgXcQ?playlist=dQw4w9WgXcQ&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-img="/img/sayyouknow.jpg"></div>
     </ClientOnly>
-    <div class="title" v-if="!showBirthday">
+    <div class="title" v-if="!showBirthday && !showFools">
       <p class="text-h4 text-top">「臭DD 幾時單推我啊」</p>
       <p class="text-right by text-bottom">by Mya 米亞</p>
     </div>
-    <div class="title" v-else>
+    <div class="title" v-else-if="showBirthday">
       <p class="text-h4 text-top">米亞生日快樂！</p>
       <p class="text-right by text-bottom">恭喜小熊貓</p>
+    </div>
+    <div class="title" v-else-if="showFools">
+      <p class="text-h4 text-top">Never gonna give you up</p>
+      <p class="text-right by text-bottom">Never gonna let you down</p>
     </div>
   </div>
 </template>
@@ -21,21 +28,27 @@ export default {
   data() {
     return {
       showBirthday: false,
+      showFools: false,
       interval: null
     };
   },
-  mounted() {
+  beforeMount() {
     const month = new Date().getMonth() + 1;
     const date = new Date().getDate();
     if (month == 1 && date == 4) {
       //mya birthday
       this.showBirthday = true;
     }
-    this.interval = setInterval(()=>{
+    if (month == 4 && date == 1) {
+      this.showFools = true;
+    }
+  },
+  mounted() {
+    this.interval = setInterval(() => {
       this.calcFrame();
     }, 100)
   },
-  beforeUnmount(){
+  beforeUnmount() {
     clearInterval(this.interval)
   },
   methods: {
@@ -158,4 +171,5 @@ export default {
     width: 90%;
     font-size: 6vw;
   }
-}</style>
+}
+</style>
