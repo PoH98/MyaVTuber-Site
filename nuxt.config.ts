@@ -23,6 +23,10 @@ export default defineNuxtConfig({
         '@nuxtjs/device',
         ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }],
     ],
+    sitemap: {
+        hostname: 'https://www.mya-hkvtuber.com',
+        gzip: true,
+      },
     delayHydration: {
         // enables nuxt-delay-hydration in dev mode for testing  
         debug: false
