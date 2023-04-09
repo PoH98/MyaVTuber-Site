@@ -2,18 +2,12 @@
   <v-sheet>
     <v-container>
       <h1>
-        <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon
-        >感謝名單<v-icon class="ml-1">{{ mdiPartyPopper }}</v-icon>
+        <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>感謝名單<v-icon class="ml-1">{{ mdiPartyPopper }}</v-icon>
       </h1>
       <hr class="my-5" />
       <h2>院友們的幫助，完成依個網頁</h2>
       <v-row class="mt-5">
-        <v-col
-          cols="12"
-          md="4"
-          v-for="(user, index) in users"
-          :key="'user_' + index"
-        >
+        <v-col cols="12" md="4" v-for="(user, index) in users" :key="'user_' + index">
           <nuxt-link :to="`/patient/${user.id}`">
             <v-sheet>
               {{ user.flatData.name }}
@@ -24,12 +18,7 @@
       <hr class="my-5" />
       <h2 class="text-center mt-5">已使用的服務/插件/框架</h2>
       <v-row class="my-5">
-        <v-col
-          cols="12"
-          md="2"
-          v-for="(frame, i) in frameworks"
-          :key="'frame_' + i"
-        >
+        <v-col cols="12" md="2" v-for="(frame, i) in frameworks" :key="'frame_' + i">
           {{ frame }}
         </v-col>
       </v-row>
@@ -39,14 +28,10 @@
   </v-sheet>
 </template>
 <script>
+import { useHead } from 'unhead';
 import { mdiPartyPopper } from "@mdi/js";
 export default {
   name: "ThanksView",
-  head() {
-    return {
-      title: "特別感謝",
-    };
-  },
   data() {
     return {
       mdiPartyPopper,
@@ -64,6 +49,9 @@ export default {
     };
   },
   async setup() {
+    useHead({
+      title: "特別感謝",
+    });
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
     const users = tempData.data.value.data.queryPatientListContents
     return { users };

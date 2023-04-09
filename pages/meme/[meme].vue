@@ -51,13 +51,9 @@
   </v-sheet>
 </template>
 <script>
+import { useHead } from 'unhead';
 import { mdiChevronLeft } from "@mdi/js";
 export default {
-  head() {
-    return {
-      title: this.content.title,
-    };
-  },
   data() {
     return {
       mdiChevronLeft,
@@ -69,7 +65,10 @@ export default {
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/jokewiki/" +
       route.params.meme,
       { headers: { "X-Flatten": 1 } }));
-    const content = tempData.data.value.data
+    const content = tempData.data.value.data;
+    useHead({
+      title: content.title,
+    });
     return { content };
   },
   computed: {

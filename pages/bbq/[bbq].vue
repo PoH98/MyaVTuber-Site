@@ -96,13 +96,9 @@
   </v-sheet>
 </template>
 <script>
+import { useHead } from 'unhead';
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";
 export default {
-  head() {
-    return {
-      title: "米亞烤肉組",
-    };
-  },
   data() {
     return {
       isMobile: false,
@@ -131,6 +127,9 @@ export default {
     }
   },
   async setup() {
+    useHead({
+      title: "米亞烤肉組",
+    });
     const route = useRoute();
     let currentPage = 1;
     if (route.params.bbq) {

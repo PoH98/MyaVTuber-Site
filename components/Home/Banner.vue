@@ -110,9 +110,8 @@ export default {
 }
 
 .text-top {
-  animation: showTopText 1s;
+  animation: showTopText 5s;
   animation-delay: 0.5s;
-  animation-fill-mode: forwards;
   bottom: 0;
   transform: translate(0, 100%);
   opacity: 0;
@@ -155,7 +154,6 @@ export default {
   color: white;
   z-index: 2;
 }
-
 @media (max-width: 380px) {
   .title .text-h4 {
     font-size: 8.2vw !important;

@@ -55,12 +55,8 @@ import Glitch from "~/components/Home/glitch.vue";
 import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
 import ImageBoard from "~/components/Home/ImageBoard.vue";
+import { useHead } from "unhead";
 export default {
-  head() {
-    return {
-      title: "甘米",
-    };
-  },
   name: "gummyView",
   components: {
     Banner,
@@ -73,6 +69,9 @@ export default {
     MyaLive,
   },
   async setup() {
+    useHead({
+      title: "甘米"
+    });
     const tempData = await useAsyncData(() => $fetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
     ));

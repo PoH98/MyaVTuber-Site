@@ -97,12 +97,8 @@
 </template>
 <script>
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";
+import { useHead } from 'unhead';
 export default {
-  head() {
-    return {
-      title: "米亞烤肉組",
-    };
-  },
   data() {
     return {
       isMobile: false,
@@ -131,6 +127,9 @@ export default {
     }
   },
   async setup() {
+    useHead({
+      title: "米亞烤肉組",
+    });
     let currentPage = 1;
     const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1)));
     const content = tempData.data.value.Videos;

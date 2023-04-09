@@ -156,12 +156,8 @@
 import VideoPlayer from "~/components/VideoPlayer.vue";
 import VideoRow from "~/components/Celebrate3D/VideoRow.vue";
 import { useTheme } from 'vuetify'
+import { useHead } from 'unhead';
 export default {
-  head() {
-    return {
-      title: "祝賀米亞3D化成功",
-    };
-  },
   components: {
     VideoPlayer,
     VideoRow,
@@ -312,6 +308,9 @@ export default {
     setTimeout(this.intervalTimer, 1000);
   },
   async setup() {
+    useHead({
+      title: '祝賀米亞3D化成功'
+    });
     const theme = useTheme()
     const [tempData, tweetsData] = await Promise.all([
       useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),

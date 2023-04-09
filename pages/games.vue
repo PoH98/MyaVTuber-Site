@@ -37,19 +37,18 @@
   </v-sheet>
 </template>
 <script>
-import {mdiController} from '@mdi/js'
+import {mdiController} from '@mdi/js';
+import { useHead } from 'unhead';
 export default {
-  head() {
-    return {
-      title: "院友自創遊戲",
-    };
-  },
   data(){
     return{
       mdiController
     }
   },
   async setup() {
+    useHead({
+      title: "院友自創遊戲"
+    });
     const tempData = await useAsyncData(() => $fetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
         headers: {

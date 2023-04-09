@@ -20,18 +20,18 @@ export default defineNuxtConfig({
         },
         '@pinia/nuxt',
         '@nuxtjs/robots',
-        '@nuxtjs/device'
+        '@nuxtjs/device',
+        ['@funken-studio/sitemap-nuxt-3', { generateOnBuild: true }],
     ],
     delayHydration: {
         // enables nuxt-delay-hydration in dev mode for testing  
-        debug: true
+        debug: false
     },
     app: {
         head: {
             htmlAttrs: {
                 lang: 'zh-Hant',
             },
-            title: '米亞 Mya HKVTuber',
             titleTemplate: '%s - 米亞 Mya HKVTuber',
             link: [
                 { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },

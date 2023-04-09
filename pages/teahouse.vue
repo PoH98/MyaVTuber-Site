@@ -95,9 +95,11 @@
 import SubSections from "../components/Home/SubSections.vue";
 import FullSection from "../components/Home/FullSection.vue";
 import SecondarySection from "../components/Home/SecondarySection.vue";
+import { useHead } from 'unhead';
 export default {
-  head() {
-    return {
+  components: { SubSections, FullSection, SecondarySection },
+  async setup() {
+    useHead({
       title: "幻花茶屋",
       meta: [
         { charset: "UTF-8" },
@@ -136,10 +138,7 @@ export default {
         },
         { hid: "twitter:site", name: "og:site_name", content: "@HKVTOPIA" },
       ],
-    };
-  },
-  components: { SubSections, FullSection, SecondarySection },
-  async setup() {
+    })
     const tempData = await useAsyncData(() => $fetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
     ));

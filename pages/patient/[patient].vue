@@ -77,15 +77,11 @@
   </div>
 </template>
 <script>
+import { useHead } from 'unhead';
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
 import FSection from "~/components/Home/FullSection.vue";
 export default {
   name: "PatientView",
-  head() {
-    return {
-      title: this.patient.name,
-    };
-  },
   components: {
     FSection
   },
@@ -116,7 +112,10 @@ export default {
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
       route.params.patient,
       { headers: { "X-Flatten": 1 } }));
-    const patient = tempData.data.value.data
+    const patient = tempData.data.value.data;
+    useHead({
+      title: patient.name,
+    })
     return { patient };
   },
 };
