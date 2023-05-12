@@ -55,6 +55,11 @@
             <v-list-item-title>米亞烤肉</v-list-item-title>
           </v-list-item>
 
+          <v-list-item to="/mya" link>
+            <YoutubeIcon size="20" />
+            <v-list-item-title>米亞過往的影片</v-list-item-title>
+          </v-list-item>
+
           <v-list-item to="/games" link>
             <v-icon>
               {{ mdiController }}
