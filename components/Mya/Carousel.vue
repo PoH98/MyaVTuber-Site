@@ -4,7 +4,7 @@
             <div :style="{ width: progressBar + '%' }"></div>
         </div>
         <v-row class="ma-0">
-            <v-col class="pa-1" cols="12" md="8" lg="9">
+            <v-col class="py-md-1 px-1" cols="12" md="8" lg="9">
                 <div class="card-img">
                     <iframe ref="iframe" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" type="text/html"
                         class="full-frame" allowfullscreen
@@ -245,6 +245,12 @@ export default {
     margin-bottom: 15px;
     height: 100%;
     width: 100%;
+}
+
+@media (max-width:600px) {
+    .card-img{
+        min-height: 44vw;
+    }
 }
 
 .card-img>img {
