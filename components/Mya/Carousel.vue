@@ -247,7 +247,7 @@ export default {
     width: 100%;
 }
 
-@media (max-width:600px) {
+@media (max-width:959px) {
     .card-img{
         min-height: 44vw;
     }
