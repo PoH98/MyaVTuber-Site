@@ -398,6 +398,9 @@ body {
 .v-responsive {
   display: flex !important;
 }
+.v-img__error, .v-img__gradient, .v-img__img, .v-img__picture, .v-img__placeholder {
+  height: auto !important;
+}
 
 #app {
   font-family: "Montserrat", sans-serif !important;
