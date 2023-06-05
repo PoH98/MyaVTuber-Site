@@ -21,8 +21,8 @@
                 gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
                 :class="
                   hover
-                    ? 'align-end on-hover t-delay py-10 white--text text-h5'
-                    : 'align-end t-delay py-10 white--text text-h5'
+                    ? 'align-end on-hover t-delay white--text text-h5'
+                    : 'align-end t-delay white--text text-h5'
                 "
                 height="350"
                 :src="game.data.image"

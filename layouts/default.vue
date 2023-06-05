@@ -395,13 +395,6 @@ body {
   z-index: 1;
 }
 
-.v-responsive {
-  display: flex !important;
-}
-.v-img__error, .v-img__gradient, .v-img__img, .v-img__picture, .v-img__placeholder {
-  height: auto !important;
-}
-
 #app {
   font-family: "Montserrat", sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -524,10 +517,6 @@ body {
   .nav-item.v-btn--active>.v-btn__overlay {
     opacity: 0;
   }
-}
-
-.v-responsive__content {
-  margin-left: -100% !important;
 }
 
 .w-50 {
