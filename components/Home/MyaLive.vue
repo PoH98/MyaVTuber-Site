@@ -14,7 +14,7 @@
           {{ getMonday() }} - {{ getSunday() }} 直播時間表</v-col>
         <v-col cols="12">
           <v-responsive v-if="futurevid.TimeTableUrl" :aspect-ratio="1280 / 720">
-            <v-img v-if="!isMobile" contain width="100%" height="100%" :lazy-src="
+            <v-img v-if="!isMobile" style="width: 100%; height: 100%;" :lazy-src="
               'https://www.mya-hkvtuber.com/img/' +
               futurevid.TimeTableUrl +
               '.jpg?width=1280&format=jpg'
@@ -23,7 +23,7 @@
   futurevid.TimeTableUrl +
   '.jpg?width=1280&format=jpg'
 " />
-            <v-img v-else contain width="100%" height="100%" :lazy-src="
+            <v-img v-else style="width: 100%; height: 100%;" :lazy-src="
               'https://www.mya-hkvtuber.com/img/' +
               futurevid.TimeTableUrl +
               '.jpg?width=480&format=jpg'

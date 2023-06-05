@@ -395,6 +395,10 @@ body {
   z-index: 1;
 }
 
+.v-responsive {
+  display: flex !important;
+}
+
 #app {
   font-family: "Montserrat", sans-serif !important;
   -webkit-font-smoothing: antialiased;
