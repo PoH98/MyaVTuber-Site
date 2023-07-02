@@ -20,6 +20,7 @@ export default defineNuxtConfig({
       );
     },
     "@pinia/nuxt",
+    '@pinia-plugin-persistedstate/nuxt',
     "@nuxtjs/robots",
     "@nuxtjs/device",
     'nuxt-simple-sitemap'

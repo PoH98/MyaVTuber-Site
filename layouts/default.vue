@@ -9,10 +9,10 @@
           </v-btn>
         </div>
         <v-spacer />
-        <v-btn plain class="d-none d-md-block" v-if="!$vuetify.theme.current.dark" @click="toggleTheme">
+        <v-btn plain class="d-none d-md-block" v-if="!$vuetify.theme.current.dark" @click="toggleTheme(false)">
           Darkmode
         </v-btn>
-        <v-btn class="d-none d-md-block" v-else plain @click="toggleTheme">
+        <v-btn class="d-none d-md-block" v-else plain @click="toggleTheme(false)">
           Lightmode
         </v-btn>
         <span class="d-md-flex d-none" v-if="showCelebrate">
@@ -171,6 +171,7 @@
 <script>
 import * as Particles from 'vue3-particles';
 import { useSharedDataStore } from '@/store/sharedData.js';
+import { useThemeStore } from '@/store/themeStore';
 import { useTheme } from 'vuetify'
 import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon } from 'vue3-simple-icons'
 import {
@@ -198,10 +199,19 @@ export default {
   setup() {
     const theme = useTheme()
     const store = useSharedDataStore();
+    const themeStore = useThemeStore();
     return {
       store,
       theme,
-      toggleTheme: () => theme.global.name.value = theme.global.current.value.dark ? 'light' : 'dark'
+      themeStore,
+      toggleTheme: (avoidStore) => {
+        const t = theme.global.current.value.dark ? 'light' : 'dark';
+        if (!avoidStore) {
+          themeStore.theme = t;
+          console.log(themeStore.theme);
+        }
+        theme.global.name.value = t;
+      }
     }
   },
   data() {
@@ -280,25 +290,8 @@ export default {
         snow.style.background = "transparent";
       }, 500);
     },
-  },
-  beforeMount() {
-    if (
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches
-    ) {
-      setTimeout(() => {
-        this.toggleTheme();
-      }, 100)
-    }
-  },
-  async mounted() {
-    this.specialCelebrate = config;
-    window.addEventListener("auxclick", (event) => {
-      if (event.button === 1) event.preventDefault();
-    });
-    const month = new Date().getMonth() + 1;
-    await this.store.fetchYTData();
-    if (process.client) {
+    async specialEvents() {
+      const month = new Date().getMonth() + 1;
       //subscribers celebrate or mya birthday celebrate
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
@@ -348,6 +341,32 @@ export default {
       if (month <= 2 || month == 12) {
         this.showSnow = true;
       }
+    }
+  },
+  beforeMount() {
+    this.specialCelebrate = config;
+  },
+  async mounted() {
+    if (this.themeStore.theme === 'dark') {
+      setTimeout(() => {
+        this.toggleTheme(true);
+      }, 100)
+    }
+    else if (this.themeStore.theme === null) {
+      if (
+        window.matchMedia &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches
+      ) {
+        this.toggleTheme(false);
+      }
+    }
+
+    window.addEventListener("auxclick", (event) => {
+      if (event.button === 1) event.preventDefault();
+    });
+    await this.store.fetchYTData();
+    if (process.client) {
+      await this.specialEvents();
     }
   },
 };
