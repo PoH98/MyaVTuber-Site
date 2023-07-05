@@ -100,6 +100,13 @@
             <v-list-item-title>Instagram</v-list-item-title>
           </v-list-item>
 
+          <v-list-item target="_blank" href="https://www.facebook.com/myavtuber" link>
+            <ClientOnly>
+              <FacebookIcon size="20" />
+            </ClientOnly>
+            <v-list-item-title>Facebook</v-list-item-title>
+          </v-list-item>
+
           <v-list-item href="https://mya.baguhkv.com/edit.php" target="_blank">
             <v-icon>{{ mdiFoodDrumstick }}</v-icon>
             <v-list-item-title>烤肉</v-list-item-title>
@@ -173,7 +180,7 @@ import * as Particles from 'vue3-particles';
 import { useSharedDataStore } from '@/store/sharedData.js';
 import { useThemeStore } from '@/store/themeStore';
 import { useTheme } from 'vuetify'
-import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon } from 'vue3-simple-icons'
+import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon, FacebookIcon } from 'vue3-simple-icons'
 import {
   mdiMinecraft,
   mdiAccount,
@@ -194,7 +201,8 @@ export default {
     YoutubeIcon,
     TwitterIcon,
     DiscordIcon,
-    InstagramIcon
+    InstagramIcon,
+    FacebookIcon
   },
   setup() {
     const theme = useTheme()
