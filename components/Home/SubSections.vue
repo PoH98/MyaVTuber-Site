@@ -4,6 +4,7 @@
       <Section
         v-if="data.type === '左右' && i % 2 === 0"
         :color="data['backgroundColor']"
+        :linear-color="data['linearBackgroundColor']"
         :mobileReverse="true"
       >
         <template v-slot:left>
@@ -58,6 +59,7 @@
       <Section
         v-else-if="data.type === '左右' && i % 2 !== 0"
         :color="data['backgroundColor']"
+        :linear-color="data['linearBackgroundColor']"
       >
         <template v-slot:left>
           <div class="d-flex justify-center h-100 align-center"
@@ -111,6 +113,7 @@
       <FSection
         :color="data['backgroundColor']"
         :image="data['backgroundImage']"
+        :linear-color="data['linearBackgroundColor']"
         v-else
       >
         <v-container>

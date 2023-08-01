@@ -431,6 +431,7 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
+  font-size: 14px;
 
   #snow {
     z-index: 1;
@@ -481,10 +482,6 @@ body {
     .container {
       max-width: 1185px !important;
     }
-  }
-
-  .v-container {
-    max-width: 1200px;
   }
 
   .home {

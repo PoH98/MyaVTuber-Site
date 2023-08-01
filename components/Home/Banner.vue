@@ -110,11 +110,12 @@ export default {
 }
 
 .text-top {
+  opacity: 0;
   animation: showTopText 5s;
   animation-delay: 0.5s;
+  animation-fill-mode: forwards;
   bottom: 0;
   transform: translate(0, 100%);
-  opacity: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 

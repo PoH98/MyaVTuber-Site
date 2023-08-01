@@ -91,7 +91,7 @@ export default {
       mdiInstagram,
       mdiTwitter,
       mdiChevronLeft,
-      siteLink: ["twitter.com"],
+      siteLink: ["twitter.com", "youtube.com", "youtu.be"],
       plugins: []
     };
   },

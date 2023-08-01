@@ -1,25 +1,12 @@
 <template>
-  <v-sheet
-    class="py-15 secondary-section"
-    :style="'background-color:' + getColor"
-  >
+  <v-sheet class="py-15 secondary-section" :style="'background:' + getColor">
     <slot name="before" />
     <v-container>
       <v-row>
-        <v-col
-          cols="12"
-          md="6"
-          :order="mobileReverse ? 'last' : 'first'"
-          order-md="first"
-        >
+        <v-col cols="12" md="6" :order="mobileReverse ? 'last' : 'first'" order-md="first">
           <slot name="left" />
         </v-col>
-        <v-col
-          cols="12"
-          md="6"
-          :order="mobileReverse ? 'first' : 'last'"
-          order-md="last"
-        >
+        <v-col cols="12" md="6" :order="mobileReverse ? 'first' : 'last'" order-md="last">
           <slot name="right" />
         </v-col>
       </v-row>
@@ -35,6 +22,12 @@ export default {
       type: String,
       default: () => {
         return;
+      },
+    },
+    linearColor: {
+      type: String,
+      default: () => {
+        return null;
       },
     },
     mobileReverse: {
@@ -56,18 +49,26 @@ export default {
       theme,
     }
   },
-  data(){
-    return{
+  data() {
+    return {
       pSBCr: null
     }
   },
   computed: {
     getColor() {
-      if (this.theme.global.current.value.dark) {
-        return this.pSBC(-0.7, this.color, false, true);
+      if (this.linearColor) {
+        if (this.theme.global.current.value.dark) {
+          return "linear-gradient(to left," + this.pSBC(-0.7, this.color, false, true) + ", " + this.pSBC(-0.7, this.linearColor, false, true) + ")";
+        } else {
+          return "linear-gradient(to left," + this.color + ", " + this.linearColor + ")";
+        }
       }
-      else{
-        return this.color;
+      else {
+        if (this.theme.global.current.value.dark) {
+          return "linear-gradient(" + this.pSBC(-0.7, this.color, false, true) + ", " + this.pSBC(-0.7, this.color, false, true) + ")";
+        } else {
+          return "linear-gradient(" + this.color + ", " + this.color + ")";
+        }
       }
     },
   },
@@ -137,8 +138,8 @@ export default {
           c1 && c1 != "c"
             ? this.pSBCr(c1)
             : P
-            ? { r: 0, g: 0, b: 0, a: -1 }
-            : { r: 255, g: 255, b: 255, a: -1 }),
+              ? { r: 0, g: 0, b: 0, a: -1 }
+              : { r: 255, g: 255, b: 255, a: -1 }),
         (p = P ? p * -1 : p),
         (P = 1 - p);
       if (!f || !t) return null;
@@ -182,7 +183,7 @@ export default {
             .toString(16)
             .slice(1, f ? undefined : -2)
         );
-        if(result === '#4d4d4d'){
+        if (result === '#4d4d4d') {
           result = "#1E1E1E";
         }
         return result;

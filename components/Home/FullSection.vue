@@ -1,5 +1,5 @@
 <template>
-  <v-sheet :class="disablePadding ? 'fsec' : 'fsec py-15'" :style="'background-color: ' + getColor">
+  <v-sheet :class="disablePadding ? 'fsec' : 'fsec py-15'" :style="'background: ' + getColor">
     <v-parallax v-if="image" class="background-image" :src="image" />
     <div :class="image ? 'content with-image' : 'content'">
       <slot name="default" />
@@ -11,6 +11,12 @@ import { useTheme } from 'vuetify'
 export default {
   props: {
     color: {
+      type: String,
+      default: () => {
+        return null;
+      },
+    },
+    linearColor: {
       type: String,
       default: () => {
         return null;
@@ -39,10 +45,19 @@ export default {
   },
   computed: {
     getColor() {
-      if (this.theme.global.current.value.dark) {
-        return this.pSBC(-0.7, this.color, false, true);
-      } else {
-        return this.color;
+      if (this.linearColor) {
+        if (this.theme.global.current.value.dark) {
+          return "linear-gradient(to left, " + this.pSBC(-0.7, this.color, false, true) + ", " + this.pSBC(-0.7, this.linearColor, false, true) + ")";
+        } else {
+          return "linear-gradient(to left," + this.color + ", " + this.linearColor + ")";
+        }
+      }
+      else {
+        if (this.theme.global.current.value.dark) {
+          return "linear-gradient(" + this.pSBC(-0.7, this.color, false, true) + ", " + this.pSBC(-0.7, this.color, false, true) + ")";
+        } else {
+          return "linear-gradient(" + this.color + ", " + this.color + ")";
+        }
       }
     },
   },

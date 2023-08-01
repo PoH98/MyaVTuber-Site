@@ -33,7 +33,7 @@
         </v-lazy>
       </template>
     </Section>
-    <FSection color="rgb(248, 187, 208)">
+    <FSection color="#f8bbd0" linear-color="#ffd6e4">
       <v-container class="text-banner">
         <p class="pr-15 text-h4 mb-0 d-none d-md-block">
           「很喜歡你，但我未能完全說出口
@@ -74,7 +74,7 @@ import ImageBoard from "~/components/Home/ImageBoard.vue";
 import { useHead } from "unhead";
 export default {
   async setup() {
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
     const content = tempData.data.value.data.queryHomeContents[0].flatData;
     useHead({
       title: "主頁"

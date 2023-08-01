@@ -1,6 +1,7 @@
-import vuetify from "vite-plugin-vuetify";
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import vuetify from "vite-plugin-vuetify";
 export default defineNuxtConfig({
+  devtools: { enabled: true },
   css: ["vuetify/styles"],
   build: {
     transpile: ["vuetify"],
@@ -16,19 +17,19 @@ export default defineNuxtConfig({
   modules: [
     async (options, nuxt) => {
       // @ts-ignore
-      nuxt.hooks.hook("vite:extendConfig", (config) => config.plugins.push(vuetify())
-      );
+      nuxt.hooks.hook("vite:extendConfig", (config) => config.plugins.push(vuetify()));
     },
     "@pinia/nuxt",
-    '@pinia-plugin-persistedstate/nuxt',
+    "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/robots",
     "@nuxtjs/device",
-    'nuxt-simple-sitemap'
+    "nuxt-simple-sitemap",
   ],
   runtimeConfig: {
     public: {
-      siteUrl: process.env.NUXT_PUBLIC_SITE_URL || "https://www.mya-hkvtuber.com",
-    }
+      siteUrl:
+        process.env.NUXT_PUBLIC_SITE_URL || "https://www.mya-hkvtuber.com",
+    },
   },
   app: {
     head: {
@@ -110,5 +111,5 @@ export default defineNuxtConfig({
         },
       ],
     },
-  }
+  },
 });
