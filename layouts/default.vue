@@ -422,6 +422,18 @@ body {
   z-index: 1;
 }
 
+@media (min-width: 1920px) {
+  .v-container {
+      max-width:1280px
+  }
+}
+
+@media (min-width: 2560px) {
+  .v-container {
+      max-width:1920px
+  }
+}
+
 #app {
   font-family: "Montserrat", sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -431,7 +443,7 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
-  font-size: 14px;
+  font-size: 14px;】
 
   #snow {
     z-index: 1;
