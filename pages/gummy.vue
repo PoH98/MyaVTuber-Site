@@ -5,11 +5,11 @@
     <v-lazy>
       <v-parallax class="full-banner filter-dark" src="/img/gummies.jpg" alt="@cheukcat" />
     </v-lazy>
-    <FSection color="black" disableLazy>
+    <FSection color="black" linear-color="#999" disableLazy>
       <v-container>
         <v-row>
           <v-col cols="12" md="6">
-            <h3 class="white--text pb-4">甘米的Social Media</h3>
+            <h3 class="text-white pb-4">甘米的Social Media</h3>
             <div class="d-flex flex-column justify-space-between" style="height: calc(100% - 28px)">
               <div>
                 <v-btn href="https://www.instagram.com/gummy_forest" target="_blank" class="mb-5 white--text"

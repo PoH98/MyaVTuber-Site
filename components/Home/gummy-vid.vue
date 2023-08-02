@@ -50,7 +50,7 @@ export default {
         if (window.innerWidth < 1560 && window.innerWidth > 480) {
           frame.style.width = "1560px";
           frame.style.height = "880px";
-          frame.style.top = "-50px";
+          frame.style.top = "-135px";
           frame.style.left = -((1560 - window.innerWidth) / 2) + "px";
         } else if (window.innerWidth <= 480) {
           frame.style.width = "600px";
@@ -127,7 +127,7 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 2;
 }
 
 .disable-event {
@@ -143,7 +143,7 @@ export default {
   position: absolute;
   inset: 0;
   padding-top: 30px;
-  z-index: 2;
+  z-index: 3;
 }
 
 @media (max-width: 380px) {
@@ -160,3 +160,8 @@ export default {
 }
 </style>
 
+<style>
+#gummy-vid{
+  z-index: 1;
+}
+</style>

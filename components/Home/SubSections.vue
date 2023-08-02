@@ -150,11 +150,11 @@ export default {
         var g = parseInt(hexcolor.substr(2, 2), 16);
         var b = parseInt(hexcolor.substr(4, 2), 16);
         var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-        return yiq >= 128 ? "black--text" : "white--text";
+        return yiq >= 128 ? "text-black" : "text-white";
       } else if (!this.$vuetify.theme.dark) {
-        return "black--text";
+        return "text-black";
       } else {
-        return "white--text";
+        return "text-white";
       }
     },
   },

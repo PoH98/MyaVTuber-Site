@@ -134,9 +134,6 @@
       </v-navigation-drawer>
       <v-main class="pt-15">
         <slot></slot>
-        <ClientOnly>
-          <ParticlesComponent id="snow" v-if="showSnow" :options="snow" :particlesLoaded="particlesLoaded" />
-        </ClientOnly>
         <v-dialog v-if="specialCelebrate.showSpecialModel" v-model="specialCelebrate.showSpecialModel" max-width="500">
           <v-card>
             <v-card-title> 米亞再次達成突破性路程杯啦！！ </v-card-title>
@@ -176,10 +173,10 @@
   <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250" class="vue-live2d-main"></canvas>
 </template>
 <script>
-import * as Particles from 'vue3-particles';
 import { useSharedDataStore } from '@/store/sharedData.js';
 import { useThemeStore } from '@/store/themeStore';
-import { useTheme } from 'vuetify'
+import { useTheme } from 'vuetify';
+import Snowflakes from 'magic-snowflakes';
 import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon, FacebookIcon } from 'vue3-simple-icons'
 import {
   mdiMinecraft,
@@ -193,11 +190,9 @@ import {
   mdiBook,
 } from "@mdi/js";
 import config from "@/plugins/specialEvent.json";
-const { ParticlesComponent } = Particles;
 export default {
   name: "defaultLayout",
   components: {
-    ParticlesComponent,
     YoutubeIcon,
     TwitterIcon,
     DiscordIcon,
@@ -242,41 +237,6 @@ export default {
       showCelebrate: false,
       specialCelebrate: {},
       showSnow: true,
-      snow: {
-        background: {
-          color: "#00000000",
-        },
-        fpsLimit: 30,
-        particles: {
-          color: {
-            value: "#fff",
-          },
-          move: {
-            bounce: !1,
-            direction: "bottom",
-            enable: !0,
-            random: !1,
-            straight: !1,
-          },
-          opacity: {
-            random: true,
-            value: {
-              min: 0.5,
-              max: 1,
-            },
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            random: {
-              enable: true,
-              minimumValue: 2,
-            },
-            value: 5,
-          },
-        },
-      },
     };
   },
   computed: {
@@ -291,13 +251,6 @@ export default {
     },
   },
   methods: {
-    particlesLoaded() {
-      setTimeout(() => {
-        const snow = document.querySelector("canvas");
-        snow.style.zIndex = "1";
-        snow.style.background = "transparent";
-      }, 500);
-    },
     async specialEvents() {
       const month = new Date().getMonth() + 1;
       //subscribers celebrate or mya birthday celebrate
@@ -346,8 +299,10 @@ export default {
         }
       }
       // month will reduce 1 at here so we add 1 for real world month
+      if(process.client)
       if (month <= 2 || month == 12) {
-        this.showSnow = true;
+        const snowflakes = new Snowflakes();
+        snowflakes.start();
       }
     }
   },
@@ -395,6 +350,7 @@ export default {
   font-size: 10px;
 }
 
+
 @media (min-width: 720px) {
   .nav-item {
     min-width: 100px !important;
@@ -424,16 +380,20 @@ body {
 
 @media (min-width: 1920px) {
   .v-container {
-      max-width:1280px
+    max-width: 1280px
   }
 }
 
 @media (min-width: 2560px) {
   .v-container {
-      max-width:1920px
+    max-width: 1920px
   }
 }
-
+.snowflakes_gid_1 .snowflake .snowflake__inner::before{
+  background-color: white;
+  background-image: none !important;
+  border-radius: 100%;
+}
 #app {
   font-family: "Montserrat", sans-serif !important;
   -webkit-font-smoothing: antialiased;
@@ -443,20 +403,7 @@ body {
   overflow-x: hidden;
   max-width: 100vw;
   user-select: none;
-  font-size: 14px;】
-
-  #snow {
-    z-index: 1;
-    background: transparent;
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-
-    canvas {
-      background: transparent !important;
-      pointer-events: none;
-    }
-  }
+  font-size: 14px;
 
   .v-navigation-drawer .v-list-item__content {
     display: flex;
