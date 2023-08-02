@@ -135,7 +135,7 @@ export default {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1;
+  z-index: 2;
 }
 
 .disable-event {
@@ -153,7 +153,7 @@ export default {
   right: 0;
   position: absolute;
   color: white;
-  z-index: 2;
+  z-index: 3;
 }
 @media (max-width: 380px) {
   .title .text-h4 {
@@ -170,5 +170,10 @@ export default {
     width: 90%;
     font-size: 6vw;
   }
+}
+</style>
+<style>
+#background-frame{
+  z-index: 1;
 }
 </style>
