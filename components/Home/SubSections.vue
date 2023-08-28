@@ -131,10 +131,17 @@
 <script>
 import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
+import { useTheme } from 'vuetify'
 export default {
   components: {
     Section,
     FSection,
+  },
+  setup() {
+    const theme = useTheme()
+    return {
+      theme,
+    }
   },
   props: {
     subsection: {
@@ -144,14 +151,14 @@ export default {
   },
   methods: {
     getContrastYIQ(hexcolor) {
-      if (hexcolor && !this.$vuetify.theme.dark) {
+      if (hexcolor && !this.theme.themes._value.dark.dark) {
         hexcolor = hexcolor.replace("#", "");
         var r = parseInt(hexcolor.substr(0, 2), 16);
         var g = parseInt(hexcolor.substr(2, 2), 16);
         var b = parseInt(hexcolor.substr(4, 2), 16);
         var yiq = (r * 299 + g * 587 + b * 114) / 1000;
         return yiq >= 128 ? "text-black" : "text-white";
-      } else if (!this.$vuetify.theme.dark) {
+      } else if (!this.theme.themes._value.dark.dark) {
         return "text-black";
       } else {
         return "text-white";

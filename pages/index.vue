@@ -2,7 +2,12 @@
   <banner />
   <div class="bg-white">
     <FSection disableLazy>
-      <v-container class="text-left" v-html="content.myadesc"></v-container>
+      <v-container class="text-left">
+
+        <div v-html="content.myadesc">
+
+        </div>
+      </v-container>
     </FSection>
     <SubSection :subsection="content.subsection" />
     <v-lazy>
@@ -90,7 +95,7 @@ export default {
     FSection,
     ImageBoard,
     SubSection,
-    MyaLive,
+    MyaLive
   },
   data() {
     return {
@@ -127,6 +132,7 @@ export default {
 };
 </script>
 <style scoped>
+
 @media (max-width: 390px) {
   .text-banner .text-h6 {
     font-size: 4.5vw !important;
