@@ -34,6 +34,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       } catch {
         //ignore and do not do anything
       }
-    }, 200);
+    }, 1000);
   }
 });
