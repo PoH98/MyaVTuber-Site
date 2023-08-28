@@ -4,7 +4,7 @@
       <v-card
         class="comment-cards h-100 d-flex align-center"
         :style="
-          $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
+          theme.global.current.value.dark ? '--bg-color: white;' : '--bg-color: black;'
         "
       >
         <div class="design-container">
@@ -17,7 +17,7 @@
           <span class="design design--7"></span>
           <span class="design design--8"></span>
         </div>
-        <v-card-text class="py-10">
+        <v-card-text class="pa-10">
           <video-player :options="videoOptions" />
         </v-card-text>
       </v-card>
@@ -31,7 +31,7 @@
         <v-card
           class="h-100 comment-cards"
           :style="
-            $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
+            theme.global.current.value.dark ? '--bg-color: white;' : '--bg-color: black;'
           "
         >
           <div class="design-container">
@@ -61,7 +61,7 @@
       <v-card
         class="comment-cards h-100 d-flex align-center"
         :style="
-          $vuetify.theme.dark ? '--bg-color: white;' : '--bg-color: black;'
+          theme.global.current.value.dark ? '--bg-color: white;' : '--bg-color: black;'
         "
       >
         <div class="design-container">
@@ -74,7 +74,7 @@
           <span class="design design--7"></span>
           <span class="design design--8"></span>
         </div>
-        <v-card-text class="py-10">
+        <v-card-text class="pa-10">
           <video-player :options="videoOptions" />
         </v-card-text>
       </v-card>
@@ -82,6 +82,7 @@
   </v-row>
 </template>
 <script>
+import { useTheme } from 'vuetify'
 export default {
   props: {
     video: {
@@ -94,13 +95,19 @@ export default {
       type: String,
     },
   },
+  setup(){
+    const theme = useTheme();
+    return {
+      theme
+    }
+  },
   computed: {
     videoOptions() {
       return {
         autoplay: false,
         controls: true,
         controlBar: {
-          fullscreenToggle: false,
+          fullscreenToggle: true,
         },
         sources: [
           {

@@ -134,7 +134,7 @@
         </v-card>
       </div>
       <v-row class="mt-15 pt-15" v-else>
-        <v-col cols="12" class="white--text half-transparent-bg justify-center d-flex text-h6" style="z-index: 1">
+        <v-col cols="12" class="text-white half-transparent-bg justify-center d-flex text-h6" style="z-index: 1">
           <span class="bouncing-0" style="--dl: 1s">L</span>
           <span class="bouncing-1" style="--dl: 1.2s">o</span>
           <span class="bouncing-2" style="--dl: 1.4s">a</span>
@@ -146,7 +146,7 @@
           <span class="bouncing-8" style="--dl: 2.6s">.</span>
           <span class="bouncing-9" style="--dl: 2.8s">.</span>
         </v-col>
-        <v-col cols="12" class="green--text black text-left fake-console" style="z-index: 1" v-html="fakeLoading">
+        <v-col cols="12" class="text-green bg-black text-left fake-console" style="z-index: 1" v-html="fakeLoading">
         </v-col>
       </v-row>
     </v-container>
