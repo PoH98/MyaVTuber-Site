@@ -7,6 +7,10 @@
           <v-btn plain to="/" class="nav-item">
             <h1>米亞MYA</h1>
           </v-btn>
+          <span class="d-md-flex d-none ml-3" v-if="showCelebrate">
+            <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
+            <p class="text-h6">恭喜米亞{{ status.subscriberCount }}訂閱!!</p>
+          </span>
         </div>
         <v-spacer />
         <v-btn plain class="d-none d-md-block" v-if="!$vuetify.theme.current.dark" @click="toggleTheme(false)">
@@ -15,10 +19,6 @@
         <v-btn class="d-none d-md-block" v-else plain @click="toggleTheme(false)">
           Lightmode
         </v-btn>
-        <span class="d-md-flex d-none" v-if="showCelebrate">
-          <v-icon class="mr-2">{{ mdiPartyPopper }}</v-icon>
-          <p class="text-h6">恭喜米亞{{ status.subscriberCount }}訂閱!!</p>
-        </span>
       </v-app-bar>
       <v-navigation-drawer v-model="drawer" class="text-left" temporary fixed>
         <v-list-item class="my-3">
@@ -105,15 +105,6 @@
               <FacebookIcon size="20" />
             </ClientOnly>
             <v-list-item-title>Facebook</v-list-item-title>
-          </v-list-item>
-
-          <v-list-item href="https://mya.baguhkv.com/edit.php" target="_blank">
-            <v-icon>{{ mdiFoodDrumstick }}</v-icon>
-            <v-list-item-title>烤肉</v-list-item-title>
-          </v-list-item>
-          <v-list-item href="https://dd-paradise.net/" target="_blank" link>
-            <v-icon>{{ mdiMinecraft }}</v-icon>
-            <v-list-item-title>Minecraft</v-list-item-title>
           </v-list-item>
           <v-list-item href="https://discord.com/invite/erB5AW9Vrp" target="_blank" link>
             <ClientOnly>
