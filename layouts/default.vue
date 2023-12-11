@@ -51,7 +51,7 @@
           </v-list-item>
 
           <v-list-item to="/adventure" link>
-            <YoutubeIcon size="20" />
+            <v-icon>{{ mdiBook }}</v-icon>
             <v-list-item-title>頂米亞大冒險</v-list-item-title>
           </v-list-item>
 
