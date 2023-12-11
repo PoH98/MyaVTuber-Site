@@ -16,8 +16,8 @@ export default {
         useHead({
             title: "頂米亞大冒險"
         });
-        const pages = [];
-        for (let x = 1; x < 64; x++) {
+        const pages = [null];
+        for (let x = 1; x <= 64; x++) {
             pages.push("/img/adventure/Book_final_page-" + x.toString().padStart(4, '0') + ".jpg");
         }
         return {
@@ -28,7 +28,7 @@ export default {
 </script>
 <style scoped>
 .adventure-container {
-    background-color: gray;
+    background-image: url("/img/tablebg.jpg");
 }
 
 .flipbook {
