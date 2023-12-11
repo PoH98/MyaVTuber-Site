@@ -50,6 +50,11 @@
             <v-list-item-title>路程杯</v-list-item-title>
           </v-list-item>
 
+          <v-list-item to="/adventure" link>
+            <YoutubeIcon size="20" />
+            <v-list-item-title>頂米亞大冒險</v-list-item-title>
+          </v-list-item>
+
           <v-list-item to="/bbq" link>
             <v-icon>{{ mdiFoodDrumstick }}</v-icon>
             <v-list-item-title>米亞烤肉</v-list-item-title>
