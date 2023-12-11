@@ -290,11 +290,16 @@ export default {
         }
       }
       // month will reduce 1 at here so we add 1 for real world month
-      if(process.client)
-      if (month <= 2 || month == 12) {
-        const snowflakes = new Snowflakes();
-        snowflakes.start();
-      }
+      if (process.client)
+        if (month <= 2 || month == 12) {
+          const snowflakes = new Snowflakes({
+            color: '#eee',
+            count: 100, 
+            minSize: 5,
+            maxSize: 20
+          });
+          snowflakes.start();
+        }
     }
   },
   beforeMount() {
@@ -325,7 +330,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style scoped lang="scss">
 .vue-live2d-main {
   position: fixed;
   z-index: 1010;
@@ -361,6 +366,16 @@ export default {
 }
 </style>
 <style lang="scss">
+:global {
+  @font-face {
+    font-family: 'Yuanti TC';
+    src: url('/fonts/STYuanti-TC-Bold.woff2') format('woff2'), url('/fonts/STYuanti-TC-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+}
+
 body {
   max-width: 100vw;
 }
@@ -380,13 +395,9 @@ body {
     max-width: 1920px
   }
 }
-.snowflakes_gid_1 .snowflake .snowflake__inner::before{
-  background-color: white;
-  background-image: none !important;
-  border-radius: 100%;
-}
+
 #app {
-  font-family: "Montserrat", sans-serif !important;
+  font-family: "Yuanti TC" !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
@@ -491,9 +502,21 @@ body {
   .nav-item.v-btn--active>.v-btn__overlay {
     opacity: 0;
   }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    -webkit-text-stroke-width: .6px;
+    -webkit-text-stroke-color: #ddd;
+    -webkit-text-fill-color: #f27386;
+    paint-order: stroke fill;
+    text-shadow: 1px 2px 4px rgba(0, 0, 0, 0.3);
+  }
 }
 
 .w-50 {
   width: 49%;
-}
-</style>
+}</style>
