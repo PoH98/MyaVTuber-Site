@@ -20,14 +20,14 @@
             <h2>最新官方Twitter</h2>
           </div>
           <span class="col-12 col-lg-6 px-0 py-0">
-            <a href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw" class="twitter-follow-button"
-              data-show-count="true">Follow @MyaVtuber</a>
+            <a href="https://twitter.com/mya_desu?ref_src=twsrc%5Etfw" class="twitter-follow-button"
+              data-show-count="true">Follow @mya_desu</a>
           </span>
         </div>
         <v-container>
           <div class="twitter" ref="myaTweets">
             <a data-chrome="noborders noheader nofooter noscrollbar" data-tweet-limit="3" class="twitter-timeline"
-              href="https://twitter.com/MyaVtuber?ref_src=twsrc%5Etfw">Tweets by MyaVtuber</a>
+              href="https://twitter.com/mya_desu?ref_src=twsrc%5Etfw">Tweets by @mya_desu</a>
           </div>
         </v-container>
       </template>
