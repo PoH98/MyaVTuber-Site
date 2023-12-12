@@ -13,7 +13,6 @@
     <v-lazy>
       <v-parallax class="full-banner" src="/img/fullwidth.jpg" alt="@/yuentsz123" />
     </v-lazy>
-    <ImageBoard />
     <Section disableLazy>
       <template v-slot:left>
         <div class="twitter-title row">
@@ -75,7 +74,6 @@ import Gummy from "~/components/Home/gummy-vid.vue";
 import Glitch from "~/components/Home/glitch.vue";
 import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
-import ImageBoard from "~/components/Home/ImageBoard.vue";
 import { useHead } from "unhead";
 export default {
   async setup() {
@@ -93,7 +91,6 @@ export default {
     Glitch,
     Section,
     FSection,
-    ImageBoard,
     SubSection,
     MyaLive
   },
