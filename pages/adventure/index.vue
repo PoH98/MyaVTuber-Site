@@ -20,9 +20,11 @@ export default {
         for (let x = 1; x <= 64; x++) {
             pages.push("/img/adventure/Book_final_page-" + x.toString().padStart(4, '0') + ".jpg");
         }
-        if(window.innerWidth < 895){
-            pages.splice(2, 1);
-            pages.splice(62, 1);
+        if (process.client) {
+            if (window.innerWidth < 895) {
+                pages.splice(2, 1);
+                pages.splice(62, 1);
+            }
         }
         return {
             pages
