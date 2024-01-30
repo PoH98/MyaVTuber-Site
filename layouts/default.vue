@@ -524,4 +524,9 @@ body {
 
 .w-50 {
   width: 49%;
-}</style>
+}
+
+.PhotoConsumer{
+  width: 100%;
+}
+</style>

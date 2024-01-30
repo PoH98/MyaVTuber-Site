@@ -1,5 +1,18 @@
 <template>
-  <v-sheet :class="'mya-live-statistics ' + color">
+  <v-sheet :class="'mya-live-statistics bg-primary-darken-1 position-relative ' + color">
+    <v-icon class="text-yellow position-absolute" style="left: 20%; top: 8%; font-size: 80px;transform:rotate(45deg);">{{ mdiStarFourPoints
+    }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 12%; top: 4%; font-size: 40px;">{{ mdiStarFourPoints
+    }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 40%; top: 2%">{{ mdiStarFourPoints }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 2%; top: 33%; font-size: 30px;">{{ mdiStarFourPoints
+    }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 11%; top: 72%; font-size: 30px; transform:rotate(10deg);">{{ mdiStarFourPoints
+    }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 8%; top: 54%; font-size: 60px; transform:rotate(33deg);">{{ mdiStarFourPoints
+    }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 13%; top: 88%; transform:rotate(70deg);">{{
+      mdiStarFourPoints }}</v-icon>
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col class="text-center">
@@ -14,24 +27,26 @@
           {{ getMonday() }} - {{ getSunday() }} 直播時間表</v-col>
         <v-col cols="12">
           <v-responsive v-if="futurevid.TimeTableUrl" :aspect-ratio="1280 / 720">
-            <v-img v-if="!isMobile" style="width: 100%; height: 100%;" :lazy-src="
-              'https://www.mya-hkvtuber.com/img/' +
-              futurevid.TimeTableUrl +
-              '.jpg?width=1280&format=jpg'
-            " :src="
-  'https://www.mya-hkvtuber.com/img/' +
-  futurevid.TimeTableUrl +
-  '.jpg?width=1280&format=jpg'
-" />
-            <v-img v-else style="width: 100%; height: 100%;" :lazy-src="
-              'https://www.mya-hkvtuber.com/img/' +
-              futurevid.TimeTableUrl +
-              '.jpg?width=480&format=jpg'
-            " :src="
-  'https://www.mya-hkvtuber.com/img/' +
-  futurevid.TimeTableUrl +
-  '.jpg?width=480&format=jpg'
-" />
+            <photo-provider>
+              <photo-consumer v-if="!isMobile" :src="'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=1920&format=jpg'
+                " target="_blank" rel="noreferrer">
+                <img class="v-img v-img__img--contain w-100" :src="'https://www.mya-hkvtuber.com/img/' +
+                  futurevid.TimeTableUrl +
+                  '.jpg?width=1280&format=jpg'
+                  " />
+              </photo-consumer>
+              <photo-consumer v-else :src="'https://www.mya-hkvtuber.com/img/' +
+                futurevid.TimeTableUrl +
+                '.jpg?width=480&format=jpg'
+                " target="_blank" rel="noreferrer">
+                <img class="v-img v-img__img--contain w-100" :src="'https://www.mya-hkvtuber.com/img/' +
+                  futurevid.TimeTableUrl +
+                  '.jpg?width=480&format=jpg'
+                  " />
+              </photo-consumer>
+            </photo-provider>
           </v-responsive>
           <h3 class="mt-4">Upcoming</h3>
           <p v-if="futurevid.Videos && futurevid.Videos.length < 1">
@@ -43,15 +58,13 @@
             <template v-slot:default="{ isHovering, props }">
               <v-card :href="v.Url" :elevation="isHovering ? 5 : 0" v-bind="props"
                 :class="isHovering ? 'enlight upcoming-card' : 'upcoming-card darken'">
-                <v-img v-if="!isMobile" class="text-white align-end" height="300" :lazy-src="
-                  'https://www.mya-hkvtuber.com/img/' +
+                <v-img v-if="!isMobile" class="text-white align-end" height="300" :lazy-src="'https://www.mya-hkvtuber.com/img/' +
                   v.Thumbnail +
                   '.jpg?width=700&format=jpg'
-                " :src="
-  'https://www.mya-hkvtuber.com/img/' +
-  v.Thumbnail +
-  '.jpg?width=700&format=jpg'
-">
+                  " :src="'https://www.mya-hkvtuber.com/img/' +
+    v.Thumbnail +
+    '.jpg?width=700&format=jpg'
+    ">
                   <v-card-title v-text="v.Title"></v-card-title>
                   <hr />
                   <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
@@ -63,15 +76,13 @@
                   <v-card-text v-else> 已結束播放 </v-card-text>
                 </v-img>
                 <v-img v-else gradient="to bottom, rgba(0,0,0,.5), rgba(0,0,0,.5)" class="text-white align-end"
-                  height="250" :lazy-src="
-                    'https://www.mya-hkvtuber.com/img/' +
+                  height="250" :lazy-src="'https://www.mya-hkvtuber.com/img/' +
                     v.Thumbnail +
                     '.jpg?width=480&format=jpg'
-                  " :src="
-  'https://www.mya-hkvtuber.com/img/' +
-  v.Thumbnail +
-  '.jpg?width=480&format=jpg'
-">
+                    " :src="'https://www.mya-hkvtuber.com/img/' +
+    v.Thumbnail +
+    '.jpg?width=480&format=jpg'
+    ">
                   <v-card-title v-text="v.Title"></v-card-title>
                   <hr />
                   <v-card-text v-if="getIsFutureLive(v.ScheduledStartTime)">
@@ -96,6 +107,7 @@
   </div>
 </template>
 <script>
+import { mdiStarFourPoints } from "@mdi/js";
 import { useSharedDataStore } from '@/store/sharedData.js';
 export default {
   props: {
@@ -108,6 +120,7 @@ export default {
   },
   data() {
     return {
+      mdiStarFourPoints,
       isMobile: false,
     };
   },
@@ -232,5 +245,4 @@ export default {
 .floating-video iframe {
   width: 100%;
   height: 100%;
-}
-</style>
+}</style>

@@ -1,12 +1,12 @@
 import { Application } from "@pixi/app";
 import { Ticker, TickerPlugin } from "@pixi/ticker";
-import { Live2DModel } from "pixi-live2d-display/cubism4";
 import { InteractionManager } from "@pixi/interaction";
 import { Renderer } from "@pixi/core";
 export default defineNuxtPlugin((nuxtApp) => {
   if (window.innerWidth > 480) {
     setTimeout(async () => {
       try {
+        const Live2DModel = await import("pixi-live2d-display/cubism4");
         Live2DModel.registerTicker(Ticker);
         Application.registerPlugin(TickerPlugin);
         Renderer.registerPlugin("interaction", InteractionManager);
@@ -22,7 +22,6 @@ export default defineNuxtPlugin((nuxtApp) => {
           backgroundAlpha: 0,
         });
         let model = await Live2DModel.from("/live2d/MYAAA/MYAAA.model3.json");
-        model._autoInteract = false;
         model.scale.set(0.2, 0.2);
         app.stage.addChild(model);
         document.addEventListener("mousemove", (e) => {

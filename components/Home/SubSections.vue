@@ -161,7 +161,6 @@ export default {
       } else if (!this.theme.global.current.value.dark) {
         return "text-black";
       } else {
-        console.log("Test")
         return "text-white";
       }
     },

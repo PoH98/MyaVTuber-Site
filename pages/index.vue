@@ -57,7 +57,7 @@
     <v-lazy>
       <v-parallax class="full-banner" src="/img/myanewcloth.jpg" alt="@HigashikataKou" />
     </v-lazy>
-    <mya-live />
+    <mya-live/>
     <FSection>
       <v-container>
         <p class="text-h4 mb-0">院友期待你的加入！</p>
