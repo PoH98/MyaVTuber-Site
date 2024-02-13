@@ -27,53 +27,83 @@
         </v-list-item>
         <v-list nav dense>
           <v-list-item to="/" link>
-            <v-icon>{{ mdiHome }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiHome }}</v-icon>
+            </template>
             <v-list-item-title>米亞</v-list-item-title>
           </v-list-item>
           <v-list-item to="/gummy" link>
-            <v-icon>{{ mdiAccount }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiAccount }}</v-icon>
+            </template>
             <v-list-item-title>甘米主人</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/teahouse" link>
-            <v-icon>{{ mdiCoffee }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiCoffee }}</v-icon>
+            </template>
             <v-list-item-title>幻花茶屋</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/mya-meme" link>
-            <v-icon>{{ mdiBook }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiBook }}</v-icon>
+            </template>
             <v-list-item-title>米亞梗字典</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/achievement" link>
-            <v-icon>{{ mdiTrophy }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiTrophy }}</v-icon>
+            </template>
             <v-list-item-title>路程杯</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/adventure" link>
-            <v-icon>{{ mdiBook }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiBook }}</v-icon>
+            </template>
             <v-list-item-title>頂米亞大冒險</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/bbq" link>
-            <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+            </template>
             <v-list-item-title>米亞烤肉</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/mya" link>
-            <YoutubeIcon size="20" />
+            <template v-slot:prepend>
+              <v-icon>
+                <YoutubeIcon size="20" />
+              </v-icon>
+            </template>
             <v-list-item-title>米亞過往的影片</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/games" link>
-            <v-icon>
-              {{ mdiController }}
-            </v-icon>
+            <template v-slot:prepend>
+              <v-icon>
+                {{ mdiController }}
+              </v-icon>
+            </template>
             <v-list-item-title>院友自製遊戲</v-list-item-title>
           </v-list-item>
-
+          <v-list-item to="/mya-game/register" link>
+            <template v-slot:prepend>
+              <v-icon>
+                {{ mdiController }}
+              </v-icon>
+            </template>
+            <v-list-item-title>！特別限時活動！</v-list-item-title>
+            <v-list-item-subtitle>院友遊戲創建比賽</v-list-item-subtitle>
+          </v-list-item>
           <v-list-item to="/thanks" link>
-            <v-icon>{{ mdiPartyPopper }}</v-icon>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiPartyPopper }}</v-icon>
+            </template>
             <v-list-item-title>特別感謝</v-list-item-title>
           </v-list-item>
 
@@ -299,7 +329,7 @@ export default {
         if (month <= 2 || month == 12) {
           const snowflakes = new Snowflakes({
             color: '#eee',
-            count: 100, 
+            count: 100,
             minSize: 5,
             maxSize: 20
           });
@@ -526,7 +556,7 @@ body {
   width: 49%;
 }
 
-.PhotoConsumer{
+.PhotoConsumer {
   width: 100%;
 }
 </style>
