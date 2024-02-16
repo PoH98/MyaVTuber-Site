@@ -99,19 +99,20 @@
         <div class="my-3" v-if="teams.length === 0">
             <h3>等待報名中...</h3>
         </div>
-        <v-row>
+        <v-row class="mt-3">
             <v-col cols="12" md="6" v-for="team in teams" :key="team.name">
-                <v-card>
+                <v-card class="elevation-10 rounded-xl" style="border-width: 3px;">
                     <v-card-text>
                         <h1>
                             {{ team.name }}
                         </h1>
                         <hr class="my-6" />
-                        <v-list>
+                        <v-list class="text-left">
                             <v-list-item v-for="member in team.members" :key="member.discord" :title="member.name"
                                 :subtitle="member.discord">
                             </v-list-item>
                         </v-list>
+                        <v-btn class="w-100" target="_blank" color="purple-darken-2" :href="team.url">Website</v-btn>
                     </v-card-text>
                 </v-card>
             </v-col>
@@ -123,15 +124,24 @@ export default {
     data() {
         return {
             teams: [
-                /*{
-                    name: "團隊1",
+                {
+                    name: "熊貓巴士迷三人組",
                     members:[
                         {
-                            name:"",
-                            discord:""
+                            name:"阿軒",
+                            discord:"@ahhin1402"
+                        },
+                        {
+                            name:"D100",
+                            discord:"@yuanyouno148mtrd100d102pz9163"
+                        },
+                        {
+                            name:"ME8853",
+                            discord:"@henry0912lau"
                         }
-                    ]
-                }*/
+                    ],
+                    url:"https://buspanda.mya-hkvtuber.com/"
+                }
             ]
         }
     }
