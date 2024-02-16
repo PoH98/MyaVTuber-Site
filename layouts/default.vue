@@ -13,6 +13,12 @@
           </span>
         </div>
         <v-spacer />
+        <v-btn plain v-if="showSnow && snowflakes != null" class="d-none d-md-block" @click="toggleSnow">
+          Hide Snow
+        </v-btn>
+        <v-btn plain v-else-if="showSnow" class="d-none d-md-block" @click="toggleSnow">
+          Show Snow
+        </v-btn>
         <v-btn plain class="d-none d-md-block" v-if="!$vuetify.theme.current.dark" @click="toggleTheme(false)">
           Darkmode
         </v-btn>
@@ -262,7 +268,8 @@ export default {
       ],
       showCelebrate: false,
       specialCelebrate: {},
-      showSnow: true,
+      showSnow: false,
+      snowflakes: null
     };
   },
   computed: {
@@ -277,6 +284,25 @@ export default {
     },
   },
   methods: {
+    toggleSnow() {
+      if (this.snowflakes == null) {
+        this.snowflakes = new Snowflakes({
+          color: '#ccc',
+          count: 20,
+          minSize: 10,
+          maxSize: 15
+        });
+        this.snowflakes.start();
+        localStorage.setItem("disableSnow", "");
+      }
+      else {
+        this.snowflakes?.stop();
+        this.snowflakes?.destroy();
+        this.snowflakes = null;
+        localStorage.setItem("disableSnow", "true")
+      }
+
+    },
     async specialEvents() {
       const month = new Date().getMonth() + 1;
       //subscribers celebrate or mya birthday celebrate
@@ -326,15 +352,16 @@ export default {
       }
       // month will reduce 1 at here so we add 1 for real world month
       if (process.client)
-        if (month <= 2 || month == 12) {
-          const snowflakes = new Snowflakes({
-            color: '#eee',
-            count: 100,
-            minSize: 5,
-            maxSize: 20
-          });
-          snowflakes.start();
-        }
+        this.showSnow = true;
+      if ((month <= 2 || month == 12) && localStorage.getItem("disableSnow") != "true") {
+        this.snowflakes = new Snowflakes({
+          color: '#ccc',
+          count: 20,
+          minSize: 10,
+          maxSize: 15
+        });
+        this.snowflakes.start();
+      }
     }
   },
   beforeMount() {
