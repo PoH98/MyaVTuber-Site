@@ -101,7 +101,7 @@
         </div>
         <v-row class="mt-3">
             <v-col cols="12" md="6" v-for="team in teams" :key="team.name">
-                <v-card class="elevation-10 rounded-xl" style="border-width: 3px;">
+                <v-card class="elevation-10 rounded-xl d-flex flex-column justify-between h-100" style="border-width: 3px;">
                     <v-card-text>
                         <h1>
                             {{ team.name }}
@@ -112,6 +112,8 @@
                                 :subtitle="member.discord">
                             </v-list-item>
                         </v-list>
+                    </v-card-text>
+                    <v-card-text class="d-flex flex-column justify-end">
                         <v-btn class="w-100" target="_blank" color="purple-darken-2" :href="team.url">Website</v-btn>
                     </v-card-text>
                 </v-card>
@@ -141,6 +143,20 @@ export default {
                         }
                     ],
                     url:"https://buspanda.mya-hkvtuber.com/"
+                },
+                {
+                    name: "月夜團",
+                    members:[
+                        {
+                            name:"月夜",
+                            discord:"@yueyeouo"
+                        },
+                        {
+                            name:"RるびYᘛ⁐̤ᕐᐷ",
+                            discord:"@micetery"
+                        }
+                    ],
+                    url:"https://moon.mya-hkvtuber.com/"
                 }
             ]
         }
