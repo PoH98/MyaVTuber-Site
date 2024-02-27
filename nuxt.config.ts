@@ -20,7 +20,7 @@ export default defineNuxtConfig({
     "@pinia-plugin-persistedstate/nuxt",
     "@nuxtjs/robots",
     "@nuxtjs/device",
-    "nuxt-simple-sitemap",
+    "@nuxtjs/sitemap",
   ],
   runtimeConfig: {
     public: {
