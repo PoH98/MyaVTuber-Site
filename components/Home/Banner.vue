@@ -1,12 +1,12 @@
 <template>
-  <div class="disable-event">
+  <div :class="'disable-event' + (showFools? ' fools':'')">
     <div class="gradient"></div>
     <ClientOnly>
-      <div id="background-frame" v-if="!showFools"
-        data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
-        data-img="/img/sayyouknow.jpg"></div>
+      <div id="background-frame" v-if="showFools"
+        data-iframe="https://www.youtube.com/embed/mkxer6pxQ6I?playlist=mkxer6pxQ6I&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-img="/img/rickroll.jpg"></div>
       <div id="background-frame" v-else
-        data-iframe="https://www.youtube.com/embed/dQw4w9WgXcQ?playlist=dQw4w9WgXcQ&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
         data-img="/img/sayyouknow.jpg"></div>
     </ClientOnly>
     <div class="title" v-if="!showBirthday && !showFools">
@@ -18,8 +18,8 @@
       <p class="text-right by text-bottom">恭喜小熊貓</p>
     </div>
     <div class="title" v-else-if="showFools">
-      <p class="text-h4 text-top">Never gonna give you up</p>
-      <p class="text-right by text-bottom">Never gonna let you down</p>
+      <p class="text-h4 text-top">Never gonna 祝賀大家愚人節快樂！</p>
+      <p class="text-right by text-bottom">Oh my god! Wow!</p>
     </div>
   </div>
 </template>
@@ -155,6 +155,7 @@ export default {
   color: white;
   z-index: 3;
 }
+
 @media (max-width: 380px) {
   .title .text-h4 {
     font-size: 8.2vw !important;
@@ -165,7 +166,13 @@ export default {
   .disable-event {
     height: 280px;
   }
-
+  .disable-event.fools{
+    height: 500px;
+  }
+  .title{
+    padding-left: 16px;
+    padding-right: 16px;
+  }
   .title .by {
     width: 90%;
     font-size: 6vw;
@@ -173,7 +180,7 @@ export default {
 }
 </style>
 <style>
-#background-frame{
+#background-frame {
   z-index: 1;
 }
 </style>
