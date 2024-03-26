@@ -97,15 +97,6 @@
             </template>
             <v-list-item-title>院友自製遊戲</v-list-item-title>
           </v-list-item>
-          <v-list-item to="/mya-game/register" link>
-            <template v-slot:prepend>
-              <v-icon>
-                {{ mdiController }}
-              </v-icon>
-            </template>
-            <v-list-item-title>！特別限時活動！</v-list-item-title>
-            <v-list-item-subtitle>院友遊戲創建比賽</v-list-item-subtitle>
-          </v-list-item>
           <v-list-item to="/thanks" link>
             <template v-slot:prepend>
               <v-icon>{{ mdiPartyPopper }}</v-icon>
