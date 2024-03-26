@@ -65,6 +65,9 @@
                 </v-card-title>
                 <v-card-text>
                     Draw! No Winners this time!
+                    <v-btn color="success" class="mt-3 mb-2 w-100" @click="reload">
+                        Create New Game
+                    </v-btn>
                 </v-card-text>
             </v-card>
         </v-dialog>
@@ -224,8 +227,8 @@ export default {
                 vm.showWin = true;
                 vm.winner = e;
             });
-            this.hub.on("Draw", (e) => {
-                console.log(e);
+            this.hub.on("Draw", () => {
+                vm.showDraw = true;
             });
             await this.hub.start();
         },
