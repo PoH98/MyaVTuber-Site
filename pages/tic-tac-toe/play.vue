@@ -164,7 +164,10 @@ export default {
         },
         async createConnection() {
             let vm = this;
-            this.hub = new SignalR.HubConnectionBuilder().withUrl("https://www.mya-hkvtuber.com/game").build();
+            this.hub = new SignalR.HubConnectionBuilder()
+            .withUrl("https://www.mya-hkvtuber.com/game")
+            .withAutomaticReconnect()
+            .build();
             this.hub.on("RoomJoined", (e) => {
                 vm.router.push({
                     path: "/tic-tac-toe/play",

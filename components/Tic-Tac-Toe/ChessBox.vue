@@ -54,6 +54,9 @@ export default {
                 this.$emit("played", { x: this.x, y: this.y });
             }
             else {
+                if (!this.isTurn) {
+                    return;
+                }
                 this.$emit("moved", { x: this.x, y: this.y });
             }
         },
