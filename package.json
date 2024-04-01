@@ -28,6 +28,7 @@
     "pixi.js": "^6.5.10",
     "sass": "^1.72.0",
     "video.js": "^8.10.0",
+    "vite-plugin-vuetify": "^2.0.3",
     "vue-confetti": "^2.3.0",
     "vue3-photo-preview": "^0.3.0",
     "vue3-simple-icons": "^7.18.0",
