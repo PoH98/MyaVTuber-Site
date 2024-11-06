@@ -144,6 +144,12 @@
             </ClientOnly>
             <v-list-item-title>Discord</v-list-item-title>
           </v-list-item>
+          <v-list-item href="https://minecraft.mya-hkvtuber.com/" target="_blank" link>
+            <ClientOnly>
+              <MinecraftIcon size="20" />
+            </ClientOnly>
+            <v-list-item-title>Minecraft</v-list-item-title>
+          </v-list-item>
           <v-divider class="d-md-none mt-5"></v-divider>
           <div class="d-md-none pt-3">
             <v-btn plain block v-if="!$vuetify.theme.current.dark" @click="$vuetify.theme.current.dark = true">
@@ -200,7 +206,7 @@ import { useSharedDataStore } from '@/store/sharedData.js';
 import { useThemeStore } from '@/store/themeStore';
 import { useTheme } from 'vuetify';
 import Snowflakes from 'magic-snowflakes';
-import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon, FacebookIcon } from 'vue3-simple-icons'
+import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon, FacebookIcon, MinecraftIcon } from 'vue3-simple-icons'
 import {
   mdiMinecraft,
   mdiAccount,
@@ -220,7 +226,8 @@ export default {
     TwitterIcon,
     DiscordIcon,
     InstagramIcon,
-    FacebookIcon
+    FacebookIcon,
+    MinecraftIcon
   },
   setup() {
     const theme = useTheme()
