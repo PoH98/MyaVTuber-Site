@@ -13,6 +13,16 @@
         </v-container>
     </v-sheet>
 </template>
+<script setup>
+useHeadSafe({
+    title: "米亞烤肉組",
+});
+let currentPage = 1;
+const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1)));
+const content = tempData.data.value.Videos;
+const page = tempData.data.value.Pages;
+const total = tempData.data.value.TotalVideos;
+</script>
 <script>
 import { mdiYoutube, mdiClose } from "@mdi/js";
 import { useHead } from 'unhead';
@@ -34,17 +44,6 @@ export default {
                 this.isMobile = true;
             }
         }
-    },
-    async setup() {
-        useHead({
-            title: "米亞烤肉組",
-        });
-        let currentPage = 1;
-        const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1)));
-        const content = tempData.data.value.Videos;
-        const page = tempData.data.value.Pages;
-        const total = tempData.data.value.TotalVideos;
-        return { content, page, total, currentPage };
     },
     methods: {
         changePage(val) {

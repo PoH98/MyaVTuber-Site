@@ -27,8 +27,14 @@
     </v-container>
   </v-sheet>
 </template>
+<script setup>
+    useHeadSafe({
+      title: "特別感謝",
+    });
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
+    const users = tempData.data.value.data.queryPatientListContents
+</script>
 <script>
-import { useHead } from 'unhead';
 import { mdiPartyPopper } from "@mdi/js";
 export default {
   name: "ThanksView",
@@ -47,14 +53,6 @@ export default {
         "squidex"
       ],
     };
-  },
-  async setup() {
-    useHead({
-      title: "特別感謝",
-    });
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
-    const users = tempData.data.value.data.queryPatientListContents
-    return { users };
   }
 };
 </script>

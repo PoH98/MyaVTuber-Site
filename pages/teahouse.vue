@@ -91,15 +91,8 @@
     </FullSection>
   </div>
 </template>
-<script>
-import SubSections from "../components/Home/SubSections.vue";
-import FullSection from "../components/Home/FullSection.vue";
-import SecondarySection from "../components/Home/SecondarySection.vue";
-import { useHead } from 'unhead';
-export default {
-  components: { SubSections, FullSection, SecondarySection },
-  async setup() {
-    useHead({
+<script setup>
+  useHeadSafe({
       title: "幻花茶屋",
       meta: [
         { charset: "UTF-8" },
@@ -143,9 +136,13 @@ export default {
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
     ));
     const content = tempData.data.value.data.queryHomeContents[0].flatData
-    return { content };
-  },
-
+</script>
+<script>
+import SubSections from "../components/Home/SubSections.vue";
+import FullSection from "../components/Home/FullSection.vue";
+import SecondarySection from "../components/Home/SecondarySection.vue";
+export default {
+  components: { SubSections, FullSection, SecondarySection },
   mounted() {
     if (!window.twttr) {
       window.twttr = (function (d, s, id) {

@@ -73,6 +73,13 @@
             <v-list-item-title>頂米亞大冒險</v-list-item-title>
           </v-list-item>
 
+          <v-list-item to="/bingo" link>
+            <template v-slot:prepend>
+              <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+            </template>
+            <v-list-item-title>米亞Bingo</v-list-item-title>
+          </v-list-item>
+
           <v-list-item to="/bbq" link>
             <template v-slot:prepend>
               <v-icon>{{ mdiFoodDrumstick }}</v-icon>
@@ -83,7 +90,7 @@
           <v-list-item to="/mya" link>
             <template v-slot:prepend>
               <v-icon>
-                <YoutubeIcon size="20" />
+                <YouTubeIcon size="20" />
               </v-icon>
             </template>
             <v-list-item-title>米亞過往的影片</v-list-item-title>
@@ -111,14 +118,14 @@
           <v-divider></v-divider>
           <v-list-item target="_blank" href="https://www.youtube.com/channel/UCVDrzfo7NnOvNx8dU-Ebitg" link>
             <ClientOnly>
-              <YoutubeIcon size="20" />
+              <YouTubeIcon size="20" />
             </ClientOnly>
             <v-list-item-title>Youtube</v-list-item-title>
           </v-list-item>
 
           <v-list-item href="https://twitter.com/MyaVtuber" target="_blank" link>
             <ClientOnly>
-              <TwitterIcon size="20" />
+              <XIcon size="20" />
             </ClientOnly>
 
             <v-list-item-title>Twitter</v-list-item-title>
@@ -143,12 +150,6 @@
               <DiscordIcon size="20" />
             </ClientOnly>
             <v-list-item-title>Discord</v-list-item-title>
-          </v-list-item>
-          <v-list-item href="https://minecraft.mya-hkvtuber.com/" target="_blank" link>
-            <ClientOnly>
-              <MinecraftIcon size="20" />
-            </ClientOnly>
-            <v-list-item-title>Minecraft</v-list-item-title>
           </v-list-item>
           <v-divider class="d-md-none mt-5"></v-divider>
           <div class="d-md-none pt-3">
@@ -205,8 +206,7 @@
 import { useSharedDataStore } from '@/store/sharedData.js';
 import { useThemeStore } from '@/store/themeStore';
 import { useTheme } from 'vuetify';
-import Snowflakes from 'magic-snowflakes';
-import { TwitterIcon, DiscordIcon, InstagramIcon, YoutubeIcon, FacebookIcon, MinecraftIcon } from 'vue3-simple-icons'
+import { DiscordIcon, InstagramIcon, XIcon, YouTubeIcon, FacebookIcon } from 'vue3-simple-icons'
 import {
   mdiMinecraft,
   mdiAccount,
@@ -222,12 +222,11 @@ import config from "@/plugins/specialEvent.json";
 export default {
   name: "defaultLayout",
   components: {
-    YoutubeIcon,
-    TwitterIcon,
+    YouTubeIcon,
     DiscordIcon,
     InstagramIcon,
+    XIcon,
     FacebookIcon,
-    MinecraftIcon
   },
   setup() {
     const theme = useTheme()
@@ -347,18 +346,6 @@ export default {
             });
           }
         }
-      }
-      // month will reduce 1 at here so we add 1 for real world month
-      if (process.client)
-        this.showSnow = true;
-      if ((month <= 2 || month == 12) && localStorage.getItem("disableSnow") != "true") {
-        this.snowflakes = new Snowflakes({
-          color: '#ccc',
-          count: 20,
-          minSize: 10,
-          maxSize: 15
-        });
-        this.snowflakes.start();
       }
     }
   },

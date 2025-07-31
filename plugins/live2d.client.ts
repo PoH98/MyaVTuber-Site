@@ -1,7 +1,5 @@
 import { Application } from "@pixi/app";
 import { Ticker, TickerPlugin } from "@pixi/ticker";
-import { InteractionManager } from "@pixi/interaction";
-import { Renderer } from "@pixi/core";
 export default defineNuxtPlugin((nuxtApp) => {
   if (window.innerWidth > 480) {
     setTimeout(async () => {
@@ -9,7 +7,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         const Live2DModel = await import("pixi-live2d-display/cubism4");
         Live2DModel.registerTicker(Ticker);
         Application.registerPlugin(TickerPlugin);
-        Renderer.registerPlugin("interaction", InteractionManager);
         const canvas = document.getElementById("live2d");
         if (canvas == null) {
           return;

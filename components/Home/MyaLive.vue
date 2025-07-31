@@ -1,18 +1,26 @@
 <template>
   <v-sheet :class="'mya-live-statistics bg-primary-darken-1 position-relative ' + color">
-    <v-icon class="text-yellow position-absolute" style="left: 20%; top: 8%; font-size: 80px;transform:rotate(45deg);">{{ mdiStarFourPoints
-    }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="right: 12%; top: 4%; font-size: 40px;">{{ mdiStarFourPoints
-    }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="left: 40%; top: 2%">{{ mdiStarFourPoints }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="left: 2%; top: 33%; font-size: 30px;">{{ mdiStarFourPoints
-    }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="left: 11%; top: 72%; font-size: 30px; transform:rotate(10deg);">{{ mdiStarFourPoints
-    }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="right: 8%; top: 54%; font-size: 60px; transform:rotate(33deg);">{{ mdiStarFourPoints
-    }}</v-icon>
-    <v-icon class="text-yellow position-absolute" style="right: 13%; top: 88%; transform:rotate(70deg);">{{
-      mdiStarFourPoints }}</v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 20%; top: 8%; font-size: 80px;transform:rotate(45deg);">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 12%; top: 4%; font-size: 40px;">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 40%; top: 2%">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 2%; top: 33%; font-size: 30px;">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="left: 11%; top: 72%; font-size: 30px; transform:rotate(10deg);">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 8%; top: 54%; font-size: 60px; transform:rotate(33deg);">
+      {{ mdiStarFourPoints }}
+    </v-icon>
+    <v-icon class="text-yellow position-absolute" style="right: 13%; top: 88%; transform:rotate(70deg);">
+      {{ mdiStarFourPoints }}
+    </v-icon>
     <v-container class="py-10">
       <v-row class="justify-center">
         <v-col class="text-center">

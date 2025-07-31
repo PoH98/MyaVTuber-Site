@@ -73,25 +73,20 @@
         </v-dialog>
     </v-container>
 </template>
+<script setup>
+useHeadSafe(
+    {
+      title: '米亞Tic Tac Toe'
+    });
+const game = useGameStore();
+const route = useRoute();
+const router = useRouter();
+</script>
 <script>
 import ChessBox from '../../components/Tic-Tac-Toe/ChessBox.vue';
 import { useGameStore } from "@/store/tic-tac-toe.js";
-import { useHead } from 'unhead';
 import * as SignalR from "@microsoft/signalr";
 export default {
-    setup() {
-        useHead({
-            title: '米亞Tic Tac Toe'
-        })
-        const game = useGameStore();
-        const route = useRoute();
-        const router = useRouter();
-        return {
-            game,
-            route,
-            router
-        }
-    },
     components: {
         ChessBox
     },

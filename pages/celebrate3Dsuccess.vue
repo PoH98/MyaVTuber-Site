@@ -152,11 +152,39 @@
     </v-container>
   </section>
 </template>
+<script setup>
+    useHeadSafe({
+      title: '祝賀米亞3D化成功'
+    });
+    const theme = useTheme()
+    const [tempData, tweetsData] = await Promise.all([
+      useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
+      useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
+    ])
+    let rawContent = tempData.data.value.data.queryCelebrate3dContents
+    let index = 0;
+    rawContent = rawContent.sort((x, y) => {
+      index++;
+      if (index % 8 < 2) {
+        if (x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30) {
+          return 1;
+        } else if (x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30) {
+          return -1;
+        } else if (x.data.wish.iv.length > y.data.wish.iv.length) {
+          return 1;
+        } else if (x.data.wish.iv.length < y.data.wish.iv.length) {
+          return -1;
+        }
+        return 0;
+      }
+      return -1;
+    });
+    const specialTweets = tweetsData.data.value;
+    const content = rawContent;
+</script>
 <script>
 import VideoPlayer from "~/components/VideoPlayer.vue";
 import VideoRow from "~/components/Celebrate3D/VideoRow.vue";
-import { useTheme } from 'vuetify'
-import { useHead } from 'unhead';
 export default {
   components: {
     VideoPlayer,
@@ -306,36 +334,6 @@ export default {
       this.$refs["bg_" + (x + 1)][0].classList.add("active");
     }
     setTimeout(this.intervalTimer, 1000);
-  },
-  async setup() {
-    useHead({
-      title: '祝賀米亞3D化成功'
-    });
-    const theme = useTheme()
-    const [tempData, tweetsData] = await Promise.all([
-      useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
-      useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
-    ])
-    let content = tempData.data.value.data.queryCelebrate3dContents
-    let index = 0;
-    content = content.sort((x, y) => {
-      index++;
-      if (index % 8 < 2) {
-        if (x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30) {
-          return 1;
-        } else if (x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30) {
-          return -1;
-        } else if (x.data.wish.iv.length > y.data.wish.iv.length) {
-          return 1;
-        } else if (x.data.wish.iv.length < y.data.wish.iv.length) {
-          return -1;
-        }
-        return 0;
-      }
-      return -1;
-    });
-    const specialTweets = tweetsData.data.value;
-    return { content, specialTweets, theme };
   }
 };
 </script>

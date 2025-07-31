@@ -33,22 +33,20 @@
     </v-container>
   </v-sheet>
 </template>
+<script setup>
+    useHeadSafe({
+      title: "米亞梗字典"
+    })
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, cardimg } }}"));
+    const content = tempData.data.value.data.queryJokewikiContents
+</script>
 <script>
 import { mdiChevronTripleRight } from "@mdi/js";
-import { useHead } from 'unhead';
 export default {
   data() {
     return {
       mdiChevronTripleRight,
     };
-  },
-  async setup() {
-    useHead({
-      title: "米亞梗字典"
-    })
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, cardimg } }}"));
-    const content = tempData.data.value.data.queryJokewikiContents
-    return { content };
   },
   methods: {
     getContrastYIQ(hexcolor) {

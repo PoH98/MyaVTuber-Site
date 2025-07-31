@@ -66,6 +66,13 @@
     </FSection>
   </div>
 </template>
+<script setup>
+    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
+    const content = tempData.data.value.data.queryHomeContents[0].flatData;
+    useHeadSafe({
+      title: "主頁"
+    });
+</script>
 <script>
 import SubSection from "~/components/Home/SubSections.vue";
 import MyaLive from "~/components/Home/MyaLive.vue";
@@ -74,15 +81,10 @@ import Gummy from "~/components/Home/gummy-vid.vue";
 import Glitch from "~/components/Home/glitch.vue";
 import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
-import { useHead } from "unhead";
+
 export default {
   async setup() {
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
-    const content = tempData.data.value.data.queryHomeContents[0].flatData;
-    useHead({
-      title: "主頁"
-    });
-    return { content };
+
   },
   name: "indexView",
   components: {

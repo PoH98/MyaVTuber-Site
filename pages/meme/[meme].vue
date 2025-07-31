@@ -50,17 +50,7 @@
     </p>
   </v-sheet>
 </template>
-<script>
-import { useHead } from 'unhead';
-import { mdiChevronLeft } from "@mdi/js";
-export default {
-  data() {
-    return {
-      mdiChevronLeft,
-      timeout: null,
-    };
-  },
-  async setup() {
+<script setup>
     const route = useRoute();
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/jokewiki/" +
       route.params.meme,
@@ -69,7 +59,15 @@ export default {
     useHead({
       title: content.title,
     });
-    return { content };
+</script>
+<script>
+import { mdiChevronLeft } from "@mdi/js";
+export default {
+  data() {
+    return {
+      mdiChevronLeft,
+      timeout: null,
+    };
   },
   computed: {
     getLink() {

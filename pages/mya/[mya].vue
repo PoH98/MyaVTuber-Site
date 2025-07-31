@@ -8,14 +8,27 @@
             </h1>
             <h3 class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
             <Carousel :images="content" />
-            <v-pagination class="mt-5" color="rgb(248, 187, 208)" :model-value="currentPage" @update:model-value="changePage"
-                :length="page"></v-pagination>
+            <v-pagination class="mt-5" color="rgb(248, 187, 208)" :model-value="currentPage"
+                @update:model-value="changePage" :length="page"></v-pagination>
         </v-container>
     </v-sheet>
 </template>
+<script setup>
+useHead({
+    title: "米亞烤肉組",
+});
+let currentPage = 1;
+const route = useRoute();
+if (route.params.mya) {
+    currentPage = parseInt(route.params.mya);
+}
+const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1)));
+const content = tempData.data.value.Videos;
+const page = tempData.data.value.Pages;
+const total = tempData.data.value.TotalVideos;
+</script>
 <script>
 import { mdiYoutube, mdiClose } from "@mdi/js";
-import { useHead } from 'unhead';
 import Carousel from "~/components/Mya/Carousel.vue";
 export default {
     components: {
@@ -34,21 +47,6 @@ export default {
                 this.isMobile = true;
             }
         }
-    },
-    async setup() {
-        useHead({
-            title: "米亞烤肉組",
-        });
-        let currentPage = 1;
-        const route = useRoute();
-        if (route.params.mya) {
-            currentPage = parseInt(route.params.mya);
-        }
-        const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1)));
-        const content = tempData.data.value.Videos;
-        const page = tempData.data.value.Pages;
-        const total = tempData.data.value.TotalVideos;
-        return { content, page, total, currentPage };
     },
     methods: {
         changePage(val) {

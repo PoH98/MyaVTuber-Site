@@ -36,17 +36,8 @@
     </v-container>
   </v-sheet>
 </template>
-<script>
-import {mdiController} from '@mdi/js';
-import { useHead } from 'unhead';
-export default {
-  data(){
-    return{
-      mdiController
-    }
-  },
-  async setup() {
-    useHead({
+<script setup>
+    useHeadSafe({
       title: "院友自創遊戲"
     });
     const tempData = await useAsyncData(() => $fetch(
@@ -56,7 +47,15 @@ export default {
         },
       }));
     const content = tempData.data.value.items
-    return { content };
+</script>
+<script>
+import {mdiController} from '@mdi/js';
+import { useHead } from 'unhead';
+export default {
+  data(){
+    return{
+      mdiController
+    }
   }
 };
 </script>

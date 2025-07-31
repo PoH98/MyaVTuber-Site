@@ -76,6 +76,16 @@
     </FSection>
   </div>
 </template>
+<script setup>
+const route = useRoute();
+const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
+  route.params.patient,
+  { headers: { "X-Flatten": 1 } }));
+const patient = tempData.data.value.data;
+useHeadSafe({
+  title: patient.name,
+})
+</script>
 <script>
 import { useHead } from 'unhead';
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
@@ -106,18 +116,7 @@ export default {
       }
       return words.join(" ");
     },
-  },
-  async setup() {
-    const route = useRoute();
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
-      route.params.patient,
-      { headers: { "X-Flatten": 1 } }));
-    const patient = tempData.data.value.data;
-    useHead({
-      title: patient.name,
-    })
-    return { patient };
-  },
+  }
 };
 </script>
 <style scoped>

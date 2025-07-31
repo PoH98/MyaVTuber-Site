@@ -46,6 +46,15 @@
     <mya-live />
   </div>
 </template>
+<script setup>
+    const tempData = await useAsyncData(() => $fetch(
+      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
+    ));
+    const content = tempData.data.value.data.queryHomeContents[0].flatData;
+    useHeadSafe({
+      title: "甘米"
+    });
+</script>
 <script>
 import SubSection from "~/components/Home/SubSections.vue";
 import MyaLive from "~/components/Home/MyaLive.vue";
@@ -55,7 +64,6 @@ import Glitch from "~/components/Home/glitch.vue";
 import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
 import ImageBoard from "~/components/Home/ImageBoard.vue";
-import { useHead } from "unhead";
 export default {
   name: "gummyView",
   components: {
@@ -67,16 +75,6 @@ export default {
     ImageBoard,
     SubSection,
     MyaLive,
-  },
-  async setup() {
-    useHead({
-      title: "甘米"
-    });
-    const tempData = await useAsyncData(() => $fetch(
-      "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-    ));
-    const content = tempData.data.value.data.queryHomeContents[0].flatData
-    return { content };
   },
   mounted() {
     if (!window.twttr) {

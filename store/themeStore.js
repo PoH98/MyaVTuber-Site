@@ -3,7 +3,5 @@ export const useThemeStore = defineStore('theme', {
     state: () => ({
         theme: null
     }),
-    persist: persistedState.cookiesWithOptions({
-        sameSite: 'strict',
-    })
+    persist: true
 })

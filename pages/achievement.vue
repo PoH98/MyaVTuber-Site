@@ -44,19 +44,18 @@
     </v-container>
   </v-sheet>
 </template>
-<script>
-import { useHead } from 'unhead';
-export default {
-  async setup() {
-    useHead({
+<script setup>
+    useHeadSafe({
       title: '米亞路程杯'
     })
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}"));
     const content = tempData.data.value.data.queryAchivementContents.sort((a, b) => {
       return new Date(b.flatData.date) - new Date(a.flatData.date);
     });
-    return { content };
-  },
+</script>
+<script>
+import { useHead } from 'unhead';
+export default {
   data() {
     return {
       month: [

@@ -95,8 +95,21 @@
     </v-dialog>
   </v-sheet>
 </template>
+<script setup>
+    useHeadSafe({
+      title: "米亞烤肉組",
+    });
+    const route = useRoute();
+    let currentPage = 1;
+    if (route.params.bbq) {
+      currentPage = parseInt(route.params.bbq);
+    }
+    const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1)));
+    const content = tempData.data.value.Videos;
+    const page = tempData.data.value.Pages;
+    const total = tempData.data.value.TotalVideos;
+</script>
 <script>
-import { useHead } from 'unhead';
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";
 export default {
   data() {
@@ -125,21 +138,6 @@ export default {
         this.isMobile = true;
       }
     }
-  },
-  async setup() {
-    useHead({
-      title: "米亞烤肉組",
-    });
-    const route = useRoute();
-    let currentPage = 1;
-    if (route.params.bbq) {
-      currentPage = parseInt(route.params.bbq);
-    }
-    const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1)));
-    const content = tempData.data.value.Videos;
-    const page = tempData.data.value.Pages;
-    const total = tempData.data.value.TotalVideos;
-    return { content, page, total, currentPage };
   },
   methods: {
     changePage(val) {
