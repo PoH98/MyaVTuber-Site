@@ -49,8 +49,7 @@
     const content = tempData.data.value.items
 </script>
 <script>
-import {mdiController} from '@mdi/js';
-import { useHead } from 'unhead';
+import { mdiController } from '@mdi/js';
 export default {
   data(){
     return{
