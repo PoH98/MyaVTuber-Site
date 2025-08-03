@@ -25,7 +25,7 @@
             </v-col>
         </v-row>
         <hr class="my-2" />
-        <div>
+        <!--<div>
             <label class="header mb-5 d-block">
                 現有Bingo
             </label>
@@ -46,7 +46,7 @@
                     </v-card>
                 </v-col>
             </v-row>
-        </div>
+        </div>-->
     </v-container>
 </template>
 <script>
