@@ -15,7 +15,7 @@
 </template>
 <script setup>
 useHead({
-    title: "米亞烤肉組",
+    title: "米亞烤肉組 - 米亞 Mya HKVTuber",
 });
 let currentPage = 1;
 const route = useRoute();

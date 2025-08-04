@@ -52,7 +52,7 @@
     ));
     const content = tempData.data.value.data.queryHomeContents[0].flatData;
     useHeadSafe({
-      title: "甘米"
+      title: "甘米 - 米亞 Mya HKVTuber"
     });
 </script>
 <script>

@@ -46,7 +46,7 @@
 </template>
 <script setup>
     useHeadSafe({
-      title: '米亞路程杯'
+      title: '米亞路程杯 - 米亞 Mya HKVTuber'
     })
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}"));
     const content = tempData.data.value.data.queryAchivementContents.sort((a, b) => {

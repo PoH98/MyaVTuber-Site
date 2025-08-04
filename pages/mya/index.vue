@@ -15,7 +15,7 @@
 </template>
 <script setup>
 useHeadSafe({
-    title: "米亞烤肉組",
+    title: "米亞烤肉組 - 米亞 Mya HKVTuber",
 });
 let currentPage = 1;
 const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1)));

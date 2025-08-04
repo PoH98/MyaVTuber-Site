@@ -56,7 +56,7 @@
       route.params.meme,
       { headers: { "X-Flatten": 1 } }));
     const content = tempData.data.value.data;
-    useHead({
+    useHeadSafe({
       title: content.title,
     });
 </script>
@@ -79,7 +79,7 @@ export default {
       clearTimeout(this.timeout);
     },
   },
-  beforeMount() {
+  onMounted() {
     if (process.client) {
       if (this.content.directlink) {
         window.onpopstate = () => {

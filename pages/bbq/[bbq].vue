@@ -97,7 +97,7 @@
 </template>
 <script setup>
     useHeadSafe({
-      title: "米亞烤肉組",
+      title: "米亞烤肉組 - 米亞 Mya HKVTuber",
     });
     const route = useRoute();
     let currentPage = 1;

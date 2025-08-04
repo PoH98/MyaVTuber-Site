@@ -38,7 +38,7 @@
 </template>
 <script setup>
     useHeadSafe({
-      title: "院友自創遊戲"
+      title: "院友自創遊戲 - 米亞 Mya HKVTuber"
     });
     const tempData = await useAsyncData(() => $fetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {

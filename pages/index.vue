@@ -70,7 +70,7 @@
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
     const content = tempData.data.value.data.queryHomeContents[0].flatData;
     useHeadSafe({
-      title: "主頁"
+      title: "主頁 - 米亞 Mya HKVTuber"
     });
 </script>
 <script>

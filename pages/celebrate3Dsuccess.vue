@@ -20,7 +20,7 @@
       <div v-if="!isLoading">
         <v-row class="mx-0" v-for="i in arrayLength" :key="'group_' + i">
           <v-col cols="12">
-            <video-row :video="videos[i - 1]" :post="
+            <video-row :video="videos[i]" :post="
               Math.min((i - 1) * 11, content.length) === 0
                 ? content
                 : content.slice(Math.min((i - 1) * 11, content.length))
@@ -153,34 +153,37 @@
   </section>
 </template>
 <script setup>
-    useHeadSafe({
-      title: '祝賀米亞3D化成功'
-    });
-    const theme = useTheme()
-    const [tempData, tweetsData] = await Promise.all([
-      useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
-      useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
-    ])
-    let rawContent = tempData.data.value.data.queryCelebrate3dContents
-    let index = 0;
-    rawContent = rawContent.sort((x, y) => {
-      index++;
-      if (index % 8 < 2) {
-        if (x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30) {
-          return 1;
-        } else if (x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30) {
-          return -1;
-        } else if (x.data.wish.iv.length > y.data.wish.iv.length) {
-          return 1;
-        } else if (x.data.wish.iv.length < y.data.wish.iv.length) {
-          return -1;
-        }
-        return 0;
-      }
+useHeadSafe({
+  title: '祝賀米亞3D化成功 - 米亞 Mya HKVTuber'
+});
+const theme = useTheme()
+const [tempData, tweetsData] = await Promise.all([
+  useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
+  useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")
+])
+let rawContent = tempData.data.value.data.queryCelebrate3dContents
+let index = 0;
+rawContent = rawContent.sort((x, y) => {
+  index++;
+  if (index % 8 < 2) {
+    if (x.data.wish.iv.length >= 30 && y.data.wish.iv.length < 30) {
+      return 1;
+    } else if (x.data.wish.iv.length < 30 && y.data.wish.iv.length >= 30) {
       return -1;
-    });
-    const specialTweets = tweetsData.data.value;
-    const content = rawContent;
+    } else if (x.data.wish.iv.length > y.data.wish.iv.length) {
+      return 1;
+    } else if (x.data.wish.iv.length < y.data.wish.iv.length) {
+      return -1;
+    }
+    return 0;
+  }
+  return -1;
+});
+const specialTweets = tweetsData.data.value;
+const content = rawContent;
+const arrayTotal = content.length;
+const arrayLength = Math.floor(arrayTotal / 11);
+const arrayLeft = arrayTotal % 11;
 </script>
 <script>
 import VideoPlayer from "~/components/VideoPlayer.vue";
@@ -212,19 +215,6 @@ export default {
       bgimgCount: 42,
       images: [],
     };
-  },
-  computed: {
-    arrayTotal() {
-      return this.content.length;
-    },
-    arrayLength() {
-      let result = Math.floor(this.arrayTotal / 11);
-      return result;
-    },
-    arrayLeft() {
-      let result = this.arrayTotal % 11;
-      return result;
-    },
   },
   methods: {
     async intervalTimer() {
@@ -268,12 +258,7 @@ export default {
         }
         let str = `<h1>You are warned!</h1><br/><p>Loading MYA Ransomware...</p>|<p>Encrypting device...</p>|<br/>|<br/>|<p>Device encrypted...Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
       <p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>|<p>LOL you believe this shit? (PS: try decode the hash!)</p>`;
-        if (window.innerWidth < 480) {
-          //phone device
-          this.fakeLoading = `System encrypting device...<br/>Please be patient...<hr/><p>Please pay 1647 BTC to unlock your device in 3 sec or else your files will be deleted forever!</p>
-      <hr/><p>BTC account: 3nwXZ8yH33esSOdsOvnNfF9e/CcExysEjLG64fyZBtE=</p>`;
-          clearTimeout(this.fakeLoadingInterval);
-        }
+
         if (this.fakeLoadingHold) {
           this.fakeLoading += "&#9632; ";
           this.fakeLoadingHoldInteger++;
@@ -333,7 +318,9 @@ export default {
       this.$refs["bg_" + (x + 1)][0].src = "/img/YoutubeVideos/" + rnd + ".jpg";
       this.$refs["bg_" + (x + 1)][0].classList.add("active");
     }
-    setTimeout(this.intervalTimer, 1000);
+    if(process.client){
+      setTimeout(this.intervalTimer, 1000);
+    }
   }
 };
 </script>

@@ -7,7 +7,7 @@
 </template>
 <script setup>
 useHeadSafe({
-    title: "頂米亞大冒險"
+    title: "頂米亞大冒險 - 米亞 Mya HKVTuber"
 });
 const pages = [null];
 for (let x = 1; x <= 64; x++) {

@@ -83,7 +83,7 @@ const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/a
   { headers: { "X-Flatten": 1 } }));
 const patient = tempData.data.value.data;
 useHeadSafe({
-  title: patient.name,
+  title: patient.name + " - 米亞 Mya HKVTuber",
 })
 </script>
 <script>

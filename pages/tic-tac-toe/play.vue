@@ -76,7 +76,7 @@
 <script setup>
 useHeadSafe(
     {
-      title: '米亞Tic Tac Toe'
+      title: '米亞Tic Tac Toe - 米亞 Mya HKVTuber'
     });
 const game = useGameStore();
 const route = useRoute();

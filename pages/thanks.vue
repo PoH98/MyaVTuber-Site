@@ -29,7 +29,7 @@
 </template>
 <script setup>
     useHeadSafe({
-      title: "特別感謝",
+      title: "特別感謝 - 米亞 Mya HKVTuber",
     });
     const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
     const users = tempData.data.value.data.queryPatientListContents

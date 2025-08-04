@@ -34,79 +34,75 @@
         <v-list nav dense>
           <v-list-item to="/" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiHome }}</v-icon>
+              <Icon name="material-symbols:home" />
             </template>
             <v-list-item-title>米亞</v-list-item-title>
           </v-list-item>
           <v-list-item to="/gummy" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiAccount }}</v-icon>
+              <Icon name="material-symbols:account-circle" />
             </template>
             <v-list-item-title>甘米主人</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/teahouse" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiCoffee }}</v-icon>
+              <Icon name="mdi:coffee" />
             </template>
             <v-list-item-title>幻花茶屋</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/mya-meme" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiBook }}</v-icon>
+              <Icon name="material-symbols-light:book-2" />
             </template>
             <v-list-item-title>米亞梗字典</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/achievement" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiTrophy }}</v-icon>
+              <Icon name="material-symbols:trophy-rounded" />
             </template>
             <v-list-item-title>路程杯</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/adventure" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiBook }}</v-icon>
+              <Icon name="material-symbols-light:book-2" />
             </template>
             <v-list-item-title>頂米亞大冒險</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/bingo" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+              <Icon name="ri:game-fill" />
             </template>
             <v-list-item-title>米亞Bingo</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/bbq" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiFoodDrumstick }}</v-icon>
+              <Icon name="mdi:food-drumstick" />
             </template>
             <v-list-item-title>米亞烤肉</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/mya" link>
             <template v-slot:prepend>
-              <v-icon>
-                <YouTubeIcon size="20" />
-              </v-icon>
+              <Icon name="line-md:youtube-filled" />
             </template>
             <v-list-item-title>米亞過往的影片</v-list-item-title>
           </v-list-item>
 
           <v-list-item to="/games" link>
             <template v-slot:prepend>
-              <v-icon>
-                {{ mdiController }}
-              </v-icon>
+              <Icon name="ri:game-fill" />
             </template>
             <v-list-item-title>院友自製遊戲</v-list-item-title>
           </v-list-item>
           <v-list-item to="/thanks" link>
             <template v-slot:prepend>
-              <v-icon>{{ mdiPartyPopper }}</v-icon>
+              <Icon name="lucide:party-popper" />
             </template>
             <v-list-item-title>特別感謝</v-list-item-title>
           </v-list-item>
@@ -207,17 +203,6 @@ import { useSharedDataStore } from '@/store/sharedData.js';
 import { useThemeStore } from '@/store/themeStore';
 import { useTheme } from 'vuetify';
 import { DiscordIcon, InstagramIcon, XIcon, YouTubeIcon, FacebookIcon } from 'vue3-simple-icons'
-import {
-  mdiMinecraft,
-  mdiAccount,
-  mdiCoffee,
-  mdiHome,
-  mdiController,
-  mdiFoodDrumstick,
-  mdiPartyPopper,
-  mdiTrophy,
-  mdiBook,
-} from "@mdi/js";
 import config from "@/plugins/specialEvent.json";
 export default {
   name: "defaultLayout",
@@ -242,22 +227,13 @@ export default {
           themeStore.theme = t;
           console.log(themeStore.theme);
         }
-        theme.global.name.value = t;
+        theme.change(t);
       }
     }
   },
   data() {
     return {
       drawer: false,
-      mdiMinecraft,
-      mdiAccount,
-      mdiCoffee,
-      mdiHome,
-      mdiController,
-      mdiFoodDrumstick,
-      mdiPartyPopper,
-      mdiBook,
-      mdiTrophy,
       celebrate: [
         10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000,
         200000, 3000000, 400000, 5000000, 600000, 700000, 800000, 900000,
@@ -301,7 +277,6 @@ export default {
 
     },
     async specialEvents() {
-      const month = new Date().getMonth() + 1;
       //subscribers celebrate or mya birthday celebrate
       if (!document.getElementById("confetti-canvas")) {
         if (this.celebrate.includes(parseInt(this.status.subscriberCount))) {
@@ -421,6 +396,26 @@ export default {
     font-style: normal;
     font-display: swap;
   }
+}
+
+.iconify{
+  align-items: center;
+  display: inline-flex;
+  height: 1.5em;
+  justify-content: center;
+  letter-spacing: normal;
+  line-height: 1;
+  position: relative;
+  opacity: var(--v-medium-emphasis-opacity);
+  text-indent: 0;
+  text-align: center;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  vertical-align: middle;
+  width: 3em;
+  min-width: 3em;
+  mask-size: 1.5em;
 }
 
 body {
