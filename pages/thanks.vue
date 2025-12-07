@@ -31,8 +31,8 @@
     useHeadSafe({
       title: "特別感謝 - 米亞 Mya HKVTuber",
     });
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}"));
-    const users = tempData.data.value.data.queryPatientListContents
+    const tempData = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}");
+    const users = tempData.data.queryPatientListContents
 </script>
 <script>
 import { mdiPartyPopper } from "@mdi/js";

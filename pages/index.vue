@@ -67,8 +67,8 @@
   </div>
 </template>
 <script setup>
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}"));
-    const content = tempData.data.value.data.queryHomeContents[0].flatData;
+    const tempData = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{%20flatData{%20myadesc,%20subsection{%20backgroundColor,%20linearBackgroundColor,%20backgroundImage,%20content,%20type,%20button,%20buttonText,%20buttonIcon,%20button2,%20button2Text,%20button2Icon%20}%20}%20}}");
+    const content = tempData.data.queryHomeContents[0].flatData;
     useHeadSafe({
       title: "主頁 - 米亞 Mya HKVTuber"
     });
@@ -83,9 +83,6 @@ import Section from "~/components/Home/SecondarySection.vue";
 import FSection from "~/components/Home/FullSection.vue";
 
 export default {
-  async setup() {
-
-  },
   name: "indexView",
   components: {
     Banner,

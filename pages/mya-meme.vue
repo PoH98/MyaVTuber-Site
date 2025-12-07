@@ -37,8 +37,8 @@
     useHeadSafe({
       title: "米亞梗字典 - 米亞 Mya HKVTuber"
     })
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, cardimg } }}"));
-    const content = tempData.data.value.data.queryJokewikiContents
+    const tempData = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryJokewikiContents{ id ,flatData{ title, shortdesc, cardimg } }}");
+    const content = tempData.data.queryJokewikiContents
 </script>
 <script>
 import { mdiChevronTripleRight } from "@mdi/js";

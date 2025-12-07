@@ -132,10 +132,10 @@
         { hid: "twitter:site", name: "og:site_name", content: "@HKVTOPIA" },
       ],
     })
-    const tempData = await useAsyncData(() => $fetch(
+    const tempData = await useFetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ teahousedesc, teahousesubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
-    ));
-    const content = tempData.data.value.data.queryHomeContents[0].flatData
+    );
+    const content = tempData.data.queryHomeContents[0].flatData
 </script>
 <script>
 import SubSections from "../components/Home/SubSections.vue";
