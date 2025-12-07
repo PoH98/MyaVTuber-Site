@@ -100,10 +100,10 @@
       title: "米亞烤肉組 - 米亞 Mya HKVTuber",
     });
     let currentPage = 1;
-    const tempData = await useAsyncData(() => $fetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1)));
-    const content = tempData.data.value.Videos;
-    const page = tempData.data.value.Pages;
-    const total = tempData.data.value.TotalVideos;
+    const {data} = await useFetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1));
+    const content = data.value.data.value.Videos;
+    const page = data.value.data.value.Pages;
+    const total = data.value.data.value.TotalVideos;
 </script>
 <script>
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";

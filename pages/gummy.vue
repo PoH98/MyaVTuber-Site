@@ -47,10 +47,10 @@
   </div>
 </template>
 <script setup>
-    const tempData = await useFetch(
+    const {data} = await useFetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
     );
-    const content = tempData.data.queryHomeContents[0].flatData;
+    const content = data.value.data.queryHomeContents[0].flatData;
     useHeadSafe({
       title: "甘米 - 米亞 Mya HKVTuber"
     });

@@ -52,10 +52,10 @@
 </template>
 <script setup>
     const route = useRoute();
-    const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/jokewiki/" +
+    const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/jokewiki/" +
       route.params.meme,
-      { headers: { "X-Flatten": 1 } }));
-    const content = tempData.data.value.data;
+      { headers: { "X-Flatten": 1 } });
+    const content = data.value.data.value.data;
     useHeadSafe({
       title: content.title,
     });

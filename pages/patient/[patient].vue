@@ -78,10 +78,10 @@
 </template>
 <script setup>
 const route = useRoute();
-const tempData = await useAsyncData(() => $fetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
+const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/patient-list/" +
   route.params.patient,
-  { headers: { "X-Flatten": 1 } }));
-const patient = tempData.data.value.data;
+  { headers: { "X-Flatten": 1 } });
+const patient = data.value.data.value.data;
 useHeadSafe({
   title: patient.name + " - 米亞 Mya HKVTuber",
 })

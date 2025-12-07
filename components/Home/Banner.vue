@@ -3,10 +3,10 @@
     <div class="gradient"></div>
     <ClientOnly>
       <div id="background-frame" v-if="showFools"
-        data-iframe="https://www.youtube.com/embed/mkxer6pxQ6I?playlist=mkxer6pxQ6I&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-iframe="https://www.youtube.com/embed/mkxer6pxQ6I?playlist=mkxer6pxQ6I&controls=0&showinfo=0&autoplay=1&mute=1&loop=1&vq=hd720"
         data-img="/img/rickroll.jpg"></div>
       <div id="background-frame" v-else
-        data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&rel=0&autoplay=1&mute=1&loop=1&vq=hd720"
+        data-iframe="https://www.youtube.com/embed/Lmlfs8nP23U?playlist=Lmlfs8nP23U&controls=0&showinfo=0&autoplay=1&mute=1&loop=1&vq=hd720"
         data-img="/img/sayyouknow.jpg"></div>
     </ClientOnly>
     <div class="title" v-if="!showBirthday && !showFools">

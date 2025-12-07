@@ -48,8 +48,8 @@
     useHeadSafe({
       title: '米亞路程杯 - 米亞 Mya HKVTuber'
     })
-    const tempData = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}");
-    const content = tempData.data.queryAchivementContents.sort((a, b) => {
+    const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}");
+    const content = data.value.data.queryAchivementContents.sort((a, b) => {
       return new Date(b.flatData.date) - new Date(a.flatData.date);
     });
 </script>

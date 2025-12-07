@@ -40,13 +40,13 @@
     useHeadSafe({
       title: "院友自創遊戲 - 米亞 Mya HKVTuber"
     });
-    const tempData = await useFetch(
+    const {data} = await useFetch(
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/game/", {
         headers: {
           "X-Flatten": 1,
         },
       });
-    const content = tempData.items
+    const content = data.value.items
 </script>
 <script>
 import { mdiController } from '@mdi/js';
