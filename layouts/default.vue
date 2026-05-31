@@ -73,13 +73,6 @@
             <v-list-item-title>頂米亞大冒險</v-list-item-title>
           </v-list-item>
 
-          <v-list-item to="/bingo" link>
-            <template v-slot:prepend>
-              <Icon name="ri:game-fill" />
-            </template>
-            <v-list-item-title>米亞Bingo</v-list-item-title>
-          </v-list-item>
-
           <v-list-item to="/bbq" link>
             <template v-slot:prepend>
               <Icon name="mdi:food-drumstick" />
