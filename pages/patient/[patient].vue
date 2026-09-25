@@ -82,12 +82,11 @@ const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtub
   route.params.patient,
   { headers: { "X-Flatten": 1 } });
 const patient = data.value.data.value.data;
-useHeadSafe({
+useHead({
   title: patient.name + " - 米亞 Mya HKVTuber",
 })
 </script>
 <script>
-import { useHead } from 'unhead';
 import { mdiFacebook, mdiInstagram, mdiTwitter, mdiChevronLeft } from "@mdi/js";
 import FSection from "~/components/Home/FullSection.vue";
 export default {

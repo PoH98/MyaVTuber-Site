@@ -92,7 +92,7 @@
   </div>
 </template>
 <script setup>
-  useHeadSafe({
+  useHead({
       title: "幻花茶屋 - 米亞 Mya HKVTuber",
       meta: [
         { charset: "UTF-8" },

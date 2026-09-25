@@ -1,6 +1,18 @@
+import { signalrAnnotations } from './build/signalr-annotations.mjs'
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
+  // Nuxt's preload transform needs client maps to preserve the build sourcemap chain.
+  sourcemap: { client: 'hidden', server: true },
+  vite: {
+    plugins: [signalrAnnotations()],
+  },
+  nitro: {
+    // Avoid the external tracer's deprecated trailing-slash package lookups.
+    externals: { inline: ['@vue/shared', '@iconify/utils'] },
+    rollupConfig: { plugins: [signalrAnnotations()] },
+  },
   devtools: {
     enabled: true,
 
@@ -92,7 +104,6 @@ export default defineNuxtConfig({
     '@nuxt/icon',
     '@nuxt/scripts',
     '@nuxt/eslint',
-    '@nuxt/image',
     'vuetify-nuxt-module',
     '@pinia/nuxt',
     'pinia-plugin-persistedstate/nuxt'

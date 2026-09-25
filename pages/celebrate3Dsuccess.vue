@@ -153,7 +153,7 @@
   </section>
 </template>
 <script setup>
-useHeadSafe({
+useHead({
   title: '祝賀米亞3D化成功 - 米亞 Mya HKVTuber'
 });
 const theme = useTheme()

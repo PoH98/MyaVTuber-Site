@@ -6,7 +6,7 @@
     </div>
 </template>
 <script setup>
-useHeadSafe({
+useHead({
     title: "頂米亞大冒險 - 米亞 Mya HKVTuber"
 });
 const pages = [null];

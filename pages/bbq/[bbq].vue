@@ -96,7 +96,7 @@
   </v-sheet>
 </template>
 <script setup>
-    useHeadSafe({
+    useHead({
       title: "米亞烤肉組 - 米亞 Mya HKVTuber",
     });
     const route = useRoute();

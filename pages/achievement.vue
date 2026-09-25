@@ -1,5 +1,5 @@
 <template>
-  <v-sheet>
+  <v-sheet class="bg-achievement">
     <v-container>
       <v-row>
         <v-col cols="12" lg="7" class="pr-lg-10">
@@ -27,7 +27,7 @@
           </v-timeline>
         </v-col>
         <v-col class="d-none d-lg-block pt-8" lg="5">
-          <v-card outlined elevation="2" class="h-100">
+          <v-card outlined elevation="2">
             <v-card-title class="text-center pb-4 text-h5">紀念墻</v-card-title>
             <hr />
             <v-card-text class="text-h5 pt-5">
@@ -45,7 +45,7 @@
   </v-sheet>
 </template>
 <script setup>
-    useHeadSafe({
+    useHead({
       title: '米亞路程杯 - 米亞 Mya HKVTuber'
     })
     const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryAchivementContents{flatData{name date color description image { url }}}}");
@@ -54,7 +54,6 @@
     });
 </script>
 <script>
-import { useHead } from 'unhead';
 export default {
   data() {
     return {
@@ -85,6 +84,13 @@ export default {
 };
 </script>
 <style scoped>
+.bg-achievement{
+  background: linear-gradient(rgba(var(--v-theme-background), 0.9), rgba(var(--v-theme-background), 0.3)), url('/img/HP8_SaTaUAArZ4A.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
 .timeline-card {
   box-shadow: 5px 5px 20px 0px rgba(var(--v-theme-on-surface), 0.5);
   border-radius: 12px;

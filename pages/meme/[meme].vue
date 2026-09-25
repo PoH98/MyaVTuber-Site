@@ -56,7 +56,7 @@
       route.params.meme,
       { headers: { "X-Flatten": 1 } });
     const content = data.value.data;
-    useHeadSafe({
+    useHead({
       title: content.title,
     });
 </script>

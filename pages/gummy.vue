@@ -51,7 +51,7 @@
       "https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryHomeContents{ flatData{ gummydesc, gummysubsection{ backgroundColor, backgroundImage, content, type, button, buttonText, buttonIcon } } }}"
     );
     const content = data.value.data.queryHomeContents[0].flatData;
-    useHeadSafe({
+    useHead({
       title: "甘米 - 米亞 Mya HKVTuber"
     });
 </script>

@@ -28,7 +28,7 @@
   </v-sheet>
 </template>
 <script setup>
-    useHeadSafe({
+    useHead({
       title: "特別感謝 - 米亞 Mya HKVTuber",
     });
     const {data} = await useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryPatientListContents{ id ,flatData{ name } }}");

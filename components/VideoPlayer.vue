@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import videojs from "video.js";
+// The site plays MP4 files, so it does not need the HLS/DASH streaming bundle.
+import videojs from "video.js/dist/alt/video.core.js";
 import "video.js/dist/video-js.css"
 export default {
   name: "VideoPlayer",

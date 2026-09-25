@@ -74,7 +74,7 @@
     </v-container>
 </template>
 <script setup>
-useHeadSafe(
+useHead(
     {
       title: '米亞Tic Tac Toe - 米亞 Mya HKVTuber'
     });

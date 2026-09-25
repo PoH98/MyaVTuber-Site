@@ -1,16 +1,18 @@
-import { Application } from "@pixi/app";
-import { Ticker, TickerPlugin } from "@pixi/ticker";
 export default defineNuxtPlugin((nuxtApp) => {
   if (window.innerWidth > 480) {
     setTimeout(async () => {
       try {
-        const Live2DModel = await import("pixi-live2d-display/cubism4");
-        Live2DModel.registerTicker(Ticker);
-        Application.registerPlugin(TickerPlugin);
         const canvas = document.getElementById("live2d");
         if (canvas == null) {
           return;
         }
+        const [{ Application }, { Ticker, TickerPlugin }, { Live2DModel }] = await Promise.all([
+          import("@pixi/app"),
+          import("@pixi/ticker"),
+          import("pixi-live2d-display/cubism4"),
+        ]);
+        Live2DModel.registerTicker(Ticker);
+        Application.registerPlugin(TickerPlugin);
         const circle = <HTMLCanvasElement>canvas;
         let app = new Application({
           view: circle,

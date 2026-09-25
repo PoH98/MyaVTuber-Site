@@ -37,7 +37,7 @@
   </v-sheet>
 </template>
 <script setup>
-    useHeadSafe({
+    useHead({
       title: "院友自創遊戲 - 米亞 Mya HKVTuber"
     });
     const {data} = await useFetch(
