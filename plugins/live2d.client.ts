@@ -1,37 +1,36 @@
 export default defineNuxtPlugin((nuxtApp) => {
-  if (window.innerWidth > 480) {
-    setTimeout(async () => {
-      try {
-        const canvas = document.getElementById("live2d");
-        if (canvas == null) {
-          return;
-        }
-        const [{ Application }, { Ticker, TickerPlugin }, { Live2DModel }] = await Promise.all([
-          import("@pixi/app"),
-          import("@pixi/ticker"),
-          import("pixi-live2d-display/cubism4"),
-        ]);
-        Live2DModel.registerTicker(Ticker);
-        Application.registerPlugin(TickerPlugin);
-        const circle = <HTMLCanvasElement>canvas;
-        let app = new Application({
-          view: circle,
-          width: 255,
-          height: 255,
-          backgroundAlpha: 0,
+  let disposed = false;
+  let cleanup = () => {};
+  const dispose = () => {
+    disposed = true;
+    cleanup();
+  };
+  nuxtApp.vueApp.onUnmount(dispose);
+  import.meta.hot?.dispose(dispose);
+
+  nuxtApp.hook("app:mounted", async () => {
+    const canvas = document.getElementById("live2d");
+    if (window.innerWidth <= 480 || !(canvas instanceof HTMLCanvasElement)) return;
+
+    try {
+      // The engine reads Cubism Core at import time, so wait for the local script.
+      if (!("Live2DCubismCore" in window)) {
+        await new Promise<void>((resolve, reject) => {
+          const script = document.createElement("script");
+          script.src = "/script/live2dcubismcore-5.2.min.js";
+          script.onload = () => resolve();
+          script.onerror = () => reject(new Error("Unable to load Cubism Core"));
+          document.head.appendChild(script);
         });
-        let model = await Live2DModel.from("/live2d/MYAAA/MYAAA.model3.json");
-        model.scale.set(0.2, 0.2);
-        app.stage.addChild(model);
-        document.addEventListener("mousemove", (e) => {
-          let left = e.clientX - circle.width / 2 + 15;
-          let top = e.clientY - circle.height / 2 + 40;
-          circle.style.left = left + "px";
-          circle.style.top = top + "px";
-        });
-      } catch {
-        //ignore and do not do anything
       }
-    }, 1000);
-  }
+      if (disposed) return;
+
+      const { createLive2D } = await import("../lib/live2d");
+      if (disposed) return;
+      cleanup = await createLive2D(canvas);
+      if (disposed) cleanup();
+    } catch (error) {
+      console.error("Unable to initialize Live2D", error);
+    }
+  });
 });

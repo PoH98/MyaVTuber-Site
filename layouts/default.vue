@@ -189,7 +189,7 @@
       </v-footer>
     </v-app>
   </div>
-  <canvas id="live2d" ref="vue-live2d-main" :width="250" :height="250" class="vue-live2d-main"></canvas>
+  <canvas id="live2d" width="255" height="255" aria-hidden="true" class="vue-live2d-main"></canvas>
 </template>
 <script>
 import { useSharedDataStore } from '@/store/sharedData.js';

@@ -7,6 +7,19 @@ export default defineNuxtConfig({
   sourcemap: { client: 'hidden', server: true },
   vite: {
     plugins: [signalrAnnotations()],
+    optimizeDeps: {
+      include: ['pixi.js', 'untitled-pixi-live2d-engine/cubism'],
+    },
+    build: {
+      rollupOptions: {
+        output: {
+          onlyExplicitManualChunks: true,
+          manualChunks(id) {
+            if (id.includes('/node_modules/untitled-pixi-live2d-engine/')) return 'live2d-engine';
+          },
+        },
+      },
+    },
   },
   nitro: {
     // Avoid the external tracer's deprecated trailing-slash package lookups.
@@ -32,7 +45,6 @@ export default defineNuxtConfig({
       ],
       script: [
         { src: "/script/lazy-iframe.js", async: true, defer: true },
-        { src: "/script/live2dcubismcore.min.js", async: true, defer: false },
       ],
       meta: [
         {

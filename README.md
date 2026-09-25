@@ -73,3 +73,12 @@ bun run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+## Live2D
+
+The desktop mascot uses PixiJS 8 and `untitled-pixi-live2d-engine` with the existing
+`public/live2d/MYAAA` model. The client plugin loads Core before importing the engine.
+`public/script/live2dcubismcore-5.2.min.js` is the vendored Cubism 5.2 Core from
+[Live2D's versioned distribution](https://cubism.live2d.com/sdk-web/core/05/live2dcubismcore.min.js).
+The engine requires the drawable render-order API from this Core version; Cubism 5.3 changes it.
+Keep its license header and versioned filename when updating it to avoid stale browser caches.
