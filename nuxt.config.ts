@@ -26,6 +26,7 @@ export default defineNuxtConfig({
     externals: { inline: ['@vue/shared', '@iconify/utils'] },
     rollupConfig: { plugins: [signalrAnnotations()] },
   },
+  vuetify: { moduleOptions: { prefixComposables: true } },
   devtools: {
     enabled: true,
 
@@ -44,6 +45,8 @@ export default defineNuxtConfig({
         { rel: "preconnect", href: "https://fonts.googleapis.com" },
       ],
       script: [
+        // The production bundle can evaluate the Live2D engine before app:mounted.
+        { src: "/script/live2dcubismcore-5.2.min.js" },
         { src: "/script/lazy-iframe.js", async: true, defer: true },
       ],
       meta: [

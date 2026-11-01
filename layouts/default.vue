@@ -207,7 +207,7 @@ export default {
     FacebookIcon,
   },
   setup() {
-    const theme = useTheme()
+    const theme = useVTheme()
     const store = useSharedDataStore();
     const themeStore = useThemeStore();
     return {

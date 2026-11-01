@@ -96,7 +96,7 @@ export default {
     },
   },
   setup(){
-    const theme = useTheme();
+    const theme = useVTheme();
     return {
       theme
     }

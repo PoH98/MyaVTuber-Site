@@ -156,7 +156,7 @@
 useHead({
   title: '祝賀米亞3D化成功 - 米亞 Mya HKVTuber'
 });
-const theme = useTheme()
+const theme = useVTheme()
 const [tempData, tweetsData] = await Promise.all([
   useFetch("https://api.mya-hkvtuber.com/api/content/mya-vtuber-api/graphql?query={queryCelebrate3dContents{data{name{iv}wish{iv}}}}"),
   useFetch("https://www.mya-hkvtuber.com/api/mya/get3DSpecialTweets")

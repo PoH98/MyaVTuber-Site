@@ -138,7 +138,7 @@ export default {
     FSection,
   },
   setup() {
-    const theme = useTheme()
+    const theme = useVTheme()
     return {
       theme,
     }
