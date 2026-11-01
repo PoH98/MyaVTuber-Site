@@ -44,5 +44,8 @@
     "magic-string": "^0.30.21",
     "vite-plugin-vuetify": "^2.1.2",
     "vuetify": "^3.9.3"
+  },
+  "engines": {
+    "node": "^22.22.3 || ^24.15.0 || >=26.0.0"
   }
 }
