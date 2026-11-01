@@ -6,9 +6,10 @@
                 <span>米亞過往的影片</span>
                 <v-icon>{{ mdiYoutube }}</v-icon>
             </h1>
-            <h3 class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
-            <Carousel :images="content" />
-            <v-pagination class="mt-5" color="rgb(248, 187, 208)" :model-value="currentPage"
+            <v-alert v-if="!data" type="error" class="mb-5">影片載入失敗，請稍後再試。</v-alert>
+      <h3 v-else class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
+            <Carousel v-if="content.length" :images="content" />
+            <v-pagination v-if="data" class="mt-5" color="rgb(248, 187, 208)" :model-value="currentPage"
                 @update:model-value="changePage" :length="page"></v-pagination>
         </v-container>
     </v-sheet>
@@ -23,9 +24,9 @@ if (route.params.mya) {
     currentPage = parseInt(route.params.mya);
 }
 const {data} = await useFetch("https://www.mya-hkvtuber.com/api/mya/getMyaVideos?page=" + (currentPage - 1));
-const content = data.value.data.value.Videos;
-const page = data.value.data.value.Pages;
-const total = data.value.data.value.TotalVideos;
+const content = data.value?.Videos ?? [];
+const page = data.value?.Pages ?? 0;
+const total = data.value?.TotalVideos ?? 0;
 </script>
 <script>
 import { mdiYoutube, mdiClose } from "@mdi/js";

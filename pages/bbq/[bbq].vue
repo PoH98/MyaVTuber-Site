@@ -6,7 +6,8 @@
         <span>米亞烤肉組</span>
         <v-icon>{{ mdiFoodDrumstick }}</v-icon>
       </h1>
-      <h3 class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
+      <v-alert v-if="!data" type="error" class="mb-5">影片載入失敗，請稍後再試。</v-alert>
+      <h3 v-else class="mb-5">總共伺服器已收藏影片：{{ total }}</h3>
       <v-row>
         <v-col cols="12" md="3" class="video-col" v-for="c in content" :key="c.Thumbnail">
           <v-card elevation="0" class="video-card darken">
@@ -60,7 +61,7 @@
           </v-card>
         </v-col>
       </v-row>
-      <v-pagination
+      <v-pagination v-if="data"
         color="rgb(248, 187, 208)"
         :model-value="currentPage"
         @update:model-value="changePage"
@@ -105,9 +106,9 @@
       currentPage = parseInt(route.params.bbq);
     }
     const {data} = await useFetch("https://www.mya-hkvtuber.com/api/mya/getOtherVideos?page=" + (currentPage - 1));
-    const content = data.value.data.value.Videos;
-    const page = data.value.data.value.Pages;
-    const total = data.value.data.value.TotalVideos;
+    const content = data.value?.Videos ?? [];
+    const page = data.value?.Pages ?? 0;
+    const total = data.value?.TotalVideos ?? 0;
 </script>
 <script>
 import { mdiFoodDrumstick, mdiClose } from "@mdi/js";
